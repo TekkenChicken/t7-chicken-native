@@ -3,7 +3,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import * as reducers from '../reducers';
-import TekkenChicken from './TekkenChicken';
+import HomeScreen from './HomeScreen/HomeScreen';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const reducer = combineReducers(reducers);
@@ -13,7 +13,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<TekkenChicken />
+				<HomeScreen />
 			</Provider>
 			)
 	}
