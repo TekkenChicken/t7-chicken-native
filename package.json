@@ -19,7 +19,9 @@
     "react-native": "0.39.0",
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-logger": "^2.7.4",
+    "redux-thunk": "^2.1.0",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-jest": "17.0.2",

@@ -4,20 +4,15 @@ import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
 import { Styles } from './HomeScreenStyles';
 import { createRouter }  from '@exponent/ex-navigation';
+import { Router } from '../Router';
 
-import About from '../../components/About/About';
-
- const Router = createRouter(() => ({
-   home: () => HomeScreen,
-   about: () => About,
- }));
+import About from '../About/About';
 
 export default class HomeScreen extends React.Component {
 
 	static route = {
 		navigationBar: {
-			home: () => Home,
-			about: () => About,
+			about: () => About
 		}
 	}
 

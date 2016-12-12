@@ -2,7 +2,7 @@ import  {
   CHARDATA_FETCHING,
   CHARDATA_FETCH_SUCCESS,
   CHARDATA_FETCH_ERROR
-} from './../actions/actionCreators';
+} from '../actions/actionCreators';
 // reducer takes in two things:
 
 // 1. the action (info about what happened)
