@@ -1,3 +1,5 @@
+import './ReactotronConfig';
+import Reactotron from 'reactotron-react-native';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { AppRegistry } from 'react-native';
@@ -17,6 +19,7 @@ const navigationContext = new NavigationContext({
   router: Router,
   store
 });
+
 
 export default class App extends React.Component {
 
