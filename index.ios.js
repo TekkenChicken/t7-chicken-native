@@ -23,8 +23,13 @@ const navigationContext = new NavigationContext({
 
 export default class App extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = { test: 'pants'
+    }
+  }
+
 	render() {
-		console.log(navigationContext);
 		return (
 			<Provider store={store}>
 				<NavigationProvider context={navigationContext} router={Router}>

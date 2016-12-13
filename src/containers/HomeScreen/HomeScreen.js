@@ -7,14 +7,27 @@ import { createRouter }  from '@exponent/ex-navigation';
 import { Router } from '../Router';
 
 import About from '../About/About';
+import CharacterSelect from '../../components/CharacterSelect/CharacterSelect';
+
+const characters =[
+  'alisa',
+  'asuka',
+  'bryan',
+  'claudio',
+  'dragunov',
+  'feng',
+  'heihachi',
+  'hwoarang',
+  'katarina',
+  'kazuya',
+  'king',
+  'lars',
+  'leo',
+  'paul',
+  'shaheen'
+];
 
 export default class HomeScreen extends React.Component {
-
-	static route = {
-		navigationBar: {
-			about: () => About
-		}
-	}
 
 	goToAbout = () => {
 		this.props.navigator.push(Router.getRoute('about'));
@@ -23,6 +36,7 @@ export default class HomeScreen extends React.Component {
 	render() {
 		return (
 			<View style={Styles.container}>
+				<CharacterSelect characters={characters} />
 				<Text>Waddup tho</Text>
 				<Text onPress={this.goToAbout}>
 					Push about route
