@@ -36,11 +36,8 @@ export default class HomeScreen extends React.Component {
 	render() {
 		return (
 			<View style={Styles.container}>
+				<Text>Data Provided by rbnorway</Text>
 				<CharacterSelect characters={characters} />
-				<Text>Waddup tho</Text>
-				<Text onPress={this.goToAbout}>
-					Push about route
-				</Text>
 			</View>
 			);
 	}

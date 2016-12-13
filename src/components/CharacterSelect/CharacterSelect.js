@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { Styles } from './CharacterSelectStyle';
 import { Select, Option, OptionList, updatePosition } from 'react-native-dropdown';
 
 /* TODO:
@@ -22,7 +23,13 @@ export default class CharacterSelect extends React.Component {
 
   renderOptions(names) {
   return  names.map((name, id) => {
-    return  <Option key={id}>{name}</Option>
+    return (
+      <Option
+        styleText={Styles.select}
+        key={id}>
+        {name}
+      </Option>
+  )
     })
   }
 
@@ -41,14 +48,13 @@ export default class CharacterSelect extends React.Component {
     return (
       <View>
         <Select
-          width={250}
+          width={200}
           ref="SELECT1"
           optionListRef={this.getOptionList.bind(this)}
           defaultValue="Select Character"
           onSelect={this.handleSelect.bind(this)}>
           {this.renderOptions(this.props.characters)}
         </Select>
-        <Text>Selected Character: {this.state.selected}</Text>
 
       <OptionList ref="OPTIONLIST" />
       </View>

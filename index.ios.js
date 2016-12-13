@@ -2,7 +2,7 @@ import './ReactotronConfig';
 import Reactotron from 'reactotron-react-native';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, Text } from 'react-native';
 
  import {
    NavigationContext,
@@ -22,12 +22,6 @@ const navigationContext = new NavigationContext({
 
 
 export default class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = { test: 'pants'
-    }
-  }
 
 	render() {
 		return (
