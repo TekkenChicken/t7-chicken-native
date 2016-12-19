@@ -9,6 +9,9 @@ import { Router } from '../Router';
 import About from '../About/About';
 import CharacterSelect from '../../components/CharacterSelect/CharacterSelect';
 
+//dispatch actions
+import { fetchCharacterData } from '../../redux/actions/character-data-action';
+
 const characters =[
   'alisa',
   'asuka',
@@ -27,7 +30,13 @@ const characters =[
   'shaheen'
 ];
 
-export default class HomeScreen extends React.Component {
+
+class HomeScreen extends React.Component {
+
+  handleSelect = (name) => {
+		//const character = event.target.value;
+    this.props.dispatch( fetchCharacterData(name) );
+	}
 
 	goToAbout = () => {
 		this.props.navigator.push(Router.getRoute('about'));
@@ -37,8 +46,23 @@ export default class HomeScreen extends React.Component {
 		return (
 			<View style={Styles.container}>
 				<Text>Data Provided by rbnorway</Text>
-				<CharacterSelect characters={characters} />
+				<CharacterSelect
+          handleSelect={this.handleSelect}
+          characters={characters}
+        />
 			</View>
 			);
 	}
 }
+
+const mapStateToProps = function(state) {
+	return {
+		frameData: state.characterData.frameData,
+		character: state.characterData.character
+	}
+}
+
+const mapDispatchToProps = function(dispatch) {
+	return { dispatch };
+}
+export default connect( mapStateToProps, mapDispatchToProps )(HomeScreen);

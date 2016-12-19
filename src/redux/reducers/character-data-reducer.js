@@ -1,4 +1,4 @@
-import  { 
+import  {
   CHARDATA_FETCHING,
   CHARDATA_FETCH_SUCCESS,
   CHARDATA_FETCH_ERROR
@@ -16,7 +16,6 @@ const initialState = {
 
 function characterData(state = initialState, action) {
   switch (action.type) {
-
     case CHARDATA_FETCHING:
       console.log('payload', action.payload);
       return Object.assign({}, state, {

@@ -28,7 +28,7 @@ function dataFetchError(err, character) {
   }
 }
 
-function fetchingCharacterData() {
+function fetchingCharacterData(payload) {
   return {
     type: CHARDATA_FETCHING
   }
@@ -45,7 +45,7 @@ export function fetchCharacterData(character) {
     // api call
     fetch(CHARDATA_API)
     .then((response) => {
-      console.log(response);
+      console.log(response, 'what is response');
       return response.json()
     }).then((response) => {
       dispatch( dataFetchSuccess(response[character], character) )
