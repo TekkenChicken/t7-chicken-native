@@ -3,6 +3,8 @@ import { View, Text } from 'react-native';
 import { Styles } from './CharacterSelectStyle';
 import { Select, Option, OptionList, updatePosition } from 'react-native-dropdown';
 
+import { fetchCharacterData } from '../../redux/actions/character-data-action';
+
 /* TODO:
 Get Character Names based on JSON Data from Api
 
@@ -37,12 +39,6 @@ export default class CharacterSelect extends React.Component {
     return this.refs['OPTIONLIST'];
   }
 
-  handleSelect(name) {
-    console.log(name);
-    this.setState({
-      selected: name
-    });
-  }
 
   render() {
     return (
@@ -52,7 +48,7 @@ export default class CharacterSelect extends React.Component {
           ref="SELECT1"
           optionListRef={this.getOptionList.bind(this)}
           defaultValue="Select Character"
-          onSelect={this.handleSelect.bind(this)}>
+          onSelect={this.props.handleSelect}>
           {this.renderOptions(this.props.characters)}
         </Select>
 
