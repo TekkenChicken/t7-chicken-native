@@ -1,53 +1,36 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import './ReactotronConfig';
+import Reactotron from 'reactotron-react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from './src/redux/actions/actionCreators';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { AppRegistry, Text } from 'react-native';
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+ import {
+   NavigationContext,
+   NavigationProvider,
+   StackNavigation
+ } from '@exponent/ex-navigation';
 
-export default class t7ChickenNative extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
+ import store from './src/redux/store';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+ import { Router } from './src/containers/Router';
+
+
+const navigationContext = new NavigationContext({
+  router: Router,
+  store
 });
 
-AppRegistry.registerComponent('t7ChickenNative', () => t7ChickenNative);
+
+const App = () => (
+  <Provider store={store}>
+    <NavigationProvider context={navigationContext}>
+      <StackNavigation id="home" initialRoute={Router.getRoute('home')} />
+    </NavigationProvider>
+  </Provider>
+);
+
+
+AppRegistry.registerComponent('t7ChickenNative', () => (App));
