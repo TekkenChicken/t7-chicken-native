@@ -1,15 +1,13 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, ListView } from 'react-native';
-import { Styles } from './HomeScreenStyles';
+import { View, Text, ListView, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import { createRouter }  from '@exponent/ex-navigation';
 import { Router } from '../Router';
 
 import Header from '../Header/Header';
 import About from '../About/About';
 import CharacterSelect from '../../components/CharacterSelect/CharacterSelect';
-import FrameData from '../FrameData/FrameData';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
 
 //dispatch actions
@@ -37,7 +35,6 @@ const characters =[
 class HomeScreen extends React.Component {
 
   handleSelect = (name) => {
-		//const character = event.target.value;
     this.props.dispatch( fetchCharacterData(name) );
 	}
 
@@ -52,6 +49,12 @@ class HomeScreen extends React.Component {
           style={Styles.card}
           key={key}
           notation={move.notation}
+          damage={move.damage}
+          hitLevel={move.hit_level}
+          notes={move.notes}
+          onCh={move.on_ch}
+          onHit={move.on_hit}
+          speed={move.speed}
         />
       )
     })
@@ -75,10 +78,10 @@ class HomeScreen extends React.Component {
           contentContainerStyle={Styles.frameDataContainer}
           dataSource={table}
           renderRow={(rowData) =>
-            <View
-             style={Styles.frameDataContainer}>
-             {rowData}
-           </View>
+              <View
+               style={Styles.frameDataContainer}>
+               {rowData}
+             </View>
          }
         />
 
@@ -86,6 +89,28 @@ class HomeScreen extends React.Component {
 			);
 	}
 }
+
+const Styles = StyleSheet.create({
+  container: {
+		paddingTop: 30,
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+	headerContainer: {
+		alignItems: 'center'
+	},
+	frameDataContainer: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		zIndex: -2
+	},
+	cardContainer: {
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'center'
+	}
+});
+
 
 const mapStateToProps = function(state) {
 	return {

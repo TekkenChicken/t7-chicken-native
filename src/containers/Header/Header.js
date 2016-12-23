@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native';
-import { Styles } from './HeaderStyles';
+import { View, Text, StyleSheet } from 'react-native';
 import CharacterSelect from '../../components/CharacterSelect/CharacterSelect';
 
 export default class Header extends React.Component {
