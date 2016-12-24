@@ -33,8 +33,15 @@ const characters =[
 
 
 class HomeScreen extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      character: ""
+    }
+  }
 
   handleSelect = (name) => {
+    this.setState({character: name})
     this.props.dispatch( fetchCharacterData(name) );
 	}
 
@@ -46,12 +53,14 @@ class HomeScreen extends React.Component {
     return data.map((move, key) => {
       return (
         <FrameDataCard
+          name={this.state.character}
           style={Styles.card}
-          key={key}
+          key={move.notation}
           notation={move.notation}
           damage={move.damage}
           hitLevel={move.hit_level}
           notes={move.notes}
+          onBlock={move.on_block}
           onCh={move.on_ch}
           onHit={move.on_hit}
           speed={move.speed}
@@ -64,7 +73,7 @@ class HomeScreen extends React.Component {
     const fd = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !==r2});
     const { frameData } = this.props;
     let table = fd.cloneWithRows([this.renderFrameData(frameData)]);
-    console.log(table);
+    console.log(this.props);
 		return (
 			<View style={Styles.container}>
         <View id="header-container" style={Styles.headerContainer}>
