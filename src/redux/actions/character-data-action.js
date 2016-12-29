@@ -28,11 +28,11 @@ function dataFetchError(err, character) {
   }
 }
 
-function fetchingCharacterData(payload) {
-  return {
-    type: CHARDATA_FETCHING
-  }
-}
+// function fetchingCharacterData(payload) {
+//   return {
+//     type: CHARDATA_FETCHING
+//   }
+// }
 
 /*
  * FETCHES DATA FOR SPECIFIC CHARACTER
@@ -41,11 +41,11 @@ export function fetchCharacterData(character) {
   console.log('call fetch', character);
   return dispatch => {
     // set loading state;
-    dispatch( fetchingCharacterData() );
+    //dispatch( fetchingCharacterData() );
     // api call
     fetch(CHARDATA_API)
     .then((response) => {
-      console.log(response, 'what is response');
+      console.log(response);
       return response.json()
     }).then((response) => {
       dispatch( dataFetchSuccess(response[character], character) )

@@ -1,7 +1,14 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { View, Text, ListView, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
+import { View,
+  Text,
+  ListView,
+  ScrollView,
+  StyleSheet,
+  TouchableHighlight,
+  TextInput }
+  from 'react-native';
 import { createRouter }  from '@exponent/ex-navigation';
 import { Router } from '../Router';
 
@@ -12,6 +19,8 @@ import FrameDataCard from '../../components/FrameData/FrameDataCard';
 
 //dispatch actions
 import { fetchCharacterData } from '../../redux/actions/character-data-action';
+import { updateFilter } from '../../redux/actions/search-filter-action';
+
 
 const characters =[
   'alisa',
@@ -33,11 +42,21 @@ const characters =[
 
 
 class HomeScreen extends React.Component {
+
+
   constructor(props){
     super(props);
     this.state = {
-      character: ""
+      character: "",
+      searchText: "",
+      filtered: ""
     }
+    this.frameDataFilter = this.props.frameData;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps, 'this runs');
+    this.filterList(nextProps.filter, nextProps.frameData);
   }
 
   handleSelect = (name) => {
@@ -69,18 +88,53 @@ class HomeScreen extends React.Component {
     })
   }
 
+  characterCheck = () => {
+    if(this.props.character === "") {
+    } else {
+      return this.renderSearch();
+    }
+  }
+
+  renderSearch = () => {
+    return (
+      <View style={Styles.textInputContainer}>
+        <TextInput
+          style={Styles.textInput}
+          value={this.props.filter}
+          onChangeText={(text) => this.searchDispatcher(text)}
+          placeholder="Search Attacks" />
+    </View>
+    )
+  }
+
+  searchDispatcher(text) {
+    this.props.dispatch( updateFilter(text) );
+
+  }
+
+  filterList(text, frameData) {
+    console.log('this runs too');
+    console.log(frameData);
+    let updatedList = frameData;
+    updatedList = updatedList.filter(function(move) {
+    return move.notation.toLowerCase().search(text.toLowerCase()) !== -1;
+  });
+  return this.frameDataFilter = updatedList;
+}
+
 	render() {
     const fd = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !==r2});
-    const { frameData } = this.props;
-    let table = fd.cloneWithRows([this.renderFrameData(frameData)]);
-    console.log(this.props);
+    const { frameData, filter } = this.props;
+    let table = fd.cloneWithRows([this.renderFrameData(this.frameDataFilter)]);
 		return (
 			<View style={Styles.container}>
         <View id="header-container" style={Styles.headerContainer}>
+          <Header />
           <CharacterSelect
             handleSelect={this.handleSelect}
             characters={characters}
           />
+        {this.characterCheck()}
         </View>
         <ListView
           style={{zIndex: -2}}
@@ -93,7 +147,6 @@ class HomeScreen extends React.Component {
              </View>
          }
         />
-
 			</View>
 			);
 	}
@@ -117,14 +170,26 @@ const Styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		alignItems: 'center'
-	}
+	},
+  textInputContainer: {
+  },
+  textInput: {
+    height: 40,
+    marginTop: 20,
+    marginBottom: 20,
+    borderColor: 'gray',
+    borderWidth: 1,
+    backgroundColor: 'white',
+    width: 200
+  }
 });
 
 
 const mapStateToProps = function(state) {
 	return {
 		frameData: state.characterData.frameData,
-		character: state.characterData.character
+		character: state.characterData.character,
+    filter: state.dataFilter.filter
 	}
 }
 

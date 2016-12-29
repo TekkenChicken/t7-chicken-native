@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Styles } from './CharacterSelectStyle';
+import { View, Text, StyleSheet } from 'react-native';
 import { Select, Option, OptionList, updatePosition } from 'react-native-dropdown';
 
 import { fetchCharacterData } from '../../redux/actions/character-data-action';
@@ -57,3 +56,15 @@ export default class CharacterSelect extends React.Component {
     )
   }
 }
+
+const Styles = StyleSheet.create({
+	option: {
+		zIndex: 2
+	},
+  optionText: {
+	textAlign: 'center',
+},
+	select: {
+		zIndex: 5
+	}
+});

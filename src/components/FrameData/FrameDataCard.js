@@ -13,7 +13,6 @@ export default class FrameDataCard extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <View style={Styles.container}>
         <TouchableHighlight
@@ -40,7 +39,7 @@ export default class FrameDataCard extends React.Component {
              <Text style={Styles.modalText}>Hit Level: {this.props.hitLevel}</Text>
              <Text style={Styles.modalText}>On Block: {this.props.onBlock}</Text>
              <Text style={Styles.modalText}>On Hit: {this.props.onHit}</Text>
-             <Text style={Styles.modalText}>On Counter {this.props.onCh}</Text>
+             <Text style={Styles.modalText}>On Counter: {this.props.onCh}</Text>
            </View>
            <TouchableHighlight
              onPress={() => {
