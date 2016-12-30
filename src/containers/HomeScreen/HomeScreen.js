@@ -55,7 +55,6 @@ class HomeScreen extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps, 'this runs');
     this.filterList(nextProps.filter, nextProps.frameData);
   }
 
@@ -113,8 +112,6 @@ class HomeScreen extends React.Component {
   }
 
   filterList(text, frameData) {
-    console.log('this runs too');
-    console.log(frameData);
     let updatedList = frameData;
     updatedList = updatedList.filter(function(move) {
     return move.notation.toLowerCase().search(text.toLowerCase()) !== -1;
@@ -172,6 +169,7 @@ const Styles = StyleSheet.create({
 		alignItems: 'center'
 	},
   textInputContainer: {
+    zIndex: -2
   },
   textInput: {
     height: 40,
