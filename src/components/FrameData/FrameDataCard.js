@@ -24,7 +24,7 @@ export default class FrameDataCard extends React.Component {
         </TouchableHighlight>
 
         <Modal
-         animationType={"fade"}
+         animationType={"none"}
          transparent={false}
          visible={this.state.modalVisible}
          onRequestClose={() => {alert("Modal has been closed.")}}
