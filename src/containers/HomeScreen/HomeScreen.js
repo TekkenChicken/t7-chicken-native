@@ -156,7 +156,6 @@ class HomeScreen extends React.Component {
             characters={characters}
           />
         {this.characterCheck()}
-        <FilterButtonContainer filterName="High Attacks" filterFn={isHighAttack} activeFilters={this.props.attackFilters} />
         </View>
         <ListView
           style={{zIndex: -2}}
