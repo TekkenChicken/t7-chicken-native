@@ -7,6 +7,7 @@ import { View,
   ScrollView,
   StyleSheet,
   TouchableHighlight,
+  Button,
   TextInput }
   from 'react-native';
 import { createRouter }  from '@exponent/ex-navigation';
@@ -16,11 +17,28 @@ import Header from '../Header/Header';
 import About from '../About/About';
 import CharacterSelect from '../../components/CharacterSelect/CharacterSelect';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
+import Toolbar from '../../components/Toolbar/Toolbar';
 
 //dispatch actions
 import { fetchCharacterData } from '../../redux/actions/character-data-action';
-import { updateFilter } from '../../redux/actions/search-filter-action';
+import { updateSearchFilter } from '../../redux/actions/search-filter-action';
+import { toggleFilter } from '../../redux/actions/filter-action';
 
+//filter functions
+import { isHighAttack, isLowAttack } from '../../util/filters.js';
+
+function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
+  console.log(activeFilters);
+	function filterFinder(f) {
+		console.log(f)
+		return f == filterFn
+	}
+	return (
+		<Button title={filterName} onPress={() => toggleFilter(filterFn)}>{filterName} {activeFilters.find(filterFinder) ? 'active' : 'inactive'}</Button>
+	)
+}
+
+const FilterButtonContainer = connect(() => ({}), { toggleFilter })(FilterButton);
 
 const characters =[
   'alisa',
@@ -51,12 +69,16 @@ class HomeScreen extends React.Component {
       searchText: "",
       filtered: ""
     }
-    this.frameDataFilter = this.props.frameData;
+    this.frameDataFilter = this.props.filteredData;
   }
 
   componentWillReceiveProps(nextProps) {
-    this.filterList(nextProps.filter, nextProps.frameData);
-  }
+	  let nextFrameData = nextProps.filteredData.slice()
+
+	  nextFrameData = this.searchFilterList(nextProps.searchFilter.searchFilter, nextFrameData);
+
+	  this.frameDataFilter = nextFrameData;
+	}
 
   handleSelect = (name) => {
     this.setState({character: name})
@@ -107,17 +129,18 @@ class HomeScreen extends React.Component {
   }
 
   searchDispatcher(text) {
-    this.props.dispatch( updateFilter(text) );
+    this.props.dispatch( updateSearchFilter(text) );
 
   }
 
-  filterList(text, frameData) {
-    let updatedList = frameData;
-    updatedList = updatedList.filter(function(move) {
-    return move.notation.toLowerCase().search(text.toLowerCase()) !== -1;
-  });
-  return this.frameDataFilter = updatedList;
-}
+  searchFilterList(text, frameData) {
+		console.log(frameData, 'search filter frameData');
+		let updatedList = frameData;
+		updatedList = updatedList.filter(function(move) {
+		return move.notation.toLowerCase().search(text.toLowerCase()) !== -1;
+	});
+	return updatedList;
+	}
 
 	render() {
     const fd = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !==r2});
@@ -125,6 +148,7 @@ class HomeScreen extends React.Component {
     let table = fd.cloneWithRows([this.renderFrameData(this.frameDataFilter)]);
 		return (
 			<View style={Styles.container}>
+        <Toolbar />
         <View id="header-container" style={Styles.headerContainer}>
           <Header />
           <CharacterSelect
@@ -132,6 +156,7 @@ class HomeScreen extends React.Component {
             characters={characters}
           />
         {this.characterCheck()}
+        <FilterButtonContainer filterName="High Attacks" filterFn={isHighAttack} activeFilters={this.props.attackFilters} />
         </View>
         <ListView
           style={{zIndex: -2}}
@@ -183,15 +208,35 @@ const Styles = StyleSheet.create({
 });
 
 
-const mapStateToProps = function(state) {
-	return {
-		frameData: state.characterData.frameData,
-		character: state.characterData.character,
-    filter: state.dataFilter.filter
-	}
+//apply each filter in the attackFilters array to every attack
+function filteredAttacks(state) {
+	let { attackFilters } = state;
+	let { frameData } = state.characterData;
+	return frameData.filter(attack => attackFilters.every(filter => filter(attack)));
 }
 
-const mapDispatchToProps = function(dispatch) {
-	return { dispatch };
+
+const mapStateToProps = function(state) {
+    let { frameData, character} = state.characterData;
+    let { filter, searchFilter, attackFilters } = state;
+
+    return {
+        character,
+        filter,
+        searchFilter,
+				attackFilters,
+				//array of attacks after being filtered
+				filteredData: filteredAttacks(state)
+    }
 }
+
+
+const mapDispatchToProps = function(dispatch) {
+	return {
+		dispatch,
+		//binding toggleFilter
+		toggleFilter
+	 };
+}
+
 export default connect( mapStateToProps, mapDispatchToProps )(HomeScreen);

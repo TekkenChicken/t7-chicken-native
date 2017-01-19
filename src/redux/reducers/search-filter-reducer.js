@@ -4,26 +4,19 @@ import {
 } from '../actions/actionCreators';
 
 const initialState = {
-  filter: ''
+  searchFilter: ''
 }
 
-export function dataFilter(state = initialState, action) {
+function searchFilter(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
-
-    case SET_SEARCH_FILTER:
-    console.log('filter action', action);
+    case 'UPDATE_SEARCH_FILTER':
+    console.log('updateSearchFilter', action.text);
     return Object.assign({}, state, {
-      filter: action.data
-    });
-
-    case UPDATE_SEARCH_FILTER:
-    console.log('update filter', action);
-    return Object.assign({}, state, {
-      filter: action.filter
-    });
-
+      searchFilter: action.text
+    })
   }
   return state;
 }
 
-export default dataFilter;
+export default searchFilter;

@@ -28,15 +28,6 @@ function dataFetchError(err, character) {
   }
 }
 
-// function fetchingCharacterData(payload) {
-//   return {
-//     type: CHARDATA_FETCHING
-//   }
-// }
-
-/*
- * FETCHES DATA FOR SPECIFIC CHARACTER
- */
 export function fetchCharacterData(character) {
   console.log('call fetch', character);
   return dispatch => {
