@@ -13,11 +13,17 @@ import { View,
 import { createRouter }  from '@exponent/ex-navigation';
 import { Router } from '../Router';
 
+//components
 import Header from '../Header/Header';
 import About from '../About/About';
 import CharacterSelect from '../../components/CharacterSelect/CharacterSelect';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
 import Toolbar from '../../components/Toolbar/Toolbar';
+
+//side menus
+import FilterSideMenu from '../FilterSideMenu/FilterSideMenu';
+import FilterMenu from '../../components/Menu/FilterMenu';
+import SideMenu from 'react-native-side-menu';
 
 //dispatch actions
 import { fetchCharacterData } from '../../redux/actions/character-data-action';
@@ -143,32 +149,37 @@ class HomeScreen extends React.Component {
 	}
 
 	render() {
+    const menu = <FilterMenu navigator={navigator} />;
     const fd = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !==r2});
     const { frameData, filter } = this.props;
     let table = fd.cloneWithRows([this.renderFrameData(this.frameDataFilter)]);
 		return (
-			<View style={Styles.container}>
-        <Toolbar />
-        <View id="header-container" style={Styles.headerContainer}>
-          <Header />
-          <CharacterSelect
-            handleSelect={this.handleSelect}
-            characters={characters}
-          />
-        {this.characterCheck()}
-        </View>
-        <ListView
-          style={{zIndex: -2}}
-          contentContainerStyle={Styles.frameDataContainer}
-          dataSource={table}
-          renderRow={(rowData) =>
-              <View
-               style={Styles.frameDataContainer}>
-               {rowData}
-             </View>
-         }
-        />
-			</View>
+      <SideMenu
+        style={Styles.menu}
+        menu={menu}
+        menuPosition={'right'}>
+          <View style={Styles.container}>
+            <View style={Styles.headerContainer}>
+            <Header />
+            <CharacterSelect
+              handleSelect={this.handleSelect}
+              characters={characters}
+            />
+            {this.characterCheck()}
+            </View>
+            <ListView
+              style={{zIndex: -2}}
+              contentContainerStyle={Styles.frameDataContainer}
+              dataSource={table}
+              renderRow={(rowData) =>
+                <View
+                  style={Styles.frameDataContainer}>
+                  {rowData}
+                </View>
+              }
+            />
+          </View>
+        </SideMenu>
 			);
 	}
 }
@@ -203,6 +214,13 @@ const Styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'white',
     width: 200
+  },
+  menu: {
+    flex: 1,
+    width: window.width,
+    height: window.height,
+    backgroundColor: 'gray',
+    padding: 20,
   }
 });
 
