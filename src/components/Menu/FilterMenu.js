@@ -22,8 +22,8 @@ function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
 const FilterButtonContainer = connect(() => ({}), { toggleFilter })(FilterButton);
 
 class FilterMenu extends React.Component {
+
   render() {
-    console.log(this.props);
     return (
       <View style={Styles.sideMenuContainer}>
         <Text style={Styles.sideMenuTitle}>Filter Settings</Text>

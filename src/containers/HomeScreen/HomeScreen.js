@@ -71,9 +71,7 @@ class HomeScreen extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      character: "",
-      searchText: "",
-      filtered: ""
+      isOpen: false
     }
     this.frameDataFilter = this.props.filteredData;
   }
@@ -94,6 +92,16 @@ class HomeScreen extends React.Component {
 	goToAbout = () => {
 		this.props.navigator.push(Router.getRoute('about'));
 	}
+
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  }
+
+  updateMenuState(isOpen) {
+    this.setState({ isOpen, });
+  }
 
   renderFrameData(data = []) {
     return data.map((move, key) => {
@@ -149,7 +157,11 @@ class HomeScreen extends React.Component {
 	}
 
 	render() {
-    const menu = <FilterMenu navigator={navigator} />;
+    const menu = <FilterMenu
+      updateMenuState={this.updateMenuState}
+      isOpen={this.state.isOpen}
+      toggle={this.toggle}
+      navigator={navigator} />;
     const fd = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !==r2});
     const { frameData, filter } = this.props;
     let table = fd.cloneWithRows([this.renderFrameData(this.frameDataFilter)]);
@@ -157,8 +169,11 @@ class HomeScreen extends React.Component {
       <SideMenu
         style={Styles.menu}
         menu={menu}
-        menuPosition={'right'}>
+        menuPosition={'right'}
+        isOpen={this.state.isOpen}
+        onChange={(isOpen) => this.updateMenuState(isOpen)}>
           <View style={Styles.container}>
+            <Toolbar filter={<Button title="Filter" onPress={() => this.toggle()}></Button>} />
             <View style={Styles.headerContainer}>
             <Header />
             <CharacterSelect

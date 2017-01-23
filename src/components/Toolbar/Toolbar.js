@@ -11,9 +11,7 @@ export default class Toolbar extends React.Component {
 
     return (
       <View style={Styles.toolbar}>
-        <SideMenu style={Styles.filter} menu={menu}>
-          <FilterSideMenu style={Styles.toolbar} />
-        </SideMenu>
+        {this.props.filter}
       </View>
     )
   }
