@@ -10,12 +10,14 @@ function hasLowAttack (attack) {
 
 export const hitLevelFilters = {
   category: 'Hit Level Filters',
-  hasHighAttack: {
-    function: hasHighAttack,
-    name: 'Has High Attack'
-  },
-  hasLowAttack: {
-    function: hasLowAttack,
-    name: 'Has Low Attack'
-  }
+  filters: [
+    {
+      function: hasHighAttack,
+      name: 'Has High Attack'
+    },
+    {
+      function: hasLowAttack,
+      name: 'Has Low Attack'
+    }
+  ]
 }

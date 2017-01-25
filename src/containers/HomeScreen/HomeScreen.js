@@ -31,10 +31,9 @@ import { updateSearchFilter } from '../../redux/actions/search-filter-action';
 import { toggleFilter } from '../../redux/actions/filter-action';
 
 //filter functions
-import { isHighAttack, isLowAttack } from '../../util/filters.js';
+import { hitLevelFilters } from '../../util/filters.js';
 
 function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
-  console.log(activeFilters);
 	function filterFinder(f) {
 		console.log(f)
 		return f == filterFn

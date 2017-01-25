@@ -1,15 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
+import Accordion from 'react-native-accordion';
 
 import { toggleFilter } from '../../redux/actions/filter-action';
 
 import {
-  isHighAttack,
-  isLowAttack
+  hitLevelFilters
 } from '../../util/filters';
 
 function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
+  console.log(activeFilters, 'all the things')
 	function filterFinder(f) {
 		return f == filterFn
 	}
@@ -23,16 +24,33 @@ const FilterButtonContainer = connect(() => ({}), { toggleFilter })(FilterButton
 
 class FilterMenu extends React.Component {
 
+  filterRender(categoryFilter) {
+    return categoryFilter.filters.map((f, key) => {
+      return <FilterButtonContainer
+         key={f.name}
+         filterName={f.name}
+         filterFn={f.function}
+         toggleFilter={this.props.toggleFilter}
+         activeFilters={this.props.attackFilters}
+       />
+    })
+  }
+
   render() {
+    console.log(this.props);
     return (
       <View style={Styles.sideMenuContainer}>
         <Text style={Styles.sideMenuTitle}>Filter Settings</Text>
-        <View style={Styles.filterContainer}>
-          <FilterButtonContainer
-            filterName="High Attacks"
-            filterFn={isHighAttack}
-            activeFilters={this.props.attackFilters} />
-        </View>
+        <Accordion
+          header={<Text>{hitLevelFilters.category}</Text>}
+          content={
+            <View>
+              {this.filterRender(hitLevelFilters)}
+            </View>
+          }
+          easing="easeOutCubic"
+          underlayColor="white"
+        />
       </View>
     )
   }
