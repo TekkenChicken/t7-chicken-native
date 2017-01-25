@@ -12,6 +12,7 @@ import { View,
   from 'react-native';
 import { createRouter }  from '@exponent/ex-navigation';
 import { Router } from '../Router';
+import _ from 'lodash';
 
 //components
 import Header from '../Header/Header';
@@ -33,18 +34,8 @@ import { toggleFilter } from '../../redux/actions/filter-action';
 //filter functions
 import { hitLevelFilters } from '../../util/filters.js';
 
-function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
-	function filterFinder(f) {
-		console.log(f)
-		return f == filterFn
-	}
-	return (
-		<Button title={filterName} onPress={() => toggleFilter(filterFn)}>{filterName} {activeFilters.find(filterFinder) ? 'active' : 'inactive'}</Button>
-	)
-}
 
-const FilterButtonContainer = connect(() => ({}), { toggleFilter })(FilterButton);
-
+//should be grabbing from API
 const characters =[
   'alisa',
   'asuka',
@@ -69,11 +60,13 @@ class HomeScreen extends React.Component {
 
   constructor(props){
     super(props);
+    //side menu state
     this.state = {
       isOpen: false
     }
     this.frameDataFilter = this.props.filteredData;
   }
+
 
   componentWillReceiveProps(nextProps) {
 	  let nextFrameData = nextProps.filteredData.slice()
@@ -83,25 +76,29 @@ class HomeScreen extends React.Component {
 	  this.frameDataFilter = nextFrameData;
 	}
 
+  //dispatch character fetching action after character selected
   handleSelect = (name) => {
     this.setState({character: name})
     this.props.dispatch( fetchCharacterData(name) );
 	}
 
+  //navigation function not being used yet, will probably be on left side menu
 	goToAbout = () => {
 		this.props.navigator.push(Router.getRoute('about'));
 	}
 
+  //toggling for side menu
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen,
     });
   }
-
+  //update side menu state
   updateMenuState(isOpen) {
     this.setState({ isOpen, });
   }
 
+  //rendering character Frame data after fetch
   renderFrameData(data = []) {
     return data.map((move, key) => {
       return (
@@ -122,6 +119,7 @@ class HomeScreen extends React.Component {
     })
   }
 
+  //renders search bar if character is selected
   characterCheck = () => {
     if(this.props.character === "") {
     } else {
@@ -129,6 +127,7 @@ class HomeScreen extends React.Component {
     }
   }
 
+  //function for rendering search bar
   renderSearch = () => {
     return (
       <View style={Styles.textInputContainer}>
@@ -141,13 +140,13 @@ class HomeScreen extends React.Component {
     )
   }
 
+  //on input action dispatched for filtering related data
   searchDispatcher(text) {
     this.props.dispatch( updateSearchFilter(text) );
-
   }
 
+  //return new array based on input from search bar
   searchFilterList(text, frameData) {
-		console.log(frameData, 'search filter frameData');
 		let updatedList = frameData;
 		updatedList = updatedList.filter(function(move) {
 		return move.notation.toLowerCase().search(text.toLowerCase()) !== -1;
@@ -156,14 +155,17 @@ class HomeScreen extends React.Component {
 	}
 
 	render() {
+    const { frameData, filter } = this.props;
+    //Side menu
     const menu = <FilterMenu
       updateMenuState={this.updateMenuState}
       isOpen={this.state.isOpen}
       toggle={this.toggle}
       navigator={navigator} />;
+    //table crap
     const fd = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !==r2});
-    const { frameData, filter } = this.props;
     let table = fd.cloneWithRows([this.renderFrameData(this.frameDataFilter)]);
+
 		return (
       <SideMenu
         style={Styles.menu}
