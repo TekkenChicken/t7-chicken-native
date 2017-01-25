@@ -6,7 +6,8 @@ import Accordion from 'react-native-accordion';
 import { toggleFilter } from '../../redux/actions/filter-action';
 
 import {
-  hitLevelFilters
+  hitLevelFilters,
+  speedFilters
 } from '../../util/filters';
 
 function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
@@ -41,16 +42,20 @@ class FilterMenu extends React.Component {
     return (
       <View style={Styles.sideMenuContainer}>
         <Text style={Styles.sideMenuTitle}>Filter Settings</Text>
+
         <Accordion
           header={<Text>{hitLevelFilters.category}</Text>}
-          content={
-            <View>
-              {this.filterRender(hitLevelFilters)}
-            </View>
-          }
+          content={<View>{this.filterRender(hitLevelFilters)}</View>}
           easing="easeOutCubic"
           underlayColor="white"
         />
+        <Accordion
+          header={<Text>{speedFilters.category}</Text>}
+          content={<View>{this.filterRender(speedFilters)}</View>}
+          easing="easeOutCubic"
+          underlayColor="white"
+        />
+
       </View>
     )
   }

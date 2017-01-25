@@ -32,10 +32,10 @@ function characterData(state = initialState, action) {
         loading: false
       });
 
-    case CHARDATA_FETCH_SUCCESS:
+    case CHARDATA_FETCH_ERROR:
       return Object.assign({}, state, {
         character: action.character,
-        error: actiona.error,
+        error: action.error,
         loading: false
       });
   }
