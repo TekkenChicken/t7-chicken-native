@@ -11,7 +11,6 @@ import {
 } from '../../util/filters';
 
 function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
-  console.log(activeFilters, 'all the things')
 	function filterFinder(f) {
 		return f == filterFn
 	}
@@ -38,20 +37,19 @@ class FilterMenu extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
-      <View style={Styles.sideMenuContainer}>
+      <View style={raw.sideMenuContainer}>
         <Text style={Styles.sideMenuTitle}>Filter Settings</Text>
 
         <Accordion
-          header={<Text>{hitLevelFilters.category}</Text>}
-          content={<View>{this.filterRender(hitLevelFilters)}</View>}
+          header={<Text style={Styles.header}>{hitLevelFilters.category}</Text>}
+          content={<View style={Styles.expanded}>{this.filterRender(hitLevelFilters)}</View>}
           easing="easeOutCubic"
           underlayColor="white"
         />
         <Accordion
-          header={<Text>{speedFilters.category}</Text>}
-          content={<View>{this.filterRender(speedFilters)}</View>}
+          header={<Text style={Styles.header}>{speedFilters.category}</Text>}
+          content={<View style={Styles.expanded}>{this.filterRender(speedFilters)}</View>}
           easing="easeOutCubic"
           underlayColor="white"
         />
@@ -61,7 +59,7 @@ class FilterMenu extends React.Component {
   }
 }
 
-const Styles = StyleSheet.create({
+const raw = {
   sideMenuContainer: {
     paddingTop: 30,
     flex: 1,
@@ -70,10 +68,26 @@ const Styles = StyleSheet.create({
   sideMenuTitle: {
     alignItems: 'center'
   },
-  filterContainer: {
-    alignItems: 'flex-end'
+  accordion: {
+    borderWidth: 1
+  },
+  header: {
+    borderWidth: 1,
+    textAlign: 'center',
+    fontSize: 32,
+    marginTop: 10
+  },
+  button: {
+    color: 'red',
+    fontSize: 30
+  },
+  expanded: {
+    width: 200
   }
-})
+}
+
+const Styles = StyleSheet.create(raw)
+
 
 
 const mapStateToProps = function(state) {

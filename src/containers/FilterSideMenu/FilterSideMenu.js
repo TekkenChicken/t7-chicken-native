@@ -6,15 +6,8 @@ export default class FilterSideMenu extends React.Component {
   render() {
     return (
       <View>
-          <FilterMenu style={Styles.container}/>
+          <FilterMenu/>
       </View>
     )
   }
 }
-
-const Styles = StyleSheet.create({
-  container: {
-    width: 100,
-    height: 10
-  }
-})

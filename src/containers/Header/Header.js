@@ -6,7 +6,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <View>
-        <Text>Data Provided by rbnorway</Text>
+        <Text>Data Provided by rbnorway.org</Text>
       </View>
     )
   }

@@ -21,21 +21,21 @@ function thirteenToSixteen(attack) {
 
 
 export const hitLevelFilters = {
-  category: 'Hit Level Filters',
+  category: 'Hit Level',
   filters: [
     {
       function: hasHighAttack,
-      name: 'Has High Attack'
+      name: 'Has High'
     },
     {
       function: hasLowAttack,
-      name: 'Has Low Attack'
+      name: 'Has Low'
     }
   ]
 }
 
 export const speedFilters = {
-  category: 'Speed Filters',
+  category: 'Speed',
   filters: [
     {
       function: tenToThirteen,
