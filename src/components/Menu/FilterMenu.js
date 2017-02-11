@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import Accordion from 'react-native-accordion';
 
@@ -15,7 +15,7 @@ function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
 		return f == filterFn
 	}
 	return (
-		<Button title={filterName} onPress={() => toggleFilter(filterFn)}>{filterName} {activeFilters.find(filterFinder) ? 'active' : 'inactive'}</Button>
+		<Button color="black" title={filterName} onPress={() => toggleFilter(filterFn)}>{filterName} {activeFilters.find(filterFinder) ? 'active' : 'inactive'}</Button>
 	)
 }
 
@@ -77,12 +77,17 @@ const raw = {
     fontSize: 32,
     marginTop: 10
   },
-  button: {
-    color: 'red',
-    fontSize: 30
+  filterButton: {
+    color: 'red'
   },
   expanded: {
-    width: 200
+    width: 200,
+    zIndex: -3,
+    ...Platform.select({
+      ios: {
+        backgroundColor: 'red'
+      }
+    })
   }
 }
 
