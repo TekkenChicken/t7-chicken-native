@@ -61,7 +61,6 @@ const Styles = StyleSheet.create({
   },
   card: {
     height: 100,
-    width: 75,
     borderColor: 'black',
     borderWidth: 1,
     zIndex: -3
