@@ -20,6 +20,7 @@ import About from '../About/About';
 import CharacterSelect from '../../components/CharacterSelect/CharacterSelect';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
 import Toolbar from '../../components/Toolbar/Toolbar';
+import DataList from '../../components/DataList/DataList';
 
 //side menus
 import FilterSideMenu from '../FilterSideMenu/FilterSideMenu';
@@ -153,10 +154,20 @@ class HomeScreen extends React.Component {
   searchFilterList(text, frameData) {
 		let updatedList = frameData;
 		updatedList = updatedList.filter(function(move) {
-		return move.notation.toLowerCase().search(text.toLowerCase()) !== -1;
-	});
-	return updatedList;
+  		return move.notation.toLowerCase().search(text.toLowerCase()) !== -1;
+  	});
+	  return updatedList;
 	}
+
+  renderRow(rowData) {
+    console.log(rowData);
+    return (
+      <View
+        style={Styles.frameDataCard}>
+        {rowData}
+      </View>
+    );
+  }
 
 	render() {
     const { frameData, filter } = this.props;
@@ -168,6 +179,7 @@ class HomeScreen extends React.Component {
       navigator={navigator} />;
     //table crap
     const fd = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !==r2});
+    console.log(this.frameDataFilter);
     let table = fd.cloneWithRows([this.renderFrameData(this.frameDataFilter)]);
     console.log(table);
 
@@ -188,16 +200,13 @@ class HomeScreen extends React.Component {
             />
             {this.characterCheck()}
             </View>
-            <ListView
-              style={Styles.cardContainer}
-              contentContainerStyle={Styles.frameDataCard}
-              dataSource={table}
-              renderRow={(rowData) =>
-                <View
-                  style={Styles.frameDataCard}>
-                  {rowData}
-                </View>
-              }
+            <DataList
+              styles={Styles.cardContainer}
+              containerStyle={Styles.frameDataCard}
+              listData={this.frameDataFilter}
+              cellComponent={FrameDataCard}
+              cellStyle={Styles.card}
+              cellsPerRow={5}
             />
           </View>
         </SideMenu>

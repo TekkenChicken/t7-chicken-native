@@ -35,7 +35,7 @@ Install dependencies
 
         $ react-native run-ios
 
-**In the case, that this error `Print: Entry, ":CFBundleIdentifier", Does Not Exist` occurs on build, you may need to run `react-native upgrade` to run the latest version of react-native.
+**In the case, that this error `Print: Entry, ":CFBundleIdentifier", Does Not Exist` occurs on build, you may need to run `react-native upgrade` to run the latest version of react-native.**
 
 ### Running the Android application
 
@@ -92,7 +92,7 @@ $ brew install gradle
   - check Use Host GPU
 
 9. Run Android Studios
-  
+
   - You will need to open the project's `/android` directory which will then have Android Studios configure the 'gradle' files in the project. These files are crucial to building the project for android testing.
 
 10. Build app and run emulator:
