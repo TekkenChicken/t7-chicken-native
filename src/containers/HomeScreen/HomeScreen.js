@@ -67,7 +67,10 @@ class HomeScreen extends React.Component {
     this.frameDataFilter = this.props.filteredData;
   }
 
-
+  shouldComponentUpdate() {
+    console.log('component should update');
+    return true
+  }
   componentWillReceiveProps(nextProps) {
 	  let nextFrameData = nextProps.filteredData.slice()
 
@@ -100,6 +103,7 @@ class HomeScreen extends React.Component {
 
   //rendering character Frame data after fetch
   renderFrameData(data = []) {
+    console.log(data);
     return data.map((move, key) => {
       return (
         <FrameDataCard
@@ -165,6 +169,7 @@ class HomeScreen extends React.Component {
     //table crap
     const fd = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !==r2});
     let table = fd.cloneWithRows([this.renderFrameData(this.frameDataFilter)]);
+    console.log(table);
 
 		return (
       <SideMenu
@@ -184,12 +189,12 @@ class HomeScreen extends React.Component {
             {this.characterCheck()}
             </View>
             <ListView
-              style={{zIndex: -2}}
-              contentContainerStyle={Styles.frameDataContainer}
+              style={Styles.cardContainer}
+              contentContainerStyle={Styles.frameDataCard}
               dataSource={table}
               renderRow={(rowData) =>
                 <View
-                  style={Styles.frameDataContainer}>
+                  style={Styles.frameDataCard}>
                   {rowData}
                 </View>
               }
@@ -209,15 +214,13 @@ const Styles = StyleSheet.create({
 	headerContainer: {
 		alignItems: 'center'
 	},
-	frameDataContainer: {
+	frameDataCard: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		zIndex: -2
 	},
 	cardContainer: {
-		flex: 1,
-		flexDirection: 'row',
-		alignItems: 'center'
+    zIndex: -1
 	},
   textInputContainer: {
     zIndex: -2
@@ -230,13 +233,6 @@ const Styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'white',
     width: 200
-  },
-  menu: {
-    flex: 1,
-    width: window.width,
-    height: window.height,
-    backgroundColor: 'gray',
-    padding: 20,
   }
 });
 
