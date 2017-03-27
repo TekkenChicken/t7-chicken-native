@@ -32,7 +32,7 @@ export default class FrameDataCard extends React.Component {
         <View style={Styles.modal}>
          <View>
            <View>
-             <Text style={Styles.characterName}>{this.props.name.toUpperCase()}</Text>
+             <Text style={Styles.characterName}>{(this.props.name) ? this.props.name.toUpperCase() : ""}</Text>
              <Text style={Styles.modalText}>{this.props.notation}</Text>
              <Text style={Styles.modalText}>Damage: {this.props.damage}</Text>
              <Text style={Styles.modalText}>Speed: {this.props.speed}</Text>
@@ -61,7 +61,6 @@ const Styles = StyleSheet.create({
   },
   card: {
     height: 100,
-    width: 75,
     borderColor: 'black',
     borderWidth: 1,
     zIndex: -3

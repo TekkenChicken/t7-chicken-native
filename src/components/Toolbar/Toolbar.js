@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet } from 'react-native';
+// import FilterSelect from '../FilterSelect/FilterSelect';
 
 import FilterSideMenu from '../../containers/FilterSideMenu/FilterSideMenu';
 import FilterMenu from '../Menu/FilterMenu';
@@ -24,7 +25,6 @@ const Styles = StyleSheet.create({
     ...absoluteStretch
   },
   filter: {
-
   }
 })
 
