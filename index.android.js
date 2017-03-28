@@ -5,32 +5,15 @@ import { connect } from 'react-redux';
 import * as actionCreators from './src/redux/actions/actionCreators';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { AppRegistry, Text } from 'react-native';
+import { AppRegistry } from 'react-native';
 
- import {
-   NavigationContext,
-   NavigationProvider,
-   StackNavigation
- } from '@exponent/ex-navigation';
+import store from './src/redux/store';
+import App from './src/containers/App';
 
- import store from './src/redux/store';
-
- import { Router } from './src/containers/Router';
-
-
-const navigationContext = new NavigationContext({
-  router: Router,
-  store
-});
-
-
-const App = () => (
+const TekkenChicken = () => (
   <Provider store={store}>
-    <NavigationProvider context={navigationContext}>
-      <StackNavigation id="home" initialRoute={Router.getRoute('home')} />
-    </NavigationProvider>
+    <App />
   </Provider>
 );
 
-
-AppRegistry.registerComponent('t7ChickenNative', () => (App));
+AppRegistry.registerComponent('t7ChickenNative', () => (TekkenChicken));
