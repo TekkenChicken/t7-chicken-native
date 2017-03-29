@@ -8,3 +8,7 @@ export const UPDATE_SEARCH_FILTER = 'UPDATE_SEARCH_FILTER';
 
 //Category filters
 export const TOGGLE_ATTACK_FILTER = 'TOGGLE_ATTACK_FILTER';
+
+// BLOB Types
+export const BLOB_SET_INITIAL_DATA = 'BLOB_SET_INITIAL_DATA';
+export const BLOB_UPDATE_DATA = 'BLOB_UPDATE_DATA';

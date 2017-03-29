@@ -249,6 +249,7 @@ function filteredAttacks(state) {
 
 
 const mapStateToProps = function(state) {
+    console.log("INITIAL ", state);
     let { frameData, character} = state.characterData;
     let { filter, searchFilter, attackFilters } = state;
 

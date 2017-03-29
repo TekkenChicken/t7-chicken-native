@@ -12,7 +12,6 @@ import store from '../redux/store';
 
 import { Router } from './Router';
 
-
 const navigationContext = new NavigationContext({
   router: Router,
   store
