@@ -1,5 +1,6 @@
 // Initial In-App Stub Data
 import initialData from '../../util/initialData.json';
+// import * as LocalStorageAPI from '../../util/localStorageUtil.js';
 
 // BLOB Types
 export const BLOB_SET_INITIAL_DATA = 'BLOB_SET_INITIAL_DATA';
@@ -7,6 +8,18 @@ export const BLOB_UPDATE_DATA = 'BLOB_UPDATE_DATA';
 
 const CHAR_DATA_API = "";
 const DATA_VER_API = "";
+
+/*  method: formatData
+ *  @param: rawData [object]
+ *  @return formattedData [array]
+ *  Will convert object with each 'character' as properties to an array of characters
+ */
+const formatData = (rawData) => {
+  const characterData = Object.keys(rawData)
+    .map((char) => Object.assign({}, {name: char}, rawData[char]));
+
+  return characterData;
+};
 
 /*  method: checkDataVersion
  *  Will get the current version of data, and compare it to local
@@ -37,17 +50,17 @@ const fetchDataFromAPI = () => {
   };
 };
 
-const setInitialData = (data) => {
+const setInitialData = (payload) => {
   // store localstorage data (will be promise, need to rewrite)
   return {
     type: BLOB_SET_INITIAL_DATA,
-    data
+    payload
   };
 };
 
 export const fetchInitialAppData = () => {
   // check if LocalStorage data exists (if not, use in-app stub data)
-  let data = initialData.data;
+  let data = formatData(initialData.data);
   // reach ver endpoint and check version number
   // if version doesn't match, make call to retrieve new data
   // set data in state

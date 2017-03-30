@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import { NavigationReducer } from '@exponent/ex-navigation';
 
 import blob from './blob'; // initial app data
+import select from './select'; // initial app data
+import character from './character'; // initial app data
 
 // old need to remove
 import characterData from './character-data-reducer';
@@ -15,5 +17,7 @@ export default rootReducer = combineReducers({
 	characterData,
 	searchFilter,
 	attackFilters,
-	blob
+	blob,
+	select,
+	character
 });
