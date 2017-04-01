@@ -2,28 +2,44 @@ import React, { Component, PropTypes } from 'react';
 
 // dependencies
 import {
-  View
+  View,
+  StyleSheet
 } from 'react-native';
 
 // components
-import DataList from '../components/DataList/DataList';
-import CharacterCard './CharacterCard';
+import DataList from '../../components/DataList/DataList';
+import CharacterCard from './characterCard';
 
 class CharacterList extends Component {
 
   // custom renderRow function for List
   renderCharacterRow(rowData) {
-    return ();
+    return null;
   }
 
   render() {
-    <DataList
-      listData={this.frameDataFilter}
-      cellComponent={FrameDataCard}
-      cellsPerRow={5}
-    />
+    return (
+      <View>
+        <DataList
+          listData={this.props.characters}
+          cellComponent={CharacterCard}
+          cellsPerRow={4}
+          rowStyle={Styles.row}
+        />
+      </View>
+    );
   }
 }
+
+const Styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  row: {
+    flexDirection:'row',
+    alignItems: 'flex-start'
+  }
+})
 
 CharacterList.Proptypes = {
   characters: PropTypes.array,

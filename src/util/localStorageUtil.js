@@ -6,7 +6,7 @@ const initialItem = {
   id: 0
 };
 
-const STORAGE_KEY = 'activityItems';
+const STORAGE_KEY = 't7CharacterData';
 
 /**  ----------------------------
  *   GET & SET for Local Storage

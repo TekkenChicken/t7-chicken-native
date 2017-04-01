@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import { Router } from '../Router';
 // dependencies
 import {
   View,
@@ -11,26 +11,42 @@ import {
   Button,
   TextInput
 } from 'react-native';
-import { Router } from '../Router';
 
 // components
-import DataList from '../components/DataList/DataList';
+import CharacterList from './characterList';
 
-//dispatch actions
+// Styles
+import Styles from './styles';
+
+// dispatch actions
 import { fetchCharacters } from '../../redux/actions/select';
+import { fetchInitialAppData } from '../../redux/actions/blob';
 
-class CharacterSelect extends Component {
+
+class CharacterSelectScreen extends Component {
 
   componentDidMount() {
-
+    // Will need to decide to move onto initial loading screen
+    // or keep here and use a loading state
+    this.props.dispatch(fetchInitialAppData());
+    this.props.dispatch(fetchCharacters());
   }
 
   render() {
-    return();
+    console.log("Characters Select", this.props.characters);
+    return (
+      <ScrollView style={Styles.mainContainer}>
+        <CharacterList
+          characters={this.props.characters}
+          onCharacterSelect={() => {}}
+        />
+      </ScrollView>
+    );
   }
 }
 
-// mapping
+
+/** MAPPING STATE **/
 const mapStateToProps = function(state) {
   let { characters } = state.select;
   return {
@@ -38,11 +54,4 @@ const mapStateToProps = function(state) {
   }
 };
 
-const mapDispatchToProps = function(dispatch) {
-	return {
-		dispatch,
-		fetchCharacters
-	 };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CharacterSelect);
+export default connect(mapStateToProps)(CharacterSelectScreen);

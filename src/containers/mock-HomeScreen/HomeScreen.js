@@ -15,7 +15,6 @@ import { Router } from '../Router';
 import _ from 'lodash';
 
 //components
-import Header from '../Header/Header';
 import About from '../About/About';
 import CharacterSelect from '../../components/CharacterSelect/CharacterSelect';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
@@ -28,9 +27,6 @@ import FilterMenu from '../../components/Menu/FilterMenu';
 import SideMenu from 'react-native-side-menu';
 
 //dispatch actions
-import { fetchCharacterData } from '../../redux/actions/character-data-action';
-import { updateSearchFilter } from '../../redux/actions/search-filter-action';
-import { toggleFilter } from '../../redux/actions/filter-action';
 
 //filter functions
 import { hitLevelFilters } from '../../util/filters.js';

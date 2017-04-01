@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <View style={{flex: 1}}>
         <NavigationProvider context={navigationContext}>
-          <StackNavigation id="home" initialRoute={Router.getRoute('home')} />
+          <StackNavigation id="home" initialRoute={Router.getRoute('characterSelect')} />
         </NavigationProvider>
       </View>
     );

@@ -5,6 +5,8 @@ import initialData from '../../util/initialData.json';
 // BLOB Types
 export const BLOB_SET_INITIAL_DATA = 'BLOB_SET_INITIAL_DATA';
 export const BLOB_UPDATE_DATA = 'BLOB_UPDATE_DATA';
+export const BLOB_FETCH_SUCCESS = 'BLOB_FETCH_SUCCESS';
+export const BLOB_FETCH_ERROR = 'BLOB_FETCH_ERROR';
 
 const CHAR_DATA_API = "";
 const DATA_VER_API = "";
@@ -13,11 +15,11 @@ const DATA_VER_API = "";
  *  @param: rawData [object]
  *  @return formattedData [array]
  *  Will convert object with each 'character' as properties to an array of characters
+ *  NEED TO DECIDE ON WHAT IS BEST WAY TO HANDLE THE DATA
  */
-const formatData = (rawData) => {
+const formatRawData = (rawData) => {
   const characterData = Object.keys(rawData)
     .map((char) => Object.assign({}, {name: char}, rawData[char]));
-
   return characterData;
 };
 
@@ -36,16 +38,30 @@ const checkDataVersion = (timestamp) => {
     });
 };
 
+function dataFetchSuccess(response, character) {
+	return {
+    type: BLOB_FETCH_SUCCESS,
+    payload: response,
+  }
+}
+
+function dataFetchError(err, character) {
+  return {
+    type: BLOB_FETCH_ERROR,
+    error: err
+  }
+}
+
 const fetchDataFromAPI = () => {
   return dispatch => {
     fetch(CHARDATA_API)
       .then((response) => {
         console.log("FETCH CHAR DATA", response);
-        return dispatch(setInitialData(response.json()));
+        return dispatch(dataFetchSuccess(response.json()));
       })
       .catch((error) => {
-        console.log("FETCH CHAR DATA", response);
-        return initialData.data;
+        console.error("WTF FETCH ERROR", error);
+        return dispatch(dataFetchError(error));
       });
   };
 };
@@ -59,8 +75,8 @@ const setInitialData = (payload) => {
 };
 
 export const fetchInitialAppData = () => {
-  // check if LocalStorage data exists (if not, use in-app stub data)
-  let data = formatData(initialData.data);
+  // Will need to check if LocalStorage data exists (if not, use in-app stub data)
+  let data = formatRawData(initialData.data);
   // reach ver endpoint and check version number
   // if version doesn't match, make call to retrieve new data
   // set data in state
