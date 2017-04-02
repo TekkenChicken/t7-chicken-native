@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 // components
-import CharacterList from './characterList';
+import CharacterList from './CharacterList';
 
 // Styles
 import Styles from './styles';

@@ -8,7 +8,7 @@ import {
 
 // components
 import DataList from '../../components/DataList/DataList';
-import CharacterCard from './characterCard';
+import CharacterCard from './CharacterCard';
 
 class CharacterList extends Component {
 
