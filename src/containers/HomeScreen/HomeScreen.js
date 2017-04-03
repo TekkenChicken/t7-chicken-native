@@ -20,6 +20,7 @@ import About from '../About/About';
 import CharacterSelect from '../../components/CharacterSelect/CharacterSelect';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
 import Toolbar from '../../components/Toolbar/Toolbar';
+import DataList from '../../components/DataList/DataList';
 
 //side menus
 import FilterSideMenu from '../FilterSideMenu/FilterSideMenu';
@@ -69,7 +70,7 @@ class HomeScreen extends React.Component {
 
   shouldComponentUpdate() {
     console.log('component should update');
-    return true
+    return true;
   }
   componentWillReceiveProps(nextProps) {
 	  let nextFrameData = nextProps.filteredData.slice()
@@ -82,7 +83,7 @@ class HomeScreen extends React.Component {
   //dispatch character fetching action after character selected
   handleSelect = (name) => {
     this.setState({character: name})
-    this.props.dispatch( fetchCharacterData(name) );
+    this.props.dispatch(fetchCharacterData(name));
 	}
 
   //navigation function not being used yet, will probably be on left side menu
@@ -153,10 +154,20 @@ class HomeScreen extends React.Component {
   searchFilterList(text, frameData) {
 		let updatedList = frameData;
 		updatedList = updatedList.filter(function(move) {
-		return move.notation.toLowerCase().search(text.toLowerCase()) !== -1;
-	});
-	return updatedList;
+  		return move.notation.toLowerCase().search(text.toLowerCase()) !== -1;
+  	});
+	  return updatedList;
 	}
+
+  renderRow(rowData) {
+    console.log(rowData);
+    return (
+      <View
+        style={Styles.frameDataCard}>
+        {rowData}
+      </View>
+    );
+  }
 
 	render() {
     const { frameData, filter } = this.props;
@@ -166,10 +177,6 @@ class HomeScreen extends React.Component {
       isOpen={this.state.isOpen}
       toggle={this.toggle}
       navigator={navigator} />;
-    //table crap
-    const fd = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !==r2});
-    let table = fd.cloneWithRows([this.renderFrameData(this.frameDataFilter)]);
-    console.log(table);
 
 		return (
       <SideMenu
@@ -188,16 +195,11 @@ class HomeScreen extends React.Component {
             />
             {this.characterCheck()}
             </View>
-            <ListView
-              style={Styles.cardContainer}
-              contentContainerStyle={Styles.frameDataCard}
-              dataSource={table}
-              renderRow={(rowData) =>
-                <View
-                  style={Styles.frameDataCard}>
-                  {rowData}
-                </View>
-              }
+            <DataList
+              mainStyle={Styles.movesList}
+              listData={this.frameDataFilter}
+              cellComponent={FrameDataCard}
+              cellsPerRow={5}
             />
           </View>
         </SideMenu>
@@ -214,13 +216,14 @@ const Styles = StyleSheet.create({
 	headerContainer: {
 		alignItems: 'center'
 	},
-	frameDataCard: {
+	frameRow: {
+    flex: 1,
 		flexDirection: 'row',
-		flexWrap: 'wrap',
+    flexWrap: 'wrap',
 		zIndex: -2
 	},
-	cardContainer: {
-    zIndex: -1
+	movesList: {
+    zIndex: -2
 	},
   textInputContainer: {
     zIndex: -2
