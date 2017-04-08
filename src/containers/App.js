@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 
 import {
  NavigationContext,
@@ -21,8 +21,11 @@ class App extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
+        <StatusBar
+          barStyle="light-content"
+        />
         <NavigationProvider context={navigationContext}>
-          <StackNavigation id="home" initialRoute={Router.getRoute('characterSelect')} />
+          <StackNavigation id="home" initialRoute={Router.getRoute('characterProfileScreen')} />
         </NavigationProvider>
       </View>
     );
