@@ -24,6 +24,7 @@ class DataList extends Component {
         index++;
       }
     }
+    console.log(layoutData);
     return layoutData;
   }
 
@@ -53,8 +54,8 @@ class DataList extends Component {
         {
           rowData.cells.map((cell, i) => {
             return (
-              <View style={[styles.cell, cellStyle]} key={i}>
-                <CellComponent {...cell} />
+              <View style={[styles.cell, cellStyle]} >
+                <CellComponent {...cell} key={i} />
               </View>
             );
           })

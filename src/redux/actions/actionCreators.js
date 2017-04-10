@@ -1,0 +1,10 @@
+//Frame Data Types
+export const CHARDATA_FETCHING = 'CHARDATA_FETCHING';
+export const CHARDATA_FETCH_SUCCESS = 'CHARDATA_FETCH_SUCCESS';
+export const CHARDATA_FETCH_ERROR = 'CHARDATA_FETCH_ERROR';
+
+// Search Filter
+export const UPDATE_SEARCH_FILTER = 'UPDATE_SEARCH_FILTER';
+
+//Category filters
+export const TOGGLE_ATTACK_FILTER = 'TOGGLE_ATTACK_FILTER';
