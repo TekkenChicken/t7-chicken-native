@@ -13,9 +13,10 @@ import {
 } from 'react-native';
 
 // components
-import CharacterList from './CharacterList';
-import SelectBanner from './SelectBanner';
-
+import ProfileBanner from '../../components/CharacterProfile/ProfileBanner';
+import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
+import ProfileName from '../../components/CharacterProfile/ProfileName';
+import MoveList from './MoveList';
 // Styles
 import Styles from './styles';
 
@@ -24,24 +25,21 @@ import { fetchCharacters } from '../../redux/actions/select';
 import { fetchInitialAppData } from '../../redux/actions/blob';
 
 
-class CharacterSelectScreen extends Component {
+class CharacterProfileScreen extends Component {
 
   componentDidMount() {
-    // Will need to decide to move onto initial loading screen
-    // or keep here and use a loading state
+    // Fetch Data on character Or pass it in as props from navigation?
     this.props.dispatch(fetchInitialAppData());
     this.props.dispatch(fetchCharacters());
   }
 
   render() {
-    console.log("Characters Select", this.props.characters);
     return (
       <ScrollView style={Styles.mainContainer}>
-        <SelectBanner style={Styles.banner} />
-        <CharacterList
-          characters={this.props.characters}
-          onCharacterSelect={() => {}}
-        />
+        <ProfileBanner />
+        <ProfilePicture image='./../../img/Tile-Kazuya.png' />
+        <ProfileName name="Kazuya Mishima" />
+        <MoveList />
       </ScrollView>
     );
   }
@@ -56,4 +54,4 @@ const mapStateToProps = function(state) {
   }
 };
 
-export default connect(mapStateToProps)(CharacterSelectScreen);
+export default connect(mapStateToProps)(CharacterProfileScreen);
