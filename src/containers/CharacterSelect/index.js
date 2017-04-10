@@ -14,6 +14,7 @@ import {
 
 // components
 import CharacterList from './CharacterList';
+import SelectBanner from './SelectBanner';
 
 // Styles
 import Styles from './styles';
@@ -32,22 +33,24 @@ class CharacterSelectScreen extends Component {
     this.props.dispatch(fetchCharacters());
   }
 
+  /**
+   *  @method: navigateToCharacter
+   *  @param: characterID [string]
+   *  Will navigate to the character page and pass the characterID as a prop to the page
+   *  (where it will be used to fetch data on a character)
+   */
   navigateToCharacter(characterID) {
-    this.props.navigator.push({
-      component: Router.getRoute('character'),
-      args: {
-        characterID
-      }
-    });
+    this.props.navigator.push(Router.getRoute('characterProfile', { characterID }));
   }
 
   render() {
     console.log("Characters Select", this.props.characters);
     return (
       <ScrollView style={Styles.mainContainer}>
+        <SelectBanner style={Styles.banner} />
         <CharacterList
           characters={this.props.characters}
-          onCharacterSelect={() => this.navigateToCharacter()}
+          onCharacterSelect={(id) => this.navigateToCharacter(id)}
         />
       </ScrollView>
     );

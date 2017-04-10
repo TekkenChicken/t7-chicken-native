@@ -11,7 +11,8 @@ export const BLOB_FETCH_ERROR = 'BLOB_FETCH_ERROR';
 const CHAR_DATA_API = "";
 const DATA_VER_API = "";
 
-/*  method: checkDataVersion
+/**
+ *  @method: checkDataVersion
  *  Will get the current version of data, and compare it to local
  *  Will return if version matches or not
  */

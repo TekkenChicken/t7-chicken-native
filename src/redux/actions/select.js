@@ -2,7 +2,8 @@
 export const SELECT_UPDATE_SEARCH = 'SELECT_UPDATE_SEARCH';
 export const SELECT_UPDATE_CHARACTERS = 'SELECT_UPDATE_CHARACTERS';
 
-/*  method: formatData
+/**
+ *  @method: formatData
  *  @param: rawData [object]
  *  @return formattedData [array]
  *  Will convert object with each 'character' as properties to an array of characters
@@ -15,7 +16,7 @@ const formatRawData = (rawData) => {
 };
 
 /**
- *  method: filterCharacters
+ *  @method: filterCharacters
  *  @param: searchQuery [string]
  *  @return: characters [array]
  *  take in search query and return array of characters that match

@@ -8,19 +8,24 @@ import {
 
 // components
 import DataList from '../../components/DataList/DataList';
-import CharacterCard from './CharacterCard';
+import FrameDataCard from '../../components/FrameData/FrameDataCard';
 
-class CharacterList extends Component {
+class MoveList extends Component {
+
+  // custom renderRow function for List
+  renderCharacterRow(rowData) {
+    return null;
+  }
 
   render() {
+    console.log(this.props);
     return (
       <View>
         <DataList
           listData={this.props.characters}
-          cellComponent={CharacterCard}
+          cellComponent={FrameDataCard}
           cellsPerRow={4}
           rowStyle={Styles.row}
-          onCellPress={this.props.onCharacterSelect}
         />
       </View>
     );
@@ -37,9 +42,9 @@ const Styles = StyleSheet.create({
   }
 })
 
-CharacterList.Proptypes = {
+MoveList.Proptypes = {
   characters: PropTypes.array,
   onCharacterSelect: PropTypes.func
 };
 
-export default CharacterList;
+export default MoveList;

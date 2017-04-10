@@ -5,8 +5,7 @@ import {
 export default Styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: '#333333',
-    paddingTop: 30
+		backgroundColor: 'rgb(132, 18, 18)'
   },
   viewContainer: {
     justifyContent: 'center',
