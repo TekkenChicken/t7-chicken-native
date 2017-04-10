@@ -12,11 +12,6 @@ import CharacterCard from './CharacterCard';
 
 class CharacterList extends Component {
 
-  // custom renderRow function for List
-  renderCharacterRow(rowData) {
-    return null;
-  }
-
   render() {
     return (
       <View>

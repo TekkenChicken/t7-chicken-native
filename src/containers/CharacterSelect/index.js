@@ -32,13 +32,22 @@ class CharacterSelectScreen extends Component {
     this.props.dispatch(fetchCharacters());
   }
 
+  navigateToCharacter(characterID) {
+    this.props.navigator.push({
+      component: Router.getRoute('character'),
+      args: {
+        characterID
+      }
+    });
+  }
+
   render() {
     console.log("Characters Select", this.props.characters);
     return (
       <ScrollView style={Styles.mainContainer}>
         <CharacterList
           characters={this.props.characters}
-          onCharacterSelect={() => {}}
+          onCharacterSelect={() => this.navigateToCharacter()}
         />
       </ScrollView>
     );

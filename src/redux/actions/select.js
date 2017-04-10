@@ -2,6 +2,18 @@
 export const SELECT_UPDATE_SEARCH = 'SELECT_UPDATE_SEARCH';
 export const SELECT_UPDATE_CHARACTERS = 'SELECT_UPDATE_CHARACTERS';
 
+/*  method: formatData
+ *  @param: rawData [object]
+ *  @return formattedData [array]
+ *  Will convert object with each 'character' as properties to an array of characters
+ *  NEED TO DECIDE ON WHAT IS BEST WAY TO HANDLE THE DATA
+ */
+const formatRawData = (rawData) => {
+  const characterData = Object.keys(rawData)
+    .map((char) => Object.assign({}, {name: char}, rawData[char]));
+  return characterData;
+};
+
 /**
  *  method: filterCharacters
  *  @param: searchQuery [string]
@@ -43,6 +55,7 @@ const updateSearchFilter = (searchQuery) => {
 export const fetchCharacters = () => {
   return (dispatch, getState) => {
     const currentState = getState();
-    return dispatch(updateCharacters(currentState.blob.characterData));
+    const charactersList = formatRawData(currentState.blob.characterData);
+    return dispatch(updateCharacters(charactersList));
   };
 };

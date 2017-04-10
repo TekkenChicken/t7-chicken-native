@@ -66,16 +66,17 @@ class DataList extends Component {
   render() {
     const {
       mainStyle, containerStyle, rowStyle, cellStyle,
-      cellComponent, listData, cellsPerRow
+      cellComponent, listData, cellsPerRow, renderRow
     } = this.props;
     // data source creation
     const dataSource = this.formatDataSource( this.createLayoutData(listData, cellsPerRow) );
+    const renderRowFunc = (renderRow) ? renderRow :this._renderRow;
     return(
       <ListView
         style={mainStyle}
         contentContainerStyle={[styles.container, containerStyle]}
         dataSource={dataSource}
-        renderRow={(rowData) => this._renderRow(rowData, cellComponent, rowStyle, cellStyle)}
+        renderRow={(rowData) => renderRowFunc(rowData, cellComponent, rowStyle, cellStyle)}
       />
     );
   }
