@@ -1,8 +1,10 @@
 import { createRouter } from '@exponent/ex-navigation';
-import HomeScreen from './HomeScreen/HomeScreen';
 import About from './About/About';
+import CharacterSelect from './CharacterSelect/';
+import CharacterProfileScreen from './CharacterProfile';
 
 export const Router = createRouter(() => ({
-	home: () => HomeScreen,
+	characterSelect: () => CharacterSelect,
+	characterProfileScreen: () => CharacterProfileScreen,
 	about: () => About
 }));
