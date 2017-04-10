@@ -11,19 +11,8 @@ export const BLOB_FETCH_ERROR = 'BLOB_FETCH_ERROR';
 const CHAR_DATA_API = "";
 const DATA_VER_API = "";
 
-/*  method: formatData
- *  @param: rawData [object]
- *  @return formattedData [array]
- *  Will convert object with each 'character' as properties to an array of characters
- *  NEED TO DECIDE ON WHAT IS BEST WAY TO HANDLE THE DATA
- */
-const formatRawData = (rawData) => {
-  const characterData = Object.keys(rawData)
-    .map((char) => Object.assign({}, {name: char}, rawData[char]));
-  return characterData;
-};
-
-/*  method: checkDataVersion
+/**
+ *  @method: checkDataVersion
  *  Will get the current version of data, and compare it to local
  *  Will return if version matches or not
  */
@@ -76,7 +65,7 @@ const setInitialData = (payload) => {
 
 export const fetchInitialAppData = () => {
   // Will need to check if LocalStorage data exists (if not, use in-app stub data)
-  let data = formatRawData(initialData.data);
+  let data = initialData.data;
   // reach ver endpoint and check version number
   // if version doesn't match, make call to retrieve new data
   // set data in state

@@ -10,10 +10,15 @@ const setCharacterData = (data) => {
   };
 };
 
-export const fetchCharacterData = (character, index) => {
+/**
+ *  @method: fetchDataForCharacter
+ *  @param: characterID [string]
+ *  Fetch Data for a certain character from blob using character id to populate character page state
+ */
+export const fetchDataForCharacter = (characterID) => {
   return (dispatch, getState) => {
     const currentState = getState();
-    const charData = currentState.blob.characterData[index];
+    const charData = currentState.blob.characterData[characterID];
     return dispatch(setCharacterData(charData));
   };
 };

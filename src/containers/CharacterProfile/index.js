@@ -21,16 +21,13 @@ import MoveList from './MoveList';
 import Styles from './styles';
 
 // dispatch actions
-import { fetchCharacters } from '../../redux/actions/select';
-import { fetchInitialAppData } from '../../redux/actions/blob';
-
+import { fetchDataForCharacter } from '../../redux/actions/character';
 
 class CharacterProfileScreen extends Component {
 
   componentDidMount() {
-    // Fetch Data on character Or pass it in as props from navigation?
-    this.props.dispatch(fetchInitialAppData());
-    this.props.dispatch(fetchCharacters());
+    // Fetch Data on character using character ID sent as props on navigate
+    this.props.dispatch(fetchDataForCharacter(this.props.characterID));
   }
 
   render() {
@@ -48,9 +45,9 @@ class CharacterProfileScreen extends Component {
 
 /** MAPPING STATE **/
 const mapStateToProps = function(state) {
-  let { characters } = state.select;
+  let { character } = state.character;
   return {
-    characters
+    character
   }
 };
 

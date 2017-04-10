@@ -1,18 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 
 // dependencies
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableHighlight, StyleSheet } from 'react-native';
 import { Router } from '../Router';
 
 class CharacterCard extends Component {
+
   render() {
+    const {image, name, id, onPressHandler} = this.props;
+
     return (
       <View style={Styles.card}>
-        <Image
-          style={Styles.image}
-          source={{uri: this.props.image}}
-        />
-        <Text style={Styles.text}>{this.props.name.toUpperCase()}</Text>
+        <TouchableHighlight onPress={() => onPressHandler(name)}>
+          <View>
+            <Image
+              style={Styles.image}
+              source={{uri: this.props.image}}
+            />
+            <Text style={Styles.text}>{this.props.name.toUpperCase()}</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -47,7 +54,8 @@ const Styles = StyleSheet.create({
 
 CharacterCard.Proptypes = {
   name: PropTypes.string,
-  image: PropTypes.string
+  image: PropTypes.string,
+  onPressHandler: PropTypes.func
 };
 
 export default CharacterCard;

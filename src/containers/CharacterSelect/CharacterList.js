@@ -12,11 +12,6 @@ import CharacterCard from './CharacterCard';
 
 class CharacterList extends Component {
 
-  // custom renderRow function for List
-  renderCharacterRow(rowData) {
-    return null;
-  }
-
   render() {
     return (
       <View>
@@ -25,6 +20,7 @@ class CharacterList extends Component {
           cellComponent={CharacterCard}
           cellsPerRow={4}
           rowStyle={Styles.row}
+          onCellPress={this.props.onCharacterSelect}
         />
       </View>
     );
