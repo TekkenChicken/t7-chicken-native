@@ -25,7 +25,7 @@ class App extends Component {
           barStyle="light-content"
         />
         <NavigationProvider context={navigationContext}>
-          <StackNavigation id="home" initialRoute={Router.getRoute('characterProfileScreen')} />
+          <StackNavigation id="home" initialRoute={Router.getRoute('characterSelect')} />
         </NavigationProvider>
       </View>
     );
