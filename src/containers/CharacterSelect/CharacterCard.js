@@ -1,18 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 
 // dependencies
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableHighlight, StyleSheet } from 'react-native';
 import { Router } from '../Router';
 
 class CharacterCard extends Component {
   render() {
     return (
       <View style={Styles.card}>
-        <Image
-          style={Styles.image}
-          source={{uri: this.props.image}}
-        />
-        <Text style={Styles.text}>{this.props.name.toUpperCase()}</Text>
+        <TouchableHighlight>
+          <Image
+            style={Styles.image}
+            source={{uri: this.props.image}}
+          />
+          <Text style={Styles.text}>{this.props.name.toUpperCase()}</Text>
+        </TouchableHighlight>
       </View>
     );
   }
