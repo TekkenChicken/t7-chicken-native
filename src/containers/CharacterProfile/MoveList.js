@@ -22,9 +22,9 @@ class MoveList extends Component {
     return (
       <View>
         <DataList
-          listData={this.props.characters}
+          listData={this.props.moves}
           cellComponent={FrameDataCard}
-          cellsPerRow={4}
+          cellsPerRow={3}
           rowStyle={Styles.row}
         />
       </View>
