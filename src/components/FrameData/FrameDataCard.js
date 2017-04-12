@@ -19,6 +19,7 @@ export default class FrameDataCard extends React.Component {
           onPress={() => { this.setModalVisible(true) }}
           style={Styles.card}>
           <View>
+            <Text style={Styles.cardText}>move name</Text>
             <Text style={Styles.cardText}>{this.props.notation}</Text>
           </View>
         </TouchableHighlight>
@@ -60,13 +61,20 @@ const Styles = StyleSheet.create({
     height: 100
   },
   card: {
-    height: 100,
-    borderColor: 'black',
-    borderWidth: 1,
-    zIndex: -3
+    height: 95,
+    width: 120,
+    zIndex: -3,
+		backgroundColor: 'rgb(65, 18, 18)',
+  },
+  moveName: {
+    color: 'white',
+    fontWeight: 'bold'
   },
   cardText: {
-    textAlign: 'center'
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    paddingTop: 10
   },
   modalText: {
     fontSize: 16

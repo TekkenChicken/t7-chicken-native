@@ -29,14 +29,15 @@ class CharacterProfileScreen extends Component {
     // Fetch Data on character using character ID sent as props on navigate
     this.props.dispatch(fetchDataForCharacter(this.props.characterID));
   }
-
+  
   render() {
+    let {characterID, characterMoves} = this.props;
     return (
       <ScrollView style={Styles.mainContainer}>
         <ProfileBanner />
         <ProfilePicture image='./../../img/Tile-Kazuya.png' />
-        <ProfileName name="Kazuya Mishima" />
-        <MoveList />
+        <ProfileName name={characterID.toUpperCase()} />
+        <MoveList moves={characterMoves} />
       </ScrollView>
     );
   }

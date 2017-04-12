@@ -39,8 +39,8 @@ class CharacterSelectScreen extends Component {
    *  Will navigate to the character page and pass the characterID as a prop to the page
    *  (where it will be used to fetch data on a character)
    */
-  navigateToCharacter(characterID) {
-    this.props.navigator.push(Router.getRoute('characterProfile', { characterID }));
+  navigateToCharacter(characterID, characterMoves, characterImage) {
+    this.props.navigator.push(Router.getRoute('characterProfile', { characterID, characterMoves, characterImage }));
   }
 
   render() {
@@ -50,7 +50,7 @@ class CharacterSelectScreen extends Component {
         <SelectBanner style={Styles.banner} />
         <CharacterList
           characters={this.props.characters}
-          onCharacterSelect={(id) => this.navigateToCharacter(id)}
+          onCharacterSelect={(id, moves, image) => this.navigateToCharacter(id, moves, image)}
         />
       </ScrollView>
     );

@@ -7,11 +7,10 @@ import { Router } from '../Router';
 class CharacterCard extends Component {
 
   render() {
-    const {image, name, id, onPressHandler} = this.props;
-
+    const {image, name, id, onPressHandler, moves} = this.props;
     return (
       <View style={Styles.card}>
-        <TouchableHighlight onPress={() => onPressHandler(name)}>
+        <TouchableHighlight onPress={() => onPressHandler(name, moves, image)}>
           <View>
             <Image
               style={Styles.image}
