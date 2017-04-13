@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableHighlight, Modal, StyleSheet } from 'react-native';
+import { View,
+  Text,
+  TouchableHighlight,
+  Modal,
+  ScrollView,
+  StyleSheet } from 'react-native';
+
+import Header1 from '../Header1/Header1';
 
 
 export default class FrameDataCard extends React.Component {
@@ -25,30 +32,31 @@ export default class FrameDataCard extends React.Component {
         </TouchableHighlight>
 
         <Modal
-         animationType={"none"}
+         animationType={"slide"}
          transparent={false}
          visible={this.state.modalVisible}
          onRequestClose={() => {alert("Modal has been closed.")}}
          >
         <View style={Styles.modal}>
-         <View>
-           <View>
-             <Text style={Styles.characterName}>{(this.props.name) ? this.props.name.toUpperCase() : ""}</Text>
-             <Text style={Styles.modalText}>{this.props.notation}</Text>
-             <Text style={Styles.modalText}>Damage: {this.props.damage}</Text>
-             <Text style={Styles.modalText}>Speed: {this.props.speed}</Text>
-             <Text style={Styles.modalText}>Hit Level: {this.props.hitLevel}</Text>
-             <Text style={Styles.modalText}>On Block: {this.props.onBlock}</Text>
-             <Text style={Styles.modalText}>On Hit: {this.props.onHit}</Text>
-             <Text style={Styles.modalText}>On Counter: {this.props.onCh}</Text>
-           </View>
-           <TouchableHighlight
-             onPress={() => {
-               this.setModalVisible(!this.state.modalVisible)
-           }}>
-           <Text style={Styles.close}>Close</Text>
-           </TouchableHighlight>
-         </View>
+        <View>
+          <Text>Video goes here</Text>
+        </View>
+         <ScrollView>
+          <Header1 title={'Reverse Special Stretch Bomb'}/>
+          <Text style={Styles.modalText}>{this.props.notation}</Text>
+          <Text style={Styles.modalText}>Damage: {this.props.damage}</Text>
+          <Text style={Styles.modalText}>Speed: {this.props.speed}</Text>
+          <Text style={Styles.modalText}>Hit Level: {this.props.hit_level}</Text>
+          <Text style={Styles.modalText}>On Block: {this.props.on_block}</Text>
+          <Text style={Styles.modalText}>On Hit: {this.props.on_hit}</Text>
+          <Text style={Styles.modalText}>On Counter: {this.props.on_ch}</Text>
+          <TouchableHighlight
+           onPress={() => {
+             this.setModalVisible(!this.state.modalVisible)
+          }}>
+          <Text style={Styles.close}>Close</Text>
+          </TouchableHighlight>
+         </ScrollView>
         </View>
        </Modal>
       </View>
@@ -96,9 +104,7 @@ const Styles = StyleSheet.create({
   modal: {
     marginTop: 22,
     paddingTop: 30,
-    paddingLeft: 10,
     paddingBottom: 30,
-    flex: 1,
-    alignItems: 'center'
+    flex: 1
   }
-})
+});
