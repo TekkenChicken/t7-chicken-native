@@ -29,7 +29,7 @@ export default class FrameDataCard extends React.Component {
           style={Styles.card}>
           <View>
             <Text style={Styles.cardText}>move name</Text>
-            <Text style={Styles.cardText}>{this.props.notation}</Text>
+            <Text style={Styles.cardNotation}>{this.props.notation}</Text>
           </View>
         </TouchableHighlight>
 
@@ -84,7 +84,15 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontWeight: 'bold',
-    paddingTop: 10
+    paddingTop: 10,
+    fontFamily: 'Exo2-Light'
+  },
+  cardNotation: {
+    color: 'white',
+    fontWeight: 'bold',
+    paddingTop: 10,
+    paddingLeft: 15,
+    fontFamily: 'Exo2-Regular'
   },
   modalText: {
     fontSize: 16
@@ -115,6 +123,7 @@ const Styles = StyleSheet.create({
     fontSize: 24,
     marginTop: 10,
     marginBottom: 5,
-    paddingLeft: 35
+    paddingLeft: 35,
+    fontFamily: 'Exo2-Regular'
   }
 });

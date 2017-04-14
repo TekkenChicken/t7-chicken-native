@@ -33,7 +33,7 @@ export default class PropertyList extends Component {
   renderSpecialProperties() {
     return (
       <View style={Styles.table}>
-        <SubtitleHeading subtitle={'Special Properties'}/>
+        <SubtitleHeading subtitle={'Special Properties'.toUpperCase()}/>
         {/* TODO: determine logic to display properties in relation to data */}
         <View style={Styles.propertyRow}>
           <Image></Image>
@@ -58,7 +58,7 @@ export default class PropertyList extends Component {
   renderGeneralProperties() {
     return (
       <View style={Styles.table}>
-        <SubtitleHeading subtitle={'General Properties'}/>
+        <SubtitleHeading subtitle={'General Properties'.toUpperCase()}/>
         <View style={Styles.propertyRow}>
           <Text style={Styles.property}>{'Damage'}</Text>
           <Text style={Styles.propertyValue}>{this.props.damage}</Text>
@@ -78,7 +78,7 @@ export default class PropertyList extends Component {
   renderFrameProperties() {
     return (
       <View style={Styles.table}>
-        <SubtitleHeading subtitle={'Frame Properties'}/>
+        <SubtitleHeading subtitle={'Frame Properties'.toUpperCase()}/>
         <View style={Styles.propertyRow}>
           <Text style={Styles.property}>{'On Block'}</Text>
           <Text style={Styles.propertyValue}>{this.props.onBlock}</Text>
@@ -118,10 +118,12 @@ const Styles = StyleSheet.create({
   },
   property: {
     textAlign: 'right',
-    color: '#f0aeb1'
+    color: '#f0aeb1',
+    fontFamily: 'Exo2-Light'
   },
   propertyValue: {
     paddingLeft: 10,
-    color: 'white'
+    color: 'white',
+    fontFamily: 'Exo2-Light'
   }
 });
