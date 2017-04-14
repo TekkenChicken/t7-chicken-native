@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import { View,
   Text,
-  StyleSheet
+  StyleSheet,
+  Image
 } from 'react-native';
 
 import SubtitleHeading from '../SubtitleHeading/SubtitleHeading';
@@ -33,17 +34,22 @@ export default class PropertyList extends Component {
     return (
       <View style={Styles.table}>
         <SubtitleHeading subtitle={'Special Properties'}/>
+        {/* TODO: determine logic to display properties in relation to data */}
         <View style={Styles.propertyRow}>
-          <Text>{'Damage'}</Text>
-          <Text>{this.props.damage}</Text>
+          <Image></Image>
+          <Text style={Styles.propertyValue}>{'Rage Art'}</Text>
         </View>
         <View style={Styles.propertyRow}>
-          <Text>{'Hit Level(s)'}</Text>
-          <Text>{this.props.hitLevels}</Text>
+          <Image/>
+          <Text style={Styles.propertyValue}>{'Rage Drive'}</Text>
         </View>
         <View style={Styles.propertyRow}>
-          <Text>{'Speed (Frames)'}</Text>
-          <Text>{this.props.speed}</Text>
+          <Image/>
+          <Text style={Styles.propertyValue}>{'Homing'}</Text>
+        </View>
+        <View style={Styles.propertyRow}>
+          <Image/>
+          <Text style={Styles.propertyValue}>{'Tailspin'}</Text>
         </View>
       </View>
     );
