@@ -7,6 +7,7 @@ import { View,
   StyleSheet } from 'react-native';
 
 import Header1 from '../Header1/Header1';
+import PropertyList from '../PropertyList/PropertyList';
 
 
 export default class FrameDataCard extends React.Component {
@@ -42,14 +43,12 @@ export default class FrameDataCard extends React.Component {
           <Text>Video goes here</Text>
         </View>
          <ScrollView>
+           {/* TODO: make this name dynamic */}
           <Header1 title={'Reverse Special Stretch Bomb'}/>
           <Text style={Styles.modalText}>{this.props.notation}</Text>
-          <Text style={Styles.modalText}>Damage: {this.props.damage}</Text>
-          <Text style={Styles.modalText}>Speed: {this.props.speed}</Text>
-          <Text style={Styles.modalText}>Hit Level: {this.props.hit_level}</Text>
-          <Text style={Styles.modalText}>On Block: {this.props.on_block}</Text>
-          <Text style={Styles.modalText}>On Hit: {this.props.on_hit}</Text>
-          <Text style={Styles.modalText}>On Counter: {this.props.on_ch}</Text>
+          <PropertyList type={'special'} properties={['H', 'T']}/>
+          <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} speed={this.props.speed}/>
+          <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch}/>
           <TouchableHighlight
            onPress={() => {
              this.setModalVisible(!this.state.modalVisible)
@@ -105,6 +104,7 @@ const Styles = StyleSheet.create({
     marginTop: 22,
     paddingTop: 30,
     paddingBottom: 30,
-    flex: 1
+    flex: 1,
+    backgroundColor: 'rgb(132, 18, 18)'
   }
 });
