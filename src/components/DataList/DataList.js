@@ -8,7 +8,7 @@ import {
 class DataList extends Component {
 
   /**
-   * method: createRowData
+   * @method: createRowData
    * @param rawData [array]
    * Creates Layout Data needed to create ListView DataSource
    */
@@ -24,12 +24,11 @@ class DataList extends Component {
         index++;
       }
     }
-    console.log(layoutData);
     return layoutData;
   }
 
   /**
-   * method: formatDataSource
+   * @method: formatDataSource
    * @param layoutData [array]
    * Creates DataSource formatted for ListView comp
    */
@@ -41,21 +40,24 @@ class DataList extends Component {
   }
 
   /**
-   * method: _renderRow
+   * @method: _renderRow
    * @param rowData [array]
    * @param cellComponent [component]
+   * @param rowStyle [style obj/enum]
+   * @param cellStyle [style obj/enum]
+   * @param onCellPress [function]
    * Rendering function used to create a row for the list
    * renders the cell in row as cellComponent given
    */
-  _renderRow(rowData, CellComponent, rowStyle, cellStyle) {
+  _renderRow(rowData, CellComponent, rowStyle, cellStyle, onCellPress) {
     // will need to add param for using rowComponent
     return (
       <View style={[styles.row, rowStyle]}>
         {
           rowData.cells.map((cell, i) => {
             return (
-              <View style={[styles.cell, cellStyle]} >
-                <CellComponent {...cell} key={i} />
+              <View style={[styles.cell, cellStyle]} key={i}>
+                <CellComponent {...cell} onPressHandler={onCellPress}/>
               </View>
             );
           })
@@ -67,7 +69,7 @@ class DataList extends Component {
   render() {
     const {
       mainStyle, containerStyle, rowStyle, cellStyle,
-      cellComponent, listData, cellsPerRow
+      cellComponent, listData, cellsPerRow, onCellPress
     } = this.props;
     // data source creation
     const dataSource = this.formatDataSource( this.createLayoutData(listData, cellsPerRow) );
@@ -76,7 +78,7 @@ class DataList extends Component {
         style={mainStyle}
         contentContainerStyle={[styles.container, containerStyle]}
         dataSource={dataSource}
-        renderRow={(rowData) => this._renderRow(rowData, cellComponent, rowStyle, cellStyle)}
+        renderRow={(rowData) => this._renderRow(rowData, cellComponent, rowStyle, cellStyle, onCellPress)}
       />
     );
   }
