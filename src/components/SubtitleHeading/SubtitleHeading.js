@@ -30,6 +30,7 @@ const Styles = StyleSheet.create({
     fontSize: 12,
     paddingTop: 5,
     paddingBottom: 5,
-    paddingLeft: 10
+    paddingLeft: 10,
+    fontFamily: 'Exo2-Bold'
   }
 });

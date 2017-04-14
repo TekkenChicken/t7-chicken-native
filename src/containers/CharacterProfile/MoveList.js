@@ -47,7 +47,9 @@ const Styles = StyleSheet.create({
   rbnorway: {
     color: 'white',
     textAlign: 'center',
-    marginBottom: 30
+    marginBottom: 30,
+    fontFamily: 'Exo2-Light',
+    color: '#f0aeb1'
   }
 })
 
