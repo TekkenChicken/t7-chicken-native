@@ -45,7 +45,7 @@ export default class FrameDataCard extends React.Component {
          <ScrollView>
            {/* TODO: make this name dynamic */}
           <Header1 title={'Reverse Special Stretch Bomb'}/>
-          <Text style={Styles.modalText}>{this.props.notation}</Text>
+          <Text style={Styles.notation}>{this.props.notation}</Text>
           <PropertyList type={'special'} properties={['H', 'T']}/>
           <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} speed={this.props.speed}/>
           <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch}/>
@@ -105,6 +105,13 @@ const Styles = StyleSheet.create({
     paddingTop: 30,
     paddingBottom: 30,
     flex: 1,
-    backgroundColor: 'rgb(132, 18, 18)'
+    backgroundColor: 'rgb(132, 18, 18)',
+  },
+  notation: {
+    color: 'white',
+    fontSize: 24,
+    marginTop: 10,
+    marginBottom: 5,
+    paddingLeft: 35
   }
 });
