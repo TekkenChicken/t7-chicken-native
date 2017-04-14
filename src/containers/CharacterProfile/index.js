@@ -16,6 +16,7 @@ import {
 import ProfileBanner from '../../components/CharacterProfile/ProfileBanner';
 import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
 import ProfileName from '../../components/CharacterProfile/ProfileName';
+import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 import MoveList from './MoveList';
 // Styles
 import Styles from './styles';
@@ -29,7 +30,7 @@ class CharacterProfileScreen extends Component {
     // Fetch Data on character using character ID sent as props on navigate
     this.props.dispatch(fetchDataForCharacter(this.props.characterID));
   }
-  
+
   render() {
     let {characterID, characterMoves} = this.props;
     return (

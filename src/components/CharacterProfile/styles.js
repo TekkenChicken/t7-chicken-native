@@ -8,6 +8,23 @@ export default Styles = StyleSheet.create({
 		backgroundColor: 'rgb(65, 18, 18)',
 		height: 100
   },
+	commandListContainer: {
+		backgroundColor: 'rgb(65, 18, 18)',
+		height: 40,
+		paddingTop: 10,
+		marginBottom: 20
+	},
+	commandListText: {
+		color: '#f0aa23',
+		fontWeight: 'bold',
+		paddingLeft: 10
+	},
+	randomLine: {
+		width: 150,
+		height: 6,
+		backgroundColor: '#f0aa23',
+		marginTop: 5
+	},
 	profilePic: {
 		position: 'absolute',
 		height: 100,
@@ -23,7 +40,7 @@ export default Styles = StyleSheet.create({
 	},
 	profileName: {
 		color: 'white',
-		marginTop: 70,
+		marginTop: 60,
 		marginLeft: 15,
 		fontSize: 30
 	}
