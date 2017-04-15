@@ -6,7 +6,7 @@ export default Styles = StyleSheet.create({
   viewContainer: {
 		flex: 1,
 		backgroundColor: 'rgb(65, 18, 18)',
-		height: 100
+		height: 60
   },
 	commandListContainer: {
 		backgroundColor: 'rgb(65, 18, 18)',
@@ -29,7 +29,7 @@ export default Styles = StyleSheet.create({
 		position: 'absolute',
 		height: 100,
 		width: 60,
-		top: 50,
+		top: 90,
 		left: 10,
 		borderColor: 'black',
 		borderWidth: 1,
@@ -42,6 +42,7 @@ export default Styles = StyleSheet.create({
 		color: 'white',
 		marginTop: 60,
 		marginLeft: 15,
+		marginBottom: 30,
 		fontSize: 30
 	}
 });

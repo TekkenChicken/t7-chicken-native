@@ -18,6 +18,7 @@ import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
 import ProfileName from '../../components/CharacterProfile/ProfileName';
 import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 import MoveList from './MoveList';
+import SearchBar from '../../components/SearchBar/SearchBar';
 // Styles
 import Styles from './styles';
 
@@ -35,6 +36,7 @@ class CharacterProfileScreen extends Component {
     let {characterID, characterMoves} = this.props;
     return (
       <ScrollView style={Styles.mainContainer}>
+        <SearchBar />
         <ProfileBanner />
         <ProfilePicture image='./../../img/Tile-Kazuya.png' />
         <ProfileName name={characterID.toUpperCase()} />
