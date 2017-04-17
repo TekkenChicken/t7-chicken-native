@@ -4,9 +4,8 @@ import {
 
 export default Styles = StyleSheet.create({
   viewContainer: {
-		flex: 1,
+		height: 70,
 		backgroundColor: 'rgb(65, 18, 18)',
-		height: 60
   },
 	commandListContainer: {
 		backgroundColor: 'rgb(65, 18, 18)',
@@ -27,9 +26,9 @@ export default Styles = StyleSheet.create({
 	},
 	profilePic: {
 		position: 'absolute',
-		height: 100,
-		width: 60,
-		top: 90,
+		height: 120,
+		width: 70,
+		top: 0,
 		left: 10,
 		borderColor: 'black',
 		borderWidth: 1,
@@ -40,7 +39,7 @@ export default Styles = StyleSheet.create({
 	},
 	profileName: {
 		color: 'white',
-		marginTop: 60,
+		marginTop: 70,
 		marginLeft: 15,
 		marginBottom: 30,
 		fontSize: 30

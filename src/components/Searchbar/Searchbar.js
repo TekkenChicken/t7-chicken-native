@@ -21,8 +21,7 @@ class SearchBar extends Component {
           style={Styles.input} />
       <Button
         onPress={this.hideSearch}
-        title="X"
-        style={Styles.clear}>
+        title="X">
       </Button>
       </View>
     )
@@ -51,8 +50,5 @@ const Styles = StyleSheet.create({
     height: 40,
     backgroundColor: 'rgba(50,50,50, 0.5)',
     borderRadius: 10
-  },
-  clear: {
-
   }
 });
