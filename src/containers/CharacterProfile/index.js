@@ -20,6 +20,10 @@ import CommandListBanner from '../../components/CharacterProfile/CommandListBann
 import MoveList from './MoveList';
 import SearchBar from '../../components/Searchbar/Searchbar';
 import Toolbar from '../../components/Toolbar/Toolbar';
+
+//images
+import headshots from '../../img/headshots/index';
+
 // Styles
 import Styles from './styles';
 

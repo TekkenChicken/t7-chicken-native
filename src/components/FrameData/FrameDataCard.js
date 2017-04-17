@@ -49,7 +49,7 @@ export default class FrameDataCard extends React.Component {
           <Header1 title={'Reverse Special Stretch Bomb'}/>
           <Text style={Styles.notation}>{this.props.notation}</Text>
           {/* TODO: change the data so we get each input as an array element */}
-          <Inputs style={Styles.inputs} inputs={['1', '2']}/>
+          <Inputs isCard={false} inputs={['1', '2']}/>
           <PropertyList type={'special'} properties={['H', 'T']}/>
           <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} speed={this.props.speed}/>
           <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch}/>
