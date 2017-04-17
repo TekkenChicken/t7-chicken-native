@@ -1,38 +1,94 @@
-import React from 'react';
-import {View, Text, StyleSheet } from 'react-native';
-// import FilterSelect from '../FilterSelect/FilterSelect';
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  View,
+  Button,
+  Text,
+  Image
+} from 'react-native';
 
-import FilterSideMenu from '../../containers/FilterSideMenu/FilterSideMenu';
-import FilterMenu from '../Menu/FilterMenu';
-import SideMenu from 'react-native-side-menu';
-
-export default class Toolbar extends React.Component {
+class LeftMenu extends Component {
+  leftMenu() {
+    console.log('Open Left Menu')
+  }
   render() {
-    const menu = <FilterSideMenu style={Styles.filterSideMenu} navigator={navigator}/>;
-
     return (
-      <View style={Styles.toolbar}>
-        {this.props.filter}
+      <View>
+        <Image
+          onPress={this.openMenu}
+          style={Styles.menuIcon}
+          source={require('./../../img/icons/menu.png')}
+        />
+      </View>
+    )
+  }
+}
+
+class SearchBar extends Component {
+  render() {
+    return (
+      <View>
+        <Image
+          style={Styles.searchIcon}
+          source={require('./../../img/icons/fa-search.png')}
+        />
+      </View>
+    )
+  }
+}
+
+class FilterMenu extends Component {
+  render() {
+    return (
+      <View>
+        <Image
+          style={Styles.searchIcon}
+          source={require('./../../img/icons/filter.png')}
+        />
+      </View>
+    )
+  }
+}
+
+class Toolbar extends Component {
+  render() {
+    const name = !this.props.name ? '' : this.props.name;
+    return (
+      <View style={Styles.toolbarContainer}>
+        <LeftMenu />
+      <SearchBar />
+    <Text style={Styles.name}>{name.toUpperCase()}</Text>
+    <FilterMenu style={Styles.filterIcon}/>
       </View>
     )
   }
 }
 
 const Styles = StyleSheet.create({
-  toolbar: {
-    height: 40,
-    alignItems: 'flex-end',
-    ...absoluteStretch
+  toolbarContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 30,
   },
-  filter: {
+  menuIcon: {
+    height: 20,
+    width: 20
+  },
+  searchIcon: {
+    height: 20,
+    width: 20,
+    marginLeft: 20
+  },
+  filterIcon: {
+
+  },
+  name: {
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'center',
+    width: 240
   }
 })
 
-
-const absoluteStretch = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-}
+export default Toolbar;

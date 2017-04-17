@@ -4,7 +4,10 @@ import {
 
 export default Styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
 		backgroundColor: 'rgb(132, 18, 18)',
-  }
+  },
+	backDrop: {
+		height: 60,
+		backgroundColor: 'rgb(68, 18, 18)'
+	}
 });

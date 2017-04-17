@@ -15,6 +15,8 @@ import {
 // components
 import CharacterList from './CharacterList';
 import SelectBanner from './SelectBanner';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import Toolbar from '../../components/Toolbar/Toolbar';
 
 // Styles
 import Styles from './styles';
@@ -47,6 +49,7 @@ class CharacterSelectScreen extends Component {
     console.log("Characters Select", this.props.characters);
     return (
       <ScrollView style={Styles.mainContainer}>
+        <Toolbar />
         <SelectBanner style={Styles.banner} />
         <CharacterList
           characters={this.props.characters}
