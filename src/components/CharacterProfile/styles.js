@@ -42,7 +42,7 @@ export default Styles = StyleSheet.create({
 		marginTop: 70,
 		marginLeft: 15,
 		marginBottom: 30,
-		fontSize: 30
+		fontSize: 30,
 		fontFamily: 'Exo2-Light'
 	}
 });
