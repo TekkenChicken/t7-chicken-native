@@ -30,6 +30,7 @@ export default class FrameDataCard extends React.Component {
           <View>
             <Text style={Styles.cardText}>move name</Text>
             <Text style={Styles.cardNotation}>{this.props.notation}</Text>
+            <Inputs isCard={true} inputs={['1', '1']}/>
           </View>
         </TouchableHighlight>
 
