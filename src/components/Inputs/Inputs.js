@@ -146,7 +146,9 @@ const Styles = StyleSheet.create({
     paddingRight: 10
   },
   inputChild: {
-    marginRight: 5
+    marginRight: 5,
+    height: 20,
+    width: 20
   },
   isCard: {
     height: 20,

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 
-class SearchBar extends Component {
+export default class SearchBar extends Component {
   hideSearch() {
     console.log('Search cleared');
   }
@@ -27,8 +27,6 @@ class SearchBar extends Component {
     )
   }
 }
-
-export default SearchBar;
 
 const Styles = StyleSheet.create({
   mainContainer: {
