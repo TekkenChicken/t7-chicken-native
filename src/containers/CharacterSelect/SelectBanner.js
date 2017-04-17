@@ -19,6 +19,7 @@ const Styles = StyleSheet.create({
   banner: {
     color: 'white',
     fontSize: 24,
+    fontFamily: 'Exo2-Light',
 		backgroundColor: 'rgb(65, 18, 18)',
     paddingTop: 10,
     paddingBottom: 10,

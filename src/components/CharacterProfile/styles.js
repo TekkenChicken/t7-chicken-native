@@ -43,5 +43,6 @@ export default Styles = StyleSheet.create({
 		marginLeft: 15,
 		marginBottom: 30,
 		fontSize: 30
+		fontFamily: 'Exo2-Light'
 	}
 });
