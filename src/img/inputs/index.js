@@ -1,16 +1,19 @@
-export default const inputs = {
+const inputs = {
   one: require('./1.png'),
   two: require('./2.png'),
   three: require('./3.png'),
   four: require('./4.png'),
-  oneplustwo: require('./1+2.png'),
-  threeplusfour: require('./3+4.png'),
-  oneplustwoplusthree: require('./1+2+3.png'),
-  oneplustwoplusthreeplusfour: require('./1+2+3+4.png'),
-  twoplusthreeplusfour: require('./2+3+4.png'),
+  oneplustwo: require('./1plus2.png'),
+  // TODO: MISSING 1+3 and 2+4
+  // oneplusthree: require('./1plus3.png'),
+  // oneplusfour: require('./1plus4.png'),
+  threeplusfour: require('./3plus4.png'),
+  oneplustwoplusthree: require('./1plus2plus3.png'),
+  oneplustwoplusthreeplusfour: require('./1plus2plus3plus4.png'),
+  twoplusthreeplusfour: require('./2plus3plus4.png'),
   u: require('./u.png'),
   u_hold: require('./u_h.png'),
-  d: require('.d.png'),
+  d: require('./d.png'),
   d_hold: require('./d_h.png'),
   b: require('./b.png'),
   b_hold: require('./b_h.png'),
@@ -25,3 +28,5 @@ export default const inputs = {
   db: require('./db.png'),
   df_hold: require('./db_h.png')
 };
+
+export default inputs;
