@@ -4,22 +4,22 @@ import {
   View,
   Button,
   Text,
-  Image
+  Image,
+  TouchableHighlight
 } from 'react-native';
 
 class LeftMenu extends Component {
-  leftMenu() {
-    console.log('Open Left Menu')
-  }
+
   render() {
     return (
-      <View>
-        <Image
-          onPress={this.openMenu}
-          style={Styles.menuIcon}
-          source={require('./../../img/icons/menu.png')}
-        />
-      </View>
+        <TouchableHighlight
+          onPress={this.props.func}
+          >
+          <Image
+            style={Styles.menuIcon}
+            source={require('./../../img/icons/menu.png')}
+          />
+        </TouchableHighlight>
     )
   }
 }
@@ -27,12 +27,13 @@ class LeftMenu extends Component {
 class SearchBar extends Component {
   render() {
     return (
-      <View>
+      <TouchableHighlight
+        onPress={this.props.func}>
         <Image
           style={Styles.searchIcon}
           source={require('./../../img/icons/fa-search.png')}
         />
-      </View>
+      </TouchableHighlight>
     )
   }
 }
@@ -40,25 +41,39 @@ class SearchBar extends Component {
 class FilterMenu extends Component {
   render() {
     return (
-      <View>
+      <TouchableHighlight
+        onPress={this.props.func}>
         <Image
-          style={Styles.searchIcon}
+          style={Styles.filterIcon}
           source={require('./../../img/icons/filter.png')}
         />
-      </View>
+      </TouchableHighlight>
     )
   }
 }
 
 class Toolbar extends Component {
+
+  leftMenu() {
+    console.log('Open Left Menu')
+  }
+
+  rightMenu() {
+    console.log('Open Right Menu');
+  }
+
+  renderSearchBar() {
+    console.log('Render Search Bar');
+  }
+
   render() {
     const name = !this.props.name ? '' : this.props.name;
     return (
       <View style={Styles.toolbarContainer}>
-        <LeftMenu />
-      <SearchBar />
-    <Text style={Styles.name}>{name.toUpperCase()}</Text>
-    <FilterMenu style={Styles.filterIcon}/>
+        <LeftMenu func={this.leftMenu}/>
+        <SearchBar func={this.renderSearchBar} />
+        <Text style={Styles.name}>{name.toUpperCase()}</Text>
+      <FilterMenu func={this.rightMenu} />
       </View>
     )
   }
@@ -70,18 +85,21 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     paddingTop: 30,
+    marginBottom: 30,
+    height: 20
   },
   menuIcon: {
-    height: 20,
-    width: 20
+    height: 25,
+    width: 25
   },
   searchIcon: {
-    height: 20,
-    width: 20,
+    height: 25,
+    width: 25,
     marginLeft: 20
   },
   filterIcon: {
-
+    height: 25,
+    width: 25
   },
   name: {
     color: 'white',

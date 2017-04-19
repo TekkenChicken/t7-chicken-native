@@ -4,7 +4,9 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Button
+  Button,
+  Image,
+  TouchableHighlight
 } from 'react-native';
 
 
@@ -18,11 +20,12 @@ export default class SearchBar extends Component {
         <TextInput
           placeholder="Search"
           placeholderTextColor="#f0aa23"
-          style={Styles.input} />
-      <Button
-        onPress={this.hideSearch}
-        title="X">
-      </Button>
+          style={Styles.input}
+        />
+        <TouchableHighlight
+          onPress={this.hideSearch}>
+          <Image style={Styles.close} source={require('./../../img/icons/close.png')}/>
+        </TouchableHighlight>
       </View>
     )
   }
@@ -48,5 +51,11 @@ const Styles = StyleSheet.create({
     height: 40,
     backgroundColor: 'rgba(50,50,50, 0.5)',
     borderRadius: 10
+  },
+  close: {
+    width: 20,
+    height: 20,
+    marginTop: 10,
+    marginLeft: 10
   }
 });
