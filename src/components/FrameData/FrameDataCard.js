@@ -22,7 +22,6 @@ export default class FrameDataCard extends React.Component {
   }
 
   render() {
-    console.log(this.props.notation);
     return (
       <View style={Styles.container}>
         <TouchableHighlight
