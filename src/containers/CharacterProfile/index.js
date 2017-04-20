@@ -18,7 +18,7 @@ import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
 import ProfileName from '../../components/CharacterProfile/ProfileName';
 import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 import MoveList from './MoveList';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import SearchBar from '../../components/Searchbar/Searchbar';
 import Toolbar from '../../components/Toolbar/Toolbar';
 
 //images
