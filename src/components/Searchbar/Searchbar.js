@@ -11,8 +11,12 @@ import {
 
 
 export default class SearchBar extends Component {
-  hideSearch() {
-    console.log('Search cleared');
+  constructor(props) {
+    super(props);
+
+  }
+  hideSearch = () => {
+    console.log('Search hidden');
   }
   render() {
     return (
@@ -23,7 +27,7 @@ export default class SearchBar extends Component {
           style={Styles.input}
         />
         <TouchableHighlight
-          onPress={this.hideSearch}>
+          onPress={this.props.toggle}>
           <Image style={Styles.close} source={require('./../../img/icons/close.png')}/>
         </TouchableHighlight>
       </View>
@@ -35,20 +39,18 @@ const Styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
     height: 55,
-    marginTop: 20,
-    paddingTop: 7,
-    paddingLeft: 20,
 		backgroundColor: 'black',
+    paddingTop: 10,
+    paddingLeft: 60
   },
   input: {
     borderColor: 'gray',
     borderWidth: 2,
     color: '#f0aa23',
     paddingLeft: 10,
-    width: 300,
-    height: 40,
+    width: 270,
+    height: 35,
     backgroundColor: 'rgba(50,50,50, 0.5)',
     borderRadius: 10
   },

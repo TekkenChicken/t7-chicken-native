@@ -8,6 +8,8 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+import SearchBar from '../SearchBar/SearchBar';
+
 class LeftMenu extends Component {
 
   render() {
@@ -24,7 +26,7 @@ class LeftMenu extends Component {
   }
 }
 
-class SearchBar extends Component {
+class SearchBarButton extends Component {
   render() {
     return (
       <TouchableHighlight
@@ -53,7 +55,12 @@ class FilterMenu extends Component {
 }
 
 class Toolbar extends Component {
-
+  constructor() {
+    super();
+    this.state = {
+      search: false
+    }
+  }
   leftMenu() {
     console.log('Open Left Menu')
   }
@@ -62,18 +69,37 @@ class Toolbar extends Component {
     console.log('Open Right Menu');
   }
 
-  renderSearchBar() {
-    console.log('Render Search Bar');
+  toggleSearchBar = () => {
+    console.log('render search bar');
+    this.setState({
+      search: !this.state.search
+    })
+  }
+
+  renderToolBar() {
+    if(this.state.search == false) {
+      const name = !this.props.name ? '' : this.props.name;
+      return (
+        <View style={Styles.toolbarContainer}>
+          <LeftMenu func={this.leftMenu}/>
+          <SearchBarButton func={this.toggleSearchBar} />
+          <Text style={Styles.name}>{name.toUpperCase()}</Text>
+          <FilterMenu func={this.rightMenu} />
+        </View>
+      )
+    } else {
+      return (
+        <View style={Styles.toolbarContainer}>
+          <SearchBar style={Styles.searchBarContainer} toggle={this.toggleSearchBar} />
+        </View>
+      )
+    }
   }
 
   render() {
-    const name = !this.props.name ? '' : this.props.name;
     return (
-      <View style={Styles.toolbarContainer}>
-        <LeftMenu func={this.leftMenu}/>
-        <SearchBar func={this.renderSearchBar} />
-        <Text style={Styles.name}>{name.toUpperCase()}</Text>
-      <FilterMenu func={this.rightMenu} />
+      <View>
+        {this.renderToolBar()}
       </View>
     )
   }
@@ -86,7 +112,10 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 30,
     marginBottom: 30,
-    height: 20
+    height: 30
+  },
+  searchBarContainer: {
+
   },
   menuIcon: {
     height: 25,

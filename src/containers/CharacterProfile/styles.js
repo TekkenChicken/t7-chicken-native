@@ -7,7 +7,7 @@ export default Styles = StyleSheet.create({
 		backgroundColor: 'rgb(132, 18, 18)',
   },
 	backDrop: {
-		height: 60,
+		height: 80,
 		backgroundColor: 'rgb(68, 18, 18)'
 	}
 });
