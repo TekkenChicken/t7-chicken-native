@@ -111,15 +111,15 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     paddingTop: 30,
-    marginBottom: 30,
-    height: 30
+    marginBottom: 50,
+    backgroundColor: 'rgb(65, 18, 18)'
   },
   searchBarContainer: {
 
   },
   menuIcon: {
     height: 25,
-    width: 25
+    width: 25,
   },
   searchIcon: {
     height: 25,

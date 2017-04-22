@@ -19,7 +19,6 @@ import ProfileName from '../../components/CharacterProfile/ProfileName';
 import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 import MoveList from './MoveList';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import Toolbar from '../../components/Toolbar/Toolbar';
 
 //images
 import headshots from '../../img/headshots/index';
@@ -41,7 +40,6 @@ class CharacterProfileScreen extends Component {
     let {characterID, characterMoves} = this.props;
     return (
       <View >
-        <ProfileBanner name={characterID} />
         <ScrollView style={Styles.mainContainer}>
           <View style={Styles.backDrop}/>
           <ProfilePicture image='./../../img/headshots/Tile-Kazuya.png' />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, Text } from 'react-native';
 
 import {
  NavigationContext,
@@ -12,6 +12,8 @@ import store from '../redux/store';
 
 import { Router } from './Router';
 
+import Toolbar from '../components/Toolbar/Toolbar';
+
 const navigationContext = new NavigationContext({
   router: Router,
   store
@@ -20,11 +22,12 @@ const navigationContext = new NavigationContext({
 class App extends Component {
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor: 'rgb(65, 18, 18)'}}>
         <StatusBar
           barStyle="light-content"
         />
         <NavigationProvider context={navigationContext}>
+          <Toolbar />
           <StackNavigation id="home" initialRoute={Router.getRoute('characterSelect')} />
         </NavigationProvider>
       </View>
