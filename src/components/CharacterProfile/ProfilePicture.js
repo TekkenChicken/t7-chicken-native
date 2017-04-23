@@ -12,7 +12,7 @@ class ProfilePicture extends Component {
     const profileImage = this.props.image;
     return (
       <Image
-        source={require('./../../img/Tile-Kazuya.png')}
+        source={require('./../../img/headshots/Tile-Kazuya.png')}
         resizeMode='contain'
         style={Styles.profilePic}>
       </Image>

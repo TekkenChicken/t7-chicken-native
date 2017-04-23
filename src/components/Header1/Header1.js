@@ -27,7 +27,7 @@ const Styles = StyleSheet.create({
     fontSize: 24,
     color: 'white',
     paddingTop: 10,
-    paddingBottom: 5,
+    paddingBottom: 10,
     paddingLeft: 15,
     fontFamily: 'Exo2-Regular'
   }

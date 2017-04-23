@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 
 import { View,
   StyleSheet,
-  Image
+  Image,
+  Text
 } from 'react-native';
+
+import inputImages from '../../img/inputs/index';
 
 export default class Inputs extends Component {
   constructor() {
@@ -12,125 +15,16 @@ export default class Inputs extends Component {
   }
 
   renderInputs = (inputs) => {
-    // TODO: figure out the best way to implement keys here so RN will stop bitching
     return inputs.map((input, index) => {
-      switch (input) {
-        // TODO: add image sources here
-        case '1':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '2':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '3':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '4':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '1+2':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '1+3':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '1+4':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '1+2+3':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '1+2+4':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '1+2+3+4':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '2+4':
-          return (
-            <Image></Image>
-          );
-          break;
-        case '3+4':
-          return (
-            <Image></Image>
-          );
-          break;
-        case 'u':
-          return (
-            <Image></Image>
-          );
-          break;
-        case 'd':
-          return (
-            <Image></Image>
-          );
-          break;
-        case 'b':
-          return (
-            <Image></Image>
-          );
-          break;
-        case 'f':
-          return (
-            <Image></Image>
-          );
-          break;
-        case 'u/f':
-          return (
-            <Image></Image>
-          );
-          break;
-        case 'd/f':
-          return (
-            <Image></Image>
-          );
-          break;
-        case 'd/b':
-          return (
-            <Image></Image>
-          );
-          break;
-        case 'u/b':
-          return (
-            <Image></Image>
-          );
-          break;
-        case 'n':
-          return (
-            <Image></Image>
-          );
-          break;
-          // TODO: add cases for WR/WS/CH/FC/Stances
-        default:
-          break;
-      }
-    })
+      return (
+        <Image style={this.props.isCard ? Styles.isCard : Styles.inputChild} source={inputImages[input]} key={index}/>
+      );
+    });
   }
 
   render() {
     return (
-      <View>
+      <View style={Styles.inputContainer}>
         {this.renderInputs(this.props.inputs)}
       </View>
     )
@@ -138,5 +32,19 @@ export default class Inputs extends Component {
 }
 
 const Styles = StyleSheet.create({
-
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingRight: 10
+  },
+  inputChild: {
+    marginRight: 5,
+    height: 24,
+    width: 24
+  },
+  isCard: {
+    height: 20,
+    width: 20,
+    marginTop: 5
+  }
 });

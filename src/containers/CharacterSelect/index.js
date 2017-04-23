@@ -15,6 +15,7 @@ import {
 // components
 import CharacterList from './CharacterList';
 import SelectBanner from './SelectBanner';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 // Styles
 import Styles from './styles';

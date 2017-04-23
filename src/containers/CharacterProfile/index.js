@@ -18,6 +18,11 @@ import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
 import ProfileName from '../../components/CharacterProfile/ProfileName';
 import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 import MoveList from './MoveList';
+import SearchBar from '../../components/SearchBar/SearchBar';
+
+//images
+import headshots from '../../img/headshots/index';
+
 // Styles
 import Styles from './styles';
 
@@ -35,12 +40,14 @@ class CharacterProfileScreen extends Component {
     let {characterID, character} = this.props;
     const moves = (character) ? (character.moves) : [];
     return (
-      <ScrollView style={Styles.mainContainer}>
-        <ProfileBanner />
-        <ProfilePicture image='./../../img/Tile-Kazuya.png' />
-        <ProfileName name={characterID.toUpperCase()} />
-        <MoveList moves={moves} />
-      </ScrollView>
+      <View >
+        <ScrollView style={Styles.mainContainer}>
+          <View style={Styles.backDrop}/>
+          <ProfilePicture image='./../../img/headshots/Tile-Kazuya.png' />
+          <ProfileName name={characterID.toUpperCase()} />
+          <MoveList moves={characterMoves} />
+       </ScrollView>
+      </View>
     );
   }
 }

@@ -1,38 +1,142 @@
-import React from 'react';
-import {View, Text, StyleSheet } from 'react-native';
-// import FilterSelect from '../FilterSelect/FilterSelect';
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  View,
+  Button,
+  Text,
+  Image,
+  TouchableHighlight
+} from 'react-native';
 
-import FilterSideMenu from '../../containers/FilterSideMenu/FilterSideMenu';
-import FilterMenu from '../Menu/FilterMenu';
-import SideMenu from 'react-native-side-menu';
+import SearchBar from '../SearchBar/SearchBar';
 
-export default class Toolbar extends React.Component {
+class LeftMenu extends Component {
+
   render() {
-    const menu = <FilterSideMenu style={Styles.filterSideMenu} navigator={navigator}/>;
-
     return (
-      <View style={Styles.toolbar}>
-        {this.props.filter}
+        <TouchableHighlight
+          onPress={this.props.func}
+          >
+          <Image
+            style={Styles.menuIcon}
+            source={require('./../../img/icons/menu.png')}
+          />
+        </TouchableHighlight>
+    )
+  }
+}
+
+class SearchBarButton extends Component {
+  render() {
+    return (
+      <TouchableHighlight
+        onPress={this.props.func}>
+        <Image
+          style={Styles.searchIcon}
+          source={require('./../../img/icons/fa-search.png')}
+        />
+      </TouchableHighlight>
+    )
+  }
+}
+
+class FilterMenu extends Component {
+  render() {
+    return (
+      <TouchableHighlight
+        onPress={this.props.func}>
+        <Image
+          style={Styles.filterIcon}
+          source={require('./../../img/icons/filter.png')}
+        />
+      </TouchableHighlight>
+    )
+  }
+}
+
+class Toolbar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      search: false
+    }
+  }
+  leftMenu() {
+    console.log('Open Left Menu')
+  }
+
+  rightMenu() {
+    console.log('Open Right Menu');
+  }
+
+  toggleSearchBar = () => {
+    console.log('render search bar');
+    this.setState({
+      search: !this.state.search
+    })
+  }
+
+  renderToolBar() {
+    if(this.state.search == false) {
+      const name = !this.props.name ? '' : this.props.name;
+      return (
+        <View style={Styles.toolbarContainer}>
+          <LeftMenu func={this.leftMenu}/>
+          <SearchBarButton func={this.toggleSearchBar} />
+          <Text style={Styles.name}>{name.toUpperCase()}</Text>
+          <FilterMenu func={this.rightMenu} />
+        </View>
+      )
+    } else {
+      return (
+        <View style={Styles.toolbarContainer}>
+          <SearchBar style={Styles.searchBarContainer} toggle={this.toggleSearchBar} />
+        </View>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <View>
+        {this.renderToolBar()}
       </View>
     )
   }
 }
 
 const Styles = StyleSheet.create({
-  toolbar: {
-    height: 40,
-    alignItems: 'flex-end',
-    ...absoluteStretch
+  toolbarContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 30,
+    marginBottom: 50,
+    backgroundColor: 'rgb(65, 18, 18)'
   },
-  filter: {
+  searchBarContainer: {
+
+  },
+  menuIcon: {
+    height: 25,
+    width: 25,
+  },
+  searchIcon: {
+    height: 25,
+    width: 25,
+    marginLeft: 20
+  },
+  filterIcon: {
+    height: 25,
+    width: 25
+  },
+  name: {
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'center',
+    width: 240,
+    height: 50
   }
 })
 
-
-const absoluteStretch = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-}
+export default Toolbar;

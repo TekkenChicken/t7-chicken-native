@@ -30,6 +30,8 @@ export default class FrameDataCard extends React.Component {
           <View>
             <Text style={Styles.cardText}>move name</Text>
             <Text style={Styles.cardNotation}>{this.props.notation}</Text>
+            {/* TODO: change the data so we get each input as an array element */}
+            <Inputs isCard={true} inputs={['1', '1']}/>
           </View>
         </TouchableHighlight>
 
@@ -45,10 +47,11 @@ export default class FrameDataCard extends React.Component {
         </View>
          <ScrollView>
            {/* TODO: make this name dynamic */}
-          <Header1 title={'Reverse Special Stretch Bomb'}/>
+          <Header1 title={'Rolling Death Cradle'}/>
           <Text style={Styles.notation}>{this.props.notation}</Text>
           {/* TODO: change the data so we get each input as an array element */}
-          <Inputs style={Styles.inputs} inputs={['1', '2']}/>
+          <Inputs isCard={false} inputs={['1', '2']}/>
+          {/* TODO: get attack properties from data source */}
           <PropertyList type={'special'} properties={['H', 'T']}/>
           <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} speed={this.props.speed}/>
           <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch}/>
