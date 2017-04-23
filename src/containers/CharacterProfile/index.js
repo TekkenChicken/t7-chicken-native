@@ -32,13 +32,14 @@ class CharacterProfileScreen extends Component {
   }
 
   render() {
-    let {characterID, characterMoves} = this.props;
+    let {characterID, character} = this.props;
+    const moves = (character) ? (character.moves) : [];
     return (
       <ScrollView style={Styles.mainContainer}>
         <ProfileBanner />
         <ProfilePicture image='./../../img/Tile-Kazuya.png' />
         <ProfileName name={characterID.toUpperCase()} />
-        <MoveList moves={characterMoves} />
+        <MoveList moves={moves} />
       </ScrollView>
     );
   }
@@ -47,9 +48,8 @@ class CharacterProfileScreen extends Component {
 
 /** MAPPING STATE **/
 const mapStateToProps = function(state) {
-  let { character } = state.character;
   return {
-    character
+    character: state.character
   }
 };
 

@@ -33,14 +33,20 @@ class CharacterSelectScreen extends Component {
     this.props.dispatch(fetchCharacters());
   }
 
+  componentDidUpdate() {
+    if (this.props.blob.characterData && this.props.characters.length < 1) {
+      this.props.dispatch(fetchCharacters());
+    }
+  }
+
   /**
    *  @method: navigateToCharacter
    *  @param: characterID [string]
    *  Will navigate to the character page and pass the characterID as a prop to the page
    *  (where it will be used to fetch data on a character)
    */
-  navigateToCharacter(characterID, characterMoves, characterImage) {
-    this.props.navigator.push(Router.getRoute('characterProfile', { characterID, characterMoves, characterImage }));
+  navigateToCharacter(characterID) {
+    this.props.navigator.push(Router.getRoute('characterProfile', { characterID }));
   }
 
   render() {
@@ -50,7 +56,7 @@ class CharacterSelectScreen extends Component {
         <SelectBanner style={Styles.banner} />
         <CharacterList
           characters={this.props.characters}
-          onCharacterSelect={(id, moves, image) => this.navigateToCharacter(id, moves, image)}
+          onCharacterSelect={(id, moves, image) => this.navigateToCharacter(id)}
         />
       </ScrollView>
     );
@@ -60,9 +66,9 @@ class CharacterSelectScreen extends Component {
 
 /** MAPPING STATE **/
 const mapStateToProps = function(state) {
-  let { characters } = state.select;
   return {
-    characters
+    characters: state.select.characters,
+    blob: state.blob
   }
 };
 

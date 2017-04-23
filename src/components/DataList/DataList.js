@@ -100,5 +100,23 @@ const styles = StyleSheet.create({
   }
 });
 
+DataList.propTypes = {
+  listData: PropTypes.array,
+  cellComponent: PropTypes.element, // component
+  cellsPerRow: PropTypes.number,
+  onCellPress: PropTypes.func,
+  /*
+    Stylesheet Properties
+    (comes as number or array when passed, so it can't be specified)
+
+    Props:              Description:
+    -----               ------------
+    mainStyle           List base style
+    containerStyle      List Row Container style
+    rowStyle            List Row styling
+    cellStyle           List Cell style
+  */
+};
+
 
 export default DataList;
