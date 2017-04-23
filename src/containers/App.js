@@ -28,7 +28,7 @@ class App extends Component {
         />
         <NavigationProvider context={navigationContext}>
           <Toolbar />
-          <StackNavigation id="home" initialRoute={Router.getRoute('characterSelect')} />
+          <StackNavigation id="home" initialRoute={Router.getRoute('initialLoading')} />
         </NavigationProvider>
       </View>
     );

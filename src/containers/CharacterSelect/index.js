@@ -15,7 +15,6 @@ import {
 // components
 import CharacterList from './CharacterList';
 import SelectBanner from './SelectBanner';
-import SearchBar from '../../components/SearchBar/SearchBar';
 
 // Styles
 import Styles from './styles';
@@ -28,16 +27,7 @@ import { fetchInitialAppData } from '../../redux/actions/blob';
 class CharacterSelectScreen extends Component {
 
   componentDidMount() {
-    // Will need to decide to move onto initial loading screen
-    // or keep here and use a loading state
-    this.props.dispatch(fetchInitialAppData());
     this.props.dispatch(fetchCharacters());
-  }
-
-  componentDidUpdate() {
-    if (this.props.blob.characterData && this.props.characters.length < 1) {
-      this.props.dispatch(fetchCharacters());
-    }
   }
 
   /**

@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
 
 DataList.propTypes = {
   listData: PropTypes.array,
-  cellComponent: PropTypes.element, // component
+  cellComponent: PropTypes.func, // component
   cellsPerRow: PropTypes.number,
   onCellPress: PropTypes.func,
   /*

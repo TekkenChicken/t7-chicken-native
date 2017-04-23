@@ -77,7 +77,7 @@ export const fetchInitialAppData = () => {
   return dispatch => {
     AsyncStorageUtil.fetchAppData()
     .then((storedData) => {
-      console.log("Stored", storedData);
+      console.log("Stored Data", storedData);
       appData = storedData;
       // appData = storedData || appData;
       // check if data is out of date by hitting version endpoint
