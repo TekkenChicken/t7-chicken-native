@@ -47,3 +47,8 @@ export const speedFilters = {
     }
   ]
 }
+
+export default allFilters = {
+  hitLevelFilters,
+  speedFilters
+}
