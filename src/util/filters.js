@@ -5,6 +5,10 @@ function hasHighAttack (attack) {
   return attack.hit_level === 'h';
 }
 
+function hasMidAttack (attack) {
+  return attack.hit_level === 'm';
+}
+
 function hasLowAttack (attack) {
   return attack.hit_level === 'l';
 }
@@ -30,6 +34,10 @@ export const hitLevelFilters = {
     {
       function: hasLowAttack,
       name: 'Has Low'
+    },
+    {
+      function: hasMidAttack,
+      name: 'Has Mid'
     }
   ]
 }

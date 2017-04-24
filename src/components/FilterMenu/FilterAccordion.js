@@ -11,14 +11,12 @@ import Accordion from 'react-native-accordion';
 class FilterAccordion extends Component {
   render() {
     return (
-      <View>
         <Accordion
           header={<Text style={Styles.filterTitle}>{this.props.header}</Text>}
           content={<Text style={Styles.filterButton}>{this.props.content}</Text>}
           easing="easeOutCubic"
           underlayColor="white"
         />
-      </View>
     )
   }
 }
@@ -37,8 +35,7 @@ const Styles = StyleSheet.create({
     paddingTop: 10
   },
   filterButton: {
-    textAlign: 'center',
-    width: 100,
+
   }
 })
 
