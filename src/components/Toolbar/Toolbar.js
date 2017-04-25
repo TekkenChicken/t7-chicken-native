@@ -97,6 +97,7 @@ class Toolbar extends Component {
   }
 
   render() {
+    console.log("toolbar");
     return (
       <View>
         {this.renderToolBar()}
@@ -111,7 +112,6 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     paddingTop: 30,
-    marginBottom: 50,
     backgroundColor: 'rgb(65, 18, 18)'
   },
   searchBarContainer: {

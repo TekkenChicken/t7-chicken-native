@@ -43,13 +43,15 @@ class CharacterSelectScreen extends Component {
   render() {
     console.log("Characters Select", this.props.characters);
     return (
-      <ScrollView style={Styles.mainContainer}>
+      <View style={Styles.mainContainer}>
         <SelectBanner style={Styles.banner} />
-        <CharacterList
-          characters={this.props.characters}
-          onCharacterSelect={(id, moves, image) => this.navigateToCharacter(id)}
-        />
-      </ScrollView>
+        <ScrollView style={Styles.scrollContainer}>
+          <CharacterList
+            characters={this.props.characters}
+            onCharacterSelect={(id, moves, image) => this.navigateToCharacter(id)}
+          />
+        </ScrollView>
+      </View>
     );
   }
 }

@@ -23,16 +23,27 @@ const navigationContext = new NavigationContext({
 });
 
 class App extends Component {
+  renderToolBarHeader() {
+    return <Toolbar />;
+  }
+
   render() {
     return (
       <View style={{flex: 1, backgroundColor: 'rgb(65, 18, 18)'}}>
         <StatusBar
           barStyle="light-content"
         />
-          <NavigationProvider context={navigationContext}>
-              <Toolbar />
-            <StackNavigation id="home" initialRoute={Router.getRoute('initialLoading')} />
-         </NavigationProvider>
+        <NavigationProvider context={navigationContext}>
+          <StackNavigation
+            id="home"
+            initialRoute={Router.getRoute('initialLoading')}
+            defaultRouteConfig={{
+              navigationBar: {
+                renderHeader: this.renderToolBarHeader,
+              },
+            }}
+          />
+       </NavigationProvider>
       </View>
     );
   }

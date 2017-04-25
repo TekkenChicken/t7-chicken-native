@@ -32,6 +32,11 @@ import Styles from './styles';
 import { fetchDataForCharacter } from '../../redux/actions/character';
 
 class CharacterProfileScreen extends Component {
+  static route = {
+    navigationBar: {
+      visible: false,
+    }
+  }
 
   componentDidMount() {
     // Fetch Data on character using character ID sent as props on navigate

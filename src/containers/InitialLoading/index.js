@@ -34,7 +34,7 @@ class LoadingScreen extends Component {
     // if blob has finished fetching data
     if (this.props.blob.characterData && this.state.loading) {
       this.setState({loading: false});
-      setTimeout(() => this.props.navigator.push(Router.getRoute('characterSelect')), 0);
+      setTimeout(() => this.props.navigator.replace(Router.getRoute('characterSelect')), 0);
     }
   }
 

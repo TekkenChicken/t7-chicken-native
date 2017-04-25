@@ -7,8 +7,7 @@ export default Styles = StyleSheet.create({
     flex: 1,
 		backgroundColor: 'rgb(132, 18, 18)',
   },
-  viewContainer: {
-    justifyContent: 'center',
-    alignItems: 'center'
+  scrollContainer: {
+		paddingTop: 20
   }
 });
