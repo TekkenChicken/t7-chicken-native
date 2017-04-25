@@ -1,6 +1,6 @@
 // Initial In-App Stub Data
 import initialData from '../../util/initialData.json';
-// import * as LocalStorageAPI from '../../util/localStorageUtil.js';
+import * as AsyncStorageUtil from '../../util/asyncStorageUtil.js';
 
 // BLOB Types
 export const BLOB_SET_INITIAL_DATA = 'BLOB_SET_INITIAL_DATA';
@@ -8,7 +8,7 @@ export const BLOB_UPDATE_DATA = 'BLOB_UPDATE_DATA';
 export const BLOB_FETCH_SUCCESS = 'BLOB_FETCH_SUCCESS';
 export const BLOB_FETCH_ERROR = 'BLOB_FETCH_ERROR';
 
-const CHAR_DATA_API = "";
+const CHAR_DATA_API = "http://chicken.seattletekken.com/api.php";
 const DATA_VER_API = "";
 
 /**
@@ -16,8 +16,8 @@ const DATA_VER_API = "";
  *  Will get the current version of data, and compare it to local
  *  Will return if version matches or not
  */
-const checkDataVersion = (timestamp) => {
-  fetch(DATA_VER_API)
+const checkIfDataOutdated = (timestamp) => {
+  return fetch(DATA_VER_API)
     .then((response) => {
       return timestamp !== timestamp;
     })
@@ -27,36 +27,40 @@ const checkDataVersion = (timestamp) => {
     });
 };
 
-function dataFetchSuccess(response, character) {
+const dataFetchSuccess = (response) => {
+  AsyncStorageUtil.storeAppData(response);
 	return {
     type: BLOB_FETCH_SUCCESS,
     payload: response,
-  }
-}
+  };
+};
 
-function dataFetchError(err, character) {
+const dataFetchError = (err, fallbackData) => {
+  console.error(err);
   return {
     type: BLOB_FETCH_ERROR,
-    error: err
-  }
-}
+    error: err,
+    fallbackData
+  };
+};
 
-const fetchDataFromAPI = () => {
+const fetchDataFromAPI = (fallbackData) => {
+  console.log('fetch data from api');
   return dispatch => {
-    fetch(CHARDATA_API)
-      .then((response) => {
-        console.log("FETCH CHAR DATA", response);
-        return dispatch(dataFetchSuccess(response.json()));
+    fetch(CHAR_DATA_API)
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        console.log("FETCH CHAR DATA", responseJSON);
+        dispatch(dataFetchSuccess(responseJSON));
       })
       .catch((error) => {
         console.error("WTF FETCH ERROR", error);
-        return dispatch(dataFetchError(error));
+        dispatch(dataFetchError(error, fallbackData));
       });
   };
 };
 
 const setInitialData = (payload) => {
-  // store localstorage data (will be promise, need to rewrite)
   return {
     type: BLOB_SET_INITIAL_DATA,
     payload
@@ -65,9 +69,31 @@ const setInitialData = (payload) => {
 
 export const fetchInitialAppData = () => {
   // Will need to check if LocalStorage data exists (if not, use in-app stub data)
-  let data = initialData.data;
   // reach ver endpoint and check version number
   // if version doesn't match, make call to retrieve new data
   // set data in state
-  return dispatch => dispatch(setInitialData(data));
+  // AsyncStorageUtil.clearAppData()
+  let appData = initialData.data;
+  return dispatch => {
+    AsyncStorageUtil.fetchAppData()
+    .then((storedData) => {
+      console.log("Stored Data", storedData);
+      appData = storedData;
+      // appData = storedData || appData;
+      // check if data is out of date by hitting version endpoint
+      // checkIfDataOutdated(appData.timestamp).then((outDated) => {
+      //   if (outDated === true) {
+      //     return dispatch(fetchDataFromAPI(appData));
+      //   } else {
+      //     return dispatch(setInitialData(appData));
+      //   }
+      // });
+      if (appData) {
+        dispatch(setInitialData(appData));
+      } else {
+        dispatch(fetchDataFromAPI(appData));
+      }
+    })
+    .catch((err) => dispatch(fetchDataFromAPI(appData)) );
+  }
 };

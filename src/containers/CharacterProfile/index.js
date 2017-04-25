@@ -18,7 +18,6 @@ import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
 import ProfileName from '../../components/CharacterProfile/ProfileName';
 import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 import MoveList from './MoveList';
-import SearchBar from '../../components/SearchBar/SearchBar';
 
 //images
 import headshots from '../../img/headshots/index';
@@ -37,14 +36,15 @@ class CharacterProfileScreen extends Component {
   }
 
   render() {
-    let {characterID, characterMoves} = this.props;
+    let {characterID, character} = this.props;
+    const moves = (character) ? (character.moves) : [];
     return (
       <View >
         <ScrollView style={Styles.mainContainer}>
           <View style={Styles.backDrop}/>
           <ProfilePicture image='./../../img/headshots/Tile-Kazuya.png' />
           <ProfileName name={characterID.toUpperCase()} />
-          <MoveList moves={characterMoves} />
+          <MoveList moves={moves} />
        </ScrollView>
       </View>
     );
@@ -54,9 +54,8 @@ class CharacterProfileScreen extends Component {
 
 /** MAPPING STATE **/
 const mapStateToProps = function(state) {
-  let { character } = state.character;
   return {
-    character
+    character: state.character
   }
 };
 

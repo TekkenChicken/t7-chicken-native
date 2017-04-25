@@ -56,7 +56,8 @@ const updateSearchFilter = (searchQuery) => {
 export const fetchCharacters = () => {
   return (dispatch, getState) => {
     const currentState = getState();
-    const charactersList = formatRawData(currentState.blob.characterData);
+    const characterData = currentState.blob.characterData;
+    const charactersList = (characterData) ? formatRawData(characterData) : [];
     return dispatch(updateCharacters(charactersList));
   };
 };
