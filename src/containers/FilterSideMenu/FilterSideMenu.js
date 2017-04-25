@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import FilterMenu from '../../components/Menu/FilterMenu';
+import FilterMenu from '../../components/FilterMenu/FilterMenu';
 
 export default class FilterSideMenu extends React.Component {
   render() {
     return (
       <View>
-          <FilterMenu/>
+          <FilterMenu />
       </View>
     )
   }

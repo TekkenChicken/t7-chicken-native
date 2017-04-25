@@ -1,109 +1,103 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button, Platform } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Button, Platform, ScrollView } from 'react-native';
+
 import { connect } from 'react-redux';
-import Accordion from 'react-native-accordion';
-
-import { toggleFilter } from '../../redux/actions/filter-action';
-
+//
+import { toggleFilter } from '../../redux/actions/filter';
+//
 import {
   hitLevelFilters,
   speedFilters
 } from '../../util/filters';
 
-function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
-	function filterFinder(f) {
-		return f == filterFn
-	}
-	return (
-		<Button color="black" title={filterName} onPress={() => toggleFilter(filterFn)}>{filterName} {activeFilters.find(filterFinder) ? 'active' : 'inactive'}</Button>
-	)
-}
+import allFilters from '../../util/filters';
 
+//Components
+import FilterAccordian from './FilterAccordion';
+
+function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
+  function filterFinder(f) {
+    return f == filterFn
+  }
+  return (
+    <Button color="white" title={filterName} onPress={() =>
+        toggleFilter(filterFn)}>{filterName} {activeFilters.find(filterFinder)
+           ? 'active' : 'inactive'}
+    </Button>
+  )
+}
 
 const FilterButtonContainer = connect(() => ({}), { toggleFilter })(FilterButton);
 
-class FilterMenu extends React.Component {
+class FilterMenu extends Component {
 
   filterRender(categoryFilter) {
     return categoryFilter.filters.map((f, key) => {
-      return <FilterButtonContainer
-         key={f.name}
-         filterName={f.name}
-         filterFn={f.function}
-         toggleFilter={this.props.toggleFilter}
-         activeFilters={this.props.attackFilters}
-       />
+      return (
+        <View style={Styles.accordionContainer}>
+          <FilterButtonContainer
+             key={key}
+             filterName={f.name}
+             filterFn={f.function}
+             toggleFilter={this.props.toggleFilter}
+             activeFilters={this.props.filter}
+           />
+      </View>
+    )
+    })
+  }
+
+  accordionRender(allFilters) {
+    return Object.keys(allFilters).map((f, key) => {
+      this.filterRender(allFilters[f])
+      return (
+        <FilterAccordian
+          key={key}
+          header={allFilters[f].category}
+          content={this.filterRender(allFilters[f])}
+          easing="easeOutCubic"
+        />
+      )
     })
   }
 
   render() {
     return (
-      <View style={raw.sideMenuContainer}>
-        <Text style={Styles.sideMenuTitle}>Filter Settings</Text>
-
-        <Accordion
-          header={<Text style={Styles.header}>{hitLevelFilters.category}</Text>}
-          content={<View style={Styles.expanded}>{this.filterRender(hitLevelFilters)}</View>}
-          easing="easeOutCubic"
-          underlayColor="white"
-        />
-        <Accordion
-          header={<Text style={Styles.header}>{speedFilters.category}</Text>}
-          content={<View style={Styles.expanded}>{this.filterRender(speedFilters)}</View>}
-          easing="easeOutCubic"
-          underlayColor="white"
-        />
-
-      </View>
+      <ScrollView style={Styles.menuContainer}>
+        <Text style={Styles.menuTitle}>Filters</Text>
+        {this.accordionRender(allFilters)}
+      </ScrollView>
     )
   }
 }
 
-const raw = {
-  sideMenuContainer: {
-    paddingTop: 30,
-    flex: 1,
-    alignItems: 'center'
+const Styles = StyleSheet.create({
+  menuContainer: {
+    paddingTop: 80,
+    paddingLeft: 10,
+    paddingBottom: 500,
+    backgroundColor: 'rgb(68, 18, 18)'
   },
-  sideMenuTitle: {
-    alignItems: 'center'
+  menuTitle: {
+    color: 'white',
+    fontSize: 32
   },
-  accordion: {
-    borderWidth: 1
+  accordionContainer: {
+    height: 40,
+    width: 240,
+		backgroundColor: 'rgb(132, 18, 18)'
   },
-  header: {
-    borderWidth: 1,
-    textAlign: 'center',
-    fontSize: 32,
-    marginTop: 10
-  },
-  filterButton: {
-    color: 'red'
-  },
-  expanded: {
-    width: 200,
-    zIndex: -3,
-    ...Platform.select({
-      ios: {
-        backgroundColor: 'red'
-      }
-    })
+  buttonStyle: {
+    width: 240
   }
-}
-
-const Styles = StyleSheet.create(raw)
-
-
+})
 
 const mapStateToProps = function(state) {
-    let { frameData, character} = state.characterData;
+  console.log(state);
     let { filter, searchFilter, attackFilters } = state;
 
     return {
-        character,
-        filter,
-        searchFilter,
-				attackFilters
+        filter
     }
 }
 
