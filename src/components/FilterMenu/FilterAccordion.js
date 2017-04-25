@@ -22,9 +22,6 @@ class FilterAccordion extends Component {
 }
 
 const Styles = StyleSheet.create({
-  filterContainer: {
-    flex: 1
-  },
   filterTitle: {
     color: '#f0aa23',
     height: 50,

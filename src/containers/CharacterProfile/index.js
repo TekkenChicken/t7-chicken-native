@@ -12,12 +12,15 @@ import {
   TextInput
 } from 'react-native';
 
+import SideMenu from 'react-native-side-menu';
+
 // components
 import ProfileBanner from '../../components/CharacterProfile/ProfileBanner';
 import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
 import ProfileName from '../../components/CharacterProfile/ProfileName';
 import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 import MoveList from './MoveList';
+import FilterSideMenu from '../FilterSideMenu/FilterSideMenu';
 
 //images
 import headshots from '../../img/headshots/index';
@@ -38,15 +41,23 @@ class CharacterProfileScreen extends Component {
   render() {
     let {characterID, character} = this.props;
     const moves = (character) ? (character.moves) : [];
+
+    const menu = <FilterSideMenu navigator={navigator}/>;
+
     return (
+      <SideMenu
+        menu={menu}
+        menuPosition={'right'}
+        isOpen={false}>
       <View >
         <ScrollView style={Styles.mainContainer}>
-          <View style={Styles.backDrop}/>
-          <ProfilePicture image='./../../img/headshots/Tile-Kazuya.png' />
-          <ProfileName name={characterID.toUpperCase()} />
-          <MoveList moves={moves} />
-       </ScrollView>
+              <View style={Styles.backDrop}/>
+              <ProfilePicture image='./../../img/headshots/Tile-Kazuya.png' />
+              <ProfileName name={characterID.toUpperCase()} />
+              <MoveList moves={moves} />
+         </ScrollView>
       </View>
+      </SideMenu>
     );
   }
 }

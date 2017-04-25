@@ -74,7 +74,9 @@ class FilterMenu extends Component {
 const Styles = StyleSheet.create({
   menuContainer: {
     paddingTop: 80,
-    paddingLeft: 10
+    paddingLeft: 10,
+    paddingBottom: 500,
+    backgroundColor: 'rgb(68, 18, 18)'
   },
   menuTitle: {
     color: 'white',

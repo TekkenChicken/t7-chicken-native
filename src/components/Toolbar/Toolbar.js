@@ -8,7 +8,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import SearchBar from '../Searchbar/Searchbar';
+import SearchBar from '../SearchBar/SearchBar';
 
 class LeftMenu extends Component {
 
