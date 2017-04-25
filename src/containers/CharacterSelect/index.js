@@ -47,7 +47,7 @@ class CharacterSelectScreen extends Component {
         <SelectBanner style={Styles.banner} />
         <CharacterList
           characters={this.props.characters}
-          onCharacterSelect={(id, moves, image) => this.navigateToCharacter(id)}
+          onCharacterSelect={(id, image) => this.navigateToCharacter(id)}
         />
       </ScrollView>
     );
@@ -57,6 +57,7 @@ class CharacterSelectScreen extends Component {
 
 /** MAPPING STATE **/
 const mapStateToProps = function(state) {
+  console.log(state);
   return {
     characters: state.select.characters,
     blob: state.blob

@@ -8,12 +8,10 @@ import {
 const initialState = {
   name: '',
   moves: [], // all moves
-  moveFilter: [], // by frames, power, etc
   moveSearch: '', // search by name
-  filteredMoves: [] // filtered moves after search/filter
 };
 
-function character( state = {}, action ) {
+function character( state = initialState, action ) {
   switch(action.type) {
     case CHARACTER_SET_DATA:
       return Object.assign({}, state, action.data);
