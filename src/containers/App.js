@@ -38,7 +38,7 @@ class App extends Component {
               menuPosition={'right'}
               isOpen={true}>
               <Toolbar />
-              <StackNavigation id="home" initialRoute={Router.getRoute('characterSelect')} />
+            <StackNavigation id="home" initialRoute={Router.getRoute('initialLoading')} />
            </SideMenu>
          </NavigationProvider>
       </View>
