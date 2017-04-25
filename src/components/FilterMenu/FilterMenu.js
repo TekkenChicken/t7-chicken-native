@@ -13,7 +13,7 @@ import {
 import allFilters from '../../util/filters';
 
 //Components
-import FilterAccordian from './FilterAccordion';
+import FilterAccordion from './FilterAccordion';
 
 function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
   function filterFinder(f) {
@@ -51,7 +51,7 @@ class FilterMenu extends Component {
     return Object.keys(allFilters).map((f, key) => {
       this.filterRender(allFilters[f])
       return (
-        <FilterAccordian
+        <FilterAccordion
           key={key}
           header={allFilters[f].category}
           content={this.filterRender(allFilters[f])}
