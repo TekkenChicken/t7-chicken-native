@@ -34,15 +34,14 @@ class FilterMenu extends Component {
   filterRender(categoryFilter) {
     return categoryFilter.filters.map((f, key) => {
       return (
-        <View style={Styles.accordionContainer}>
+        <View style={Styles.accordionContainer} key={key}>
           <FilterButtonContainer
-             key={key}
-             filterName={f.name}
-             filterFn={f.function}
-             toggleFilter={this.props.toggleFilter}
-             activeFilters={this.props.filter}
-           />
-      </View>
+            filterName={f.name}
+            filterFn={f.function}
+            toggleFilter={this.props.toggleFilter}
+            activeFilters={this.props.filter}
+          />
+        </View>
     )
     })
   }

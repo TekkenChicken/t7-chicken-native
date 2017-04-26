@@ -12,7 +12,8 @@ import {
   TextInput
 } from 'react-native';
 
-import SideMenu from 'react-native-side-menu';
+// Utils
+import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
 
 // components
 import ProfileBanner from '../../components/CharacterProfile/ProfileBanner';
@@ -21,6 +22,7 @@ import ProfileName from '../../components/CharacterProfile/ProfileName';
 import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 import MoveList from './MoveList';
 import FilterSideMenu from '../FilterSideMenu/FilterSideMenu';
+import SideMenu from 'react-native-side-menu';
 
 //images
 import headshots from '../../img/headshots/index';
@@ -39,8 +41,9 @@ class CharacterProfileScreen extends Component {
   }
 
   filteredAttacks(moves) {
-    let attackFilters = this.props.filter;
-    return moves.filter(attack => attackFilters.every(filter => filter(attack)));
+    // object to filter moves against
+    const filterObj = this.props.filter;
+    return MoveFiltersUtil.filterMoves(moves, filterObj);
   }
 
   render() {
@@ -65,11 +68,6 @@ class CharacterProfileScreen extends Component {
       </SideMenu>
     );
   }
-}
-
-function filteredAttacks(moves) {
-  let attackFilters = this.props.filter;
-  return moves.filter(attack => attackFilters.every(filter => filter(attack)));
 }
 
 /** MAPPING STATE **/

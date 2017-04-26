@@ -4,13 +4,20 @@
 /*
  * Hit Level Filter Method
  */
-export const filterByHitLevel = (moveHitLevel, hitLevelFilter) => {
-	return moveHitLevel === hitLevelFilter;
+export const filterByHitLevel = {
+	key: "hit_level",
+	method: (moveHitLevel, hitLevelFilter) => {
+		return moveHitLevel === hitLevelFilter;
+	}
 };
 
-/*
+/**
  * Speed Filter Method
+ * @param: { min: (int), max: (int) }
  */
-export const filterBySpeed = (moveSpeed, speedFilter) => {
-	return moveSpeed >= speedFilter.min && moveSpeed <= speedFilter.max;
+export const filterBySpeed = {
+	key: "speed",
+	method: (moveSpeed, speedFilter) => {
+		return moveSpeed >= speedFilter.min && moveSpeed <= speedFilter.max;
+	}
 };

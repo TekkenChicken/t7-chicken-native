@@ -1,5 +1,3 @@
-import moveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
-
 // Action Types
 export const CHARACTER_SET_DATA = 'CHARACTER_SET_DATA';
 export const CHARACTER_FILTER_MOVES = 'CHARACTER_FILTER_MOVES';
@@ -18,18 +16,6 @@ const exampleFilterObj = {
 	"hit_level": "h",
   "speed": { min: 10, max: 13 }
 };
-
-// MAIN FILTER METHOD
-// for each property/filter we would just add a case
-// the filter methods and give them a key matching the property
-const filterMove = (move, filterObj) => {
-	const passFilterCheck = Object
-  	.keys(filterObj)
-    .every((filter) => moveFiltersUtil[filter](move[filter], filterObj[filter]));
-
-  return passFilterCheck;
-};
-
 
 // THE ACTION DISPATCHED WHEN YOU SUBMIT ON THE FILTERS
 export const triggerfilterMovesList = (filterObj) => {
