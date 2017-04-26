@@ -38,11 +38,16 @@ class CharacterProfileScreen extends Component {
     this.props.dispatch(fetchDataForCharacter(this.props.characterID));
   }
 
+  filteredAttacks(moves) {
+    let attackFilters = this.props.filter;
+    return moves.filter(attack => attackFilters.every(filter => filter(attack)));
+  }
+
   render() {
     let {characterID, character} = this.props;
     const moves = (character) ? (character.moves) : [];
-
     const menu = <FilterSideMenu navigator={navigator}/>;
+    const filtered = this.filteredAttacks(moves);
 
     return (
       <SideMenu
@@ -54,7 +59,7 @@ class CharacterProfileScreen extends Component {
               <View style={Styles.backDrop}/>
               <ProfilePicture image='./../../img/headshots/Tile-Kazuya.png' />
               <ProfileName name={characterID.toUpperCase()} />
-              <MoveList moves={moves} />
+            <MoveList moves={filtered} />
          </ScrollView>
       </View>
       </SideMenu>
@@ -62,11 +67,19 @@ class CharacterProfileScreen extends Component {
   }
 }
 
+function filteredAttacks(moves) {
+  let attackFilters = this.props.filter;
+  return moves.filter(attack => attackFilters.every(filter => filter(attack)));
+}
 
 /** MAPPING STATE **/
 const mapStateToProps = function(state) {
+  console.log(state);
+  let {filter, character } = state;
   return {
-    character: state.character
+    character,
+    filter,
+    //filteredData: filteredAttacks(character.moves)
   }
 };
 

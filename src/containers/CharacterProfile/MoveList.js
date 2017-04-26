@@ -20,7 +20,6 @@ class MoveList extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <View>
         <CommandListBanner />
