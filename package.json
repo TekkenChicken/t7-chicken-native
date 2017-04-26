@@ -10,7 +10,7 @@
     "assets": ["./src/fonts/Exo_2"]
   },
   "dependencies": {
-    "@exponent/ex-navigation": "^2.1.5",
+    "@exponent/ex-navigation": "2.1.5",
     "babel": "^6.5.2",
     "babel-core": "^6.18.2",
     "babel-preset-react-native": "^1.9.0",
@@ -19,7 +19,7 @@
     "fetch": "^1.1.0",
     "react": "15.4.1",
     "react-dom": "^15.4.1",
-    "react-native": "^0.40.0",
+    "react-native": "0.40.0",
     "react-native-accordion": "^1.0.1",
     "react-native-dropdown": "git+https://github.com/g6ling/react-native-dropdown.git",
     "react-native-side-menu": "^0.20.1",
