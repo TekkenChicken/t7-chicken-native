@@ -54,13 +54,13 @@ class CharacterProfileScreen extends Component {
         menu={menu}
         menuPosition={'right'}
         isOpen={false}>
-      <View >
-        <ScrollView style={Styles.mainContainer}>
-              <View style={Styles.backDrop}/>
-              <ProfilePicture image='./../../img/headshots/Tile-Kazuya.png' />
-              <ProfileName name={characterID.toUpperCase()} />
+      <View style={Styles.mainContainer}>
+        <ScrollView>
+            <View style={Styles.backDrop}/>
+            <ProfilePicture image='./../../img/headshots/Tile-Kazuya.png' />
+            <ProfileName name={characterID.toUpperCase()} />
             <MoveList moves={filtered} />
-         </ScrollView>
+        </ScrollView>
       </View>
       </SideMenu>
     );
