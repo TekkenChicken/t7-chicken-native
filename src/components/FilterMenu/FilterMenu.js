@@ -10,7 +10,7 @@ import {
   speedFilters
 } from '../../util/filters';
 
-import allFilters from '../../util/filters';
+import moveFilterOptions from '../../util/moveFilters/moveFilterOptions';
 
 //Components
 import FilterAccordion from './FilterAccordion';
@@ -29,11 +29,17 @@ function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
 const FilterButtonContainer = connect(() => ({}), { toggleFilter })(FilterButton);
 
 class FilterMenu extends Component {
-  constructor() {
+  constructor(props) {
     super(props);
     this.state = {
       filter: {}
     };
+  }
+
+  componentWillUpdate() {
+    if (this.state.filter) {
+      return false;
+    }
   }
 
   updateFilter(key, value) {
@@ -69,13 +75,14 @@ class FilterMenu extends Component {
     );
   }
 
-  accordionRender(allFilters) {
-    return Object.keys(allFilters).map((f, key) => {
+  accordionRender(filterOptions) {
+    return filterOptions.map((filter, i) => {
       return (
         <FilterAccordion
-          key={key}
-          header={allFilters[f].category}
-          content={this.filterRender(allFilters[f])}
+          key={i}
+          options={filter.options}
+          filterKey={filter.key}
+          headerLabel={filter.label}
           onFilterPressHandler={(key, value) => this.updateFilter(key, value)}
           easing="easeOutCubic"
         />
@@ -87,7 +94,7 @@ class FilterMenu extends Component {
     return (
       <ScrollView style={Styles.menuContainer}>
         <Text style={Styles.menuTitle}>Filters</Text>
-        {this.accordionRender(allFilters)}
+        {this.accordionRender(moveFilterOptions)}
       </ScrollView>
     )
   }

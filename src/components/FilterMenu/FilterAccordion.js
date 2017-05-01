@@ -12,21 +12,29 @@ import FilterRadioButtonGroup from './FilterRadioButtonGroup';
 
 class FilterAccordion extends Component {
 
-  renderFilterOptions(filterKey, options, onPressCallback) {
+  renderHeader(label) {
+    return (
+      <View>
+        <Text style={Styles.filterTitle}>{label}</Text>
+      </View>
+    );
+  }
+  renderFilterOptions(filterKey, options, callback) {
     return (
       <View>
         <FilterRadioButtonGroup
           filterKey={filterKey}
           options={options}
-          onOptionSelectHandler={(key, value) => onPressCallback(key, value)}
+          onOptionSelectHandler={(key, value) => callback(key, value)}
         />
       </View>
     );
   }
 
   render() {
-    const header = (<View><Text style={Styles.filterTitle}>{this.props.header + '3'}</Text></View>);
-    const content = (<View>{this.props.content}</View>);
+    const { filterKey, options, onFilterPressHandler, headerLabel } = this.props;
+    const header = this.renderHeader(headerLabel);
+    const content = this.renderFilterOptions(filterKey, options, onFilterPressHandler);
     return (
       <Accordion
         header={header}
