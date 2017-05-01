@@ -20,40 +20,63 @@ function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
     return f == filterFn
   }
   return (
-    <Button color="white" title={filterName} onPress={() =>
-        toggleFilter(filterFn)}>{filterName} {activeFilters.find(filterFinder)
-           ? 'active' : 'inactive'}
+    <Button color="white" title={filterName} onPress={() => toggleFilter(filterFn)} >
+      {filterName} {activeFilters.find(filterFinder) ? 'active' : 'inactive'}
     </Button>
-  )
+  );
 }
 
 const FilterButtonContainer = connect(() => ({}), { toggleFilter })(FilterButton);
 
 class FilterMenu extends Component {
+  constructor() {
+    super(props);
+    this.state = {
+      filter: {}
+    };
+  }
+
+  updateFilter(key, value) {
+    let filter = this.state.filter;
+    // if the value sent is not null, update filter
+    if (value) {
+      filter[key] = value;
+    } else {
+      delete filter[key];
+    }
+    // update filter obj in state
+    this.setState({ filter });
+  }
 
   filterRender(categoryFilter) {
-    return categoryFilter.filters.map((f, key) => {
-      return (
-        <View style={Styles.accordionContainer} key={key}>
-          <FilterButtonContainer
-            filterName={f.name}
-            filterFn={f.function}
-            toggleFilter={this.props.toggleFilter}
-            activeFilters={this.props.filter}
-          />
-        </View>
-    )
-    })
+    return (
+      <View>
+        {
+          categoryFilter.filters.map((f, key) => {
+            return (
+              <View style={Styles.accordionContainer} key={key}>
+                <FilterButtonContainer
+                  filterName={f.name}
+                  filterFn={f.function}
+                  toggleFilter={this.props.toggleFilter}
+                  activeFilters={this.props.filter}
+                />
+              </View>
+            );
+          })
+        }
+      </View>
+    );
   }
 
   accordionRender(allFilters) {
     return Object.keys(allFilters).map((f, key) => {
-      this.filterRender(allFilters[f])
       return (
         <FilterAccordion
           key={key}
           header={allFilters[f].category}
           content={this.filterRender(allFilters[f])}
+          onFilterPressHandler={(key, value) => this.updateFilter(key, value)}
           easing="easeOutCubic"
         />
       )
@@ -85,16 +108,12 @@ const Styles = StyleSheet.create({
     height: 40,
     width: 240,
 		backgroundColor: 'rgb(132, 18, 18)'
-  },
-  buttonStyle: {
-    width: 240
   }
 })
 
 const mapStateToProps = function(state) {
   console.log(state);
     let { filter, searchFilter, attackFilters } = state;
-
     return {
         filter
     }

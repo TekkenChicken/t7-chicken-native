@@ -1,43 +1,31 @@
-// all filters go in here
+// HIT LEVEL
+const checkHitLevel = (level) => {
+  return (move) => {
+    return move.hit_level === level;
+  };
+};
 
-//HIT LEVEL FILTERS
-function hasHighAttack (attack) {
-  return attack.hit_level === 'h';
-}
-
-function hasMidAttack (attack) {
-  return attack.hit_level === 'm';
-}
-
-function hasLowAttack (attack) {
-  return attack.hit_level === 'l';
-}
-
-//SPEED FILTERS
-
-function tenToThirteen(attack) {
-  return attack.speed <= 13;
-}
-
-function thirteenToSixteen(attack) {
-  return attack.speed > 13 && attack.speed <= 16;
-}
-
+// SPEED
+const checkSpeed = (min, max) => {
+  return (move) => {
+    return min <= move.speed && move.speed <= max;
+  };
+};
 
 export const hitLevelFilters = {
   category: 'Hit Level',
   filters: [
     {
-      function: hasHighAttack,
-      name: 'Has High'
+      method: checkHitLevel('h'),
+      name: 'High'
     },
     {
-      function: hasLowAttack,
-      name: 'Has Low'
+      method: checkHitLevel('m'),
+      name: 'Mid'
     },
     {
-      function: hasMidAttack,
-      name: 'Has Mid'
+      method: checkHitLevel('l'),
+      name: 'Low'
     }
   ]
 }
@@ -46,12 +34,12 @@ export const speedFilters = {
   category: 'Speed',
   filters: [
     {
-      function: tenToThirteen,
-      name: '10-13'
+      method: checkSpeed(10, 13),
+      name: '10 - 13'
     },
     {
-      function: thirteenToSixteen,
-      name: '14-16'
+      method: checkSpeed(14, 16),
+      name: '14 - 16'
     }
   ]
 }
@@ -59,4 +47,4 @@ export const speedFilters = {
 export default allFilters = {
   hitLevelFilters,
   speedFilters
-}
+};

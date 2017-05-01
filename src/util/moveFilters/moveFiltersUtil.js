@@ -25,7 +25,7 @@ const filterMoves = (moves, filterObj) => {
 	return moves.filter( move =>
 		Object
 		.keys(filterObj)
-		.every( key => _moveFilterMap[key](move, filterObj[key]) )
+		.every( key => (_moveFilterMap[key]) ? _moveFilterMap[key](move, filterObj[key]) : true )
 	);
 }
 

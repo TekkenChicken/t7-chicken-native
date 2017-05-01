@@ -42,8 +42,10 @@ class CharacterProfileScreen extends Component {
 
   filteredAttacks(moves) {
     // object to filter moves against
-    const filterObj = this.props.filter;
-    return MoveFiltersUtil.filterMoves(moves, filterObj);
+    // const filterObj = this.props.filter;
+    // return MoveFiltersUtil.filterMoves(moves, filterObj);
+    let attackFilters = this.props.filter;
+    return moves.filter(attack => attackFilters.every(filter => filter(attack)));
   }
 
   render() {
@@ -56,7 +58,7 @@ class CharacterProfileScreen extends Component {
       <SideMenu
         menu={menu}
         menuPosition={'right'}
-        isOpen={false}>
+      >
       <View style={Styles.mainContainer}>
         <ScrollView>
             <View style={Styles.backDrop}/>
