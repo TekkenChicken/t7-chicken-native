@@ -2,31 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, Platform, ScrollView } from 'react-native';
 
 import { connect } from 'react-redux';
-//
-import { toggleFilter } from '../../redux/actions/filter';
-//
-import {
-  hitLevelFilters,
-  speedFilters
-} from '../../util/filters';
 
 import moveFilterOptions from '../../util/moveFilters/moveFilterOptions';
 
 //Components
 import FilterAccordion from './FilterAccordion';
-
-function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
-  function filterFinder(f) {
-    return f == filterFn
-  }
-  return (
-    <Button color="white" title={filterName} onPress={() => toggleFilter(filterFn)} >
-      {filterName} {activeFilters.find(filterFinder) ? 'active' : 'inactive'}
-    </Button>
-  );
-}
-
-const FilterButtonContainer = connect(() => ({}), { toggleFilter })(FilterButton);
 
 class FilterMenu extends Component {
   constructor(props) {
@@ -52,27 +32,6 @@ class FilterMenu extends Component {
     }
     // update filter obj in state
     this.setState({ filter });
-  }
-
-  filterRender(categoryFilter) {
-    return (
-      <View>
-        {
-          categoryFilter.filters.map((f, key) => {
-            return (
-              <View style={Styles.accordionContainer} key={key}>
-                <FilterButtonContainer
-                  filterName={f.name}
-                  filterFn={f.function}
-                  toggleFilter={this.props.toggleFilter}
-                  activeFilters={this.props.filter}
-                />
-              </View>
-            );
-          })
-        }
-      </View>
-    );
   }
 
   accordionRender(filterOptions) {

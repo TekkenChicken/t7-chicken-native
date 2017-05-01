@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {
   View,
   StyleSheet,
-  TouchableHighlight,
-  Text
+  Button
 } from 'react-native';
 
 // Filter Option Button
@@ -24,15 +23,16 @@ class FilterRadioButtonGroup extends Component {
   renderButtons(options, filterKey) {
     return (
       options.map((option, i) =>
-        <TouchableHighlight
-          key={i}
-          color="white"
-          title={option.label}
-          onPress={() => this.onButtonToggle(option.value, filterKey, i)}
-          style={(this.state.active === i) ? Styles.activeOption : ''}
-        >
-          <Text>{option.label}</Text>
-        </TouchableHighlight>
+        <View style={(this.state.active === i) ? Styles.activeOption : ''}>
+          <Button
+            key={i}
+            color="white"
+            title={option.label}
+            onPress={() => this.onButtonToggle(option.value, filterKey, i)}
+          >
+            {option.label}
+          </Button>
+        </View>
       )
     );
   }
@@ -49,7 +49,7 @@ class FilterRadioButtonGroup extends Component {
 
 const Styles = StyleSheet.create({
   activeOption: {
-    backgroundColor: "yellow"
+    backgroundColor: "black"
   }
 });
 
