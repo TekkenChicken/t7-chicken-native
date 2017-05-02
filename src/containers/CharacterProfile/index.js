@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Router } from '../Router';
+import { isEqual } from 'lodash';
+
 // dependencies
 import {
   View,
@@ -31,33 +33,59 @@ import headshots from '../../img/headshots/index';
 import Styles from './styles';
 
 // dispatch actions
-import { fetchDataForCharacter } from '../../redux/actions/character';
+import { fetchDataForCharacter, applyCharacterMoveFilters } from '../../redux/actions/character';
 
 class CharacterProfileScreen extends Component {
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      filterQueue: {}
+    };
+  }
 
   componentDidMount() {
     // Fetch Data on character using character ID sent as props on navigate
     this.props.dispatch(fetchDataForCharacter(this.props.characterID));
   }
 
-  filteredAttacks(moves) {
+  updateFilter(key, value) {
+    let filter = this.state.filterQueue;
+    // if the value sent is not null, update filter
+    if (value) {
+      filter[key] = value;
+    } else {
+      delete filter[key];
+    }
+    // update filter obj in state
+    this.setState({ filter });
+  }
+
+  onMenuChange(isOpen) {
+    if (!isOpen) {
+      // this.props.dispatch(applyCharacterMoveFilters(this.refs.filterMenu.state.filterQueue));
+    }
+  }
+
+  filterAttacks(moves, filter) {
     // object to filter moves against
     // const filterObj = this.props.filter;
     // return MoveFiltersUtil.filterMoves(moves, filterObj);
-    let attackFilters = this.props.filter;
-    return moves.filter(attack => attackFilters.every(filter => filter(attack)));
+    return MoveFiltersUtil.filterMoves(moves, filter);
   }
 
   render() {
     let {characterID, character} = this.props;
     const moves = (character) ? (character.moves) : [];
-    const menu = <FilterSideMenu navigator={navigator}/>;
-    const filtered = this.filteredAttacks(moves);
+    const filter = this.props.character.filter;
+    const menu = <FilterSideMenu ref="filterMenu" closeSideMenu={true} updateFilterHandler={(key, value) => this.updateFilter(key, value)} />;
+    const filtered = this.filterAttacks(moves, filter);
 
     return (
       <SideMenu
         menu={menu}
         menuPosition={'right'}
+        onChange={(isOpen) => this.onMenuChange(isOpen)}
       >
       <View style={Styles.mainContainer}>
         <ScrollView>
@@ -74,12 +102,9 @@ class CharacterProfileScreen extends Component {
 
 /** MAPPING STATE **/
 const mapStateToProps = function(state) {
-  console.log(state);
-  let {filter, character } = state;
+  let { character } = state;
   return {
-    character,
-    filter,
-    //filteredData: filteredAttacks(character.moves)
+    character
   }
 };
 

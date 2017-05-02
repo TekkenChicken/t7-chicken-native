@@ -7,7 +7,8 @@
 export const filterByHitLevel = {
 	key: "hit_level",
 	method: (moveHitLevel, hitLevelFilter) => {
-		return moveHitLevel === hitLevelFilter;
+		moveHitLevel = moveHitLevel.replace(/ *\([^)]*\) */g, "").trim();
+		return moveHitLevel.includes(hitLevelFilter);
 	}
 };
 
@@ -18,6 +19,12 @@ export const filterByHitLevel = {
 export const filterBySpeed = {
 	key: "speed",
 	method: (moveSpeed, speedFilter) => {
-		return moveSpeed >= speedFilter.min && moveSpeed <= speedFilter.max;
+		const { min, max } = speedFilter;
+		if (!min) {
+			return moveSpeed < max;
+		} else if (!max) {
+			return moveSpeed > min;
+		}
+		return moveSpeed >= min && moveSpeed <= max;
 	}
 };

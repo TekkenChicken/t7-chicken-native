@@ -1,40 +1,42 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet, Button, Platform, ScrollView } from 'react-native';
 
 import { connect } from 'react-redux';
-
+import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
 import moveFilterOptions from '../../util/moveFilters/moveFilterOptions';
 
 //Components
 import FilterAccordion from './FilterAccordion';
 
 class FilterMenu extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
-      filter: {}
+      filterQueue: {}
     };
   }
 
-  componentWillUpdate() {
-    if (this.state.filter) {
-      return false;
-    }
-  }
+  updateFilter(key, value, addFlag) {
+    const filter = { ...this.state.filterQueue };
+    filter[key] = filter[key] || [];
 
-  updateFilter(key, value) {
-    let filter = this.state.filter;
-    // if the value sent is not null, update filter
-    if (value) {
-      filter[key] = value;
+    if (addFlag) {
+      filter[key].push(value);
     } else {
-      delete filter[key];
+      const i = filter[key].indexOf(value);
+      filter[key].splice(i, 1);
+
+      if (filter[key].length === 0) {
+        delete filter[key];
+      }
     }
-    // update filter obj in state
-    this.setState({ filter });
+
+    this.setState({ filterQueue: filter });
+    console.log(filter);
+    console.log(MoveFiltersUtil.filterMoves(this.props.moves, filter));
   }
 
-  accordionRender(filterOptions) {
+  accordionRender(filterOptions, callback) {
     return filterOptions.map((filter, i) => {
       return (
         <FilterAccordion
@@ -42,7 +44,7 @@ class FilterMenu extends Component {
           options={filter.options}
           filterKey={filter.key}
           headerLabel={filter.label}
-          onFilterPressHandler={(key, value) => this.updateFilter(key, value)}
+          onFilterPressHandler={(key, value, addFlag) => this.updateFilter(key, value, addFlag)}
           easing="easeOutCubic"
         />
       )
@@ -75,22 +77,19 @@ const Styles = StyleSheet.create({
     width: 240,
 		backgroundColor: 'rgb(132, 18, 18)'
   }
-})
+});
 
+FilterMenu.propTypes = {
+  updateFilterHandler: PropTypes.func
+}
+
+/** MAPPING STATE **/
 const mapStateToProps = function(state) {
-  console.log(state);
-    let { filter, searchFilter, attackFilters } = state;
-    return {
-        filter
-    }
-}
+  let { character } = state;
+  return {
+    moves: character.moves
+  }
+};
 
-
-const mapDispatchToProps = function(dispatch) {
-	return {
-		dispatch,
-    toggleFilter
-	 };
-}
-
-export default connect( mapStateToProps, mapDispatchToProps )(FilterMenu);
+export default connect(mapStateToProps)(FilterMenu);
+//export default FilterMenu;

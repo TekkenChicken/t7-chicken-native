@@ -22,12 +22,20 @@ const speed = {
   key: "speed",
   options: [
     {
-      label: "10 - 13",
+      label: "Less Than 10f",
+      value: {max:10}
+    },
+    {
+      label: "10f - 13f",
       value: {min:10, max:13}
     },
     {
-      label: "Mid",
+      label: "14f - 16f",
       value: {min:14, max:16}
+    },
+    {
+      label: "More Than 16f",
+      value: {min:16}
     }
   ]
 };

@@ -8,7 +8,7 @@ import {
 
 // Components
 import Accordion from 'react-native-accordion';
-import FilterRadioButtonGroup from './FilterRadioButtonGroup';
+import FilterButtonGroup from './FilterButtonGroup';
 
 class FilterAccordion extends Component {
 
@@ -22,10 +22,10 @@ class FilterAccordion extends Component {
   renderFilterOptions(filterKey, options, callback) {
     return (
       <View>
-        <FilterRadioButtonGroup
+        <FilterButtonGroup
           filterKey={filterKey}
           options={options}
-          onOptionSelectHandler={(key, value) => callback(key, value)}
+          onOptionSelectHandler={(key, value, addFlag) => callback(key, value, addFlag)}
         />
       </View>
     );
