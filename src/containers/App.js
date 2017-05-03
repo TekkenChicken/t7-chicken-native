@@ -15,7 +15,6 @@ import store from '../redux/store';
 import { Router } from './Router';
 
 import Toolbar from '../components/Toolbar/Toolbar';
-import FilterSideMenu from './FilterSideMenu/FilterSideMenu';
 
 const navigationContext = new NavigationContext({
   router: Router,

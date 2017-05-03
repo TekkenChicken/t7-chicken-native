@@ -13,14 +13,31 @@ class FilterButtonGroup extends Component {
     this.state = { active: [] };
   }
 
-  renderButtons(options, filterKey, callback) {
+  resetButtonState() {
+    this.setState({ active: [] });
+  }
+
+  updateButtonState(index, checked) {
+    if (checked) {
+      this.state.active.push(index);
+    } else {
+      this.state.active.splice( this.state.active.indexOf(index), 1);
+    }
+  }
+
+  toggleCheck(filterKey, filterValue, checked, index) {
+    this.props.onOptionSelectHandler(filterKey, filterValue, checked);
+    this.updateButtonState(index, checked);
+  }
+
+  renderButtons(options, filterKey) {
     return (
       options.map((option, i) =>
         <View style={(this.state.active === i) ? Styles.activeOption : ''} key={i}>
           <CheckBox
             color="white"
             label={option.label}
-            onChange={(checked) => callback(filterKey, option.value, !checked)}
+            onChange={(checked) => this.toggleCheck(filterKey, option.value, !checked, i)}
           />
         </View>
       )
@@ -31,7 +48,7 @@ class FilterButtonGroup extends Component {
     const { options, filterKey } = this.props;
     return (
       <View>
-        {this.renderButtons(options, filterKey, this.props.onOptionSelectHandler)}
+        {this.renderButtons(options, filterKey)}
       </View>
     );
   }
