@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   Text,
   View,
@@ -6,22 +6,52 @@ import {
   Button
 } from 'react-native';
 
+// Components
 import Accordion from 'react-native-accordion';
+import FilterButtonGroup from './FilterButtonGroup';
 
 class FilterAccordion extends Component {
-  render() {
+
+  renderHeader(label) {
     return (
-        <Accordion
-          header={<Text style={Styles.filterTitle}>{this.props.header}</Text>}
-          content={<Text style={Styles.filterButton}>{this.props.content}</Text>}
-          easing="easeOutCubic"
-          underlayColor="white"
+      <View>
+        <Text style={Styles.filterTitle}>{label}</Text>
+      </View>
+    );
+  }
+  renderFilterOptions(filterKey, options, callback) {
+    return (
+      <View>
+        <FilterButtonGroup
+          filterKey={filterKey}
+          options={options}
+          onOptionSelectHandler={(key, value, addFlag) => callback(key, value, addFlag)}
         />
-    )
+      </View>
+    );
+  }
+
+  render() {
+    const { filterKey, options, onFilterPressHandler, headerLabel } = this.props;
+    const header = this.renderHeader(headerLabel);
+    const content = this.renderFilterOptions(filterKey, options, onFilterPressHandler);
+    return (
+      <Accordion
+        header={header}
+        content={content}
+        easing="easeOutCubic"
+        underlayColor="white"
+      />
+    );
   }
 }
 
 const Styles = StyleSheet.create({
+  accordionContainer: {
+    height: 40,
+    width: 240,
+		backgroundColor: 'rgb(132, 18, 18)'
+  },
   filterTitle: {
     color: '#f0aa23',
     height: 50,
@@ -32,8 +62,12 @@ const Styles = StyleSheet.create({
     paddingTop: 10
   },
   filterButton: {
-
   }
-})
+});
 
-export default FilterAccordion
+FilterAccordion.propTypes = {
+  filter: PropTypes.object,
+  onFilterPressHandler: PropTypes.func,
+};
+
+export default FilterAccordion;

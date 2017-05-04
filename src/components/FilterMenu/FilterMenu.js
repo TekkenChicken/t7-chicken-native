@@ -1,61 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, Text, StyleSheet, Button, Platform, ScrollView } from 'react-native';
 
-import { connect } from 'react-redux';
-//
-import { toggleFilter } from '../../redux/actions/filter';
-//
-import {
-  hitLevelFilters,
-  speedFilters
-} from '../../util/filters';
-
-import allFilters from '../../util/filters';
+import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
+import moveFilterOptions from '../../util/moveFilters/moveFilterOptions';
 
 //Components
 import FilterAccordion from './FilterAccordion';
 
-function FilterButton({filterName, filterFn, toggleFilter, activeFilters}) {
-  function filterFinder(f) {
-    return f == filterFn
-  }
-  return (
-    <Button color="white" title={filterName} onPress={() =>
-        toggleFilter(filterFn)}>{filterName} {activeFilters.find(filterFinder)
-           ? 'active' : 'inactive'}
-    </Button>
-  )
-}
-
-const FilterButtonContainer = connect(() => ({}), { toggleFilter })(FilterButton);
-
 class FilterMenu extends Component {
-
-  filterRender(categoryFilter) {
-    return categoryFilter.filters.map((f, key) => {
-      return (
-        <View style={Styles.accordionContainer}>
-          <FilterButtonContainer
-             key={key}
-             filterName={f.name}
-             filterFn={f.function}
-             toggleFilter={this.props.toggleFilter}
-             activeFilters={this.props.filter}
-           />
-      </View>
-    )
-    })
+  constructor (props) {
+    super(props);
+    this.state = {
+      reset: false,
+    };
   }
 
-  accordionRender(allFilters) {
-    return Object.keys(allFilters).map((f, key) => {
-      this.filterRender(allFilters[f])
+  resetFilters() {
+  }
+
+  accordionRender(filterOptions, callback, reset) {
+    return filterOptions.map((filter, i) => {
       return (
         <FilterAccordion
-          key={key}
-          header={allFilters[f].category}
-          content={this.filterRender(allFilters[f])}
+          key={i}
+          options={filter.options}
+          filterKey={filter.key}
+          headerLabel={filter.label}
+          onFilterPressHandler={(key, value, addFlag) => callback(key, value, addFlag)}
           easing="easeOutCubic"
+          reset={reset}
         />
       )
     })
@@ -63,17 +36,20 @@ class FilterMenu extends Component {
 
   render() {
     return (
-      <ScrollView style={Styles.menuContainer}>
-        <Text style={Styles.menuTitle}>Filters</Text>
-        {this.accordionRender(allFilters)}
-      </ScrollView>
+      <View>
+        <ScrollView style={Styles.menuContainer}>
+          <Text style={Styles.menuTitle}>Filters</Text>
+          {this.accordionRender(moveFilterOptions, this.props.updateFilterHandler, this.state.reset)}
+        </ScrollView>
+      </View>
     )
   }
 }
 
 const Styles = StyleSheet.create({
   menuContainer: {
-    paddingTop: 80,
+    marginTop: 1,
+    paddingTop: 40,
     paddingLeft: 10,
     paddingBottom: 500,
     backgroundColor: 'rgb(68, 18, 18)'
@@ -86,27 +62,11 @@ const Styles = StyleSheet.create({
     height: 40,
     width: 240,
 		backgroundColor: 'rgb(132, 18, 18)'
-  },
-  buttonStyle: {
-    width: 240
   }
-})
+});
 
-const mapStateToProps = function(state) {
-  console.log(state);
-    let { filter, searchFilter, attackFilters } = state;
-
-    return {
-        filter
-    }
+FilterMenu.propTypes = {
+  updateFilterHandler: PropTypes.func
 }
 
-
-const mapDispatchToProps = function(dispatch) {
-	return {
-		dispatch,
-    toggleFilter
-	 };
-}
-
-export default connect( mapStateToProps, mapDispatchToProps )(FilterMenu);
+export default FilterMenu;

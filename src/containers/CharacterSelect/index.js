@@ -26,8 +26,8 @@ import { fetchInitialAppData } from '../../redux/actions/blob';
 
 class CharacterSelectScreen extends Component {
 
-  componentDidMount() {
-    this.props.dispatch(fetchCharacters());
+  componentWillMount() {
+    this.props.fetchCharacters();
   }
 
   /**
@@ -56,12 +56,18 @@ class CharacterSelectScreen extends Component {
 
 
 /** MAPPING STATE **/
-const mapStateToProps = function(state) {
-  console.log(state);
+const mapStateToProps = (state) => {
   return {
-    characters: state.select.characters,
-    blob: state.blob
-  }
+    characters: state.select.characters
+  };
 };
 
-export default connect(mapStateToProps)(CharacterSelectScreen);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchCharacters: () => {
+      dispatch(fetchCharacters());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CharacterSelectScreen);

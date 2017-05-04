@@ -1,7 +1,9 @@
 // Action Types
 export const CHARACTER_SET_DATA = 'CHARACTER_SET_DATA';
+export const CHARACTER_RESET_DATA = 'CHARACTER_RESET_DATA';
 export const CHARACTER_FILTER_MOVES = 'CHARACTER_FILTER_MOVES';
 export const CHARACTER_SEARCH_MOVES = 'CHARACTER_SEARCH_MOVES';
+export const CHARACTER_APPLY_FILTERS = 'CHARACTER_APPLY_FILTERS';
 
 const setCharacterData = (data) => {
   return {
@@ -20,5 +22,27 @@ export const fetchDataForCharacter = (characterID) => {
     const currentState = getState();
     const charData = currentState.blob.characterData[characterID];
     return dispatch(setCharacterData(charData));
+  };
+};
+
+/**
+ *  @method: applyCharacterMoveFilters
+ *  @param: filter [obj]
+ *  Sets new filter used for sorting character moves
+ */
+export const applyCharacterMoveFilters = (filter) => {
+  return {
+    type: CHARACTER_APPLY_FILTERS,
+    filter
+  };
+};
+
+/**
+ *  @method: resetDataForCharacter
+ *  resets Character State
+ */
+export const resetDataForCharacter = (filter) => {
+  return {
+    type: CHARACTER_RESET_DATA
   };
 };
