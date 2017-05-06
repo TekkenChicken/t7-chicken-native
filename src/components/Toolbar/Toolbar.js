@@ -10,19 +10,17 @@ import {
 
 import SearchBar from '../SearchBar/SearchBar';
 
-class LeftMenu extends Component {
+import icons from '../../img/icons/index';
 
+class LeftMenu extends Component {
   render() {
+    const menuIcon = icons['menu'];
     return (
         <TouchableHighlight
-          onPress={this.props.func}
-          >
-          <Image
-            style={Styles.menuIcon}
-            source={require('./../../img/icons/menu.png')}
-          />
+          onPress={this.props.func}>
+          <Image source={menuIcon} />
         </TouchableHighlight>
-    )
+    );
   }
 }
 
@@ -32,11 +30,10 @@ class SearchBarButton extends Component {
       <TouchableHighlight
         onPress={this.props.func}>
         <Image
-          style={Styles.searchIcon}
-          source={require('./../../img/icons/fa-search.png')}
+          source={icons['searchFa']}
         />
       </TouchableHighlight>
-    )
+    );
   }
 }
 
@@ -46,11 +43,10 @@ class FilterMenu extends Component {
       <TouchableHighlight
         onPress={this.props.func}>
         <Image
-          style={Styles.filterIcon}
-          source={require('./../../img/icons/filter.png')}
+          source={icons['filter']}
         />
       </TouchableHighlight>
-    )
+    );
   }
 }
 
@@ -59,10 +55,11 @@ class Toolbar extends Component {
     super();
     this.state = {
       search: false
-    }
+    };
   }
+
   leftMenu() {
-    console.log('Open Left Menu')
+    console.log('Open Left Menu');
   }
 
   rightMenu() {
@@ -71,13 +68,11 @@ class Toolbar extends Component {
 
   toggleSearchBar = () => {
     console.log('render search bar');
-    this.setState({
-      search: !this.state.search
-    })
+    this.setState({search: !this.state.search});
   }
 
   renderToolBar() {
-    if(this.state.search == false) {
+    if(this.state.search === false) {
       const name = !this.props.name ? '' : this.props.name;
       return (
         <View style={Styles.toolbarContainer}>
@@ -86,13 +81,13 @@ class Toolbar extends Component {
           <Text style={Styles.name}>{name.toUpperCase()}</Text>
           <FilterMenu func={this.rightMenu} />
         </View>
-      )
+      );
     } else {
       return (
         <View style={Styles.toolbarContainer}>
-          <SearchBar style={Styles.searchBarContainer} toggle={this.toggleSearchBar} />
+          <SearchBar toggle={this.toggleSearchBar} />
         </View>
-      )
+      );
     }
   }
 
@@ -101,7 +96,7 @@ class Toolbar extends Component {
       <View>
         {this.renderToolBar()}
       </View>
-    )
+    );
   }
 }
 
@@ -109,13 +104,9 @@ const Styles = StyleSheet.create({
   toolbarContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    paddingTop: 30,
-    marginBottom: 50,
+    paddingTop: 40,
+    paddingBottom: 40,
     backgroundColor: 'rgb(65, 18, 18)'
-  },
-  searchBarContainer: {
-
   },
   menuIcon: {
     height: 25,
@@ -131,12 +122,13 @@ const Styles = StyleSheet.create({
     width: 25
   },
   name: {
+    flex: 1,
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
     width: 240,
     height: 50
   }
-})
+});
 
 export default Toolbar;
