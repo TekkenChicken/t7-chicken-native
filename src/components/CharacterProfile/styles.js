@@ -4,8 +4,7 @@ import {
 
 export default Styles = StyleSheet.create({
   viewContainer: {
-		height: 70,
-		backgroundColor: 'rgb(65, 18, 18)',
+
   },
 	commandListContainer: {
 		backgroundColor: 'rgb(65, 18, 18)',

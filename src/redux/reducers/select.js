@@ -11,6 +11,7 @@ const initialState = {
 function select ( state = initialState, action ) {
   switch(action.type) {
     case SELECT_UPDATE_CHARACTERS:
+      console.log("new state", Object.assign({}, state, {characters: action.characters}));
       return Object.assign({}, state, {characters: action.characters});
     case SELECT_UPDATE_SEARCH:
       return Object.assign({}, state, {search: action.search});

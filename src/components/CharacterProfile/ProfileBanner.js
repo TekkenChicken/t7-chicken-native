@@ -4,7 +4,6 @@ import {
   Text,
   Image
 } from 'react-native';
-import Toolbar from '../Toolbar/Toolbar';
 
 import Styles from './styles';
 
@@ -12,7 +11,6 @@ class ProfileBanner extends Component {
   render() {
     return (
       <View style={Styles.viewContainer}>
-        <Toolbar name={this.props.name} />
       </View>
     );
   }

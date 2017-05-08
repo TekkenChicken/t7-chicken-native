@@ -15,8 +15,6 @@ import {
 // components
 import CharacterList from './CharacterList';
 import SelectBanner from './SelectBanner';
-import SearchBar from '../../components/Searchbar/Searchbar';
-import Toolbar from '../../components/Toolbar/Toolbar';
 
 // Styles
 import Styles from './styles';
@@ -28,11 +26,8 @@ import { fetchInitialAppData } from '../../redux/actions/blob';
 
 class CharacterSelectScreen extends Component {
 
-  componentDidMount() {
-    // Will need to decide to move onto initial loading screen
-    // or keep here and use a loading state
-    this.props.dispatch(fetchInitialAppData());
-    this.props.dispatch(fetchCharacters());
+  componentWillMount() {
+    this.props.fetchCharacters();
   }
 
   /**
@@ -41,19 +36,18 @@ class CharacterSelectScreen extends Component {
    *  Will navigate to the character page and pass the characterID as a prop to the page
    *  (where it will be used to fetch data on a character)
    */
-  navigateToCharacter(characterID, characterMoves, characterImage) {
-    this.props.navigator.push(Router.getRoute('characterProfile', { characterID, characterMoves, characterImage }));
+  navigateToCharacter(characterID) {
+    this.props.navigator.push(Router.getRoute('characterProfile', { characterID }));
   }
 
   render() {
     console.log("Characters Select", this.props.characters);
     return (
       <ScrollView style={Styles.mainContainer}>
-        <Toolbar />
         <SelectBanner style={Styles.banner} />
         <CharacterList
           characters={this.props.characters}
-          onCharacterSelect={(id, moves, image) => this.navigateToCharacter(id, moves, image)}
+          onCharacterSelect={(id, image) => this.navigateToCharacter(id)}
         />
       </ScrollView>
     );
@@ -62,11 +56,18 @@ class CharacterSelectScreen extends Component {
 
 
 /** MAPPING STATE **/
-const mapStateToProps = function(state) {
-  let { characters } = state.select;
+const mapStateToProps = (state) => {
   return {
-    characters
-  }
+    characters: state.select.characters
+  };
 };
 
-export default connect(mapStateToProps)(CharacterSelectScreen);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchCharacters: () => {
+      dispatch(fetchCharacters());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CharacterSelectScreen);

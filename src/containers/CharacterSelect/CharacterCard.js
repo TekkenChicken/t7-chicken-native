@@ -1,20 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 
 // dependencies
-import { View, Text, Image, TouchableHighlight, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableHighlight, StyleSheet, Platform } from 'react-native';
 import { Router } from '../Router';
+
+// images
+import headshots from '../../img/headshots/index';
 
 class CharacterCard extends Component {
 
   render() {
     const {image, name, id, onPressHandler, moves} = this.props;
+    const headImage = headshots[this.props.name] || headshots.kazuya;
     return (
       <View style={Styles.card}>
         <TouchableHighlight onPress={() => onPressHandler(name, moves, image)}>
           <View>
             <Image
               style={Styles.image}
-              source={{uri: this.props.image}}
+              source={headImage}
             />
             <Text style={Styles.text}>{this.props.name.toUpperCase()}</Text>
           </View>
@@ -32,22 +36,21 @@ const Styles = StyleSheet.create({
     paddingBottom: 20
   },
   image: {
-    alignSelf: 'stretch',
     marginBottom: 8,
     height: 110,
+    width: 90,
     backgroundColor: '#eee',
     resizeMode: 'contain'
   },
   text: {
-    position: 'absolute',
     alignSelf: 'center',
-    top: 50,
+    color: 'white',
     left: 0,
     right: 0,
     backgroundColor: 'transparent',
     textAlign: 'center',
     fontSize: 12,
-    fontWeight: "500"
+    fontWeight: '700'
   }
 });
 

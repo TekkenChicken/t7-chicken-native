@@ -7,30 +7,30 @@ import {
   Text
 } from 'react-native';
 
+import { connect } from 'react-redux';
+
 // components
 import DataList from '../../components/DataList/DataList';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
 import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 
+// Utils
+import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
+
 class MoveList extends Component {
 
-  // custom renderRow function for List
-  renderCharacterRow(rowData) {
-    return null;
-  }
-
   render() {
-    console.log(this.props);
+    const moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
     return (
       <View>
         <CommandListBanner />
-      <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
         <DataList
-          listData={this.props.moves}
+          listData={moves}
           cellComponent={FrameDataCard}
           cellsPerRow={3}
           rowStyle={Styles.row}
         />
+        <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
       </View>
     );
   }
@@ -42,14 +42,16 @@ const Styles = StyleSheet.create({
   },
   row: {
     flexDirection:'row',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    paddingLeft: 3
   },
   rbnorway: {
     color: 'white',
     textAlign: 'center',
     marginBottom: 30,
     fontFamily: 'Exo2-Light',
-    color: '#f0aeb1'
+    color: '#f0aeb1',
+    fontSize: 12
   }
 })
 
@@ -58,4 +60,11 @@ MoveList.Proptypes = {
   onCharacterSelect: PropTypes.func
 };
 
-export default MoveList;
+/** MAPPING STATE **/
+const mapStateToProps = (state) => {
+  return {
+    filter: state.character.filter
+  };
+};
+
+export default connect(mapStateToProps)(MoveList);
