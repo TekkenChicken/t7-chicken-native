@@ -28,10 +28,10 @@ class App extends Component {
         <StatusBar
           barStyle="light-content"
         />
-          <NavigationProvider context={navigationContext}>
-              <Toolbar />
-            <StackNavigation id="home" initialRoute={Router.getRoute('initialLoading')} />
-         </NavigationProvider>
+        <NavigationProvider context={navigationContext}>
+          <Toolbar name={'Tekken Chicken'}/>
+          <StackNavigation id="home" initialRoute={Router.getRoute('initialLoading')} />
+        </NavigationProvider>
       </View>
     );
   }
