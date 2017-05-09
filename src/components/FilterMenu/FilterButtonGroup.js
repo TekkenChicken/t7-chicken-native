@@ -47,7 +47,7 @@ class FilterButtonGroup extends Component {
   render() {
     const { options, filterKey } = this.props;
     return (
-      <View>
+      <View style={{backgroundColor: 'rgb(68, 18, 18)'}}>
         {this.renderButtons(options, filterKey)}
       </View>
     );

@@ -14,7 +14,7 @@ class FilterAccordion extends Component {
 
   renderHeader(label) {
     return (
-      <View>
+      <View style={Styles.filterButton}>
         <Text style={Styles.filterTitle}>{label}</Text>
       </View>
     );
@@ -62,6 +62,7 @@ const Styles = StyleSheet.create({
     paddingTop: 10
   },
   filterButton: {
+    backgroundColor: 'rgb(68, 18, 18)'
   }
 });
 
