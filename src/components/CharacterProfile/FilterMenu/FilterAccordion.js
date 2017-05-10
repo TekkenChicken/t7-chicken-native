@@ -32,13 +32,14 @@ class FilterAccordion extends Component {
   }
 
   render() {
-    const { filterKey, options, onFilterPressHandler, headerLabel } = this.props;
+    const { filterKey, options, onFilterSelectHandler, headerLabel } = this.props;
     const header = this.renderHeader(headerLabel);
-    const content = this.renderFilterOptions(filterKey, options, onFilterPressHandler);
+    const content = this.renderFilterOptions(filterKey, options, onFilterSelectHandler);
     return (
       <Accordion
         header={header}
         content={content}
+        expanded={true}
         easing="easeOutCubic"
         underlayColor="white"
       />
@@ -68,7 +69,7 @@ const Styles = StyleSheet.create({
 
 FilterAccordion.propTypes = {
   filter: PropTypes.object,
-  onFilterPressHandler: PropTypes.func,
+  onFilterSelectHandler: PropTypes.func,
 };
 
 export default FilterAccordion;

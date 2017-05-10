@@ -20,6 +20,7 @@ import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
 class MoveList extends Component {
 
   render() {
+    console.log("render movelist", this.props.filter);
     const moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
     return (
       <View>
