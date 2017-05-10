@@ -5,6 +5,7 @@ import moveFilterOptions from '../../../util/moveFilters/moveFilterOptions';
 
 //Components
 import FilterAccordion from './FilterAccordion';
+import CustomText from '../../CustomText/CustomText';
 import Button from '../../Button/Button';
 
 class FilterMenu extends Component {
@@ -19,7 +20,21 @@ class FilterMenu extends Component {
     this.setState( {resetFlag: this.state.resetFlag + 1}, callback );
   }
 
-  accordionRender(filterOptions, callback) {
+  renderMenuHeader(resetCallback) {
+    return (
+      <View style={Styles.menuHeader}>
+        <CustomText textStyle={Styles.menuTitle}>Filters</CustomText>
+        <Button
+          buttonStyle={Styles.menuResetBtn}
+          titleStyle={Styles.menuResetBtn__Title}
+          onPress={() => this.resetFilters(resetCallback)}
+          title="Reset"
+        />
+      </View>
+    );
+  }
+
+  renderFilterAccordions(filterOptions, callback) {
     return filterOptions.map((filter, i) => {
       return (
         <FilterAccordion
@@ -39,17 +54,9 @@ class FilterMenu extends Component {
     return (
       <View>
         <ScrollView style={Styles.menuContainer}>
-          <View style={Styles.menuHeader}>
-            <Text style={Styles.menuTitle}>Filters</Text>
-            <Button
-              buttonStyle={Styles.menuResetBtn}
-              titleStyle={Styles.menuResetBtn__Title}
-              onPress={() => this.resetFilters(onFilterResetHandler)} 
-              title="Reset"
-            />
-          </View>
-          <View key={this.state.resetFlag}>
-            {this.accordionRender(moveFilterOptions, onFilterSelectHandler)}
+          {this.renderMenuHeader(onFilterResetHandler)}
+          <View key={this.state.resetFlag} style={Styles.menuFiltersContainer}>
+            {this.renderFilterAccordions(moveFilterOptions, onFilterSelectHandler)}
           </View>
         </ScrollView>
       </View>
@@ -60,30 +67,35 @@ class FilterMenu extends Component {
 const Styles = StyleSheet.create({
   menuContainer: {
     marginTop: 1,
-    paddingTop: 40,
-    paddingLeft: 10,
     paddingBottom: 500,
-    backgroundColor: 'rgb(68, 18, 18)'
+    backgroundColor: '#960b11'
   },
   menuHeader: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingTop: 40,
+    paddingLeft: 10,
+    paddingBottom: 10,
+    backgroundColor: '#240202'
   },
   menuTitle: {
     color: 'white',
     fontSize: 24,
+    fontWeight: '600',
     flex: 0.8
   },
   menuResetBtn: {
-    flex: 0.2
+    flex: 0.2,
+    marginTop: 11
   },
   menuResetBtn__Title: {
-    color: 'white'
+    color: 'white',
+    fontFamily: 'Exo2-Light',
+    fontSize: 12,
+    opacity: 0.9
   },
-  accordionContainer: {
-    height: 40,
-    width: 240,
-		backgroundColor: 'rgb(132, 18, 18)'
+  menuFiltersContainer: {
+    paddingTop: 3
   }
 });
 

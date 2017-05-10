@@ -1,24 +1,34 @@
 import React, { Component, PropTypes } from 'react';
 import {
-  Text,
   View,
   StyleSheet,
   Button
 } from 'react-native';
 
 // Components
+import CustomText from '../../CustomText/CustomText';
 import Accordion from 'react-native-accordion';
 import FilterButtonGroup from './FilterButtonGroup';
 
 class FilterAccordion extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      expanded: true
+    };
+  }
+
   renderHeader(label) {
+    const expandIconStyle = (this.state.expanded) ? Styles.filterHeader__expandIcon : [Styles.filterHeader__expandIcon, Styles.filterHeader__expandIcon__closed];
     return (
-      <View style={Styles.filterButton}>
-        <Text style={Styles.filterTitle}>{label}</Text>
+      <View style={Styles.filterHeader}>
+        <CustomText textStyle={Styles.filterHeader__label}>{label}</CustomText>
+        <CustomText textStyle={expandIconStyle}>^</CustomText>
       </View>
     );
   }
+
   renderFilterOptions(filterKey, options, callback) {
     return (
       <View>
@@ -40,6 +50,7 @@ class FilterAccordion extends Component {
         header={header}
         content={content}
         expanded={true}
+        onPress={() => this.setState({ expanded: !this.state.expanded })}
         easing="easeOutCubic"
         underlayColor="white"
       />
@@ -48,22 +59,32 @@ class FilterAccordion extends Component {
 }
 
 const Styles = StyleSheet.create({
-  accordionContainer: {
-    height: 40,
-    width: 240,
-		backgroundColor: 'rgb(132, 18, 18)'
-  },
-  filterTitle: {
-    color: '#f0aa23',
-    height: 50,
+  filterHeader: {
+    flex: 1,
+    flexDirection: 'row',
+		backgroundColor: '#76090d',
     borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: 'rgb(132, 18, 18)',
+    borderBottomWidth: 1,
+    borderColor: '#6d080d',
     paddingLeft: 10,
-    paddingTop: 10
+    paddingTop: 20,
+    paddingBottom: 20
   },
-  filterButton: {
-    backgroundColor: 'rgb(68, 18, 18)'
+  filterHeader__label: {
+    flex: 0.9,
+    color: '#f0aa23',
+    fontWeight: '500'
+  },
+  filterHeader__expandIcon: {
+    flex: 0.1,
+    fontSize: 28,
+    color: '#f0aa23',
+    fontWeight: '600',
+    height: 20,
+    marginTop: -4
+  },
+  filterHeader__expandIcon__closed: {
+    transform: [{ rotateX: '180deg'}, {translateY: -8}],
   }
 });
 
