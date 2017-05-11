@@ -41,7 +41,6 @@ class CharacterSelectScreen extends Component {
   }
 
   render() {
-    console.log("Characters Select", this.props.characters);
     return (
       <ScrollView style={Styles.mainContainer}>
         <SelectBanner style={Styles.banner} />
