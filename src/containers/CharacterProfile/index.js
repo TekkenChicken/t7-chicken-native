@@ -44,6 +44,7 @@ class CharacterProfileScreen extends Component {
   }
 
   render() {
+    console.log(this.props);
     let {characterID, characterMoves, characterName} = this.props;
     const menu = <FilterMenuContainer />;
 
@@ -68,7 +69,7 @@ class CharacterProfileScreen extends Component {
         <View style={Styles.mainContainer}>
           <ScrollView>
               <View style={Styles.backDrop}/>
-              <ProfilePicture image='./../../img/headshots/Tile-Kazuya.png' />
+            <ProfilePicture image={headshots[this.props.characterID]} />
               <ProfileName name={characterID.toUpperCase()} />
               <MoveList moves={characterMoves} />
           </ScrollView>
