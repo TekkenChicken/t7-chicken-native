@@ -9,10 +9,11 @@ import Styles from './styles';
 
 class ProfilePicture extends Component {
   render() {
+    console.log(this.props);
     const profileImage = this.props.image;
     return (
       <Image
-        source={require('./../../img/headshots/Tile-Kazuya.png')}
+        source={profileImage}
         resizeMode='contain'
         style={Styles.profilePic}>
       </Image>
