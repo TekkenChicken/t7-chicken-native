@@ -11,6 +11,15 @@ const headshots = {
   law: require('./law.png'),
   lee: require('./lee.png'),
   lili: require('./lili.png'),
+  dragunov: require('./dragunov.png'),
+  gigas: require('./gigas.png'),
+  jack7: require('./jack7.png'),
+  lars: require('./lars.png'),
+  masterraven: require('./masterraven.png'),
+  panda: require('./panda.png'),
+  paul: require('./paul.png'),
+  steve: require('./steve.png'),
+  xiaoyu: require('./xiaoyu.png'),
 };
 
 export default headshots;
