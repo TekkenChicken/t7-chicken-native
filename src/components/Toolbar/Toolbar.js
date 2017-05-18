@@ -17,8 +17,9 @@ class LeftMenu extends Component {
     const menuIcon = icons['menu'];
     return (
         <TouchableHighlight
+          style={Styles.menuWrapper}
           onPress={this.props.func}>
-          <Image source={menuIcon} />
+          <Image style={{flex: 1}} source={menuIcon} />
         </TouchableHighlight>
     );
   }
@@ -28,7 +29,8 @@ class SearchBarButton extends Component {
   render() {
     return (
       <TouchableHighlight
-        onPress={this.props.func}>
+        onPress={this.props.func}
+        style={Styles.searchWrapper}>
         <Image
           source={icons['searchFa']}
         />
@@ -41,7 +43,8 @@ class FilterMenu extends Component {
   render() {
     return (
       <TouchableHighlight
-        onPress={this.props.func}>
+        onPress={this.props.func}
+        style={Styles.filterWrapper}>
         <Image
           source={icons['filter']}
         />
@@ -105,21 +108,23 @@ const Styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     paddingTop: 40,
-    paddingBottom: 40,
+    paddingBottom: 60,
+    paddingLeft: 10,
     backgroundColor: 'rgb(65, 18, 18)'
   },
-  menuIcon: {
-    height: 25,
-    width: 25,
+  menuWrapper: {
+    height: 40,
+    width: 40,
   },
-  searchIcon: {
-    height: 25,
-    width: 25,
+  searchWrapper: {
+    height: 40,
+    width: 40,
     marginLeft: 20
   },
-  filterIcon: {
-    height: 25,
-    width: 25
+  filterWrapper: {
+    height: 40,
+    width: 40,
+    marginLeft: 20
   },
   name: {
     flex: 1,
