@@ -12,15 +12,21 @@ class CharacterCard extends Component {
   render() {
     const {image, name, id, onPressHandler, moves} = this.props;
     const headImage = headshots[this.props.name] || headshots.kazuya;
+    // in case of empty
+    const emptyCard = name == null;
+    const touchEvent = (emptyCard) ? 'none' : 'auto';
+    const cardStyle = (emptyCard) ? [Styles.card, Styles.empty] : Styles.card;
+    const formatName = (emptyCard) ? "" : name.toUpperCase();
+
     return (
-      <View style={Styles.card}>
+      <View style={cardStyle} pointerEvents={touchEvent}>
         <TouchableHighlight onPress={() => onPressHandler(name, moves, image)}>
           <View>
             <Image
               style={Styles.image}
               source={headImage}
             />
-            <Text style={Styles.text}>{this.props.name.toUpperCase()}</Text>
+            <Text style={Styles.text}>{formatName}</Text>
           </View>
         </TouchableHighlight>
       </View>
@@ -34,6 +40,9 @@ const Styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     paddingBottom: 20
+  },
+  empty: {
+    opacity: 0
   },
   image: {
     marginBottom: 8,

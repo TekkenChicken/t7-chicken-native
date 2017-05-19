@@ -25,10 +25,14 @@ export const searchCharacters = (searchQuery) => {
   searchQuery = searchQuery.trim().toLowerCase();
   return (dispatch, getState) => {
     const currentState = getState();
-    const allCharacters = currentState.blob.characterData;
-    const filteredCharacters = Object.keys(allCharacters).filter((char) => {
-        return char.includes(searchQuery);
-      });
+    const allChars = currentState.blob.characterData;
+    const filteredCharacters = Object.keys(allChars)
+      .reduce((result, char) => {
+        if (searchQuery === char.substring(0, searchQuery.length)) {
+          result.push( Object.assign(allChars[char], {name: char}) );
+        }
+        return result;
+      }, []);
 
     return Promise.all([
       dispatch(updateSearchFilter(searchQuery)),
