@@ -55,6 +55,7 @@ class DataList extends Component {
       <View style={[styles.row, rowStyle]}>
         {
           rowData.cells.map((cell, i) => {
+            console.log(cell)
             return (
               <View style={[styles.cell, cellStyle]} key={i}>
                 <CellComponent {...cell} onPressHandler={onCellPress}/>

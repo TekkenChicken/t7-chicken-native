@@ -21,16 +21,18 @@ const formatRawData = (rawData) => {
  *  @return: characters [array]
  *  take in search query and return array of characters that match
  */
-const searchCharacters = (searchQuery) => {
-  searchQuery = searchQuery.trim();
+export const searchCharacters = (searchQuery) => {
+  searchQuery = searchQuery.trim().toLowerCase();
   return (dispatch, getState) => {
     const currentState = getState();
     const allCharacters = currentState.blob.characterData;
-    const filteredCharacters = allCharacter.filter((char) => char.includes(searchQuery))
+    const filteredCharacters = Object.keys(allCharacters).filter((char) => {
+        return char.includes(searchQuery);
+      });
 
     return Promise.all([
       dispatch(updateSearchFilter(searchQuery)),
-      dispatch(updateCharacters(filterCharacters))
+      dispatch(updateCharacters(filteredCharacters))
     ]);
   }
 };
