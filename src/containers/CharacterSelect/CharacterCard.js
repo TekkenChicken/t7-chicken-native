@@ -51,7 +51,7 @@ const Styles = StyleSheet.create({
     marginBottom: 8,
     height: 110,
     width: 90,
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
     resizeMode: 'contain'
   },
   text: {
