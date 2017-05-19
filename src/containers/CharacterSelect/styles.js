@@ -10,5 +10,8 @@ export default Styles = StyleSheet.create({
   viewContainer: {
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+	charList: {
+		marginTop: 8
+	}
 });

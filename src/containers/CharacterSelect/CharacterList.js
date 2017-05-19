@@ -14,7 +14,7 @@ class CharacterList extends Component {
 
   render() {
     return (
-      <View>
+      <View style={this.props.containerStyle}>
         <DataList
           listData={this.props.characters}
           cellComponent={CharacterCard}

@@ -24,7 +24,7 @@ class CharacterCard extends Component {
     return (
       <View style={cardStyle} pointerEvents={touchEvent}>
         <TouchableHighlight onPress={() => onPressHandler(name, moves, image)}>
-          <View>
+          <View style={Styles.imageContainer}>
             <Image
               style={Styles.image}
               source={headImage}
@@ -40,19 +40,21 @@ class CharacterCard extends Component {
 const Styles = StyleSheet.create({
   card: {
     flex: 1,
-    paddingLeft: 5,
-    paddingRight: 5,
     paddingBottom: 20
   },
   empty: {
     opacity: 0
   },
+  imageContainer : {
+    flex: 1,
+    alignItems: "center"
+  },
   image: {
     marginBottom: 8,
-    height: 110,
-    width: 90,
+    height: 120,
+    width: 75,
     backgroundColor: '#fff',
-    resizeMode: 'contain'
+    resizeMode: 'stretch'
   },
   text: {
     alignSelf: 'center',
