@@ -4,6 +4,9 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text, Image, TouchableHighlight, StyleSheet, Platform } from 'react-native';
 import { Router } from '../Router';
 
+// components
+import CustomText from '../../components/CustomText/CustomText';
+
 // images
 import headshots from '../../img/headshots/index';
 
@@ -26,7 +29,7 @@ class CharacterCard extends Component {
               style={Styles.image}
               source={headImage}
             />
-            <Text style={Styles.text}>{formatName}</Text>
+            <CustomText textStyle={Styles.text}>{formatName}</CustomText>
           </View>
         </TouchableHighlight>
       </View>
@@ -59,7 +62,7 @@ const Styles = StyleSheet.create({
     backgroundColor: 'transparent',
     textAlign: 'center',
     fontSize: 12,
-    fontWeight: '700'
+    fontWeight: '500'
   }
 });
 
