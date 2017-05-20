@@ -9,7 +9,6 @@ import Styles from './styles';
 
 class ProfilePicture extends Component {
   render() {
-    console.log(this.props);
     const profileImage = this.props.image;
     return (
       <Image

@@ -53,8 +53,8 @@ class FilterMenu extends Component {
     const { onFilterSelectHandler, onFilterResetHandler } = this.props;
     return (
       <View>
+        {this.renderMenuHeader(onFilterResetHandler)}
         <ScrollView style={Styles.menuContainer}>
-          {this.renderMenuHeader(onFilterResetHandler)}
           <View key={this.state.resetFlag} style={Styles.menuFiltersContainer}>
             {this.renderFilterAccordions(moveFilterOptions, onFilterSelectHandler)}
           </View>
@@ -66,7 +66,6 @@ class FilterMenu extends Component {
 
 const Styles = StyleSheet.create({
   menuContainer: {
-    marginTop: 1,
     paddingBottom: 500,
     backgroundColor: '#960b11'
   },
@@ -75,14 +74,15 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 40,
     paddingLeft: 10,
-    paddingBottom: 10,
+    paddingBottom: 35,
     backgroundColor: '#240202'
   },
   menuTitle: {
     color: 'white',
     fontSize: 24,
     fontWeight: '600',
-    flex: 0.8
+    flex: 0.8,
+    height: 26
   },
   menuResetBtn: {
     flex: 0.2,
@@ -92,7 +92,8 @@ const Styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'Exo2-Light',
     fontSize: 12,
-    opacity: 0.9
+    opacity: 0.9,
+    height: 12
   },
   menuFiltersContainer: {
     paddingTop: 3

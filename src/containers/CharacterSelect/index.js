@@ -48,6 +48,7 @@ class CharacterSelectScreen extends Component {
       <ScrollView style={Styles.mainContainer}>
         <SelectBanner style={Styles.banner} />
         <CharacterList
+          containerStyle={Styles.charList}
           characters={this.props.characters}
           onCharacterSelect={(id, image) => this.navigateToCharacter(id)}
         />

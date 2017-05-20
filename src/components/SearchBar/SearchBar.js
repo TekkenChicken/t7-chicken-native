@@ -11,12 +11,24 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+//action imports
+import { searchCharacters } from '../../redux/actions/select';
 
-export default class SearchBar extends Component {
+
+class SearchBar extends Component {
+
   constructor(props) {
     super(props);
 
   }
+  componentWillReceiveProps() {
+    console.log('props recieved');
+  }
+
+  characterFilter = (text) => {
+    this.props.searchCharacters(text);
+  }
+
   hideSearch = () => {
     console.log('Search hidden');
   }
@@ -27,6 +39,7 @@ export default class SearchBar extends Component {
           placeholder="Search"
           placeholderTextColor="#f0aa23"
           style={Styles.input}
+          onChangeText={(text) => this.characterFilter(text)}
         />
         <TouchableHighlight
           onPress={this.props.toggle}>
@@ -63,3 +76,19 @@ const Styles = StyleSheet.create({
     marginLeft: 10
   }
 });
+
+/** MAPPING STATE **/
+const mapStateToProps = (state) => {
+  return {
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchCharacters: (text) => {
+      dispatch(searchCharacters(text));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
