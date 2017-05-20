@@ -44,7 +44,6 @@ class CharacterProfileScreen extends Component {
   }
 
   render() {
-    console.log(this.props);
     let {characterID, characterMoves, characterName} = this.props;
     const menu = <FilterMenuContainer />;
 

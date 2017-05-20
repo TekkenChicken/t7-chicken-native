@@ -8,17 +8,32 @@ import {
 class DataList extends Component {
 
   /**
+   *
+   *
+   */
+  fillCellsToMatchCellsPerRow(rawData, cellsPerRow) {
+    const maxLength = Math.ceil( rawData.length/cellsPerRow) * cellsPerRow;
+    for (let i = rawData.length; i < maxLength; i++) {
+      rawData.push(null);
+    }
+    return rawData;
+  }
+
+  /**
    * @method: createRowData
    * @param rawData [array]
    * Creates Layout Data needed to create ListView DataSource
    */
   createLayoutData(rawData = [], cellsPerRow = 1) {
+    // fill rawData to match cellsPerRow so it fits grid nicely
+    rawData = this.fillCellsToMatchCellsPerRow(rawData, cellsPerRow);
     const layoutData = [];
     let index = 0;
     let currentRow = [];
     for (let i = 0; i < rawData.length; i++) {
       currentRow.push(rawData[i]);
-      if (currentRow.length === cellsPerRow || i === rawData.length) {
+      if (currentRow.length === cellsPerRow || i === rawData.length - 1) {
+
         layoutData.push({ index, cells: currentRow });
         currentRow = [];
         index++;
@@ -57,7 +72,7 @@ class DataList extends Component {
           rowData.cells.map((cell, i) => {
             return (
               <View style={[styles.cell, cellStyle]} key={i}>
-                <CellComponent {...cell} onPressHandler={onCellPress}/>
+                <CellComponent {...cell} onPressHandler={onCellPress} />
               </View>
             );
           })
