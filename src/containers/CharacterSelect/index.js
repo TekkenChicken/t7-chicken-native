@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Router } from '../Router';
+import { NavigationActions } from 'react-navigation';
 // dependencies
 import {
   View,
@@ -25,6 +25,9 @@ import { fetchInitialAppData } from '../../redux/actions/blob';
 
 
 class CharacterSelectScreen extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: null
+  });
 
   componentWillMount() {
     this.props.fetchCharacters();
@@ -37,7 +40,7 @@ class CharacterSelectScreen extends Component {
    *  (where it will be used to fetch data on a character)
    */
   navigateToCharacter(characterID) {
-    this.props.navigator.push(Router.getRoute('characterProfile', { characterID }));
+    this.props.navigation.navigate('characterProfile', { characterID: characterID });
   }
 
   render() {

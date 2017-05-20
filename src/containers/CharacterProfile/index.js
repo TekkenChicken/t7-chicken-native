@@ -32,7 +32,10 @@ import Styles from './styles';
 import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter } from '../../redux/actions/character';
 
 class CharacterProfileScreen extends Component {
-
+  static navigationOptions = ({ navigation }) => ({
+    title: `${navigation.state.params.characterID.toUpperCase()}`,
+    header: null
+  });
 
   componentWillMount() {
     // Fetch Data on character using character ID sent as props on navigate
@@ -46,7 +49,6 @@ class CharacterProfileScreen extends Component {
   render() {
     let {characterID, characterMoves, characterName} = this.props;
     const menu = <FilterMenuContainer />;
-
     return (
       <Drawer
         content={menu}
@@ -79,9 +81,11 @@ class CharacterProfileScreen extends Component {
 }
 
 /** MAPPING STATE **/
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  console.log(state, props);
   return {
-    characterMoves: state.character.moves,
+    characterID: props.navigation.state.params.characterID,
+    characterMoves: state.character.moves
   };
 };
 

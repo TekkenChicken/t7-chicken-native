@@ -6,12 +6,23 @@ import rootReducer from './reducers/index';
 
 const loggerMiddleware = createLogger();
 
+// const store = createStoreWithNavigation(
+//   rootReducer,
+//   applyMiddleware(thunk, loggerMiddleware),
+// );
 
-const createStoreWithNavigation = createNavigationEnabledStore(createStore);
+// const createMainStore = (navReducer) => {
+//   return createStore(
+//     createRootReducer(navReducer),
+//     undefined,
+//     applyMiddleware(thunk, loggerMiddleware)
+//   );
+// };
+//
+// export default createMainStore;
 
-const store = createStoreWithNavigation(
+export default createStore(
   rootReducer,
-  applyMiddleware(thunk, loggerMiddleware),
+  undefined,
+  applyMiddleware(thunk, loggerMiddleware)
 );
-
-export default store;
