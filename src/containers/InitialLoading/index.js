@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Router } from '../Router';
+import { NavigationActions } from 'react-navigation';
 // dependencies
 import {
   View,
@@ -16,6 +16,10 @@ import LoadingIcon from './loading-icon';
 import { fetchInitialAppData } from '../../redux/actions/blob';
 
 class LoadingScreen extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: null
+  });
+
   constructor() {
     super();
     this.state = {
@@ -34,7 +38,13 @@ class LoadingScreen extends Component {
     // if blob has finished fetching data
     if (this.props.blob.characterData && this.state.loading) {
       this.setState({loading: false});
-      setTimeout(() => this.props.navigator.replace(Router.getRoute('characterSelect')), 0);
+      const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'characterSelect'})
+        ]
+      });
+      setTimeout(() => this.props.navigation.dispatch(resetAction));
     }
   }
 

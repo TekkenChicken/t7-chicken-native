@@ -48,7 +48,6 @@ function character( state = initialState, action ) {
     case CHARACTER_SET_DATA:
       return Object.assign({}, state, action.data);
     case CHARACTER_RESET_DATA:
-      console.log("Reset", initialState);
       return initialState;
     case CHARACTER_APPLY_FILTERS:
       return Object.assign({}, state, { filter: state.filterQueue });
