@@ -17,7 +17,6 @@ class App extends Component {
     return (
       <Provider store={Store}>
         <View style={{flex: 1, backgroundColor: '#222'}}>
-          <Toolbar name={'Tekken Chicken'}/>
           <AppNavigator />
         </View>
       </Provider>

@@ -6,7 +6,7 @@ import { View,
   ScrollView,
   StyleSheet } from 'react-native';
 
-import Header1 from '../Header1/Header1';
+import FrameHeader from './FrameHeader';
 import PropertyList from '../PropertyList/PropertyList';
 import Inputs from '../Inputs/Inputs';
 
@@ -47,7 +47,7 @@ export default class FrameDataCard extends React.Component {
         </View>
          <ScrollView>
            {/* TODO: make this name dynamic */}
-          <Header1 title={'Rolling Death Cradle'}/>
+          <FrameHeader title={'Rolling Death Cradle'}/>
           <Text style={Styles.notation}>{this.props.notation}</Text>
           {/* TODO: change the data so we get each input as an array element */}
           <Inputs isCard={false} inputs={['1', '2']}/>

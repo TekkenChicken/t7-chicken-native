@@ -12,6 +12,6 @@ export default Styles = StyleSheet.create({
     alignItems: 'center'
   },
 	charList: {
-		marginTop: 8
+		marginTop: 20
 	}
 });

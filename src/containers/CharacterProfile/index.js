@@ -21,6 +21,7 @@ import CommandListBanner from '../../components/CharacterProfile/CommandListBann
 import MoveList from './MoveList';
 import FilterMenuContainer from './FilterMenuContainer';
 import Drawer from 'react-native-drawer';
+import { charProfileNavHeader } from '../../components/NavigationBar';
 
 //images
 import headshots from '../../img/headshots/index';
@@ -32,10 +33,9 @@ import Styles from './styles';
 import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter } from '../../redux/actions/character';
 
 class CharacterProfileScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.state.params.characterID.toUpperCase()}`,
-    header: null
-  });
+  static navigationOptions = ({ navigation }) => (
+    charProfileNavHeader(navigation.state.params.characterID)
+  );
 
   componentWillMount() {
     // Fetch Data on character using character ID sent as props on navigate

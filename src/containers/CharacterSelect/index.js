@@ -15,6 +15,7 @@ import {
 // components
 import CharacterList from './CharacterList';
 import SelectBanner from './SelectBanner';
+import { charSelectNavHeader } from '../../components/NavigationBar';
 
 // Styles
 import Styles from './styles';
@@ -23,11 +24,14 @@ import Styles from './styles';
 import { fetchCharacters } from '../../redux/actions/select';
 import { fetchInitialAppData } from '../../redux/actions/blob';
 
+const headerRight = [
+  {
+    key: "SearchButton"
+  }
+];
 
 class CharacterSelectScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    header: null
-  });
+  static navigationOptions = charSelectNavHeader(null, headerRight);
 
   componentWillMount() {
     this.props.fetchCharacters();
@@ -46,7 +50,6 @@ class CharacterSelectScreen extends Component {
   render() {
     return (
       <ScrollView style={Styles.mainContainer}>
-        <SelectBanner style={Styles.banner} />
         <CharacterList
           containerStyle={Styles.charList}
           characters={this.props.characters}
