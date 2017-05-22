@@ -33,28 +33,18 @@ import Styles from './styles';
 import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter } from '../../redux/actions/character';
 
 class CharacterProfileScreen extends Component {
-  static headerRight = [
-    {
-      key: "SearchButton"
-    },
-    {
-      key: "FilterButton",
-      onToggleFilter: () => CharacterProfileScreen.toggleDrawer()
-    }
-  ];
+  static navigationOptions = ({navigation}) => {
+    const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"}], [{key: "SearchButton"},{key: "FilterButton"}]);
+    const headerConfig = navigation.state.params.header || prelimConfig;
+    return headerConfig;
+  };
 
-  static navigationOptions = ({ navigation }) => (
-    charProfileNavHeader(navigation.state.params.characterID, null, CharacterProfileScreen.headerRight)
-  );
-
-  constructor() {
-    super();
-    this.state = {
-      drawerOpen: false
-    };
+  constructor(props) {
+    super(props);
   }
 
   componentWillMount() {
+    this.updateHeaderParams();
     // Fetch Data on character using character ID sent as props on navigate
     setTimeout(() => this.props.fetchDataForCharacter(this.props.characterID), 400);
   }
@@ -63,13 +53,38 @@ class CharacterProfileScreen extends Component {
     this.props.resetDataForCharacter();
   }
 
+  /**
+   *  Header Config Methods
+   */
+
+  // imperatively set the configuration params for header (so that the header is connected to component)
+  updateHeaderParams() {
+    const headerConfig = {
+      header: charProfileNavHeader(this.props.characterID, this.getHeaderLeftConfig(), this.getHeaderRightConfig())
+    };
+    this.props.navigation.setParams(headerConfig);
+  }
+
+  getHeaderLeftConfig() {
+    return [
+      { key: "BackButton", navigation: this.props.navigation }
+    ];
+  }
+
+  getHeaderRightConfig() {
+    return [
+      {
+        key: "SearchButton"
+      },
+      {
+        key: "FilterButton",
+        onToggleFilter: () => this.toggleDrawer()
+      }
+    ];
+  }
+
   toggleDrawer() {
-    if (this.state.drawerOpen) {
-      this.refs._drawer.close();
-    } else {
-      this.refs._drawer.open();
-    }
-    return this.setState({ drawerOpen: !this.state.drawerOpen });
+    return (this.refs._drawer._open) ? this.refs._drawer.close() : this.refs._drawer.open();
   }
 
   render() {

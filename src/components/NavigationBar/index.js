@@ -70,6 +70,7 @@ export const charProfileNavHeader = (title, leftComponents=[], rightComponents=[
     title: null,
     headerTitle: null,
     headerStyle: profileStyle,
+    headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
   };
 };
