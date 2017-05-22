@@ -31,7 +31,7 @@ const headerRight = [
 ];
 
 class CharacterSelectScreen extends Component {
-  static navigationOptions = charSelectNavHeader(null, headerRight);
+  static navigationOptions = charSelectNavHeader(headerRight);
 
   componentWillMount() {
     this.props.fetchCharacters();

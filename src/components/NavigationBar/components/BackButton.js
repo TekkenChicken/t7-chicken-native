@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
   button: {
     height: 20,
     width: 20,
-    marginTop: -12
   },
   icon: {
     color: '#f0aa23',
+    marginTop: -4,
     height: 20,
     width: 20,
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700'
   }
 });

@@ -21,6 +21,7 @@ import CommandListBanner from '../../components/CharacterProfile/CommandListBann
 import MoveList from './MoveList';
 import FilterMenuContainer from './FilterMenuContainer';
 import Drawer from 'react-native-drawer';
+import CustomText from '../../components/CustomText/CustomText';
 import { charProfileNavHeader } from '../../components/NavigationBar';
 
 //images
@@ -34,13 +35,16 @@ import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter
 
 class CharacterProfileScreen extends Component {
   static navigationOptions = ({navigation}) => {
-    const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"}], [{key: "SearchButton"},{key: "FilterButton"}]);
+    const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"},{key: "SearchButton"}], [,{key: "FilterButton"}]);
     const headerConfig = navigation.state.params.header || prelimConfig;
     return headerConfig;
   };
 
   constructor(props) {
     super(props);
+    this.state = {
+      scrollHeader: false
+    }
   }
 
   componentWillMount() {
@@ -67,19 +71,14 @@ class CharacterProfileScreen extends Component {
 
   getHeaderLeftConfig() {
     return [
-      { key: "BackButton", navigation: this.props.navigation }
+      { key: "BackButton", navigation: this.props.navigation },
+      { key: "SearchButton" }
     ];
   }
 
   getHeaderRightConfig() {
     return [
-      {
-        key: "SearchButton"
-      },
-      {
-        key: "FilterButton",
-        onToggleFilter: () => this.toggleDrawer()
-      }
+      { key: "FilterButton", onToggleFilter: () => this.toggleDrawer() }
     ];
   }
 
@@ -87,9 +86,19 @@ class CharacterProfileScreen extends Component {
     return (this.refs._drawer._open) ? this.refs._drawer.close() : this.refs._drawer.open();
   }
 
+  handleScroll(e) {
+    console.log(e.nativeEvent.contentOffset.y, this.state.scrollHeader);
+    if (e.nativeEvent.contentOffset.y >= 80 && !this.state.scrollHeader) {
+      this.setState({ scrollHeader: true });
+    } else if (e.nativeEvent.contentOffset.y < 80 && this.state.scrollHeader) {
+      this.setState({ scrollHeader: false });
+    }
+  }
+
   render() {
     let {characterID, characterMoves, characterName} = this.props;
     const menu = <FilterMenuContainer />;
+    console.log()
     return (
       <Drawer
         ref="_drawer"
@@ -110,12 +119,18 @@ class CharacterProfileScreen extends Component {
         onClose={() => this.props.triggerFilterUpdate()}
       >
         <View style={Styles.mainContainer}>
-          <ScrollView style={Styles.scrollContainer}>
+          <ScrollView
+            style={Styles.scrollContainer}
+            scrollEventThrottle={20}
+            onScroll={(e) => this.handleScroll(e)}>
               <ProfileBackDrop image={null} />
               <ProfilePicture image={headshots[this.props.characterID]} />
               <ProfileName name={characterID.toUpperCase()} />
               <MoveList moves={characterMoves} />
           </ScrollView>
+          <View style={[Styles.profileHeader, (this.state.scrollHeader) ? Styles.scroll : '']}>
+            <CustomText textStyle={Styles.profileHeaderText}>{characterID.toUpperCase()}</CustomText>
+          </View>
         </View>
       </Drawer>
     );

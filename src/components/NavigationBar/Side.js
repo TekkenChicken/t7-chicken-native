@@ -32,15 +32,14 @@ class NavigationSide extends Component {
 const Styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingRight: 15,
-    paddingLeft: 15,
-    marginTop: 2
+    paddingRight: 18,
+    paddingLeft: 18,
   },
   rightComponent: {
-    marginLeft: 15
+    marginLeft: 12
   },
   leftComponent: {
-    marginRight: 15
+    marginRight: 12
   }
 });
 

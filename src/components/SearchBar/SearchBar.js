@@ -8,7 +8,8 @@ import {
   StyleSheet,
   Button,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  Platform
 } from 'react-native';
 
 //action imports
@@ -21,30 +22,25 @@ class SearchBar extends Component {
     super(props);
 
   }
-  componentWillReceiveProps() {
-    console.log('props recieved');
+
+  componentDidMount() {
+    this.refs._input.focus();
   }
 
   characterFilter = (text) => {
     this.props.searchCharacters(text);
   }
 
-  hideSearch = () => {
-    console.log('Search hidden');
-  }
   render() {
     return (
       <View style={Styles.mainContainer}>
         <TextInput
+          ref="_input"
           placeholder="Search"
-          placeholderTextColor="#f0aa23"
+          placeholderTextColor='rgb(159, 159, 157)'
           style={Styles.input}
           onChangeText={(text) => this.characterFilter(text)}
         />
-        <TouchableHighlight
-          onPress={this.props.toggle}>
-          <Image style={Styles.close} source={require('./../../img/icons/close.png')}/>
-        </TouchableHighlight>
       </View>
     )
   }
@@ -54,26 +50,28 @@ const Styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     flexDirection: 'row',
-    height: 55,
-		backgroundColor: 'black',
-    paddingTop: 10,
-    paddingLeft: 60,
+		backgroundColor: 'transparent',
+    alignItems: 'center',
+    paddingTop: 12,
+    paddingLeft: 40,
+    ...Platform.select({
+      ios: {
+        height: 64,
+      },
+      android: {
+        height: 54,
+      },
+    }),
   },
   input: {
-    borderColor: 'gray',
-    borderWidth: 2,
+    alignSelf: "center",
     color: '#f0aa23',
-    paddingLeft: 10,
+    fontFamily: 'Exo2-Light',
+    fontSize: 16,
     width: 270,
-    height: 35,
-    backgroundColor: 'rgba(50,50,50, 0.5)',
+    height: 30,
+    backgroundColor: '#260309',
     borderRadius: 10
-  },
-  close: {
-    width: 20,
-    height: 20,
-    marginTop: 10,
-    marginLeft: 10
   }
 });
 

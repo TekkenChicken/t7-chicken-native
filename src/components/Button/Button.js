@@ -5,7 +5,6 @@ import { View, Text, TouchableHighlight } from 'react-native';
 class Button extends Component {
   render() {
     const { onPress, title, buttonStyle, titleStyle, children } = this.props;
-    console.log(children);
     return (
       <TouchableHighlight
         style={buttonStyle}

@@ -24,8 +24,8 @@ const renderSide = (components, side) => (
 
 const headerStyles = {
   common: {
-    //backgroundColor: '#380b12',
-    backgroundColor: '#111',
+    backgroundColor: '#260309',
+    //backgroundColor: '#111',
     borderBottomWidth: 0,
     shadowOpacity: 0,
     shadowOffset: {
@@ -56,7 +56,7 @@ export const charSelectNavHeader = (leftComponents = [], rightComponents = []) =
   return {
     title: "Tekken Chicken",
     headerTitle: renderTitle("Tekken Chicken"),
-    headerLeft: null,
+    headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right"),
     headerStyle: headerStyles.common,
     gesturesEnabled: false

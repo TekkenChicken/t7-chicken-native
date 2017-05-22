@@ -5,7 +5,6 @@ import { NavigationActions } from 'react-navigation';
 // dependencies
 import {
   View,
-  Modal,
   StyleSheet
 } from 'react-native';
 
@@ -61,7 +60,7 @@ class LoadingScreen extends Component {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222'
+    backgroundColor: '#111'
   },
 });
 
