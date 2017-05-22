@@ -44,23 +44,15 @@ class LoadingScreen extends Component {
           NavigationActions.navigate({ routeName: 'characterSelect'})
         ]
       });
-      setTimeout(() => this.props.navigation.dispatch(resetAction));
+      // setTimeout(() => this.props.navigation.dispatch(resetAction));
+      setTimeout(() => this.props.navigation.navigate('characterSelect'), 0);
     }
   }
 
   render() {
     return (
       <View style={style.container}>
-        <Modal
-          animationType={"fade"}
-          transparent={false}
-          visible={this.state.loading}
-          onRequestClose={() => {}}
-        >
-          <View style={style.container}>
-            <LoadingIcon />
-          </View>
-        </Modal>
+        <LoadingIcon />
       </View>
     );
   }

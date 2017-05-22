@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 
 // components
-import ProfileBanner from '../../components/CharacterProfile/ProfileBanner';
+import ProfileBackDrop from '../../components/CharacterProfile/ProfileBackDrop';
 import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
 import ProfileName from '../../components/CharacterProfile/ProfileName';
 import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
@@ -33,9 +33,26 @@ import Styles from './styles';
 import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter } from '../../redux/actions/character';
 
 class CharacterProfileScreen extends Component {
+  static headerRight = [
+    {
+      key: "SearchButton"
+    },
+    {
+      key: "FilterButton",
+      onToggleFilter: () => CharacterProfileScreen.toggleDrawer()
+    }
+  ];
+
   static navigationOptions = ({ navigation }) => (
-    charProfileNavHeader(navigation.state.params.characterID)
+    charProfileNavHeader(navigation.state.params.characterID, null, CharacterProfileScreen.headerRight)
   );
+
+  constructor() {
+    super();
+    this.state = {
+      drawerOpen: false
+    };
+  }
 
   componentWillMount() {
     // Fetch Data on character using character ID sent as props on navigate
@@ -46,11 +63,21 @@ class CharacterProfileScreen extends Component {
     this.props.resetDataForCharacter();
   }
 
+  toggleDrawer() {
+    if (this.state.drawerOpen) {
+      this.refs._drawer.close();
+    } else {
+      this.refs._drawer.open();
+    }
+    return this.setState({ drawerOpen: !this.state.drawerOpen });
+  }
+
   render() {
     let {characterID, characterMoves, characterName} = this.props;
     const menu = <FilterMenuContainer />;
     return (
       <Drawer
+        ref="_drawer"
         content={menu}
         type="overlay"
         side="right"
@@ -68,9 +95,9 @@ class CharacterProfileScreen extends Component {
         onClose={() => this.props.triggerFilterUpdate()}
       >
         <View style={Styles.mainContainer}>
-          <ScrollView>
-              <View style={Styles.backDrop}/>
-            <ProfilePicture image={headshots[this.props.characterID]} />
+          <ScrollView style={Styles.scrollContainer}>
+              <ProfileBackDrop image={null} />
+              <ProfilePicture image={headshots[this.props.characterID]} />
               <ProfileName name={characterID.toUpperCase()} />
               <MoveList moves={characterMoves} />
           </ScrollView>

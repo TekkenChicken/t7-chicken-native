@@ -17,7 +17,7 @@ class LoadingIcon extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.fadeInIcon(), 300);
+    setTimeout(() => this.fadeInIcon(), 250);
   }
 
   fadeInIcon() {

@@ -10,18 +10,19 @@ class NavigationSide extends Component {
    *  @param: components [array] -- contains objects with props that specify which components to render
    *  object in array: { key: Component Name, ...props }
    */
-  renderComponents(components) {
-    return components.map((component) => {
+  renderComponents(components, side) {
+    const componentMargin = (side === "right") ? Styles.rightComponent : Styles.leftComponent;
+    return components.map((component, i) => {
       const SideComponent = SideComponentConfig[component.key];
-      return <SideComponent {...component} />;
+      return (<View style={componentMargin} key={i}><SideComponent {...component} /></View>);
     });
   }
 
   render() {
-    const { components } = this.props;
+    const { components, side } = this.props;
     return (
-      <View>
-        {this.renderComponents(components)}
+      <View style={Styles.container}>
+        {this.renderComponents(components, side)}
       </View>
     );
   }
@@ -30,8 +31,16 @@ class NavigationSide extends Component {
 
 const Styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingRight: 15,
+    paddingLeft: 15,
+    marginTop: 2
+  },
+  rightComponent: {
+    marginLeft: 15
+  },
+  leftComponent: {
+    marginRight: 15
   }
 });
 

@@ -1,16 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 // dependencies
-import { Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight } from 'react-native';
 
 class Button extends Component {
   render() {
-    const { onPress, title, buttonStyle, titleStyle } = this.props;
+    const { onPress, title, buttonStyle, titleStyle, children } = this.props;
+    console.log(children);
     return (
       <TouchableHighlight
         style={buttonStyle}
         onPress={onPress}
       >
-        <Text style={titleStyle}>{title}</Text>
+        <View>
+          <Text style={titleStyle}>{title}</Text>
+          {children}
+        </View>
       </TouchableHighlight>
     );
   }

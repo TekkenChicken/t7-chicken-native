@@ -17,8 +17,8 @@ const renderTitle = (title) => (
  *  @param: components [array] -- array of keys for components to render on the left
  *  each item in the array will be an object with props (including "key" correlates to component name)
  */
-const renderSide = (components) => (
-  <NavigationSide components={components} />
+const renderSide = (components, side) => (
+  <NavigationSide components={components} side={side} />
 );
 
 
@@ -56,8 +56,10 @@ export const charSelectNavHeader = (leftComponents = [], rightComponents = []) =
   return {
     title: "Tekken Chicken",
     headerTitle: renderTitle("Tekken Chicken"),
-    headerRight: renderSide(rightComponents),
-    headerStyle: headerStyles.common
+    headerLeft: null,
+    headerRight: renderSide(rightComponents, "right"),
+    headerStyle: headerStyles.common,
+    gesturesEnabled: false
   };
 };
 
@@ -67,6 +69,7 @@ export const charProfileNavHeader = (title, leftComponents=[], rightComponents=[
   return {
     title: null,
     headerTitle: null,
-    headerStyle: profileStyle
+    headerStyle: profileStyle,
+    headerRight: renderSide(rightComponents, "right")
   };
 };

@@ -7,13 +7,13 @@ class NavigationTitle extends Component {
   render() {
     const { text } = this.props;
     return (
-      <CustomText>{text.toUpperCase()}</CustomText>
+      <CustomText textStyle={Styles.title}>{text.toUpperCase()}</CustomText>
     );
   }
 }
 
 const Styles = StyleSheet.create({
-  initial: {
+  title: {
     fontWeight: '700'
   }
 });

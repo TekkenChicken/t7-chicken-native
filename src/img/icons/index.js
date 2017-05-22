@@ -11,7 +11,8 @@ const icons = {
   search: require('./search.png'),
   star: require('./star.png'),
   tailspin: require('./tailspin.png'),
-  tiles: require('./th.png')
+  tiles: require('./th.png'),
+  close: require('./close.png')
 };
 
 export default icons;

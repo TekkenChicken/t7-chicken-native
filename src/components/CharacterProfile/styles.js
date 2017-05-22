@@ -3,9 +3,6 @@ import {
 } from 'react-native';
 
 export default Styles = StyleSheet.create({
-  viewContainer: {
-
-  },
 	commandListContainer: {
 		backgroundColor: 'rgb(65, 18, 18)',
 		height: 40,
@@ -27,7 +24,7 @@ export default Styles = StyleSheet.create({
 		position: 'absolute',
 		height: 120,
 		width: 70,
-		top: 0,
+		top: 90,
 		left: 10,
 		borderColor: 'black',
 		borderWidth: 1,

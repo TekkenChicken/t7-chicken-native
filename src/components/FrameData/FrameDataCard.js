@@ -1,14 +1,20 @@
 import React from 'react';
-import { View,
+import {
+  View,
   Text,
+  Image,
   TouchableHighlight,
   Modal,
   ScrollView,
-  StyleSheet } from 'react-native';
+  StyleSheet
+} from 'react-native';
 
 import FrameHeader from './FrameHeader';
 import PropertyList from '../PropertyList/PropertyList';
 import Inputs from '../Inputs/Inputs';
+import Button from '../Button/Button';
+
+import icons from '../../img/icons/';
 
 
 export default class FrameDataCard extends React.Component {
@@ -41,29 +47,29 @@ export default class FrameDataCard extends React.Component {
          visible={this.state.modalVisible}
          onRequestClose={() => {alert("Modal has been closed.")}}
          >
-        <View style={Styles.modal}>
-        <View>
-          <Text>Video goes here</Text>
-        </View>
-         <ScrollView>
-           {/* TODO: make this name dynamic */}
-          <FrameHeader title={'Rolling Death Cradle'}/>
-          <Text style={Styles.notation}>{this.props.notation}</Text>
-          {/* TODO: change the data so we get each input as an array element */}
-          <Inputs isCard={false} inputs={['1', '2']}/>
-          {/* TODO: get attack properties from data source */}
-          <PropertyList type={'special'} properties={['H', 'T']}/>
-          <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} speed={this.props.speed}/>
-          <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch}/>
-          <TouchableHighlight
-           onPress={() => {
-             this.setModalVisible(!this.state.modalVisible)
-          }}>
-          <Text style={Styles.close}>Close</Text>
-          </TouchableHighlight>
-         </ScrollView>
-        </View>
-       </Modal>
+          <View style={Styles.modal}>
+            <View style={Styles.videoContainer}>
+              <Text style={{color: '#fff'}}>Video goes here</Text>
+            </View>
+            <ScrollView>
+               {/* TODO: make this name dynamic */}
+              <FrameHeader title={'Move Name'}/>
+              <Text style={Styles.notation}>{this.props.notation}</Text>
+              {/* TODO: change the data so we get each input as an array element */}
+              <Inputs isCard={false} inputs={['1', '2']}/>
+              {/* TODO: get attack properties from data source */}
+              <PropertyList type={'special'} properties={['H', 'T']}/>
+              <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} speed={this.props.speed}/>
+              <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch}/>
+            </ScrollView>
+          </View>
+          <Button
+            onPress={() => this.setModalVisible(!this.state.modalVisible)}
+            buttonStyle={Styles.closeButton}
+          >
+            <Image source={icons['close']} style={Styles.closeButtonIcon}/>
+          </Button>
+        </Modal>
       </View>
     )
   }
@@ -104,20 +110,16 @@ const Styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center'
   },
-  close: {
-    textAlign: 'center',
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 10,
-    marginTop: 30,
-    paddingTop: 5,
-    height: 40,
-    fontSize: 24,
+  closeButton: {
+    position: 'absolute',
+    top: 30,
+    right: 15
+  },
+  closeButtonIcon: {
+    height: 12,
+    width: 12
   },
   modal: {
-    marginTop: 22,
-    paddingTop: 30,
-    paddingBottom: 30,
     flex: 1,
     backgroundColor: 'rgb(132, 18, 18)',
   },
@@ -128,5 +130,9 @@ const Styles = StyleSheet.create({
     marginBottom: 5,
     paddingLeft: 35,
     fontFamily: 'Exo2-Regular'
+  },
+  videoContainer: {
+    backgroundColor: '#111',
+    minHeight: 120
   }
 });

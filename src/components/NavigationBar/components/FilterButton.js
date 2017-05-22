@@ -10,16 +10,15 @@ import {
 
 import icons from '../../../img/icons/';
 
-class SearchButton extends Component {
-  // TODO: method to toggle search bar and search bar with onSearchCallback
+class FilterButton extends Component {
   render() {
     return (
       <TouchableHighlight
-        onPress={this.props.func}
+        onPress={this.props.onToggleFilter}
         style={styles.button}>
         <Image
           style={styles.icon}
-          source={icons['searchFa']}
+          source={icons['filter']}
         />
       </TouchableHighlight>
     );
@@ -29,7 +28,7 @@ class SearchButton extends Component {
 const styles = StyleSheet.create({
   button: {
     height: 15,
-    width: 15,
+    width: 15
   },
   icon: {
     resizeMode: 'contain',
@@ -38,8 +37,8 @@ const styles = StyleSheet.create({
   }
 });
 
-SearchButton.propTypes = {
-  onSearchCallback: PropTypes.func
+FilterButton.propTypes = {
+  onToggleFilter: PropTypes.func
 }
 
-export default SearchButton;
+export default FilterButton;
