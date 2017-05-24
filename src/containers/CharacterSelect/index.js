@@ -14,7 +14,6 @@ import {
 
 // components
 import CharacterList from './CharacterList';
-import SelectBanner from './SelectBanner';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { charSelectNavHeader } from '../../components/NavigationBar';
 
@@ -51,7 +50,7 @@ class CharacterSelectScreen extends Component {
   render() {
     return (
       <View style={Styles.mainContainer}>
-        <View style={Styles.searchContainer}>
+        <View>
           <SearchBar onChange={this.props.searchCharacters}/>
         </View>
         <ScrollView

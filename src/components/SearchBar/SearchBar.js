@@ -46,9 +46,9 @@ class SearchBar extends Component {
   }
 
   blurSearch() {
-    this.refs._input.blur();
     this.refs._input.clear();
     this.props.onChange('');
+    this.refs._input.blur();
   }
 
   render() {
@@ -79,7 +79,7 @@ class SearchBar extends Component {
           />
           <Animated.View style={[Styles.cancel, {marginLeft: margin, opacity: opacity}] }>
             <Button
-              onPress={() => this.animateOnSearchFocus(false, () => this.blurSearch)}
+              onPress={() => this.animateOnSearchFocus(false, () => this.blurSearch())}
               title={"Cancel"}
               titleStyle={Styles.cancelTitle}
               underlayColor="transparent"
