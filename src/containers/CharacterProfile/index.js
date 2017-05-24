@@ -87,7 +87,6 @@ class CharacterProfileScreen extends Component {
   }
 
   handleScroll(e) {
-    console.log(e.nativeEvent.contentOffset.y, this.state.scrollHeader);
     if (e.nativeEvent.contentOffset.y >= 80 && !this.state.scrollHeader) {
       this.setState({ scrollHeader: true });
     } else if (e.nativeEvent.contentOffset.y < 80 && this.state.scrollHeader) {
@@ -98,7 +97,6 @@ class CharacterProfileScreen extends Component {
   render() {
     let {characterID, characterMoves, characterName} = this.props;
     const menu = <FilterMenuContainer />;
-    console.log()
     return (
       <Drawer
         ref="_drawer"
