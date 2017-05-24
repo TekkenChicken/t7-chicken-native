@@ -10,13 +10,16 @@ import {
 
 import icons from '../../../img/icons/';
 
-class BackButton extends Component {
+class MenuButton extends Component {
   render() {
     return (
       <TouchableHighlight
-        onPress={() => this.props.navigation.goBack()}
+        onPress={this.props.onToggleFilter}
         style={styles.button}>
-        <Text style={styles.icon}>{"<"}</Text>
+        <Image
+          style={styles.icon}
+          source={icons['menu']}
+        />
       </TouchableHighlight>
     );
   }
@@ -24,21 +27,18 @@ class BackButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    height: 20,
-    width: 20,
+    height: 18,
+    width: 18
   },
   icon: {
-    color: '#f0aa23',
-    marginTop: -5,
-    height: 20,
-    width: 20,
-    fontSize: 20,
-    fontWeight: '700'
+    resizeMode: 'contain',
+    height: 18,
+    width: 18
   }
 });
 
-BackButton.propTypes = {
+MenuButton.propTypes = {
   onToggleFilter: PropTypes.func
 }
 
-export default BackButton;
+export default MenuButton;

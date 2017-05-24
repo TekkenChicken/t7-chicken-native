@@ -17,6 +17,7 @@ import {
 import ProfileBackDrop from '../../components/CharacterProfile/ProfileBackDrop';
 import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
 import ProfileName from '../../components/CharacterProfile/ProfileName';
+import ProfileHeader from '../../components/CharacterProfile/ProfileHeader';
 import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 import MoveList from './MoveList';
 import FilterMenuContainer from './FilterMenuContainer';
@@ -35,7 +36,7 @@ import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter
 
 class CharacterProfileScreen extends Component {
   static navigationOptions = ({navigation}) => {
-    const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"},{key: "SearchButton"}], [,{key: "FilterButton"}]);
+    const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"}], [,{key: "FilterButton"}]);
     const headerConfig = navigation.state.params.header || prelimConfig;
     return headerConfig;
   };
@@ -71,8 +72,7 @@ class CharacterProfileScreen extends Component {
 
   getHeaderLeftConfig() {
     return [
-      { key: "BackButton", navigation: this.props.navigation },
-      { key: "SearchButton" }
+      { key: "BackButton", navigation: this.props.navigation }
     ];
   }
 
@@ -119,18 +119,20 @@ class CharacterProfileScreen extends Component {
         onClose={() => this.props.triggerFilterUpdate()}
       >
         <View style={Styles.mainContainer}>
+          <ProfileHeader
+            containerStyle={Styles.header}
+            scroll={this.state.scrollHeader}
+            name={characterID.toUpperCase()} />
           <ScrollView
             style={Styles.scrollContainer}
             scrollEventThrottle={20}
-            onScroll={(e) => this.handleScroll(e)}>
+            onScroll={(e) => this.handleScroll(e)}
+            keyboardShouldPersistTaps={'always'}>
               <ProfileBackDrop image={null} />
               <ProfilePicture image={headshots[this.props.characterID]} />
               <ProfileName name={characterID.toUpperCase()} />
               <MoveList moves={characterMoves} />
           </ScrollView>
-          <View style={[Styles.profileHeader, (this.state.scrollHeader) ? Styles.scroll : '']}>
-            <CustomText textStyle={Styles.profileHeaderText}>{characterID.toUpperCase()}</CustomText>
-          </View>
         </View>
       </Drawer>
     );

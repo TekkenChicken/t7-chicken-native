@@ -44,7 +44,7 @@ class SearchButton extends Component {
       this.state.searchAnimate,
       {
         toValue: end,
-        duration: 100,
+        duration: 200,
         easing: Easing.out(Easing.quad)
       }
     ).start(() => callback());

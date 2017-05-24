@@ -40,7 +40,7 @@ class CharacterCard extends Component {
 const Styles = StyleSheet.create({
   card: {
     flex: 1,
-    paddingBottom: 20
+    paddingBottom: 15
   },
   empty: {
     opacity: 0

@@ -15,18 +15,19 @@ import {
 // components
 import CharacterList from './CharacterList';
 import SelectBanner from './SelectBanner';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import { charSelectNavHeader } from '../../components/NavigationBar';
 
 // Styles
 import Styles from './styles';
 
 // dispatch actions
-import { fetchCharacters } from '../../redux/actions/select';
+import { fetchCharacters, searchCharacters  } from '../../redux/actions/select';
 import { fetchInitialAppData } from '../../redux/actions/blob';
 
 const headerRight = [
   {
-    key: "SearchButton"
+    key: "MenuButton"
   }
 ];
 
@@ -49,13 +50,20 @@ class CharacterSelectScreen extends Component {
 
   render() {
     return (
-      <ScrollView style={Styles.mainContainer}>
-        <CharacterList
-          containerStyle={Styles.charList}
-          characters={this.props.characters}
-          onCharacterSelect={(id, image) => this.navigateToCharacter(id)}
-        />
-      </ScrollView>
+      <View style={Styles.mainContainer}>
+        <View style={Styles.searchContainer}>
+          <SearchBar onChange={this.props.searchCharacters}/>
+        </View>
+        <ScrollView
+          style={Styles.scrollContainer}
+          keyboardShouldPersistTaps="always">
+          <CharacterList
+            containerStyle={Styles.charList}
+            characters={this.props.characters}
+            onCharacterSelect={(id, image) => this.navigateToCharacter(id)}
+          />
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -72,6 +80,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchCharacters: () => {
       dispatch(fetchCharacters());
+    },
+    searchCharacters: (searchQuery) => {
+      dispatch(searchCharacters(searchQuery));
     }
   };
 };

@@ -1,5 +1,7 @@
 import {
-	StyleSheet
+	StyleSheet,
+	Dimensions,
+	Platform
 } from 'react-native';
 
 export default Styles = StyleSheet.create({
@@ -13,5 +15,16 @@ export default Styles = StyleSheet.create({
   },
 	charList: {
 		marginTop: 10
+	},
+	searchContainer: {
+		width: Dimensions.get('window').width,
+		...Platform.select({
+      ios: {
+        height: 64,
+      },
+      android: {
+        height: 54,
+      },
+    }),
 	}
 });
