@@ -12,7 +12,6 @@
     ]
   },
   "dependencies": {
-    "@exponent/ex-navigation": "2.1.5",
     "babel": "^6.5.2",
     "babel-core": "^6.18.2",
     "babel-preset-react-native": "^1.9.0",
