@@ -1,8 +1,8 @@
 // dependencies
-import { StackNavigator } from 'react-navigation';
-import Routes from '../../containers/Router';
+import { DrawerNavigator } from 'react-navigation';
+import Router from '../../containers/Router';
 
-const AppNavigator = StackNavigator(Routes);
+const AppNavigator = DrawerNavigator(Router.MainRoutes);
 
 const navigation = (state, action) => {
   const nextState = AppNavigator.router.getStateForAction(action, state);

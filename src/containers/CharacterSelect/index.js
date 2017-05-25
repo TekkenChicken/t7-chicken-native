@@ -24,14 +24,17 @@ import Styles from './styles';
 import { fetchCharacters, searchCharacters  } from '../../redux/actions/select';
 import { fetchInitialAppData } from '../../redux/actions/blob';
 
-const headerRight = [
-  {
-    key: "MenuButton"
-  }
-];
 
 class CharacterSelectScreen extends Component {
-  static navigationOptions = charSelectNavHeader(headerRight);
+  static navigationOptions = ({navigation}) => {
+    const headerLeft = [
+      {
+        key: "MenuButton",
+        onPress: () => navigation.navigate('DrawerOpen')
+      }
+    ];
+    return charSelectNavHeader(headerLeft);
+  };
 
   componentWillMount() {
     this.props.fetchCharacters();

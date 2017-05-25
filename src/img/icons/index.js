@@ -12,7 +12,8 @@ const icons = {
   star: require('./star.png'),
   tailspin: require('./tailspin.png'),
   tiles: require('./th.png'),
-  close: require('./close.png')
+  close: require('./close.png'),
+  logo: require('./logo.png')
 };
 
 export default icons;

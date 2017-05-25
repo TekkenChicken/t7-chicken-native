@@ -14,7 +14,7 @@ class MenuButton extends Component {
   render() {
     return (
       <TouchableHighlight
-        onPress={this.props.onToggleFilter}
+        onPress={this.props.onPress}
         style={styles.button}>
         <Image
           style={styles.icon}
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 });
 
 MenuButton.propTypes = {
-  onToggleFilter: PropTypes.func
+  onPress: PropTypes.func
 }
 
 export default MenuButton;

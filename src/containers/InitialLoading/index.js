@@ -16,7 +16,8 @@ import { fetchInitialAppData } from '../../redux/actions/blob';
 
 class LoadingScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    header: null
+    header: null,
+    gesturesEnabled: false,
   });
 
   constructor() {
@@ -40,7 +41,7 @@ class LoadingScreen extends Component {
       const resetAction = NavigationActions.reset({
         index: 0,
         actions: [
-          NavigationActions.navigate({ routeName: 'characterSelect'})
+          NavigationActions.navigate({ routeName: 'Main'})
         ]
       });
       // setTimeout(() => this.props.navigation.dispatch(resetAction));

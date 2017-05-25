@@ -23,6 +23,7 @@ import MoveList from './MoveList';
 import FilterMenuContainer from './FilterMenuContainer';
 import Drawer from 'react-native-drawer';
 import CustomText from '../../components/CustomText/CustomText';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import { charProfileNavHeader } from '../../components/NavigationBar';
 
 //images

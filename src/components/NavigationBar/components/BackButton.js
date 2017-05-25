@@ -5,20 +5,24 @@ import {
   Button,
   Text,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  Platform
 } from 'react-native';
 
 import icons from '../../../img/icons/';
 
 class BackButton extends Component {
   render() {
-    return (
-      <TouchableHighlight
-        onPress={() => this.props.navigation.goBack()}
-        style={styles.button}>
-        <Text style={styles.icon}>{"<"}</Text>
-      </TouchableHighlight>
-    );
+    if (Platform.OS === "ios") {
+      return (
+        <TouchableHighlight
+          onPress={() => this.props.navigation.goBack()}
+          style={styles.button}>
+          <Text style={styles.icon}>{"<"}</Text>
+        </TouchableHighlight>
+      );
+    }
+    return null;
   }
 };
 

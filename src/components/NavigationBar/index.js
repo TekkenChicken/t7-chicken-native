@@ -54,12 +54,14 @@ const headerStyles = {
 // Character Select Screen Header Config
 export const charSelectNavHeader = (leftComponents = [], rightComponents = []) => {
   return {
+    drawerLabel: 'Characters',
     title: "Tekken Chicken",
+    mode: 'modal',
     headerTitle: renderTitle("Tekken Chicken"),
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right"),
     headerStyle: headerStyles.common,
-    gesturesEnabled: false
+    gesturesEnabled: false,
   };
 };
 
@@ -72,5 +74,18 @@ export const charProfileNavHeader = (title, leftComponents=[], rightComponents=[
     headerStyle: profileStyle,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
+  };
+};
+
+// About Screen Header Config
+export const aboutNavHeader = (leftComponents = [], rightComponents = []) => {
+  //const profileStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
+  return {
+    drawerLabel: 'About',
+    title: "About",
+    headerTitle: renderTitle("About"),
+    headerLeft: renderSide(leftComponents, "left"),
+    headerRight: renderSide(rightComponents, "right"),
+    headerStyle: headerStyles.common
   };
 };
