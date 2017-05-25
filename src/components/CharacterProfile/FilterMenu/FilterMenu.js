@@ -66,13 +66,14 @@ class FilterMenu extends Component {
 
 const Styles = StyleSheet.create({
   menuContainer: {
-    paddingBottom: 500,
-    backgroundColor: '#960b11'
+    paddingBottom: 580,
+    backgroundColor: '#960b11',
   },
   menuHeader: {
     flex: 1,
     flexDirection: 'row',
-    paddingTop: 40,
+    zIndex: 9999,
+    paddingTop: 90,
     paddingLeft: 10,
     paddingBottom: 35,
     backgroundColor: '#240202'

@@ -1,19 +1,17 @@
-// import { createRouter } from '@exponent/ex-navigation';
-import { StackNavigator } from 'react-navigation';
 // components
-import About from './About/About';
-import InitialLoading from './InitialLoading';
+import About from './About/';
+import InitialLoading from './InitialLoading/';
 import CharacterSelect from './CharacterSelect/';
 import CharacterProfile from './CharacterProfile/';
 
-const routes = {
+const MainRoutes = {
   characterSelect: { screen: CharacterSelect },
   characterProfile: { screen: CharacterProfile },
 	initialLoading: { screen: InitialLoading }
 };
 
-const config = {
-	initialRouteName: "initialLoading"
+const AboutRoute = {
+  about: { screen: About }
 };
 
-export default routes;
+export default { MainRoutes, AboutRoute };

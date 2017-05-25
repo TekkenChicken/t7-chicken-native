@@ -91,6 +91,7 @@ class DataList extends Component {
     return(
       <ListView
         style={mainStyle}
+        keyboardShouldPersistTaps="always"
         contentContainerStyle={[styles.container, containerStyle]}
         dataSource={dataSource}
         renderRow={(rowData) => this._renderRow(rowData, cellComponent, rowStyle, cellStyle, onCellPress)}

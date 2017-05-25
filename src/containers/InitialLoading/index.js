@@ -5,7 +5,6 @@ import { NavigationActions } from 'react-navigation';
 // dependencies
 import {
   View,
-  Modal,
   StyleSheet
 } from 'react-native';
 
@@ -17,7 +16,8 @@ import { fetchInitialAppData } from '../../redux/actions/blob';
 
 class LoadingScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    header: null
+    header: null,
+    gesturesEnabled: false,
   });
 
   constructor() {
@@ -41,26 +41,18 @@ class LoadingScreen extends Component {
       const resetAction = NavigationActions.reset({
         index: 0,
         actions: [
-          NavigationActions.navigate({ routeName: 'characterSelect'})
+          NavigationActions.navigate({ routeName: 'Main'})
         ]
       });
-      setTimeout(() => this.props.navigation.dispatch(resetAction));
+      setTimeout(() => this.props.navigation.dispatch(resetAction), 0);
+      //setTimeout(() => this.props.navigation.navigate('characterSelect'), 0);
     }
   }
 
   render() {
     return (
       <View style={style.container}>
-        <Modal
-          animationType={"fade"}
-          transparent={false}
-          visible={this.state.loading}
-          onRequestClose={() => {}}
-        >
-          <View style={style.container}>
-            <LoadingIcon />
-          </View>
-        </Modal>
+        <LoadingIcon />
       </View>
     );
   }
@@ -69,7 +61,7 @@ class LoadingScreen extends Component {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222'
+    backgroundColor: '#111'
   },
 });
 

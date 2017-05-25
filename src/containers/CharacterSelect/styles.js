@@ -1,5 +1,7 @@
 import {
-	StyleSheet
+	StyleSheet,
+	Dimensions,
+	Platform
 } from 'react-native';
 
 export default Styles = StyleSheet.create({
@@ -12,6 +14,6 @@ export default Styles = StyleSheet.create({
     alignItems: 'center'
   },
 	charList: {
-		marginTop: 8
+		marginTop: 10
 	}
 });

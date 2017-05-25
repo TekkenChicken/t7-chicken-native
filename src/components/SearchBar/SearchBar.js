@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { Component, PropTypes }  from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
@@ -6,74 +6,151 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Button,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  Platform,
+  Dimensions,
+  Animated,
+  Easing
 } from 'react-native';
 
-//action imports
-import { searchCharacters } from '../../redux/actions/select';
-
+import icons from '../../img/icons/';
+import Button from '../Button/Button';
 
 class SearchBar extends Component {
-
-  constructor(props) {
-    super(props);
-
-  }
-  componentWillReceiveProps() {
-    console.log('props recieved');
+  constructor() {
+    super();
+    this.state = {
+      searchFocusAnim: new Animated.Value(0)
+    };
   }
 
-  characterFilter = (text) => {
-    this.props.searchCharacters(text);
+  // On search focus/unfocus, will animate toggling the cancel button
+  animateOnSearchFocus(focus, callback) {
+    const start = (focus) ? 0 : 1;
+    const end = (focus) ? 1 : 0;
+    this.state.searchFocusAnim.setValue(start);
+
+    Animated.timing(
+      this.state.searchFocusAnim,
+      {
+        toValue: end,
+        duration: 300,
+        easing: Easing.out(Easing.quad)
+      }
+    ).start();
+
+    if (!focus && callback) {
+      callback();
+    }
   }
 
-  hideSearch = () => {
-    console.log('Search hidden');
+  blurSearch() {
+    this.refs._input.clear();
+    this.props.onChange('');
+    this.refs._input.blur();
   }
+
   render() {
+    const { onChange } = this.props;
+    const margin = this.state.searchFocusAnim.interpolate({
+      inputRange: [0, 1],
+      outputRange: [ 20, 0]
+    });
+    const opacity = this.state.searchFocusAnim.interpolate({
+      inputRange: [0, 1],
+      outputRange: [ 0, 1]
+    });
     return (
       <View style={Styles.mainContainer}>
-        <TextInput
-          placeholder="Search"
-          placeholderTextColor="#f0aa23"
-          style={Styles.input}
-          onChangeText={(text) => this.characterFilter(text)}
-        />
-        <TouchableHighlight
-          onPress={this.props.toggle}>
-          <Image style={Styles.close} source={require('./../../img/icons/close.png')}/>
-        </TouchableHighlight>
+        <View style={Styles.contentWrap}>
+          <View
+            style={[Styles.iconContainer, Styles.searchIconContainer]}>
+            <Image style={Styles.search} source={icons['search']} />
+          </View>
+          <TextInput
+            ref="_input"
+            placeholder="Search"
+            placeholderTextColor='#804e55'
+            style={Styles.input}
+            onFocus={() => this.animateOnSearchFocus(true)}
+            onBlur={() => this.animateOnSearchFocus(false)}
+            onChangeText={(text) => onChange(text)}
+          />
+          <Animated.View style={[Styles.cancel, {marginLeft: margin, opacity: opacity}] }>
+            <Button
+              onPress={() => this.animateOnSearchFocus(false, () => this.blurSearch())}
+              title={"Cancel"}
+              titleStyle={Styles.cancelTitle}
+              underlayColor="transparent"
+            />
+          </Animated.View>
+        </View>
       </View>
     )
   }
 }
 
+const styleVar = {
+  sidePadding: 18,
+  vertPadding: 3,
+  searchBarHeight: 30
+};
+
 const Styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
+    width: Dimensions.get('window').width,
     flexDirection: 'row',
-    height: 55,
-		backgroundColor: 'black',
-    paddingTop: 10,
-    paddingLeft: 60,
+		backgroundColor: '#1b0105',
+    alignItems: 'center',
+    height: 54,
+    paddingTop: styleVar.vertPadding,
+    paddingBottom: styleVar.vertPadding,
+    paddingLeft: styleVar.sidePadding,
+    paddingRight: styleVar.sidePadding
+  },
+  contentWrap: {
+    flex: 0.85,
+    flexDirection: 'row',
+    backgroundColor: '#34151a',
+    borderRadius: 5
   },
   input: {
-    borderColor: 'gray',
-    borderWidth: 2,
+    alignSelf: "center",
     color: '#f0aa23',
-    paddingLeft: 10,
-    width: 270,
-    height: 35,
-    backgroundColor: 'rgba(50,50,50, 0.5)',
-    borderRadius: 10
+    fontFamily: 'Exo2-Light',
+    fontSize: 15,
+    flex: 0.7,
+    height: 30,
+    paddingLeft: 14
   },
-  close: {
-    width: 20,
-    height: 20,
-    marginTop: 10,
-    marginLeft: 10
+  iconContainer: {
+    alignSelf: "center",
+    height: 11,
+    width: 11
+  },
+  searchIconContainer: {
+    paddingLeft: 6,
+    paddingTop: 0.5,
+    alignSelf: "center",
+    opacity: 0.4,
+    zIndex: 2
+  },
+  search: {
+    resizeMode: 'contain',
+    width: 11,
+    height: 11,
+  },
+  cancel: {
+    flex: 0.18,
+    backgroundColor: '#1b0105',
+    opacity: 0,
+    paddingLeft: 5,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  cancelTitle: {
+    color: '#f0aa23'
   }
 });
 
@@ -91,4 +168,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+SearchBar.propTypes = {
+  onChange: PropTypes.func
+}
+
+export default SearchBar;

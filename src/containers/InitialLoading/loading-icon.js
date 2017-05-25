@@ -17,7 +17,7 @@ class LoadingIcon extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.fadeInIcon(), 300);
+    setTimeout(() => this.fadeInIcon(), 250);
   }
 
   fadeInIcon() {
@@ -41,7 +41,6 @@ class LoadingIcon extends Component {
       inputRange: [0, 1],
       outputRange: [0, 1]
     });
-
     return (
       <View style={[baseStyle.container]}>
         <Animated.Text style={[baseStyle.text, {marginTop: top, opacity: opacity}]}>

@@ -1,14 +1,17 @@
 import {
-	StyleSheet
+	StyleSheet, Platform, Dimensions
 } from 'react-native';
 
 export default Styles = StyleSheet.create({
   mainContainer: {
-		backgroundColor: 'rgb(132, 18, 18)',
-		flex: 1
+		flex: 1,
+		backgroundColor: '#222'
   },
-	backDrop: {
-		height: 80,
-		backgroundColor: 'rgb(68, 18, 18)'
+	scrollContainer: {
+		backgroundColor: '#960b11'
+	},
+	header: {
+		position: 'absolute',
+		left: 0
 	}
 });

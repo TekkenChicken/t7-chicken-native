@@ -4,12 +4,7 @@ import { View,
   StyleSheet
 } from 'react-native';
 
-export default class Header1 extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-
+export default class FrameHeader extends Component {
   render() {
     return (
       <View style={Styles.background}>
