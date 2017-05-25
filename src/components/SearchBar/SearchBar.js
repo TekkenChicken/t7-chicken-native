@@ -76,6 +76,7 @@ class SearchBar extends Component {
             onFocus={() => this.animateOnSearchFocus(true)}
             onBlur={() => this.animateOnSearchFocus(false)}
             onChangeText={(text) => onChange(text)}
+            underlineColorAndroid='rgba(0,0,0,0)'
           />
           <Animated.View style={[Styles.cancel, {marginLeft: margin, opacity: opacity}] }>
             <Button
@@ -121,13 +122,27 @@ const Styles = StyleSheet.create({
     fontFamily: 'Exo2-Light',
     fontSize: 15,
     flex: 0.7,
-    height: 30,
+    ...Platform.select({
+      ios: {
+        height: 30
+      },
+      android: {
+        height: 40
+      }
+    }),
     paddingLeft: 14
   },
   iconContainer: {
     alignSelf: "center",
     height: 11,
-    width: 11
+    ...Platform.select({
+      ios: {
+        width: 11
+      },
+      android: {
+        width: 20
+      }
+    })
   },
   searchIconContainer: {
     paddingLeft: 6,
