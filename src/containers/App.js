@@ -18,7 +18,7 @@ class App extends Component {
       <Provider store={Store}>
         <View style={{flex: 1, backgroundColor: '#111'}}>
           <StatusBar barStyle="light-content" backgroundColor="transparent" />
-          <AppNavigator />
+          <AppNavigator style={{flex: 1, backgroundColor: '#111', shadowColor: '#111'}} />
         </View>
       </Provider>
     );

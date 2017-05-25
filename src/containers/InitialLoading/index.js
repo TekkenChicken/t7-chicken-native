@@ -44,8 +44,8 @@ class LoadingScreen extends Component {
           NavigationActions.navigate({ routeName: 'Main'})
         ]
       });
-      // setTimeout(() => this.props.navigation.dispatch(resetAction));
-      setTimeout(() => this.props.navigation.navigate('characterSelect'), 0);
+      setTimeout(() => this.props.navigation.dispatch(resetAction), 0);
+      //setTimeout(() => this.props.navigation.navigate('characterSelect'), 0);
     }
   }
 

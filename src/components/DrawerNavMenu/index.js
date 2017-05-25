@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Text, StyleSheet, Image } from 'react-native';
+import { DrawerItems } from 'react-navigation';
 
 import Button from '../Button/Button';
 import icons from '../../img/icons/';
@@ -8,7 +9,6 @@ class DrawerMenu extends Component {
 	render() {
 		const routes = this.props.navigation.state.routes;
 		const currentRoute = this.props.navigation.state.index;
-    console.log(this.props.navigation);
 		return (
 			<View style={Styles.mainContainer}>
 				<View>
@@ -17,20 +17,7 @@ class DrawerMenu extends Component {
 				</View>
 				</View>
 				<ScrollView style={Styles.routeContainer}>
-					{
-						routes.map((route, i) => {
-							return(
-								<Button
-									key={i}
-									onPress={() => this.props.navigation.navigate(route.key)}
-									title={route.routeName}
-									buttonStyle={[Styles.route, (i === currentRoute) ? Styles.currentRoute : '']}
-									titleStyle={Styles.routeTitle}
-									underlayColor="transparent"
-								/>
-							);
-						})
-					}
+					<DrawerItems {...this.props} labelStyle={Styles.routeTitle} activeBackgroundColor='#260309'/>
 				</ScrollView>
 			</View>
 		);
@@ -44,7 +31,7 @@ const Styles = StyleSheet.create({
 	},
 	logoContainer: {
 		flex: 1,
-		paddingTop: 70,
+		paddingTop: 80,
 		paddingBottom: 35,
 		height: 160,
 		backgroundColor: '#111',
@@ -56,18 +43,15 @@ const Styles = StyleSheet.create({
 		height: 90,
 	},
 	routeContainer: {
-		paddingTop: 25
-	},
-	route:{
-		padding: 10,
-		paddingLeft: 20,
-		marginBottom: 10
+		paddingTop: 10
 	},
 	currentRoute: {
 		backgroundColor: '#260309'
 	},
 	routeTitle: {
 		fontSize: 16,
+		color: "#fff",
+    fontFamily: 'Exo2-Light',
 		fontWeight: '600'
 	}
 });

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Provider, connect } from 'react-redux';
 
 // dependencies
@@ -8,7 +9,8 @@ import Router from './Router';
 import InitialLoading from './InitialLoading/';
 import DrawerNavMenu from '../components/DrawerNavMenu/';
 
-const MainNavigator = StackNavigator(Router.MainRoutes, { initialRouteName: "characterSelect", headerMode: 'screen' });
+// Main Stack Navigators
+const MainNavigator = StackNavigator(Router.MainRoutes, { initialRouteName: "characterSelect", headerMode: 'screen'});
 const AboutNavigator = StackNavigator(Router.AboutRoute, { initialRouteName: "about", headerMode:'screen' });
 
 const DrawerRoutes = {
@@ -41,7 +43,8 @@ const RootNavigator = StackNavigator(
   },
   {
     initialRouteName: "InitialLoading",
-    headerMode: 'none'
+    headerMode: 'none',
+    cardStyle: {backgroundColor: '#111111'}
 	}
 );
 
