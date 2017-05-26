@@ -34,7 +34,7 @@ import headshots from '../../img/headshots/index';
 import Styles from './styles';
 
 // dispatch actions
-import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter } from '../../redux/actions/character';
+import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter, searchMovesByNotation } from '../../redux/actions/character';
 
 class CharacterProfileScreen extends Component {
   static navigationOptions = ({navigation}) => {
@@ -49,7 +49,7 @@ class CharacterProfileScreen extends Component {
     super(props);
     this.state = {
       scrollHeader: false,
-      searchOffset: false
+      searchFocus: false
     };
   }
 
@@ -99,14 +99,19 @@ class CharacterProfileScreen extends Component {
   }
 
   toggleScrollHeader(e) {
-    this.setState({scrollHeader: e.contentOffset.y >= 80});
+    this.setState({scrollHeader: e.contentOffset.y >= 50});
   }
 
   onSearchFocusHandler() {
     this.refs.search.measure((frameOffsetX, frameOffsetY) => {
       let offset = (Platform.OS === 'ios') ? 64 : 54;
-      this.refs.scrollView.scrollTo({y: frameOffsetY - offset });
+      this.refs.scrollView.scrollTo({y: frameOffsetY});
+      this.setState({searchFocus: true});
     })
+  }
+
+  onSearchBlurHandler() {
+    this.setState({searchFocus: false});
   }
 
   render() {
@@ -139,19 +144,29 @@ class CharacterProfileScreen extends Component {
             name={characterID.toUpperCase()} />
           <ScrollView
             ref={"scrollView"}
-            style={[Styles.scrollContainer]}
+            style={Styles.scrollContainer}
             scrollEventThrottle={16}
             onScroll={(e) => this.handleScroll(e)}
             keyboardShouldPersistTaps={'always'}
             stickyHeaderIndices={[4]}>
+            <View style={Styles.offset}>
               <ProfileBackDrop image={null} />
-              <ProfilePicture image={headshots[this.props.characterID]} />
-              <ProfileName name={characterID.toUpperCase()} />
-              <CommandListBanner />
-              <View ref={"search"}>
-                <SearchBar onChange={() => {}} onFocusCallback={() => this.onSearchFocusHandler()} />
-              </View>
-              <MoveList moves={characterMoves} />
+            </View>
+            <ProfilePicture image={headshots[this.props.characterID]} />
+            <ProfileName name={characterID.toUpperCase()} />
+            <CommandListBanner />
+            <View ref={"search"}>
+              <SearchBar
+                onChange={this.props.triggerSearchByNotation}
+                onFocusCallback={() => this.onSearchFocusHandler()}
+                onBlurCallback={() => this.onSearchBlurHandler()}
+              />
+            </View>
+            <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
+              <MoveList
+                moves={characterMoves}
+              />
+            </View>
           </ScrollView>
         </View>
       </Drawer>
@@ -172,7 +187,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     triggerFilterUpdate: () => dispatch(applyCharacterMoveFilters()),
     fetchDataForCharacter: (characterID) => dispatch(fetchDataForCharacter(characterID)),
-    resetDataForCharacter: () => dispatch(resetDataForCharacter())
+    resetDataForCharacter: () => dispatch(resetDataForCharacter()),
+    triggerSearchByNotation: (notation) => dispatch(searchMovesByNotation(notation))
   };
 };
 

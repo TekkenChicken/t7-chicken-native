@@ -30,7 +30,6 @@ class SearchBar extends Component {
     const start = (focus) ? 0 : 1;
     const end = (focus) ? 1 : 0;
     this.state.searchFocusAnim.setValue(start);
-
     Animated.timing(
       this.state.searchFocusAnim,
       {
@@ -40,19 +39,21 @@ class SearchBar extends Component {
       }
     ).start();
 
-    if (callback) {
-      callback();
-    }
+    if (callback) { callback(); }
   }
 
-  blurSearch() {
+  /**
+   *  @method: cancelSearch
+   *  (Cancel Button touch callback) Clears the input and the search queries.
+   */
+  cancelSearch() {
     this.refs._input.clear();
     this.props.onChange('');
     this.refs._input.blur();
   }
 
   render() {
-    const { onChange, containerStyle, onFocusCallback } = this.props;
+    const { onChange, containerStyle, onFocusCallback, onBlurCallback } = this.props;
     const margin = this.state.searchFocusAnim.interpolate({
       inputRange: [0, 1],
       outputRange: [ 20, 0]
@@ -74,13 +75,13 @@ class SearchBar extends Component {
             placeholderTextColor='#804e55'
             style={Styles.input}
             onFocus={() => this.animateOnSearchFocus(true, onFocusCallback)}
-            onBlur={() => this.animateOnSearchFocus(false)}
+            onBlur={() => this.animateOnSearchFocus(false, onBlurCallback)}
             onChangeText={(text) => onChange(text)}
             underlineColorAndroid='rgba(0,0,0,0)'
           />
           <Animated.View style={[Styles.cancel, {marginLeft: margin, opacity: opacity}] }>
             <Button
-              onPress={() => this.animateOnSearchFocus(false, () => this.blurSearch())}
+              onPress={() => this.animateOnSearchFocus(false, () => this.cancelSearch())}
               title={"Cancel"}
               titleStyle={Styles.cancelTitle}
               underlayColor="transparent"
@@ -186,6 +187,7 @@ const mapDispatchToProps = (dispatch) => {
 SearchBar.propTypes = {
   onChange: PropTypes.func,
   onFocusCallback: PropTypes.func,
+  onBlurCallback: PropTypes.func,
   containerStyle: PropTypes.number
 }
 
