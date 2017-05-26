@@ -30,7 +30,6 @@ class SearchBar extends Component {
     const start = (focus) ? 0 : 1;
     const end = (focus) ? 1 : 0;
     this.state.searchFocusAnim.setValue(start);
-
     Animated.timing(
       this.state.searchFocusAnim,
       {
@@ -40,19 +39,21 @@ class SearchBar extends Component {
       }
     ).start();
 
-    if (!focus && callback) {
-      callback();
-    }
+    if (callback) { callback(); }
   }
 
-  blurSearch() {
+  /**
+   *  @method: cancelSearch
+   *  (Cancel Button touch callback) Clears the input and the search queries.
+   */
+  cancelSearch() {
     this.refs._input.clear();
     this.props.onChange('');
     this.refs._input.blur();
   }
 
   render() {
-    const { onChange } = this.props;
+    const { onChange, containerStyle, onFocusCallback, onBlurCallback } = this.props;
     const margin = this.state.searchFocusAnim.interpolate({
       inputRange: [0, 1],
       outputRange: [ 20, 0]
@@ -62,7 +63,7 @@ class SearchBar extends Component {
       outputRange: [ 0, 1]
     });
     return (
-      <View style={Styles.mainContainer}>
+      <View style={[Styles.mainContainer, containerStyle]}>
         <View style={Styles.contentWrap}>
           <View
             style={[Styles.iconContainer, Styles.searchIconContainer]}>
@@ -73,14 +74,14 @@ class SearchBar extends Component {
             placeholder="Search"
             placeholderTextColor='#804e55'
             style={Styles.input}
-            onFocus={() => this.animateOnSearchFocus(true)}
-            onBlur={() => this.animateOnSearchFocus(false)}
+            onFocus={() => this.animateOnSearchFocus(true, onFocusCallback)}
+            onBlur={() => this.animateOnSearchFocus(false, onBlurCallback)}
             onChangeText={(text) => onChange(text)}
             underlineColorAndroid='rgba(0,0,0,0)'
           />
           <Animated.View style={[Styles.cancel, {marginLeft: margin, opacity: opacity}] }>
             <Button
-              onPress={() => this.animateOnSearchFocus(false, () => this.blurSearch())}
+              onPress={() => this.animateOnSearchFocus(false, () => this.cancelSearch())}
               title={"Cancel"}
               titleStyle={Styles.cancelTitle}
               underlayColor="transparent"
@@ -184,7 +185,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 SearchBar.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  onFocusCallback: PropTypes.func,
+  onBlurCallback: PropTypes.func,
+  containerStyle: PropTypes.number
 }
 
 export default SearchBar;
