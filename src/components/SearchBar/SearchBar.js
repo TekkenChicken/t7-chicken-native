@@ -40,7 +40,7 @@ class SearchBar extends Component {
       }
     ).start();
 
-    if (!focus && callback) {
+    if (callback) {
       callback();
     }
   }
@@ -52,7 +52,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { onChange } = this.props;
+    const { onChange, containerStyle, onFocusCallback } = this.props;
     const margin = this.state.searchFocusAnim.interpolate({
       inputRange: [0, 1],
       outputRange: [ 20, 0]
@@ -62,7 +62,7 @@ class SearchBar extends Component {
       outputRange: [ 0, 1]
     });
     return (
-      <View style={Styles.mainContainer}>
+      <View style={[Styles.mainContainer, containerStyle]}>
         <View style={Styles.contentWrap}>
           <View
             style={[Styles.iconContainer, Styles.searchIconContainer]}>
@@ -73,7 +73,7 @@ class SearchBar extends Component {
             placeholder="Search"
             placeholderTextColor='#804e55'
             style={Styles.input}
-            onFocus={() => this.animateOnSearchFocus(true)}
+            onFocus={() => this.animateOnSearchFocus(true, onFocusCallback)}
             onBlur={() => this.animateOnSearchFocus(false)}
             onChangeText={(text) => onChange(text)}
             underlineColorAndroid='rgba(0,0,0,0)'
@@ -184,7 +184,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 SearchBar.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  onFocusCallback: PropTypes.func,
+  containerStyle: PropTypes.number
 }
 
 export default SearchBar;

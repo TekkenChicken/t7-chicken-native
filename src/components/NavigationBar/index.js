@@ -66,12 +66,12 @@ export const charSelectNavHeader = (leftComponents = [], rightComponents = []) =
 };
 
 // Character Profile Screen Header Config
-export const charProfileNavHeader = (title, leftComponents=[], rightComponents=[]) => {
-  const profileStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
+export const charProfileNavHeader = (charName, leftComponents=[], rightComponents=[], scrollState) => {
+  const transparentStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
   return {
     title: null,
-    headerTitle: null,
-    headerStyle: profileStyle,
+    headerTitle: (scrollState) ? renderTitle(charName) : null,
+    headerStyle: transparentStyle,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
   };
@@ -79,7 +79,6 @@ export const charProfileNavHeader = (title, leftComponents=[], rightComponents=[
 
 // About Screen Header Config
 export const aboutNavHeader = (leftComponents = [], rightComponents = []) => {
-  //const profileStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
   return {
     drawerLabel: 'About',
     title: "About",
