@@ -35,7 +35,6 @@ const headerStyles = {
     elevation: 0
   },
   transparent: {
-    position: 'absolute',
     backgroundColor: 'transparent',
     zIndex: 100,
     top: 0,

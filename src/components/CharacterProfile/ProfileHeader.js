@@ -32,18 +32,6 @@ const Styles = StyleSheet.create({
 		width: Dimensions.get('window').width,
 		alignItems: 'center',
 		backgroundColor: '#260309',
-		height: 0
-	},
-	profileHeaderText: {
-		flex: 1,
-		alignSelf: 'center',
-		textAlign: 'center',
-		marginTop: 15,
-		fontSize: 14,
-		fontWeight: '600'
-	},
-	scroll: {
-		opacity: 1,
     ...Platform.select({
       ios: {
         height: 64
@@ -52,6 +40,17 @@ const Styles = StyleSheet.create({
         height: 54
       },
     })
+	},
+	profileHeaderText: {
+		flex: 1,
+		alignSelf: 'center',
+		textAlign: 'center',
+		marginTop: 15,
+		fontSize: 14,
+		fontWeight: '600',
+	},
+	scroll: {
+		opacity: 1,
 	}
 });
 
