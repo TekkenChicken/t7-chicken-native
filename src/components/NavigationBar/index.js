@@ -87,3 +87,14 @@ export const aboutNavHeader = (leftComponents = [], rightComponents = []) => {
     headerStyle: headerStyles.common
   };
 };
+
+export const helpNavHeader = (leftComponents = [], rightComponents = []) => {
+  return {
+    drawerLabel: 'Help Out!',
+    title: "Help",
+    headerTitle: renderTitle("Help"),
+    headerLeft: renderSide(leftComponents, "left"),
+    headerRight: renderSide(rightComponents, "right"),
+    headerStyle: headerStyles.common
+  };
+};
