@@ -49,7 +49,7 @@ export default class FrameDataCard extends React.Component {
          >
           <View style={Styles.modal}>
             <View style={Styles.videoContainer}>
-              <Text style={{color: '#fff'}}>Video goes here</Text>
+              <Text style={Styles.videoText}>Gifs Coming Soon!</Text>
             </View>
             <ScrollView>
                {/* TODO: make this name dynamic */}
@@ -78,6 +78,12 @@ export default class FrameDataCard extends React.Component {
 const Styles = StyleSheet.create({
   container: {
     height: 100
+  },
+  videoText: {
+    textAlign: 'center',
+    fontSize: 32,
+    paddingTop: 30,
+    color: 'white'
   },
   card: {
     height: 95,
