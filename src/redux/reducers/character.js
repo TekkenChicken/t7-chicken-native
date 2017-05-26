@@ -12,9 +12,9 @@ import {
 const initialState = {
   name: '',
   moves: [], // all moves
-  moveSearch: '', // search by name,
   filter: {},
-  filterQueue: {}
+  filterQueue: {},
+  searchNotation: ''
 };
 
 /**
@@ -55,6 +55,8 @@ function character( state = initialState, action ) {
       return Object.assign({}, state, { filterQueue: updateFilterQueue(state.filterQueue, action) });
     case CHARACTER_RESET_FILTERS:
       return Object.assign({}, state, { filterQueue: {} });
+    case CHARACTER_SEARCH_MOVES:
+      return Object.assign({}, state, { searchNotation: action.notation });
   }
   return state;
 }

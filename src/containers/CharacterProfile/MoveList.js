@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 // components
 import DataList from '../../components/DataList/DataList';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
-import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 
 // Utils
 import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
@@ -20,10 +19,10 @@ import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
 class MoveList extends Component {
 
   render() {
-    const moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
+    let moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
+    moves = MoveFiltersUtil.searchByNotation(moves, this.props.searchNotation);
     return (
-      <View>
-        <CommandListBanner />
+      <View style={Styles.container}>
         <DataList
           listData={moves}
           cellComponent={FrameDataCard}
@@ -38,7 +37,8 @@ class MoveList extends Component {
 
 const Styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    marginTop: 7
   },
   row: {
     flexDirection:'row',
@@ -63,7 +63,8 @@ MoveList.Proptypes = {
 /** MAPPING STATE **/
 const mapStateToProps = (state) => {
   return {
-    filter: state.character.filter
+    filter: state.character.filter,
+    searchNotation: state.character.searchNotation
   };
 };
 
