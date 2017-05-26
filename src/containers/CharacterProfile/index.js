@@ -176,7 +176,6 @@ class CharacterProfileScreen extends Component {
 
 /** MAPPING STATE **/
 const mapStateToProps = (state, props) => {
-  console.log(state, props);
   return {
     characterID: props.navigation.state.params.characterID,
     characterMoves: state.character.moves

@@ -22,7 +22,6 @@ const checkIfDataOutdated = (timestamp) => {
       return timestamp !== timestamp;
     })
     .catch((error) => {
-      console.log("DATA VERSION CHECK FAIL", error);
       return true;
     });
 };
@@ -36,7 +35,6 @@ const dataFetchSuccess = (response) => {
 };
 
 const dataFetchError = (err, fallbackData) => {
-  console.error(err);
   return {
     type: BLOB_FETCH_ERROR,
     error: err,
@@ -45,16 +43,13 @@ const dataFetchError = (err, fallbackData) => {
 };
 
 const fetchDataFromAPI = (fallbackData) => {
-  console.log('fetch data from api');
   return dispatch => {
     fetch(CHAR_DATA_API)
       .then((response) => response.json())
       .then((responseJSON) => {
-        console.log("FETCH CHAR DATA", responseJSON);
         dispatch(dataFetchSuccess(responseJSON));
       })
       .catch((error) => {
-        console.error("WTF FETCH ERROR", error);
         dispatch(dataFetchError(error, fallbackData));
       });
   };
@@ -77,7 +72,6 @@ export const fetchInitialAppData = () => {
   return dispatch => {
     AsyncStorageUtil.fetchAppData()
     .then((storedData) => {
-      console.log("Stored Data", storedData);
       appData = storedData;
       // appData = storedData || appData;
       // check if data is out of date by hitting version endpoint

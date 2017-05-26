@@ -4,6 +4,7 @@
 
 # Xcode
 #
+android/
 build/
 *.pbxuser
 !default.pbxuser
