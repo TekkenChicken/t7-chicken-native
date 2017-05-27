@@ -72,6 +72,7 @@ const Styles = EStyleSheet.create({
     borderColor: '#f0aa23'
   },
   buttonContainer: {
+    backgroundColor: '#960b11',
   },
   checkBox__container: {
     paddingBottom: 10,

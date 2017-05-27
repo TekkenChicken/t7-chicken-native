@@ -70,7 +70,7 @@ export const charProfileNavHeader = (charName, leftComponents=[], rightComponent
   return {
     title: null,
     headerTitle: (scrollState) ? renderTitle(charName) : null,
-    headerStyle: transparentStyle,
+    headerStyle: headerStyles.common,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
   };
