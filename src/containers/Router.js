@@ -1,5 +1,6 @@
 // components
 import About from './About/';
+import Help from './Help/';
 import InitialLoading from './InitialLoading/';
 import CharacterSelect from './CharacterSelect/';
 import CharacterProfile from './CharacterProfile/';
@@ -14,4 +15,8 @@ const AboutRoute = {
   about: { screen: About }
 };
 
-export default { MainRoutes, AboutRoute };
+const HelpRoute = {
+  help: { screen: Help }
+};
+
+export default { MainRoutes, AboutRoute, HelpRoute };
