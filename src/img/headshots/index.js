@@ -20,6 +20,12 @@ const headshots = {
   paul: require('./paul.png'),
   steve: require('./steve.png'),
   xiaoyu: require('./xiaoyu.png'),
+  bob: require('./bob.png'),
+  bryan: require('./bryan.png'),
+  eddy: require('./eddy.png'),
+  miguel: require('./miguel.png'),
+  nina: require('./nina.png'),
+  yoshimitsu: require('./yoshimitsu.png'),
 };
 
 export default headshots;
