@@ -17,7 +17,7 @@ export default class PropertyList extends Component {
   determineType() {
     switch(this.props.type) {
     case 'special':
-      return this.renderSpecialProperties();
+      //return this.renderSpecialProperties();
       break;
     case 'general':
       return this.renderGeneralProperties();
@@ -67,10 +67,6 @@ export default class PropertyList extends Component {
           <Text style={Styles.property}>{'Hit Level(s)'}</Text>
           <Text style={Styles.propertyValue}>{this.props.hitLevels}</Text>
         </View>
-        <View style={Styles.propertyRow}>
-          <Text style={Styles.property}>{'Speed'}</Text>
-          <Text style={Styles.propertyValue}>{this.props.speed}</Text>
-        </View>
       </View>
     );
   }
@@ -90,6 +86,10 @@ export default class PropertyList extends Component {
         <View style={Styles.propertyRow}>
           <Text style={Styles.property}>{'Counter Hit'}</Text>
           <Text style={Styles.propertyValue}>{this.props.onCounter}</Text>
+        </View>
+        <View style={Styles.propertyRow}>
+          <Text style={Styles.property}>{'Speed'}</Text>
+          <Text style={Styles.propertyValue}>{this.props.speed}</Text>
         </View>
       </View>
     )

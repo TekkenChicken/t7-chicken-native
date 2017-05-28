@@ -59,8 +59,8 @@ export default class FrameDataCard extends React.Component {
               <Inputs isCard={false} inputs={['1', '2']}/>
               {/* TODO: get attack properties from data source */}
               <PropertyList type={'special'} properties={['H', 'T']}/>
-              <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} speed={this.props.speed}/>
-              <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch}/>
+              <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} />
+              <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch} speed={this.props.speed} />
             </ScrollView>
           </View>
           <Button
