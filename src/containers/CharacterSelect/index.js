@@ -51,12 +51,16 @@ class CharacterSelectScreen extends Component {
     this.props.navigation.navigate('characterProfile', { characterID: characterID });
   }
 
-  mapCharacters = (characters) => {
+  mapCharacters(characters) {
     let characterArray = [];
     Object.keys(characters).map((c) => {
       characterArray.push(characters[c]);
     });
     return characterArray;
+  }
+
+  mapCharacters(characters) {
+    return Object.keys(characters).map((key) => characters[key]);
   }
 
   render() {
