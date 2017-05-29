@@ -24,7 +24,6 @@ const checkIfDataOutdated = (localTimeStamp) => {
       return localTimeStamp !== json.alisa.last_updated;
     })
     .catch((error) => {
-      console.log(error);
       return true;
     });
 };
@@ -49,14 +48,12 @@ const fetchDataFromAPI = (fallbackData) => {
   return dispatch => {
     fetch(CHAR_DATA_API)
       .then((response) => {
-        console.log(response);
         return response.json()
       })
       .then((json) => {
         dispatch(dataFetchSuccess(json));
       })
       .catch((error) => {
-        console.log('this gets run')
         dispatch(dataFetchError(error, fallbackData));
       });
   };
@@ -84,7 +81,6 @@ export const fetchInitialAppData = () => {
       appData = storedData || appData;
       //check if data is out of date by hitting version endpoint
       checkIfDataOutdated(timeStamp).then((outDated) => {
-        console.log('out dated', outDated);
         if (outDated === true) {
           return dispatch(fetchDataFromAPI(appData));
         } else {
