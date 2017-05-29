@@ -8,20 +8,23 @@ export const BLOB_UPDATE_DATA = 'BLOB_UPDATE_DATA';
 export const BLOB_FETCH_SUCCESS = 'BLOB_FETCH_SUCCESS';
 export const BLOB_FETCH_ERROR = 'BLOB_FETCH_ERROR';
 
-const CHAR_DATA_API = "http://bdickason.com:3001/api/metadata";
+const CHAR_DATA_API = "http://bdickason.com:3001/api/framedata";
+const CHAR_METADATA_API = "http://bdickason.com:3001/api/metadata"
 const DATA_VER_API = "";
-
 /**
  *  @method: checkDataVersion
  *  Will get the current version of data, and compare it to local
  *  Will return if version matches or not
  */
-const checkIfDataOutdated = (timestamp) => {
-  return fetch(DATA_VER_API)
+const checkIfDataOutdated = (localTimeStamp) => {
+  return fetch(CHAR_METADATA_API)
     .then((response) => {
-      return timestamp !== timestamp;
+      return response.json()
+    }).then((json) => {
+      return localTimeStamp !== json.alisa.last_updated;
     })
     .catch((error) => {
+      console.log(error);
       return true;
     });
 };
@@ -45,11 +48,15 @@ const dataFetchError = (err, fallbackData) => {
 const fetchDataFromAPI = (fallbackData) => {
   return dispatch => {
     fetch(CHAR_DATA_API)
-      .then((response) => response.json())
-      .then((responseJSON) => {
-        dispatch(dataFetchSuccess(responseJSON));
+      .then((response) => {
+        console.log(response);
+        return response.json()
+      })
+      .then((json) => {
+        dispatch(dataFetchSuccess(json));
       })
       .catch((error) => {
+        console.log('this gets run')
         dispatch(dataFetchError(error, fallbackData));
       });
   };
@@ -69,19 +76,21 @@ export const fetchInitialAppData = () => {
   // set data in state
   // AsyncStorageUtil.clearAppData()
   let appData = initialData.data;
+  const timeStamp = initialData.timestamp;
   return dispatch => {
     AsyncStorageUtil.fetchAppData()
     .then((storedData) => {
       appData = storedData;
-      // appData = storedData || appData;
-      // check if data is out of date by hitting version endpoint
-      // checkIfDataOutdated(appData.timestamp).then((outDated) => {
-      //   if (outDated === true) {
-      //     return dispatch(fetchDataFromAPI(appData));
-      //   } else {
-      //     return dispatch(setInitialData(appData));
-      //   }
-      // });
+      appData = storedData || appData;
+      //check if data is out of date by hitting version endpoint
+      checkIfDataOutdated(timeStamp).then((outDated) => {
+        console.log('out dated', outDated);
+        if (outDated === true) {
+          return dispatch(fetchDataFromAPI(appData));
+        } else {
+          return dispatch(setInitialData(appData));
+        }
+      });
       if (appData) {
         dispatch(setInitialData(appData));
       } else {
