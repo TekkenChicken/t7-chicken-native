@@ -37,22 +37,12 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>NSAppTransportSecurity</key>
+	<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-		<key>NSAllowsArbitraryLoadsInWebContent</key>
-		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>chicken.seattletekken.com</key>
-			<dict>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -60,26 +50,5 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Exo2-Black.ttf</string>
-		<string>Exo2-BlackItalic.ttf</string>
-		<string>Exo2-Bold.ttf</string>
-		<string>Exo2-BoldItalic.ttf</string>
-		<string>Exo2-ExtraBold.ttf</string>
-		<string>Exo2-ExtraBoldItalic.ttf</string>
-		<string>Exo2-ExtraLight.ttf</string>
-		<string>Exo2-ExtraLightItalic.ttf</string>
-		<string>Exo2-Italic.ttf</string>
-		<string>Exo2-Light.ttf</string>
-		<string>Exo2-LightItalic.ttf</string>
-		<string>Exo2-Medium.ttf</string>
-		<string>Exo2-MediumItalic.ttf</string>
-		<string>Exo2-Regular.ttf</string>
-		<string>Exo2-SemiBold.ttf</string>
-		<string>Exo2-SemiBoldItalic.ttf</string>
-		<string>Exo2-Thin.ttf</string>
-		<string>Exo2-ThinItalic.ttf</string>
-	</array>
 </dict>
 </plist>
