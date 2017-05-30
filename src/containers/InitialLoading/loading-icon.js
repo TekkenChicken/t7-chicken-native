@@ -70,7 +70,7 @@ const baseStyle = StyleSheet.create({
     textAlign:'center'
   },
   tekkenGamer: {
-    width: 350,
+    width: 300,
     height: 200
   }
 });
