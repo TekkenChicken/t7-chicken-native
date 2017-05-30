@@ -8,26 +8,29 @@ export const BLOB_UPDATE_DATA = 'BLOB_UPDATE_DATA';
 export const BLOB_FETCH_SUCCESS = 'BLOB_FETCH_SUCCESS';
 export const BLOB_FETCH_ERROR = 'BLOB_FETCH_ERROR';
 
-const CHAR_DATA_API = "http://bdickason.com:3001/api/metadata";
-const DATA_VER_API = "";
+const CHAR_DATA_API = "http://tc.tekkengamer.com/api/framedata/";
+const CHAR_METADATA_API = "http://tc.tekkengamer.com/api/metadata/"
 
 /**
  *  @method: checkDataVersion
  *  Will get the current version of data, and compare it to local
  *  Will return if version matches or not
  */
-const checkIfDataOutdated = (timestamp) => {
-  return fetch(DATA_VER_API)
+const checkIfDataOutdated = (localTimeStamp) => {
+  return fetch(CHAR_METADATA_API)
     .then((response) => {
-      return timestamp !== timestamp;
+      return response.json()
+    }).then((json) => {
+      const serverTimeStamp = json.alisa.last_updated;
+      return { outDated: localTimeStamp !== serverTimeStamp, last_updated: serverTimeStamp };
     })
     .catch((error) => {
-      return true;
+      return { outDated: false };
     });
 };
 
-const dataFetchSuccess = (response) => {
-  AsyncStorageUtil.storeAppData(response);
+const dataFetchSuccess = (response, timestamp) => {
+  AsyncStorageUtil.storeAppData(response, timestamp);
 	return {
     type: BLOB_FETCH_SUCCESS,
     payload: response,
@@ -42,12 +45,14 @@ const dataFetchError = (err, fallbackData) => {
   };
 };
 
-const fetchDataFromAPI = (fallbackData) => {
+const fetchDataFromAPI = (fallbackData, timestamp) => {
   return dispatch => {
     fetch(CHAR_DATA_API)
-      .then((response) => response.json())
-      .then((responseJSON) => {
-        dispatch(dataFetchSuccess(responseJSON));
+      .then((response) => {
+        return response.json()
+      })
+      .then((json) => {
+        dispatch(dataFetchSuccess(json, timestamp));
       })
       .catch((error) => {
         dispatch(dataFetchError(error, fallbackData));
@@ -67,26 +72,28 @@ export const fetchInitialAppData = () => {
   // reach ver endpoint and check version number
   // if version doesn't match, make call to retrieve new data
   // set data in state
-  // AsyncStorageUtil.clearAppData()
+
+  // default in-app data
   let appData = initialData.data;
+  let timestamp = initialData.last_updated;
+
   return dispatch => {
     AsyncStorageUtil.fetchAppData()
-    .then((storedData) => {
-      appData = storedData;
-      // appData = storedData || appData;
-      // check if data is out of date by hitting version endpoint
-      // checkIfDataOutdated(appData.timestamp).then((outDated) => {
-      //   if (outDated === true) {
-      //     return dispatch(fetchDataFromAPI(appData));
-      //   } else {
-      //     return dispatch(setInitialData(appData));
-      //   }
-      // });
-      if (appData) {
-        dispatch(setInitialData(appData));
-      } else {
-        dispatch(fetchDataFromAPI(appData));
+    .then((storedPayload) => {
+      // use data from storage if available
+      if (storedPayload) {
+        console.log("storage data", storedPayload);
+        appData = storedPayload.data;
+        timestamp = storedPayload.last_updated;
       }
+      //check if data is out of date by hitting version endpoint
+      checkIfDataOutdated(timestamp).then((result) => {
+        if (result.outDated) {
+          return dispatch(fetchDataFromAPI(appData, result.last_updated));
+        } else {
+          return dispatch(setInitialData(appData));
+        }
+      });
     })
     .catch((err) => dispatch(fetchDataFromAPI(appData)) );
   }

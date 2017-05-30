@@ -13,17 +13,17 @@ import headshots from '../../img/headshots/index';
 class CharacterCard extends Component {
 
   render() {
-    const {image, name, id, onPressHandler, moves} = this.props;
-    const headImage = headshots[this.props.name] || headshots.kazuya;
+    const {image, label, name, onPressHandler, moves} = this.props;
+    const headImage = headshots[this.props.label] || headshots.kazuya;
     // in case of empty
-    const emptyCard = name == null;
+    const emptyCard = label == null;
     const touchEvent = (emptyCard) ? 'none' : 'auto';
     const cardStyle = (emptyCard) ? [Styles.card, Styles.empty] : Styles.card;
-    const formatName = (emptyCard) ? "" : name.toUpperCase();
+    const formatName = (emptyCard) ? "" : label.toUpperCase();
 
     return (
       <View style={cardStyle} pointerEvents={touchEvent}>
-        <TouchableHighlight onPress={() => onPressHandler(name, moves, image)}>
+        <TouchableHighlight onPress={() => onPressHandler(label, name)}>
           <View style={Styles.imageContainer}>
             <Image
               style={Styles.image}
@@ -69,7 +69,7 @@ const Styles = StyleSheet.create({
 });
 
 CharacterCard.Proptypes = {
-  name: PropTypes.string,
+  label: PropTypes.string,
   image: PropTypes.string,
   onPressHandler: PropTypes.func
 };
