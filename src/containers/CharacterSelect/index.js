@@ -46,8 +46,8 @@ class CharacterSelectScreen extends Component {
    *  Will navigate to the character page and pass the characterID as a prop to the page
    *  (where it will be used to fetch data on a character)
    */
-  navigateToCharacter(characterID) {
-    this.props.navigation.navigate('characterProfile', { characterID: characterID });
+  navigateToCharacter(characterID, characterName) {
+    this.props.navigation.navigate('characterProfile', { characterID, characterName });
   }
 
   render() {
@@ -62,7 +62,7 @@ class CharacterSelectScreen extends Component {
           <CharacterList
             containerStyle={Styles.charList}
             characters={this.props.characters}
-            onCharacterSelect={(id, image) => this.navigateToCharacter(id)}
+            onCharacterSelect={(id, name) => this.navigateToCharacter(id, name)}
           />
         </ScrollView>
       </View>
@@ -85,6 +85,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     searchCharacters: (searchQuery) => {
       dispatch(searchCharacters(searchQuery));
+    },
+    fetchInitialAppData: () => {
+      dispatch(fetchInitialAppData());
     }
   };
 };
