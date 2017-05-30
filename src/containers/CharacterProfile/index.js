@@ -103,9 +103,10 @@ class CharacterProfileScreen extends Component {
   }
 
   onSearchFocusHandler() {
-    this.refs.search.measure((frameOffsetX, frameOffsetY) => {
+    this.refs.search.measure((frameOffsetX, frameOffsetY, w, h, pageX, pageY) => {
+      console.log(frameOffsetX, frameOffsetY, w, h, pageX, pageY);
       let offset = (Platform.OS === 'ios') ? 64 : 54;
-      this.refs.scrollView.scrollTo({y: frameOffsetY});
+      this.refs.scrollView.scrollTo({x: 0, y: pageY - h/1.5});
       this.setState({searchFocus: true});
     })
   }
