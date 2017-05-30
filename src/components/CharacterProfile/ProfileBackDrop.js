@@ -8,11 +8,13 @@ import {
 
 import LinearGradient from 'react-native-linear-gradient';
 
+const redPrimary = '#9d1918';
+const redSecondary = '#320f1c';
+
 class ProfileBackDrop extends Component {
   render() {
     return (
-      <LinearGradient colors={['#9d1018', '#320flc']}
-        style={Styles.backDropContainer}>
+      <LinearGradient colors={[redPrimary, redSecondary]} style={Styles.backDropContainer}>
 
       </LinearGradient>
     );
@@ -22,6 +24,7 @@ class ProfileBackDrop extends Component {
 const Styles = StyleSheet.create({
   backDropContainer: {
     height: 160,
+    backgroundColor: 'blue'
   },
   gradient: {
     flex: 1,
