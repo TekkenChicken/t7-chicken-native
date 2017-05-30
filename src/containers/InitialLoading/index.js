@@ -29,23 +29,16 @@ class LoadingScreen extends Component {
 
   componentDidMount() {
     // Fetch Data on character using character ID sent as props on navigate
-    setTimeout(() => {
-      return this.props.dispatch(fetchInitialAppData());
-    }, 1000);
+    console.log("mount");
+    setTimeout(() => this.props.dispatch(fetchInitialAppData()), 1000);
   }
 
   componentDidUpdate() {
     // if blob has finished fetching data
     if (this.props.blob.characterData && this.state.loading) {
-      this.setState({loading: false});
-      const resetAction = NavigationActions.reset({
-        index: 0,
-        actions: [
-          NavigationActions.navigate({ routeName: 'Main'})
-        ]
+      this.setState({loading: false}, () => {
+        this.props.navigation.navigate('characterSelect');
       });
-      setTimeout(() => this.props.navigation.dispatch(resetAction), 0);
-      //setTimeout(() => this.props.navigation.navigate('characterSelect'), 0);
     }
   }
 

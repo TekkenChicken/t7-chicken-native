@@ -46,7 +46,7 @@
       <true/>
       <key>NSExceptionDomains</key>
       <dict>
-        <key>bdickason.com</key>
+        <key>tc.tekkengamer.com</key>
         <dict>
           <key>NSExceptionRequiresForwardSecrecy</key>
           <false/>

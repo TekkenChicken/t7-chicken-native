@@ -10,9 +10,7 @@ export const SELECT_UPDATE_CHARACTERS = 'SELECT_UPDATE_CHARACTERS';
  *  NEED TO DECIDE ON WHAT IS BEST WAY TO HANDLE THE DATA
  */
 const formatRawData = (rawData) => {
-  const characterData = Object.keys(rawData)
-    .map((char) => Object.assign({}, {name: char}, rawData[char]));
-  return characterData;
+  return Object.keys(rawData).map((char) => Object.assign({}, {id: char}, rawData[char]))
 };
 
 /**
@@ -29,7 +27,7 @@ export const searchCharacters = (searchQuery) => {
     const filteredCharacters = Object.keys(allChars)
       .reduce((result, char) => {
         if (searchQuery === char.substring(0, searchQuery.length)) {
-          result.push( Object.assign(allChars[char], {name: char}) );
+          result.push( Object.assign(allChars[char], {id: char}) );
         }
         return result;
       }, []);

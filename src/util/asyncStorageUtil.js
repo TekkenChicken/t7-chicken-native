@@ -24,9 +24,11 @@ export async function fetchAppData() {
  *  Set new character data in Async Storage
  *  @type {object} Object containing set of new items
  */
-export async function storeAppData(data) {
-  return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-    .then((res) => data)
+export async function storeAppData(payload, timestamp) {
+  const newData = { data: payload, last_updated: timestamp };
+  console.log( newData );
+  return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newData))
+    .then((res) => console.log("storing",newData))
     .catch((error) => error);
 }
 
