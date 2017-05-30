@@ -6,7 +6,6 @@ import character from './character'; // initial app data
 import navigation from './navigation';
 
 export default rootReducer = combineReducers({
-	navigation,
 	blob,
 	select,
 	character

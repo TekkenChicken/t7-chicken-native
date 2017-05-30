@@ -13,7 +13,9 @@ const icons = {
   tailspin: require('./tailspin.png'),
   tiles: require('./th.png'),
   close: require('./close.png'),
-  logo: require('./logo.png')
+  logo: require('./logo.png'),
+  checkboxEmpty: require('./checkbox-empty.png'),
+  checkboxChecked: require('./checkbox-check.png')
 };
 
 export default icons;

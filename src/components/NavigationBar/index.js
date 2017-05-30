@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 
 // components
 import NavigationTitle from './Title';
@@ -35,12 +36,14 @@ const headerStyles = {
     elevation: 0
   },
   transparent: {
-    position: 'absolute',
     backgroundColor: 'transparent',
     zIndex: 100,
     top: 0,
     left: 0,
     right: 0
+  },
+  black: {
+    backgroundColor: '#111',
   }
 };
 
@@ -66,12 +69,13 @@ export const charSelectNavHeader = (leftComponents = [], rightComponents = []) =
 };
 
 // Character Profile Screen Header Config
-export const charProfileNavHeader = (title, leftComponents=[], rightComponents=[]) => {
-  const profileStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
+export const charProfileNavHeader = (charName, leftComponents=[], rightComponents=[], scrollState) => {
+  const transparentStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
+  const blackStyle = Object.assign({}, headerStyles.common, headerStyles.black);
   return {
-    title: null,
-    headerTitle: null,
-    headerStyle: profileStyle,
+    title: (Platform.OS === 'ios') ? null : renderTitle(charName),
+    headerTitle: (scrollState) ? renderTitle(charName) : null,
+    headerStyle: (Platform.OS === 'ios') ? transparentStyle : blackStyle,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
   };
@@ -79,11 +83,21 @@ export const charProfileNavHeader = (title, leftComponents=[], rightComponents=[
 
 // About Screen Header Config
 export const aboutNavHeader = (leftComponents = [], rightComponents = []) => {
-  //const profileStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
   return {
     drawerLabel: 'About',
     title: "About",
     headerTitle: renderTitle("About"),
+    headerLeft: renderSide(leftComponents, "left"),
+    headerRight: renderSide(rightComponents, "right"),
+    headerStyle: headerStyles.common
+  };
+};
+
+export const helpNavHeader = (leftComponents = [], rightComponents = []) => {
+  return {
+    drawerLabel: 'Help Out!',
+    title: "Help",
+    headerTitle: renderTitle("Help"),
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right"),
     headerStyle: headerStyles.common

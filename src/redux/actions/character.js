@@ -70,3 +70,14 @@ export const resetCharacterMoveFilters = () => {
     type: CHARACTER_RESET_FILTERS
   };
 };
+
+/**
+ *
+ *
+ */
+export const searchMovesByNotation = (notation) => {
+  return {
+    type: CHARACTER_SEARCH_MOVES,
+    notation: notation.trim().toLowerCase().replace(/\s/g,'')
+  };
+};

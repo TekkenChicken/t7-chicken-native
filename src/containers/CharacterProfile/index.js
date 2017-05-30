@@ -10,7 +10,8 @@ import {
   ListView,
   ScrollView,
   Button,
-  TextInput
+  TextInput,
+  Platform
 } from 'react-native';
 
 // components
@@ -33,20 +34,23 @@ import headshots from '../../img/headshots/index';
 import Styles from './styles';
 
 // dispatch actions
-import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter } from '../../redux/actions/character';
+import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter, searchMovesByNotation } from '../../redux/actions/character';
 
 class CharacterProfileScreen extends Component {
   static navigationOptions = ({navigation}) => {
-    const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"}], [,{key: "FilterButton"}]);
-    const headerConfig = navigation.state.params.header || prelimConfig;
-    return headerConfig;
+    const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"}], [,{key: "FilterButton"}], navigation.state.params.scrollHeader);
+    const title = navigation.state.params.characterID;
+    const left = [{key: "BackButton", navigation: navigation}];
+    const right = navigation.state.params.right || [{key: "FilterButton"}];
+    return charProfileNavHeader(title, left, right, navigation.state.params.scrollHeader);
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      scrollHeader: false
-    }
+      scrollHeader: false,
+      searchFocus: false
+    };
   }
 
   componentWillMount() {
@@ -66,7 +70,9 @@ class CharacterProfileScreen extends Component {
   // imperatively set the configuration params for header (so that the header is connected to component)
   updateHeaderParams() {
     const headerConfig = {
-      header: charProfileNavHeader(this.props.characterID, this.getHeaderLeftConfig(), this.getHeaderRightConfig())
+      charName: this.props.characterID,
+      right: this.getHeaderRightConfig(),
+      scrollHeader: this.props.navigation.state.params.scrollHeader
     };
     this.props.navigation.setParams(headerConfig);
   }
@@ -88,15 +94,30 @@ class CharacterProfileScreen extends Component {
   }
 
   handleScroll(e) {
-    if (e.nativeEvent.contentOffset.y >= 80 && !this.state.scrollHeader) {
-      this.setState({ scrollHeader: true });
-    } else if (e.nativeEvent.contentOffset.y < 80 && this.state.scrollHeader) {
-      this.setState({ scrollHeader: false });
-    }
+    this.toggleScrollHeader(e.nativeEvent);
+    //this.toggleSearchScrollOffset(e.nativeEvent);
+  }
+
+  toggleScrollHeader(e) {
+    this.setState({scrollHeader: e.contentOffset.y >= 50});
+  }
+
+  onSearchFocusHandler() {
+    this.refs.search.measure((frameOffsetX, frameOffsetY, w, h, pageX, pageY) => {
+      console.log(frameOffsetX, frameOffsetY, w, h, pageX, pageY);
+      let offset = (Platform.OS === 'ios') ? 64 : 54;
+      this.refs.scrollView.scrollTo({x: 0, y: pageY - h/1.5});
+      this.setState({searchFocus: true});
+    })
+  }
+
+  onSearchBlurHandler() {
+    this.setState({searchFocus: false});
   }
 
   render() {
-    let {characterID, characterMoves, characterName} = this.props;
+    let {characterID, characterMovesData, characterName} = this.props;
+    // const scrollStateOffset = (this.props.navigation.state.params.scrollHeader) ? Styles.offsetOnScroll : '';
     const menu = <FilterMenuContainer />;
     return (
       <Drawer
@@ -123,14 +144,30 @@ class CharacterProfileScreen extends Component {
             scroll={this.state.scrollHeader}
             name={characterID.toUpperCase()} />
           <ScrollView
+            ref={"scrollView"}
             style={Styles.scrollContainer}
-            scrollEventThrottle={20}
+            scrollEventThrottle={16}
             onScroll={(e) => this.handleScroll(e)}
-            keyboardShouldPersistTaps={'always'}>
+            keyboardShouldPersistTaps={'always'}
+            stickyHeaderIndices={[4]}>
+            <View style={Styles.offset}>
               <ProfileBackDrop image={null} />
-              <ProfilePicture image={headshots[this.props.characterID]} />
-              <ProfileName name={characterID.toUpperCase()} />
-              <MoveList moves={characterMoves} />
+            </View>
+            <ProfilePicture image={headshots[this.props.characterID]} />
+            <ProfileName name={characterName.toUpperCase()} />
+            <CommandListBanner />
+            <View ref={"search"}>
+              <SearchBar
+                onChange={this.props.triggerSearchByNotation}
+                onFocusCallback={() => this.onSearchFocusHandler()}
+                onBlurCallback={() => this.onSearchBlurHandler()}
+              />
+            </View>
+            <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
+              <MoveList
+                moves={characterMovesData}
+              />
+            </View>
           </ScrollView>
         </View>
       </Drawer>
@@ -140,10 +177,10 @@ class CharacterProfileScreen extends Component {
 
 /** MAPPING STATE **/
 const mapStateToProps = (state, props) => {
-  console.log(state, props);
   return {
     characterID: props.navigation.state.params.characterID,
-    characterMoves: state.character.moves
+    characterName: props.navigation.state.params.characterName,
+    characterMovesData: state.character.data
   };
 };
 
@@ -151,7 +188,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     triggerFilterUpdate: () => dispatch(applyCharacterMoveFilters()),
     fetchDataForCharacter: (characterID) => dispatch(fetchDataForCharacter(characterID)),
-    resetDataForCharacter: () => dispatch(resetDataForCharacter())
+    resetDataForCharacter: () => dispatch(resetDataForCharacter()),
+    triggerSearchByNotation: (notation) => dispatch(searchMovesByNotation(notation))
   };
 };
 

@@ -16,6 +16,7 @@ Before you get started, make sure you have the following dependencies installed 
 Install dependencies
 
     $ npm install
+    $ react-native link
 
 ### Running the iOS application
 

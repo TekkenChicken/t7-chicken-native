@@ -14,8 +14,12 @@ const createFilterMethodsMap = (filterMethods) => {
 	});
 	return utilObj;
 };
-
 const _moveFilterMap = createFilterMethodsMap(moveFilterMethods);
+
+
+//////////////////////////////////////////////////
+// EXPORTED METHODS
+//////////////////////////////////////////////
 
 /**
  *	@method: filterMoves
@@ -31,4 +35,13 @@ const filterMoves = (moves, filterObj) => {
 	);
 }
 
-export default { filterMoves };
+/**
+ *	@method: searchByNotation
+ *	@param: searchNotation [string]
+ */
+const searchByNotation = (moves, searchNotation) => {
+	return moves.filter( move => move.notation.replace(/\s/g,'').includes(searchNotation));
+};
+
+
+export default { filterMoves, searchByNotation };

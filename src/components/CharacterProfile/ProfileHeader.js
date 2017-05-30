@@ -26,14 +26,13 @@ ProfileHeader.propTypes = {
 
 const Styles = StyleSheet.create({
   profileHeader: {
-		flex: 1,
 		zIndex: 3,
 		flexDirection: 'row',
 		opacity: 0,
 		width: Dimensions.get('window').width,
 		alignItems: 'center',
 		backgroundColor: '#260309',
-		...Platform.select({
+    ...Platform.select({
       ios: {
         height: 64
       },
@@ -48,10 +47,10 @@ const Styles = StyleSheet.create({
 		textAlign: 'center',
 		marginTop: 15,
 		fontSize: 14,
-		fontWeight: '600'
+		fontWeight: '600',
 	},
 	scroll: {
-		opacity: 1
+		opacity: 1,
 	}
 });
 

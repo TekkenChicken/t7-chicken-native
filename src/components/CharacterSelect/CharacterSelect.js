@@ -38,7 +38,6 @@ export default class CharacterSelect extends React.Component {
     return this.refs['OPTIONLIST'];
   }
 
-
   render() {
     return (
       <View>

@@ -10,6 +10,9 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 // components
 import CheckBox from 'react-native-checkbox';
 
+// assets
+import icons from '../../../img/icons/';
+
 
 class FilterButtonGroup extends Component {
   constructor(props) {
@@ -45,7 +48,8 @@ class FilterButtonGroup extends Component {
             checkboxStyle={[Styles.checkBox__box, (this.state.active.indexOf(i) > -1) ? Styles.checkBox__boxchecked : ""]}
             labelStyle={Styles.checkBox__label}
             underlayColor={'#900a12'}
-            uncheckedImage={null}
+            uncheckedImage={icons['checkboxEmpty']}
+            checkedImage={icons['checkboxChecked']}
             label={option.label}
             onChange={(checked) => this.toggleCheck(filterKey, option.value, !checked, i)}
           />
@@ -72,6 +76,7 @@ const Styles = EStyleSheet.create({
     borderColor: '#f0aa23'
   },
   buttonContainer: {
+    backgroundColor: '#960b11',
   },
   checkBox__container: {
     paddingBottom: 10,

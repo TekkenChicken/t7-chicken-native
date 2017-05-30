@@ -15,7 +15,6 @@ const STORAGE_KEY = 't7CharacterData';
  * Fetches all data in Async Storage and returns parsed content
  */
 export async function fetchAppData() {
-  console.log("fetching AsyncStorage data");
   return AsyncStorage.getItem(STORAGE_KEY)
     .then((res) => JSON.parse(res))
     .catch((error) => error);
@@ -25,10 +24,11 @@ export async function fetchAppData() {
  *  Set new character data in Async Storage
  *  @type {object} Object containing set of new items
  */
-export async function storeAppData(data) {
-  console.log("storing async data", data);
-  return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-    .then((res) => data)
+export async function storeAppData(payload, timestamp) {
+  const newData = { data: payload, last_updated: timestamp };
+  console.log( newData );
+  return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newData))
+    .then((res) => console.log("storing",newData))
     .catch((error) => error);
 }
 
@@ -36,7 +36,6 @@ export async function storeAppData(data) {
  *  Clears tekken data in Async Storage
  */
 export async function clearAppData() {
-  console.log("clear async data");
   return AsyncStorage.removeItem(STORAGE_KEY)
     .then((res) => res)
     .catch((error) => error);
