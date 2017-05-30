@@ -6,11 +6,15 @@ import {
   StyleSheet
 } from 'react-native';
 
+import LinearGradient from 'react-native-linear-gradient';
+
 class ProfileBackDrop extends Component {
   render() {
     return (
-      <View style={Styles.backDropContainer}>
-      </View>
+      <LinearGradient colors={['#9d1018', '#320flc']}
+        style={Styles.backDropContainer}>
+
+      </LinearGradient>
     );
   }
 }
@@ -18,7 +22,10 @@ class ProfileBackDrop extends Component {
 const Styles = StyleSheet.create({
   backDropContainer: {
     height: 160,
-    backgroundColor: '#111'
+  },
+  gradient: {
+    flex: 1,
+    width: 200
   }
 });
 
