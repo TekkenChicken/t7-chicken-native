@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 
 // components
 import NavigationTitle from './Title';
@@ -40,6 +41,9 @@ const headerStyles = {
     top: 0,
     left: 0,
     right: 0
+  },
+  black: {
+    backgroundColor: '#111',
   }
 };
 
@@ -67,10 +71,11 @@ export const charSelectNavHeader = (leftComponents = [], rightComponents = []) =
 // Character Profile Screen Header Config
 export const charProfileNavHeader = (charName, leftComponents=[], rightComponents=[], scrollState) => {
   const transparentStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
+  const blackStyle = Object.assign({}, headerStyles.common, headerStyles.black);
   return {
-    title: null,
+    title: (Platform.OS === 'ios') ? null : renderTitle(charName),
     headerTitle: (scrollState) ? renderTitle(charName) : null,
-    headerStyle: headerStyles.common,
+    headerStyle: (Platform.OS === 'ios') ? transparentStyle : blackStyle,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
   };

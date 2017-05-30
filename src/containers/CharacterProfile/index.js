@@ -115,7 +115,7 @@ class CharacterProfileScreen extends Component {
   }
 
   render() {
-    let {characterID, characterMoves, characterName} = this.props;
+    let {characterID, characterMovesData, characterName} = this.props;
     // const scrollStateOffset = (this.props.navigation.state.params.scrollHeader) ? Styles.offsetOnScroll : '';
     const menu = <FilterMenuContainer />;
     return (
@@ -153,7 +153,7 @@ class CharacterProfileScreen extends Component {
               <ProfileBackDrop image={null} />
             </View>
             <ProfilePicture image={headshots[this.props.characterID]} />
-            <ProfileName name={characterID.toUpperCase()} />
+            <ProfileName name={characterName.toUpperCase()} />
             <CommandListBanner />
             <View ref={"search"}>
               <SearchBar
@@ -164,7 +164,7 @@ class CharacterProfileScreen extends Component {
             </View>
             <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
               <MoveList
-                moves={characterMoves}
+                moves={characterMovesData}
               />
             </View>
           </ScrollView>
@@ -178,7 +178,8 @@ class CharacterProfileScreen extends Component {
 const mapStateToProps = (state, props) => {
   return {
     characterID: props.navigation.state.params.characterID,
-    characterMoves: state.character.moves
+    characterName: props.navigation.state.params.characterName,
+    characterMovesData: state.character.data
   };
 };
 

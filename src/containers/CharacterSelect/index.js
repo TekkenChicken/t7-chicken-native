@@ -38,7 +38,6 @@ class CharacterSelectScreen extends Component {
 
   componentWillMount() {
     this.props.fetchCharacters();
-    this.props.fetchInitialAppData();
   }
 
   /**
@@ -47,24 +46,11 @@ class CharacterSelectScreen extends Component {
    *  Will navigate to the character page and pass the characterID as a prop to the page
    *  (where it will be used to fetch data on a character)
    */
-  navigateToCharacter(characterID) {
-    this.props.navigation.navigate('characterProfile', { characterID: characterID });
-  }
-
-  mapCharacters(characters) {
-    let characterArray = [];
-    Object.keys(characters).map((c) => {
-      characterArray.push(characters[c]);
-    });
-    return characterArray;
-  }
-
-  mapCharacters(characters) {
-    return Object.keys(characters).map((key) => characters[key]);
+  navigateToCharacter(characterID, characterName) {
+    this.props.navigation.navigate('characterProfile', { characterID, characterName });
   }
 
   render() {
-    console.log(this.mapCharacters(this.props.characters));
     return (
       <View style={Styles.mainContainer}>
         <View>
@@ -75,8 +61,8 @@ class CharacterSelectScreen extends Component {
           keyboardShouldPersistTaps="always">
           <CharacterList
             containerStyle={Styles.charList}
-            characters={this.mapCharacters(this.props.characters)}
-            onCharacterSelect={(id, image) => this.navigateToCharacter(id)}
+            characters={this.props.characters}
+            onCharacterSelect={(id, name) => this.navigateToCharacter(id, name)}
           />
         </ScrollView>
       </View>

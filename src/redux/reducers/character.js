@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   name: '',
-  moves: [], // all moves
+  data: [], // all moves
   filter: {},
   filterQueue: {},
   searchNotation: ''
