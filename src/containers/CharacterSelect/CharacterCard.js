@@ -13,7 +13,7 @@ import headshots from '../../img/headshots/index';
 class CharacterCard extends Component {
 
   render() {
-    const {image, label, id, onPressHandler, moves} = this.props;
+    const {image, label, name, onPressHandler, moves} = this.props;
     const headImage = headshots[this.props.label] || headshots.kazuya;
     // in case of empty
     const emptyCard = label == null;
@@ -23,7 +23,7 @@ class CharacterCard extends Component {
 
     return (
       <View style={cardStyle} pointerEvents={touchEvent}>
-        <TouchableHighlight onPress={() => onPressHandler(label, moves, image)}>
+        <TouchableHighlight onPress={() => onPressHandler(label, name)}>
           <View style={Styles.imageContainer}>
             <Image
               style={Styles.image}
