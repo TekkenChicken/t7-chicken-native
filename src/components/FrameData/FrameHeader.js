@@ -19,11 +19,11 @@ const Styles = StyleSheet.create({
     backgroundColor: 'rgb(65, 18, 18)',
   },
   text: {
-    fontSize: 24,
+    fontSize: 22,
     color: 'white',
     paddingTop: 10,
     paddingBottom: 10,
-    paddingLeft: 15,
+    paddingLeft: 12,
     fontFamily: 'Exo2-Regular'
   }
 });

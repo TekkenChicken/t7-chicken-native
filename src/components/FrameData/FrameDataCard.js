@@ -58,17 +58,16 @@ export default class FrameDataCard extends React.Component {
               {/* TODO: change the data so we get each input as an array element */}
               <Inputs isCard={false} inputs={['1', '2']}/>
               {/* TODO: get attack properties from data source */}
-              <PropertyList type={'special'} properties={['H', 'T']}/>
+              <PropertyList type={'special'} specProperties={this.props.notes}/>
               <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} />
               <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch} speed={this.props.speed} />
             </ScrollView>
           </View>
-          <Button
+          <TouchableHighlight
             onPress={() => this.setModalVisible(!this.state.modalVisible)}
-            buttonStyle={Styles.closeButton}
-          >
+            style={Styles.closeButton}>
             <Image source={icons['close']} style={Styles.closeButtonIcon}/>
-          </Button>
+          </TouchableHighlight>
         </Modal>
       </View>
     )
@@ -78,12 +77,6 @@ export default class FrameDataCard extends React.Component {
 const Styles = StyleSheet.create({
   container: {
     height: 100
-  },
-  videoText: {
-    textAlign: 'center',
-    fontSize: 32,
-    paddingTop: 30,
-    color: 'white'
   },
   card: {
     height: 95,
@@ -119,11 +112,14 @@ const Styles = StyleSheet.create({
   closeButton: {
     position: 'absolute',
     top: 30,
-    right: 15
+    right: 15,
+    padding: 5,
+    backgroundColor: 'rgb(65, 18, 18)'
   },
   closeButtonIcon: {
     height: 12,
-    width: 12
+    width: 12,
+    marginTop: 0
   },
   modal: {
     flex: 1,
@@ -134,11 +130,19 @@ const Styles = StyleSheet.create({
     fontSize: 24,
     marginTop: 10,
     marginBottom: 5,
-    paddingLeft: 35,
+    paddingLeft: 20,
     fontFamily: 'Exo2-Regular'
   },
   videoContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#111',
-    minHeight: 120
+    minHeight: 130
+  },
+  videoText: {
+    textAlign: 'center',
+    fontSize: 16,
+    paddingTop: 30,
+    color: 'white'
   }
 });

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import { View,
   Text,
@@ -8,16 +8,18 @@ import { View,
 
 import SubtitleHeading from '../SubtitleHeading/SubtitleHeading';
 
-export default class PropertyList extends Component {
+import icons from '../../img/icons/';
+
+class PropertyList extends Component {
   constructor() {
     super();
     this.state = {};
   }
 
-  determineType() {
-    switch(this.props.type) {
+  renderPropertiesForType(type) {
+    switch(type) {
     case 'special':
-      //return this.renderSpecialProperties();
+      return this.renderSpecialProperties();
       break;
     case 'general':
       return this.renderGeneralProperties();
@@ -31,26 +33,23 @@ export default class PropertyList extends Component {
   }
 
   renderSpecialProperties() {
+    const specProps = this.props.specProperties.split(',');
     return (
       <View style={Styles.table}>
         <SubtitleHeading subtitle={'Special Properties'.toUpperCase()}/>
-        {/* TODO: determine logic to display properties in relation to data */}
-        <View style={Styles.propertyRow}>
-          <Image></Image>
-          <Text style={Styles.propertyValue}>{'Rage Art'}</Text>
-        </View>
-        <View style={Styles.propertyRow}>
-          <Image/>
-          <Text style={Styles.propertyValue}>{'Rage Drive'}</Text>
-        </View>
-        <View style={Styles.propertyRow}>
-          <Image/>
-          <Text style={Styles.propertyValue}>{'Homing'}</Text>
-        </View>
-        <View style={Styles.propertyRow}>
-          <Image/>
-          <Text style={Styles.propertyValue}>{'Tailspin'}</Text>
-        </View>
+        {
+          specProps.map((prop) => {
+            return ( (prop !== 'null') ?
+              (<View style={Styles.propertyRow}>
+                  <Image
+                    style={Styles.propertyIcon}
+                    source={icons[prop.replace(/\s/g, '').toLowerCase()]} />
+                  <Text style={Styles.propertyValue}>{prop}</Text>
+                </View>)
+              : null
+            )
+          })
+        }
       </View>
     );
   }
@@ -98,7 +97,7 @@ export default class PropertyList extends Component {
   render() {
     return (
       <View>
-        {this.determineType()}
+        {this.renderPropertiesForType(this.props.type)}
       </View>
     );
   }
@@ -111,19 +110,45 @@ const Styles = StyleSheet.create({
   propertyRow: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingTop: 5,
+    paddingTop: 8,
     paddingBottom: 5,
-    borderBottomColor: '#f0aeb1',
-    borderBottomWidth: 1
+    borderBottomColor: 'rgba(228, 83, 90, 0.6)',
+    borderBottomWidth: .5
   },
   property: {
-    textAlign: 'right',
+    flex: 0.5,
+    paddingLeft: 15,
     color: '#f0aeb1',
-    fontFamily: 'Exo2-Light'
+    fontFamily: 'Exo2-Light',
+    fontWeight: '400'
   },
   propertyValue: {
+    flex: 0.5,
     paddingLeft: 10,
     color: 'white',
+    fontSize: 15,
     fontFamily: 'Exo2-Light'
+  },
+  propertyIcon: {
+    resizeMode: 'contain',
+    marginLeft: 15,
+    height: 20,
+    width: 24
   }
 });
+
+PropertyList.proptypes = {
+  type: PropTypes.string,
+  // special
+  specProperties: PropTypes.string,
+  // general
+  damage: PropTypes.string,
+  hitLevels: PropTypes.string,
+  // frame
+  onBlock: PropTypes.string,
+  onHit: PropTypes.string,
+  onCounter: PropTypes.string,
+  speed: PropTypes.string
+}
+
+export default PropertyList;
