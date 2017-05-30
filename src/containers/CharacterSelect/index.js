@@ -38,7 +38,6 @@ class CharacterSelectScreen extends Component {
 
   componentWillMount() {
     this.props.fetchCharacters();
-    this.props.fetchInitialAppData();
   }
 
   /**

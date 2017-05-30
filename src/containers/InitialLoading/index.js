@@ -25,6 +25,7 @@ class LoadingScreen extends Component {
     this.state = {
       loading: true
     };
+    this.loaded = true;
   }
 
   componentDidMount() {
@@ -34,11 +35,8 @@ class LoadingScreen extends Component {
   }
 
   componentDidUpdate() {
-    // if blob has finished fetching data
     if (this.props.blob.characterData && this.state.loading) {
-      this.setState({loading: false}, () => {
-        this.props.navigation.navigate('characterSelect');
-      });
+      this.setState({ loading: false }, () => this.props.navigation.navigate('characterSelect'));
     }
   }
 
