@@ -42,6 +42,10 @@
     "reactotron-react-native": "^1.6.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": ["./test/setup.js"],
+    "transformIgnorePatterns": [
+     "node_modules/(?!(jest-)?react-native|react-navigation)"
+   ]
   }
 }

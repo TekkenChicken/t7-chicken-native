@@ -46,7 +46,7 @@
       <true/>
       <key>NSExceptionDomains</key>
       <dict>
-        <key>bdickason.com</key>
+        <key>chicken.seattletekken.com</key>
         <dict>
           <key>NSExceptionRequiresForwardSecrecy</key>
           <false/>
