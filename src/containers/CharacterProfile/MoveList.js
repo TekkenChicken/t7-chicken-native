@@ -38,7 +38,8 @@ class MoveList extends Component {
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 7
+    marginTop: 7,
+    marginBottom: 80
   },
   row: {
     flexDirection:'row',

@@ -70,12 +70,11 @@ const Styles = StyleSheet.create({
     backgroundColor: '#960b11',
   },
   menuHeader: {
-    flex: 1,
     flexDirection: 'row',
     zIndex: 9999,
-    paddingTop: 55,
+    paddingTop: 45,
     paddingLeft: 10,
-    paddingBottom: 35,
+    paddingBottom: 10,
     backgroundColor: '#240202'
   },
   menuTitle: {
