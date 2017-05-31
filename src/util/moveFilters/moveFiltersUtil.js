@@ -40,7 +40,7 @@ const filterMoves = (moves, filterObj) => {
  *	@param: searchNotation [string]
  */
 const searchByNotation = (moves, searchNotation) => {
-	return moves.filter( move => move.notation.replace(/\s/g,'').includes(searchNotation));
+	return moves.filter( move => move.notation.replace(/\s/g,'').toLowerCase().includes(searchNotation));
 };
 
 
