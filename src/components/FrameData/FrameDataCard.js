@@ -33,8 +33,11 @@ export default class FrameDataCard extends React.Component {
   }
 
   render() {
+    const emptyCard = (this.props.notation == null);
+    const containerStyle = (emptyCard) ? [Styles.container, Styles.empty] : Styles.container;
+    const touchEvent = (emptyCard) ? 'none' : 'auto';
     return (
-      <View style={Styles.container}>
+      <View style={containerStyle} pointerEvents={touchEvent}>
         <TouchableHighlight
           onPress={() => { this.setModalVisible(true) }}
           style={Styles.card}>
@@ -92,6 +95,9 @@ const Styles = StyleSheet.create({
     width: 120,
     zIndex: -3,
 		backgroundColor: 'rgb(65, 18, 18)',
+  },
+  empty: {
+    opacity: 0
   },
   moveName: {
     color: 'white',
