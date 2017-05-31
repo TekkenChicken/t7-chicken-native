@@ -4,11 +4,9 @@ import {
 
 export default Styles = StyleSheet.create({
   mainContainer: {
-		flex: 1,
-		backgroundColor: '#111'
+		flex: 1
   },
 	scrollContainer: {
-		backgroundColor: 'transparent',
 		...Platform.select({
       ios: {
 				paddingTop: 64,

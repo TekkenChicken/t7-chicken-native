@@ -23,8 +23,7 @@ class ProfileBackDrop extends Component {
 
 const Styles = StyleSheet.create({
   backDropContainer: {
-    height: 160,
-    backgroundColor: 'blue'
+    height: 160
   },
   gradient: {
     flex: 1,

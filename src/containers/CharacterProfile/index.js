@@ -142,7 +142,11 @@ class CharacterProfileScreen extends Component {
         })}
         onClose={() => this.props.triggerFilterUpdate()}
       >
-        <View style={Styles.mainContainer}>
+        <LinearGradient
+          colors={[redPrimary, redSecondary]}
+          start={{x: 1.5, y: 0.25}} end={{x: 0.5, y: 1.0}}
+          style={Styles.mainContainer}
+          >
           <ProfileHeader
             containerStyle={Styles.header}
             scroll={this.state.scrollHeader}
@@ -154,10 +158,6 @@ class CharacterProfileScreen extends Component {
             onScroll={(e) => this.handleScroll(e)}
             keyboardShouldPersistTaps={'always'}
             stickyHeaderIndices={[4]}>
-            <LinearGradient
-              colors={[redPrimary, redSecondary]} style={Styles.backDropContainer}
-              start={{x: 1.5, y: 0.25}} end={{x: 0.5, y: 1.0}}
-              >
             <View style={Styles.offset}>
               <ProfileBackDrop image={null} />
             </View>
@@ -176,9 +176,8 @@ class CharacterProfileScreen extends Component {
                 moves={characterMovesData}
               />
             </View>
-          </LinearGradient>
           </ScrollView>
-        </View>
+        </LinearGradient>
       </Drawer>
     );
   }
