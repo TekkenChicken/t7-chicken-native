@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 // dependencies
-import { View, Text, Image, TouchableHighlight, StyleSheet, Platform } from 'react-native';
+import { View, Text, Image, TouchableHighlight, StyleSheet, Platform, Dimensions } from 'react-native';
 import { Router } from '../Router';
 
 // components
@@ -40,6 +40,7 @@ class CharacterCard extends Component {
 const Styles = StyleSheet.create({
   card: {
     flex: 1,
+    width: Dimensions.get('window').width / 4,
     paddingBottom: 15
   },
   empty: {
