@@ -52,7 +52,8 @@ const Styles = StyleSheet.create({
     marginBottom: 10,
     fontFamily: 'Exo2-Light',
     color: '#f0aeb1',
-    fontSize: 12
+    fontSize: 12,
+    backgroundColor: 'transparent'
   }
 })
 

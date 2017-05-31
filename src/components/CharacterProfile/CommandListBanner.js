@@ -5,12 +5,13 @@ import {
   StyleSheet
 } from 'react-native';
 
+const redSecondary = '#320f1c';
+
 class CommandListBanner extends Component {
   render() {
     return (
       <View style={Styles.commandListContainer}>
         <Text style={Styles.commandListText}>COMMAND LIST</Text>
-        <View style={Styles.borderLine} />
       </View>
     )
   }
@@ -18,9 +19,9 @@ class CommandListBanner extends Component {
 
 const Styles = StyleSheet.create({
   commandListContainer: {
-		backgroundColor: 'rgb(65, 18, 18)',
+		backgroundColor: redSecondary,
 		height: 40,
-		paddingTop: 10
+		paddingTop: 10,
 	},
 	commandListText: {
 		color: '#f0aa23',

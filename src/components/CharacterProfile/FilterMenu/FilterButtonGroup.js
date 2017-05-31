@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import {
   View,
-  Button
+  Button,
+  Platform
 } from 'react-native';
 
 // dependencies
 import EStyleSheet from 'react-native-extended-stylesheet';
+const redPrimary = '#730909';
 
 // components
 import CheckBox from 'react-native-checkbox';
@@ -76,7 +78,12 @@ const Styles = EStyleSheet.create({
     borderColor: '#f0aa23'
   },
   buttonContainer: {
-    backgroundColor: '#960b11',
+    backgroundColor: 'transparent',
+    ...Platform.select({
+      android: {
+        backgroundColor: redPrimary
+      }
+    })
   },
   checkBox__container: {
     paddingBottom: 10,

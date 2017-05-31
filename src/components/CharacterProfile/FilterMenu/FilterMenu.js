@@ -3,6 +3,11 @@ import { View, Text, StyleSheet, Platform, ScrollView } from 'react-native';
 
 import moveFilterOptions from '../../../util/moveFilters/moveFilterOptions';
 
+import LinearGradient from 'react-native-linear-gradient';
+
+const redPrimary = '#9d1918';
+const redSecondary = '#320f1c';
+
 //Components
 import FilterAccordion from './FilterAccordion';
 import CustomText from '../../CustomText/CustomText';
@@ -52,14 +57,14 @@ class FilterMenu extends Component {
   render() {
     const { onFilterSelectHandler, onFilterResetHandler } = this.props;
     return (
-      <View>
+      <LinearGradient colors={[redPrimary, redSecondary]}>
         {this.renderMenuHeader(onFilterResetHandler)}
         <ScrollView style={Styles.menuContainer}>
           <View key={this.state.resetFlag} style={Styles.menuFiltersContainer}>
             {this.renderFilterAccordions(moveFilterOptions, onFilterSelectHandler)}
           </View>
         </ScrollView>
-      </View>
+      </LinearGradient>
     )
   }
 }
@@ -67,7 +72,7 @@ class FilterMenu extends Component {
 const Styles = StyleSheet.create({
   menuContainer: {
     paddingBottom: 580,
-    backgroundColor: '#960b11',
+    backgroundColor: 'transparent',
   },
   menuHeader: {
     flexDirection: 'row',

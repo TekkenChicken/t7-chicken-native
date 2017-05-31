@@ -14,6 +14,11 @@ import {
   Platform
 } from 'react-native';
 
+import LinearGradient from 'react-native-linear-gradient';
+
+const redPrimary = '#9d1918';
+const redSecondary = '#320f1c';
+
 // components
 import ProfileBackDrop from '../../components/CharacterProfile/ProfileBackDrop';
 import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
@@ -138,7 +143,11 @@ class CharacterProfileScreen extends Component {
         })}
         onClose={() => this.props.triggerFilterUpdate()}
       >
-        <View style={Styles.mainContainer}>
+        <LinearGradient
+          colors={[redSecondary, redPrimary]}
+          start={{x: 1.0, y: 0.9}} end={{x: 0.5, y: 0.1}}
+          style={Styles.mainContainer}
+          >
           <ProfileHeader
             containerStyle={Styles.header}
             scroll={this.state.scrollHeader}
@@ -158,6 +167,8 @@ class CharacterProfileScreen extends Component {
             <CommandListBanner />
             <View ref={"search"}>
               <SearchBar
+                containerStyle={{backgroundColor: redSecondary}}
+                inputWrapStyle={{backgroundColor: '#3d1d2b' }}
                 onChange={this.props.triggerSearchByNotation}
                 onFocusCallback={() => this.onSearchFocusHandler()}
                 onBlurCallback={() => this.onSearchBlurHandler()}
@@ -169,7 +180,7 @@ class CharacterProfileScreen extends Component {
               />
             </View>
           </ScrollView>
-        </View>
+        </LinearGradient>
       </Drawer>
     );
   }

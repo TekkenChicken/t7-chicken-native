@@ -23,7 +23,8 @@ const Styles = StyleSheet.create({
 		marginLeft: 15,
 		marginBottom: 30,
 		fontSize: 28,
-		fontFamily: 'Exo2-Light'
+		fontFamily: 'Exo2-Light',
+    backgroundColor: 'transparent',
 	}
 });
 
