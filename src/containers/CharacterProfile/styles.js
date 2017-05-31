@@ -8,7 +8,7 @@ export default Styles = StyleSheet.create({
 		backgroundColor: '#111'
   },
 	scrollContainer: {
-		backgroundColor: '#960b11',
+		backgroundColor: 'transparent',
 		...Platform.select({
       ios: {
 				paddingTop: 64,

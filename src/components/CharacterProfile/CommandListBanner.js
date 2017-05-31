@@ -18,7 +18,7 @@ class CommandListBanner extends Component {
 
 const Styles = StyleSheet.create({
   commandListContainer: {
-		backgroundColor: 'rgb(65, 18, 18)',
+		backgroundColor: 'transparent',
 		height: 40,
 		paddingTop: 10
 	},
@@ -30,7 +30,7 @@ const Styles = StyleSheet.create({
 	borderLine: {
 		width: 150,
 		height: 6,
-		backgroundColor: '#f0aa23',
+		backgroundColor: 'transparent',
 		marginTop: 5
 	},
 });
