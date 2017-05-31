@@ -14,6 +14,11 @@ import PropertyList from '../PropertyList/PropertyList';
 import Inputs from '../Inputs/Inputs';
 import Button from '../Button/Button';
 
+import LinearGradient from 'react-native-linear-gradient';
+
+const redPrimary = '#9d1918';
+const redSecondary = '#320f1c';
+
 import icons from '../../img/icons/';
 
 
@@ -33,12 +38,16 @@ export default class FrameDataCard extends React.Component {
         <TouchableHighlight
           onPress={() => { this.setModalVisible(true) }}
           style={Styles.card}>
-          <View>
+          <LinearGradient
+            start={{x: 3.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
+            colors={[redPrimary, redSecondary]}
+            style={Styles.cardContainer}
+            >
             <Text style={Styles.cardText}>move name</Text>
             <Text style={Styles.cardNotation}>{this.props.notation}</Text>
             {/* TODO: change the data so we get each input as an array element */}
             <Inputs isCard={true} inputs={['1', '1']}/>
-          </View>
+          </LinearGradient>
         </TouchableHighlight>
 
         <Modal
@@ -108,6 +117,10 @@ const Styles = StyleSheet.create({
     paddingTop: 10,
     paddingLeft: 15,
     fontFamily: 'Exo2-Regular'
+  },
+  cardContainer: {
+    flex: 1,
+    backgroundColor: 'transparent'
   },
   modalText: {
     fontSize: 16

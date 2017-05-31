@@ -14,6 +14,11 @@ import {
   Platform
 } from 'react-native';
 
+import LinearGradient from 'react-native-linear-gradient';
+
+const redPrimary = '#9d1918';
+const redSecondary = '#320f1c';
+
 // components
 import ProfileBackDrop from '../../components/CharacterProfile/ProfileBackDrop';
 import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
@@ -149,6 +154,10 @@ class CharacterProfileScreen extends Component {
             onScroll={(e) => this.handleScroll(e)}
             keyboardShouldPersistTaps={'always'}
             stickyHeaderIndices={[4]}>
+            <LinearGradient
+              colors={[redPrimary, redSecondary]} style={Styles.backDropContainer}
+              start={{x: 1.5, y: 0.25}} end={{x: 0.5, y: 1.0}}
+              >
             <View style={Styles.offset}>
               <ProfileBackDrop image={null} />
             </View>
@@ -167,6 +176,7 @@ class CharacterProfileScreen extends Component {
                 moves={characterMovesData}
               />
             </View>
+          </LinearGradient>
           </ScrollView>
         </View>
       </Drawer>

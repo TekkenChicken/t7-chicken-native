@@ -14,7 +14,7 @@ const redSecondary = '#320f1c';
 class ProfileBackDrop extends Component {
   render() {
     return (
-      <LinearGradient colors={[redPrimary, redSecondary]} style={Styles.backDropContainer}>
+      <LinearGradient colors={[redSecondary, redSecondary]} style={Styles.backDropContainer}>
 
       </LinearGradient>
     );
