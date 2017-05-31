@@ -53,7 +53,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { onChange, containerStyle, onFocusCallback, onBlurCallback } = this.props;
+    const { onChange, containerStyle, onFocusCallback, onBlurCallback, inputWrapStyle } = this.props;
     const margin = this.state.searchFocusAnim.interpolate({
       inputRange: [0, 1],
       outputRange: [ 20, 0]
@@ -62,9 +62,10 @@ class SearchBar extends Component {
       inputRange: [0, 1],
       outputRange: [ 0, 1]
     });
+
     return (
       <View style={[Styles.mainContainer, containerStyle]}>
-        <View style={Styles.contentWrap}>
+        <View style={[Styles.contentWrap, inputWrapStyle]}>
           <View
             style={[Styles.iconContainer, Styles.searchIconContainer]}>
             <Image style={Styles.search} source={icons['search']} />
@@ -188,7 +189,10 @@ SearchBar.propTypes = {
   onChange: PropTypes.func,
   onFocusCallback: PropTypes.func,
   onBlurCallback: PropTypes.func,
-  containerStyle: PropTypes.number
+  /*
+  containerStyle: main container
+  inputWrapStyle: input container
+  */
 }
 
 export default SearchBar;

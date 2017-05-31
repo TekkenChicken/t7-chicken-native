@@ -144,8 +144,8 @@ class CharacterProfileScreen extends Component {
         onClose={() => this.props.triggerFilterUpdate()}
       >
         <LinearGradient
-          colors={[redPrimary, redSecondary]}
-          start={{x: 1.5, y: 0.25}} end={{x: 0.5, y: 1.0}}
+          colors={[redSecondary, redPrimary]}
+          start={{x: 1.0, y: 0.9}} end={{x: 0.5, y: 0.1}}
           style={Styles.mainContainer}
           >
           <ProfileHeader
@@ -167,6 +167,8 @@ class CharacterProfileScreen extends Component {
             <CommandListBanner />
             <View ref={"search"}>
               <SearchBar
+                containerStyle={{backgroundColor: redSecondary}}
+                inputWrapStyle={{backgroundColor: '#3d1d2b' }}
                 onChange={this.props.triggerSearchByNotation}
                 onFocusCallback={() => this.onSearchFocusHandler()}
                 onBlurCallback={() => this.onSearchBlurHandler()}

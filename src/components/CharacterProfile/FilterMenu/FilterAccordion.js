@@ -5,6 +5,11 @@ import {
   Button
 } from 'react-native';
 
+import LinearGradient from 'react-native-linear-gradient';
+
+const redPrimary = '#730909';
+const redSecondary = '#520b0a';
+
 // Components
 import CustomText from '../../CustomText/CustomText';
 import Accordion from 'react-native-accordion';
@@ -22,10 +27,14 @@ class FilterAccordion extends Component {
   renderHeader(label) {
     const expandIconStyle = (this.state.expanded) ? Styles.filterHeader__expandIcon : [Styles.filterHeader__expandIcon, Styles.filterHeader__expandIcon__closed];
     return (
-      <View style={Styles.filterHeader}>
+      <LinearGradient
+        colors={[redPrimary, redSecondary]}
+        style={Styles.filterHeader}
+        start={{x: 1.5, y: 0.25}} end={{x: 0.5, y: 1.0}}
+        >
         <CustomText textStyle={Styles.filterHeader__label}>{label}</CustomText>
         <CustomText textStyle={expandIconStyle}>^</CustomText>
-      </View>
+      </LinearGradient>
     );
   }
 
@@ -62,7 +71,7 @@ const Styles = StyleSheet.create({
   filterHeader: {
     flex: 1,
     flexDirection: 'row',
-		backgroundColor: '#76090d',
+		backgroundColor: 'transparent',
     borderStyle: 'solid',
     borderBottomWidth: 1,
     borderColor: '#6d080d',

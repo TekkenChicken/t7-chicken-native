@@ -12,7 +12,6 @@ class CommandListBanner extends Component {
     return (
       <View style={Styles.commandListContainer}>
         <Text style={Styles.commandListText}>COMMAND LIST</Text>
-        <View style={Styles.borderLine} />
       </View>
     )
   }
@@ -23,7 +22,6 @@ const Styles = StyleSheet.create({
 		backgroundColor: redSecondary,
 		height: 40,
 		paddingTop: 10,
-    marginBottom: 30
 	},
 	commandListText: {
 		color: '#f0aa23',
