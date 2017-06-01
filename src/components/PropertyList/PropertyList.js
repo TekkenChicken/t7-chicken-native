@@ -38,10 +38,11 @@ class PropertyList extends Component {
       <View style={Styles.table}>
         <SubtitleHeading subtitle={'Special Properties'.toUpperCase()}/>
         {
-          specProps.map((prop) => {
+          specProps.map((prop, key) => {
             return ( (prop !== 'null') ?
               (<View style={Styles.propertyRow}>
                   <Image
+                    key={key}
                     style={Styles.propertyIcon}
                     source={icons[prop.replace(/\s/g, '').toLowerCase()]} />
                   <Text style={Styles.propertyValue}>{prop}</Text>

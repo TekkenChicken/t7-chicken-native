@@ -1,7 +1,11 @@
 const headshots = {
   akuma: require('./akuma.png'),
+  alisa: require('./alisa.png'),
   asuka: require('./asuka.png'),
+  bob: require('./bob.png'),
+  bryan: require('./bryan.png'),
   deviljin: require('./deviljin.png'),
+  eddy: require('./eddy.png'),
   feng: require('./feng.png'),
   heihachi: require('./heihachi.png'),
   jin: require('./jin.png'),
@@ -19,7 +23,10 @@ const headshots = {
   panda: require('./panda.png'),
   paul: require('./paul.png'),
   steve: require('./steve.png'),
-  xiaoyu: require('./xiaoyu.png'),
+  ling: require('./ling.png'),
+  miguel: require('./miguel.png'),
+  nina: require('./nina.png'),
+  yoshimitsu: require('./yoshimitsu.png'),
 };
 
 export default headshots;
