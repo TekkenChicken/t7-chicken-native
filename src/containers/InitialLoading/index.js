@@ -7,7 +7,10 @@ import {
   View,
   StyleSheet
 } from 'react-native';
+
+// Logging Dependencies
 import Mixpanel from 'react-native-mixpanel'
+import DeviceInfo from 'react-native-device-info'
 
 // Component
 import LoadingIcon from './loading-icon';
@@ -39,8 +42,8 @@ class LoadingScreen extends Component {
 
     // Log initial user opening the app
     Mixpanel.identify(DeviceInfo.getUniqueID());
-    // Mixpanel.set("$name", DeviceInfo.getDeviceName());
-    // Mixpanel.track("app:start");
+    Mixpanel.set({ '$name': DeviceInfo.getDeviceName() });
+    Mixpanel.track("app:start");
   }
 
   componentDidUpdate() {
