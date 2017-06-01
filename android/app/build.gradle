@@ -83,11 +83,11 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.t7chickennative"
+        applicationId "com.t7chicken"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

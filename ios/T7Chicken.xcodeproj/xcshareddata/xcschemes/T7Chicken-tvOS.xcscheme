@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "t7ChickenNative-tvOS.app"
-               BlueprintName = "t7ChickenNative-tvOS"
-               ReferencedContainer = "container:t7ChickenNative.xcodeproj">
+               BuildableName = "T7Chicken-tvOS.app"
+               BlueprintName = "T7Chicken-tvOS"
+               ReferencedContainer = "container:T7Chicken.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "t7ChickenNative-tvOSTests.xctest"
-               BlueprintName = "t7ChickenNative-tvOSTests"
-               ReferencedContainer = "container:t7ChickenNative.xcodeproj">
+               BuildableName = "T7Chicken-tvOSTests.xctest"
+               BlueprintName = "T7Chicken-tvOSTests"
+               ReferencedContainer = "container:T7Chicken.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "t7ChickenNative-tvOSTests.xctest"
-               BlueprintName = "t7ChickenNative-tvOSTests"
-               ReferencedContainer = "container:t7ChickenNative.xcodeproj">
+               BuildableName = "T7Chicken-tvOSTests.xctest"
+               BlueprintName = "T7Chicken-tvOSTests"
+               ReferencedContainer = "container:T7Chicken.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "t7ChickenNative-tvOS.app"
-            BlueprintName = "t7ChickenNative-tvOS"
-            ReferencedContainer = "container:t7ChickenNative.xcodeproj">
+            BuildableName = "T7Chicken-tvOS.app"
+            BlueprintName = "T7Chicken-tvOS"
+            ReferencedContainer = "container:T7Chicken.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "t7ChickenNative-tvOS.app"
-            BlueprintName = "t7ChickenNative-tvOS"
-            ReferencedContainer = "container:t7ChickenNative.xcodeproj">
+            BuildableName = "T7Chicken-tvOS.app"
+            BlueprintName = "T7Chicken-tvOS"
+            ReferencedContainer = "container:T7Chicken.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "t7ChickenNative-tvOS.app"
-            BlueprintName = "t7ChickenNative-tvOS"
-            ReferencedContainer = "container:t7ChickenNative.xcodeproj">
+            BuildableName = "T7Chicken-tvOS.app"
+            BlueprintName = "T7Chicken-tvOS"
+            ReferencedContainer = "container:T7Chicken.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

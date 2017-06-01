@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>T7Chicken</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -46,7 +48,7 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>chicken.seattletekken.com</key>
+			<key>bdickason.com</key>
 			<dict>
 				<key>NSExceptionRequiresForwardSecrecy</key>
 				<false/>

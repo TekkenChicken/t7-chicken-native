@@ -1,4 +1,4 @@
-package com.t7chickennative;
+package com.t7chicken;
 
 import android.app.Application;
 
