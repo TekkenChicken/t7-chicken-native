@@ -65,7 +65,7 @@ const baseStyle = StyleSheet.create({
   text: {
     opacity: 0,
     color: '#fff',
-    fontSize: 32,
+    fontSize: 22,
     fontWeight: '800',
     textAlign:'center'
   },

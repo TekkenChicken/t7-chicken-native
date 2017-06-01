@@ -13,11 +13,9 @@ import FrameHeader from './FrameHeader';
 import PropertyList from '../PropertyList/PropertyList';
 import Inputs from '../Inputs/Inputs';
 import Button from '../Button/Button';
-
 import LinearGradient from 'react-native-linear-gradient';
 
-const redPrimary = '#9d1918';
-const redSecondary = '#320f1c';
+import * as Colors from '../../style/vars/colors';
 
 import icons from '../../img/icons/';
 
@@ -43,10 +41,10 @@ export default class FrameDataCard extends React.Component {
           style={Styles.card}>
           <LinearGradient
             start={{x: 3.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
-            colors={[redPrimary, redSecondary]}
+            colors={[Colors.redPrimary, Colors.redSecondary]}
             style={Styles.cardContainer}
             >
-            <Text style={Styles.cardText}>move name</Text>
+            {/* <Text style={Styles.cardText}>move name</Text> */}
             <Text style={Styles.cardNotation}>{this.props.notation}</Text>
             {/* TODO: change the data so we get each input as an array element */}
             <Inputs isCard={true} inputs={['1', '1']}/>
@@ -59,22 +57,25 @@ export default class FrameDataCard extends React.Component {
          visible={this.state.modalVisible}
          onRequestClose={() => this.setModalVisible(!this.state.modalVisible)}
          >
-          <View style={Styles.modal}>
-            <View style={Styles.videoContainer}>
-              <Text style={Styles.videoText}>Gifs Coming Soon!</Text>
-            </View>
+          <View style={Styles.videoContainer}>
+            <Text style={Styles.videoText}>Gifs Coming Soon!</Text>
+          </View>
+          <LinearGradient
+            colors={[Colors.redPrimary, Colors.redSecondary]}
+            start={{x: 1.0, y: 0.9}} end={{x: 0.5, y: 0.1}}
+            style={Styles.modal}
+            >
             <ScrollView>
-               {/* TODO: make this name dynamic */}
-              <FrameHeader title={'Move Name'}/>
+              {/* TODO: make this name dynamic */}
+              {/* <FrameHeader title={this.props.name}/> */}
               <Text style={Styles.notation}>{this.props.notation}</Text>
               {/* TODO: change the data so we get each input as an array element */}
               <Inputs isCard={false} inputs={['1', '2']}/>
-              {/* TODO: get attack properties from data source */}
               <PropertyList type={'special'} specProperties={this.props.notes}/>
               <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} />
               <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch} speed={this.props.speed} />
             </ScrollView>
-          </View>
+          </LinearGradient>
           <TouchableHighlight
             onPress={() => this.setModalVisible(!this.state.modalVisible)}
             style={Styles.closeButton}>
@@ -94,7 +95,6 @@ const Styles = StyleSheet.create({
     height: 95,
     width: 120,
     zIndex: -3,
-		backgroundColor: 'rgb(65, 18, 18)',
   },
   empty: {
     opacity: 0
@@ -115,11 +115,11 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 10,
     paddingLeft: 15,
+    paddingBottom: 15,
     fontFamily: 'Exo2-Regular'
   },
   cardContainer: {
     flex: 1,
-    backgroundColor: 'transparent'
   },
   modalText: {
     fontSize: 16
@@ -142,13 +142,13 @@ const Styles = StyleSheet.create({
   },
   modal: {
     flex: 1,
-    backgroundColor: 'rgb(132, 18, 18)',
   },
   notation: {
+    backgroundColor: "transparent",
     color: 'white',
     fontSize: 24,
     marginTop: 10,
-    marginBottom: 5,
+    marginBottom: 10,
     paddingLeft: 20,
     fontFamily: 'Exo2-Regular'
   },
