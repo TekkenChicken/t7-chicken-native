@@ -77,7 +77,7 @@ const Styles = StyleSheet.create({
   menuHeader: {
     flexDirection: 'row',
     zIndex: 9999,
-    paddingTop: 45,
+    paddingTop: 40,
     paddingLeft: 10,
     paddingBottom: 10,
     backgroundColor: '#240202'
@@ -101,7 +101,8 @@ const Styles = StyleSheet.create({
     height: 12
   },
   menuFiltersContainer: {
-    paddingTop: 3
+    paddingTop: 3,
+    paddingBottom: 200
   }
 });
 
