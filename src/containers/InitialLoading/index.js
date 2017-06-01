@@ -7,6 +7,7 @@ import {
   View,
   StyleSheet
 } from 'react-native';
+import Mixpanel from 'react-native-mixpanel'
 
 // Component
 import LoadingIcon from './loading-icon';
@@ -26,12 +27,20 @@ class LoadingScreen extends Component {
       loading: true
     };
     this.loaded = true;
+
+    // Initiate logging framework
+    Mixpanel.sharedInstanceWithToken('e422b505e14328094553e8970e85d0a2');
   }
 
   componentDidMount() {
     // Fetch Data on character using character ID sent as props on navigate
     console.log("mount");
     setTimeout(() => this.props.dispatch(fetchInitialAppData()), 1000);
+
+    // Log initial user opening the app
+    Mixpanel.identify(DeviceInfo.getUniqueID());
+    // Mixpanel.set("$name", DeviceInfo.getDeviceName());
+    // Mixpanel.track("app:start");
   }
 
   componentDidUpdate() {
