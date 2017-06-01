@@ -82,7 +82,6 @@ export const fetchInitialAppData = () => {
     .then((storedPayload) => {
       // use data from storage if available
       if (storedPayload) {
-        console.log("storage data", storedPayload);
         appData = storedPayload.data;
         timestamp = storedPayload.last_updated;
       }
