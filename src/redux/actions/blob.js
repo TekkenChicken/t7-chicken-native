@@ -8,8 +8,8 @@ export const BLOB_UPDATE_DATA = 'BLOB_UPDATE_DATA';
 export const BLOB_FETCH_SUCCESS = 'BLOB_FETCH_SUCCESS';
 export const BLOB_FETCH_ERROR = 'BLOB_FETCH_ERROR';
 
-const CHAR_DATA_API = "http://bdickason.com:3001/api/framedata/";
-const CHAR_METADATA_API = "http://bdickason.com:3001/api/metadata/"
+const CHAR_DATA_API = "http://bdickason.com:3002/api/framedata/";
+const CHAR_METADATA_API = "http://bdickason.com:3002/api/metadata/"
 
 /**
  *  @method: checkDataVersion
