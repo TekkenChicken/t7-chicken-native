@@ -47,7 +47,7 @@ export default class FrameDataCard extends React.Component {
             {/* <Text style={Styles.cardText}>move name</Text> */}
             <Text style={Styles.cardNotation}>{this.props.notation}</Text>
             {/* TODO: change the data so we get each input as an array element */}
-            <Inputs isCard={true} inputs={['1', '1']}/>
+            {/*<Inputs isCard={true} inputs={['1', '1']}/>*/}
           </LinearGradient>
         </TouchableHighlight>
 
@@ -70,7 +70,7 @@ export default class FrameDataCard extends React.Component {
               {/* <FrameHeader title={this.props.name}/> */}
               <Text style={Styles.notation}>{this.props.notation}</Text>
               {/* TODO: change the data so we get each input as an array element */}
-              <Inputs isCard={false} inputs={['1', '2']}/>
+              {/*<Inputs isCard={false} inputs={['1', '2']}/>*/}
               <PropertyList type={'special'} specProperties={this.props.notes}/>
               <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} />
               <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch} speed={this.props.speed} />
