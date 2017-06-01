@@ -109,6 +109,7 @@ const Styles = StyleSheet.create({
     marginTop: 20
   },
   propertyRow: {
+    backgroundColor: "transparent",
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingTop: 8,
