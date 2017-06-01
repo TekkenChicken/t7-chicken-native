@@ -90,6 +90,7 @@ class DataList extends Component {
     const dataSource = this.formatDataSource( this.createLayoutData(listData, cellsPerRow) );
     return(
       <ListView
+        enableEmptySections={true}
         style={mainStyle}
         keyboardShouldPersistTaps="always"
         contentContainerStyle={[styles.container, containerStyle]}

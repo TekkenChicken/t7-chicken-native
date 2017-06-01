@@ -107,11 +107,16 @@ class CharacterProfileScreen extends Component {
     this.setState({scrollHeader: e.contentOffset.y >= 50});
   }
 
+  /**
+   *  @method: onSearchFocusHandler
+   *  On focus of serachbar, will scroll down to searchbar if not already stuck to top
+   */
   onSearchFocusHandler() {
     this.refs.search.measure((frameOffsetX, frameOffsetY, w, h, pageX, pageY) => {
-      console.log(frameOffsetX, frameOffsetY, w, h, pageX, pageY);
       let offset = (Platform.OS === 'ios') ? 64 : 54;
-      this.refs.scrollView.scrollTo({x: 0, y: pageY - h/1.5});
+      if (pageY > offset) {
+        setTimeout(() => this.refs.scrollView.scrollTo({x: 0, y: pageY - h/1.5}), 1);
+      }
       this.setState({searchFocus: true});
     })
   }

@@ -40,7 +40,36 @@ const speed = {
   ]
 };
 
+const specialProperties = {
+  label: "Special Properties",
+  key: "notes",
+  options: [
+    {
+      label: "Rage Art",
+      value: "rageart"
+    },
+    {
+      label: "Rage Drive",
+      value: "ragedrive"
+    },
+    {
+      label: "Homing",
+      value: "homing"
+    },
+    {
+      label: "Tailspin",
+      value: "tailspin"
+    },
+    {
+      label: "Powercrush",
+      value: "powercrush"
+    }
+  ]
+};
+
+// util
 export default allFilterOptions = [
   hitLevel,
-  speed
+  speed,
+  specialProperties
 ];

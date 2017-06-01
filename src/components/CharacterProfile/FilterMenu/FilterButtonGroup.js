@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {
   View,
   Button,
+  Image,
   Platform
 } from 'react-native';
 
@@ -44,7 +45,7 @@ class FilterButtonGroup extends Component {
   renderButtons(options, filterKey) {
     return (
       options.map((option, i) =>
-        <View key={i}>
+        <View key={i} style={{flex: 1}}>
           <CheckBox
             containerStyle={EStyleSheet.child(Styles, 'checkBox__container', i, options.length)}
             checkboxStyle={[Styles.checkBox__box, (this.state.active.indexOf(i) > -1) ? Styles.checkBox__boxchecked : ""]}
@@ -55,9 +56,14 @@ class FilterButtonGroup extends Component {
             label={option.label}
             onChange={(checked) => this.toggleCheck(filterKey, option.value, !checked, i)}
           />
+          {this.renderIcon(option.value)}
         </View>
       )
     );
+  }
+
+  renderIcon(option) {
+    return (icons[option]) ? <Image source={icons[option]} style={Styles.checkBox__icon} /> : null;
   }
 
   render() {
@@ -108,6 +114,13 @@ const Styles = EStyleSheet.create({
   checkBox__boxchecked: {
     borderWidth: 1,
     borderColor: '#f0aa23'
+  },
+  checkBox__icon: {
+    position: 'absolute',
+    top: 15,
+    right: 10,
+    width: 24,
+    height: 18
   }
 });
 
