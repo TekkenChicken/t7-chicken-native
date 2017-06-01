@@ -57,7 +57,7 @@ export default class FrameDataCard extends React.Component {
          animationType={"slide"}
          transparent={false}
          visible={this.state.modalVisible}
-         onRequestClose={() => {alert("Modal has been closed.")}}
+         onRequestClose={() => this.setModalVisible(!this.state.modalVisible)}
          >
           <View style={Styles.modal}>
             <View style={Styles.videoContainer}>
