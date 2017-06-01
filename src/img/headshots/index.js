@@ -11,7 +11,7 @@ const headshots = {
   //eliza: require('./eliza.png'),
   feng: require('./feng.png'),
   heihachi: require('./heihachi.png'),
-  hwaorang: require('./hwaorang.png'),
+  hwoarang: require('./hwoarang.png'),
   "jack-7": require('./jack7.png'),
   jin: require('./jin.png'),
   katarina: require('./katarina.png'),

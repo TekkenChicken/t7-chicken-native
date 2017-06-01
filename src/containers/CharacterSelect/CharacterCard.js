@@ -3,6 +3,10 @@ import React, { Component, PropTypes } from 'react';
 // dependencies
 import { View, Text, Image, TouchableHighlight, StyleSheet, Platform, Dimensions } from 'react-native';
 import { Router } from '../Router';
+import LinearGradient from 'react-native-linear-gradient';
+
+const glassPrimary = '#c3bfcd40';
+const glassSecondary = '#73bdc841';
 
 // components
 import CustomText from '../../components/CustomText/CustomText';
@@ -25,10 +29,14 @@ class CharacterCard extends Component {
       <View style={cardStyle} pointerEvents={touchEvent}>
         <TouchableHighlight onPress={() => onPressHandler(label, name)}>
           <View style={Styles.imageContainer}>
-            <Image
-              style={Styles.image}
-              source={headImage}
-            />
+            <LinearGradient
+              colors={[glassPrimary, glassSecondary]}
+              start={{x: 1.0, y: 0.9}} end={{x: 9.5, y: 0.5}}>
+              <Image
+                style={Styles.image}
+                source={headImage}
+              />
+            </LinearGradient>
             <CustomText textStyle={Styles.text}>{formatName.toUpperCase()}</CustomText>
           </View>
         </TouchableHighlight>
@@ -51,10 +59,8 @@ const Styles = StyleSheet.create({
     alignItems: "center"
   },
   image: {
-    marginBottom: 8,
     height: 120,
     width: 75,
-    backgroundColor: '#fff',
     resizeMode: 'stretch'
   },
   text: {
