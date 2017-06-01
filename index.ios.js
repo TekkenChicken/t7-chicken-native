@@ -15,4 +15,4 @@ const TekkenChicken = () => (
   </Provider>
 );
 
-AppRegistry.registerComponent('t7ChickenNative', () => (TekkenChicken));
+AppRegistry.registerComponent('T7Chicken', () => (TekkenChicken));

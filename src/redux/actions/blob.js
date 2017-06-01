@@ -8,8 +8,8 @@ export const BLOB_UPDATE_DATA = 'BLOB_UPDATE_DATA';
 export const BLOB_FETCH_SUCCESS = 'BLOB_FETCH_SUCCESS';
 export const BLOB_FETCH_ERROR = 'BLOB_FETCH_ERROR';
 
-const CHAR_DATA_API = "http://bdickason.com:3002/api/framedata/";
-const CHAR_METADATA_API = "http://bdickason.com:3002/api/metadata/"
+const CHAR_DATA_API = "http://api.tekkenchicken.com/api/framedata/";
+const CHAR_METADATA_API = "http://api.tekkenchicken.com/api/metadata/"
 
 /**
  *  @method: checkDataVersion
@@ -82,7 +82,6 @@ export const fetchInitialAppData = () => {
     .then((storedPayload) => {
       // use data from storage if available
       if (storedPayload) {
-        console.log("storage data", storedPayload);
         appData = storedPayload.data;
         timestamp = storedPayload.last_updated;
       }

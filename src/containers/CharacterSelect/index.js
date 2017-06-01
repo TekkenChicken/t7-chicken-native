@@ -11,6 +11,7 @@ import {
   Button,
   TextInput
 } from 'react-native';
+import Mixpanel from 'react-native-mixpanel'
 
 // components
 import CharacterList from './CharacterList';
@@ -47,6 +48,7 @@ class CharacterSelectScreen extends Component {
    *  (where it will be used to fetch data on a character)
    */
   navigateToCharacter(characterID, characterName) {
+    Mixpanel.trackWithProperties('char:select', { characterID: characterID, characterName: characterName })
     this.props.navigation.navigate('characterProfile', { characterID, characterName });
   }
 
