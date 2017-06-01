@@ -13,6 +13,11 @@ import {
 } from 'react-native';
 import Mixpanel from 'react-native-mixpanel'
 
+import LinearGradient from 'react-native-linear-gradient';
+
+const redPrimary = '#9d1918';
+const redSecondary = '#320f1c';
+
 // components
 import CharacterList from './CharacterList';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -54,7 +59,7 @@ class CharacterSelectScreen extends Component {
 
   render() {
     return (
-      <View style={Styles.mainContainer}>
+      <LinearGradient colors={[redPrimary, redSecondary]} style={Styles.mainContainer}>
         <View>
           <SearchBar onChange={this.props.searchCharacters}/>
         </View>
@@ -67,7 +72,7 @@ class CharacterSelectScreen extends Component {
             onCharacterSelect={(id, name) => this.navigateToCharacter(id, name)}
           />
         </ScrollView>
-      </View>
+      </LinearGradient>
     );
   }
 }
