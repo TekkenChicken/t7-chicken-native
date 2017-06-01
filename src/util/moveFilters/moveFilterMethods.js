@@ -28,3 +28,14 @@ export const filterBySpeed = {
 		return moveSpeed >= min && moveSpeed <= max;
 	}
 };
+
+/**
+ * Special Properties Filter Method
+ * @param: property (string)
+ */
+export const filterBySpecialProp = {
+	key: "notes",
+	method: (moveProps, filterProp) => {
+		return moveProps.replace(/\s/g, '').toLowerCase().includes(filterProp);
+	}
+};
