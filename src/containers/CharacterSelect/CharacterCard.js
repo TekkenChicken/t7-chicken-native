@@ -29,7 +29,7 @@ class CharacterCard extends Component {
               style={Styles.image}
               source={headImage}
             />
-            <CustomText textStyle={Styles.text}>{formatName}</CustomText>
+            <CustomText textStyle={Styles.text}>{formatName.toUpperCase()}</CustomText>
           </View>
         </TouchableHighlight>
       </View>
