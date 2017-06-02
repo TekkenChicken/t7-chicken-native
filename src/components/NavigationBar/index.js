@@ -97,7 +97,7 @@ export const helpNavHeader = (leftComponents = [], rightComponents = []) => {
   return {
     drawerLabel: 'Help Out!',
     title: "Help",
-    headerTitle: renderTitle("Help"),
+    headerTitle: renderTitle("Help Out!"),
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right"),
     headerStyle: headerStyles.common
