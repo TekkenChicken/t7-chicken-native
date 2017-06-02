@@ -27,8 +27,9 @@ class FilterButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    height: 18,
-    width: 18
+    height: 20,
+    width: 24,
+    justifyContent: 'center'
   },
   icon: {
     resizeMode: 'contain',

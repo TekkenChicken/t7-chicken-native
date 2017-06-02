@@ -5,18 +5,38 @@ import {
 export const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'transparent',
+		paddingLeft: 18,
+		paddingTop: 30
   },
-  welcome: {
+	header: {
+		backgroundColor: 'transparent',
+	},
+	headerBorder: {
+		backgroundColor: '#f0aa23',
+		height: 5,
+		width: 50
+	},
+  headerText: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+		fontWeight: '600',
+    color: '#f0aa23',
+		marginBottom: 15
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+	description: {
+		fontSize: 14,
+		paddingTop: 10,
+		paddingRight: 25,
+		lineHeight: 20,
+		color: '#eeb8c0'
+	},
+	teamText: {
+		marginTop: 25,
+		marginBottom: 10,
+		fontWeight: '500'
+	},
+	teamMember: {
+		lineHeight: 22,
+		color: '#f4ced3'
+	}
 });
