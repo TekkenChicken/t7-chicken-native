@@ -6,7 +6,8 @@ import {
   TouchableHighlight,
   Modal,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  Keyboard
 } from 'react-native';
 
 import FrameHeader from './FrameHeader';
@@ -27,6 +28,7 @@ export default class FrameDataCard extends React.Component {
   }
 
   setModalVisible = (visible) => {
+    Keyboard.dismiss();
     this.setState({modalVisible: visible});
   }
 

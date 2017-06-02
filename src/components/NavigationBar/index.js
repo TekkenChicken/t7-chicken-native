@@ -73,8 +73,8 @@ export const charProfileNavHeader = (charName, leftComponents=[], rightComponent
   const transparentStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
   const blackStyle = Object.assign({}, headerStyles.common, headerStyles.black);
   return {
-    title: (Platform.OS === 'ios') ? null : renderTitle(charName),
-    headerTitle: (scrollState) ? renderTitle(charName) : null,
+    title: null,
+    headerTitle: (Platform.OS === 'ios') ? null : renderTitle(charName),
     headerStyle: (Platform.OS === 'ios') ? transparentStyle : blackStyle,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")

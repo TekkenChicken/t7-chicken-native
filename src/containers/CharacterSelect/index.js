@@ -9,7 +9,8 @@ import {
   ListView,
   ScrollView,
   Button,
-  TextInput
+  TextInput,
+  Keyboard
 } from 'react-native';
 import Mixpanel from 'react-native-mixpanel'
 
@@ -54,6 +55,7 @@ class CharacterSelectScreen extends Component {
    */
   navigateToCharacter(characterID, characterName) {
     Mixpanel.trackWithProperties('char:select', { characterID: characterID, characterName: characterName })
+    Keyboard.dismiss();
     this.props.navigation.navigate('characterProfile', { characterID, characterName });
   }
 

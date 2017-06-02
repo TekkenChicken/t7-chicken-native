@@ -5,8 +5,8 @@ import { View, Text, Image, TouchableHighlight, StyleSheet, Platform, Dimensions
 import { Router } from '../Router';
 import LinearGradient from 'react-native-linear-gradient';
 
-const glassPrimary = '#c3bfcd40';
-const glassSecondary = '#73bdc841';
+const glassPrimary = '#d5d2da';
+const glassSecondary = '#bb2130';
 
 // components
 import CustomText from '../../components/CustomText/CustomText';
@@ -29,13 +29,14 @@ class CharacterCard extends Component {
       <View style={cardStyle} pointerEvents={touchEvent}>
         <TouchableHighlight onPress={() => onPressHandler(label, name)}>
           <View style={Styles.imageContainer}>
+            <Image
+              style={Styles.image}
+              source={headImage}
+            />
             <LinearGradient
-              colors={[glassPrimary, glassSecondary]}
-              start={{x: 1.0, y: 0.9}} end={{x: 9.5, y: 0.5}}>
-              <Image
-                style={Styles.image}
-                source={headImage}
-              />
+              colors={[glassPrimary, glassSecondary, glassPrimary]}
+              start={{x: 0.0, y: 0.18}} end={{x: 0.5, y: 1.0}}
+              style={Styles.frame}>
             </LinearGradient>
             <CustomText textStyle={Styles.text}>{formatName.toUpperCase()}</CustomText>
           </View>
@@ -56,22 +57,38 @@ const Styles = StyleSheet.create({
   },
   imageContainer : {
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.6,
+    shadowRadius: 2,
+    elevation: 3,
   },
   image: {
     height: 120,
     width: 75,
-    resizeMode: 'stretch'
+    resizeMode: 'stretch',
+    shadowRadius: 2,
+		shadowOpacity: 0.3,
+		shadowColor: '#000000'
   },
   text: {
     alignSelf: 'center',
     color: 'white',
     left: 0,
     right: 0,
+    marginTop: 5,
     backgroundColor: 'transparent',
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '500'
+  },
+  frame: {
+    position: 'absolute',
+    top: 0,
+    height: 120,
+    width: 75,
+    opacity: 0.25,
   }
 });
 
