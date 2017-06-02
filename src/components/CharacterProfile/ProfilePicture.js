@@ -23,8 +23,8 @@ class ProfilePicture extends Component {
           style={Styles.profilePic}>
         </Image>
         <LinearGradient
-          colors={[glassPrimary, glassSecondary]}
-          start={{x: 0.0, y: 0.2}} end={{x: 0.4, y: 1.0}}
+          colors={[glassPrimary, glassSecondary, glassPrimary]}
+          start={{x: 0.0, y: 0.1}} end={{x: 0.5, y: 1.0}}
           style={Styles.frame}>
         </LinearGradient>
       </View>

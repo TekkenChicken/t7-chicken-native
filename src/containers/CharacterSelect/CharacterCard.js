@@ -34,8 +34,8 @@ class CharacterCard extends Component {
               source={headImage}
             />
             <LinearGradient
-              colors={[glassPrimary, glassSecondary]}
-              start={{x: 0.0, y: 0.2}} end={{x: 0.4, y: 1.0}}
+              colors={[glassPrimary, glassSecondary, glassPrimary]}
+              start={{x: 0.0, y: 0.18}} end={{x: 0.5, y: 1.0}}
               style={Styles.frame}>
             </LinearGradient>
             <CustomText textStyle={Styles.text}>{formatName.toUpperCase()}</CustomText>
