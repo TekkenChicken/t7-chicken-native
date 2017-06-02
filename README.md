@@ -32,11 +32,24 @@ Install dependencies
 
         $ (cd ios; pod init; pod repo update; pod install)
 
-3. Build the app and run the simulator:
+3. Build the app and run the simulator via react-native:
 
         $ react-native run-ios
 
 **In the case, that this error `Print: Entry, ":CFBundleIdentifier", Does Not Exist` occurs on build, you may need to run `react-native upgrade` to run the latest version of react-native.**
+
+4. Build the app and run on an iPhone via xcode:
+
+1. Open `ios/T7Chicken.xcworkspace` with Xcode
+2. Plug in your device via USB cable
+3. Change 'Iphone 7Plus' to your device
+4. Click **View->Navigators->Project Navigator**
+5. Scroll down to 'Signing' and add a signature. You will need an Apple developer account.
+6. Click the 'Play' button to build and run on your device
+
+[More Information on running on a device](https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html)
+
+**If you see a linker error when trying to build the app, close the project and make sure you open the .xcworkspace file and not the .xcodeproj file**
 
 ### Running the Android application
 
