@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-import CardView from 'react-native-cardview';
 
 const glassPrimary = '#d5d2da';
 const glassSecondary = '#bb2130';
