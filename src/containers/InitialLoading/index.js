@@ -37,7 +37,6 @@ class LoadingScreen extends Component {
 
   componentDidMount() {
     // Fetch Data on character using character ID sent as props on navigate
-    console.log("mount");
     setTimeout(() => this.props.dispatch(fetchInitialAppData()), 1000);
 
     // Log initial user opening the app
@@ -48,7 +47,13 @@ class LoadingScreen extends Component {
 
   componentDidUpdate() {
     if (this.props.blob.characterData && this.state.loading) {
-      this.setState({ loading: false }, () => this.props.navigation.navigate('characterSelect'));
+      const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Main'})
+        ]
+      });
+      this.setState({ loading: false }, () => this.props.navigation.dispatch(resetAction));
     }
   }
 
