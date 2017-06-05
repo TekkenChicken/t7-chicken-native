@@ -112,3 +112,6 @@ $ brew install gradle
 10. Build app and run emulator:
 
         $ react-native run-android
+
+### Contributing
+Feel free to clone or fork this repo if you'd like to make any changes. `master branch` is the working branch, `develop` is used for any changes. Make a branch off of `develop`, once you confirm that your changes are good to go submit the Pull Request to `develop`. From there we will merge into master after review.
