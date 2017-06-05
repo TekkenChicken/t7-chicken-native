@@ -1,8 +1,22 @@
-import { createRouter } from '@exponent/ex-navigation';
-import HomeScreen from './HomeScreen/HomeScreen';
-import About from './About/About';
+// components
+import About from './About/';
+import Help from './Help/';
+import InitialLoading from './InitialLoading/';
+import CharacterSelect from './CharacterSelect/';
+import CharacterProfile from './CharacterProfile/';
 
-export const Router = createRouter(() => ({
-	home: () => HomeScreen,
-	about: () => About
-}));
+const MainRoutes = {
+  characterSelect: { screen: CharacterSelect },
+  characterProfile: { screen: CharacterProfile },
+	initialLoading: { screen: InitialLoading }
+};
+
+const AboutRoute = {
+  about: { screen: About }
+};
+
+const HelpRoute = {
+  help: { screen: Help }
+};
+
+export default { MainRoutes, AboutRoute, HelpRoute };

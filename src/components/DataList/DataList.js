@@ -8,28 +8,42 @@ import {
 class DataList extends Component {
 
   /**
-   * method: createRowData
+   *
+   *
+   */
+  fillCellsToMatchCellsPerRow(rawData, cellsPerRow) {
+    const maxLength = Math.ceil( rawData.length/cellsPerRow) * cellsPerRow;
+    for (let i = rawData.length; i < maxLength; i++) {
+      rawData.push(null);
+    }
+    return rawData;
+  }
+
+  /**
+   * @method: createRowData
    * @param rawData [array]
    * Creates Layout Data needed to create ListView DataSource
    */
   createLayoutData(rawData = [], cellsPerRow = 1) {
+    // fill rawData to match cellsPerRow so it fits grid nicely
+    rawData = this.fillCellsToMatchCellsPerRow(rawData, cellsPerRow);
     const layoutData = [];
     let index = 0;
     let currentRow = [];
     for (let i = 0; i < rawData.length; i++) {
       currentRow.push(rawData[i]);
-      if (currentRow.length === cellsPerRow || i === rawData.length) {
+      if (currentRow.length === cellsPerRow || i === rawData.length - 1) {
+
         layoutData.push({ index, cells: currentRow });
         currentRow = [];
         index++;
       }
     }
-    console.log(layoutData);
     return layoutData;
   }
 
   /**
-   * method: formatDataSource
+   * @method: formatDataSource
    * @param layoutData [array]
    * Creates DataSource formatted for ListView comp
    */
@@ -41,21 +55,24 @@ class DataList extends Component {
   }
 
   /**
-   * method: _renderRow
+   * @method: _renderRow
    * @param rowData [array]
    * @param cellComponent [component]
+   * @param rowStyle [style obj/enum]
+   * @param cellStyle [style obj/enum]
+   * @param onCellPress [function]
    * Rendering function used to create a row for the list
    * renders the cell in row as cellComponent given
    */
-  _renderRow(rowData, CellComponent, rowStyle, cellStyle) {
+  _renderRow(rowData, CellComponent, rowStyle, cellStyle, onCellPress) {
     // will need to add param for using rowComponent
     return (
       <View style={[styles.row, rowStyle]}>
         {
           rowData.cells.map((cell, i) => {
             return (
-              <View style={[styles.cell, cellStyle]} >
-                <CellComponent {...cell} key={i} />
+              <View style={[styles.cell, cellStyle]} key={i}>
+                <CellComponent {...cell} onPressHandler={onCellPress} />
               </View>
             );
           })
@@ -67,16 +84,18 @@ class DataList extends Component {
   render() {
     const {
       mainStyle, containerStyle, rowStyle, cellStyle,
-      cellComponent, listData, cellsPerRow
+      cellComponent, listData, cellsPerRow, onCellPress
     } = this.props;
     // data source creation
     const dataSource = this.formatDataSource( this.createLayoutData(listData, cellsPerRow) );
     return(
       <ListView
+        enableEmptySections={true}
         style={mainStyle}
+        keyboardShouldPersistTaps="always"
         contentContainerStyle={[styles.container, containerStyle]}
         dataSource={dataSource}
-        renderRow={(rowData) => this._renderRow(rowData, cellComponent, rowStyle, cellStyle)}
+        renderRow={(rowData) => this._renderRow(rowData, cellComponent, rowStyle, cellStyle, onCellPress)}
       />
     );
   }
@@ -97,6 +116,24 @@ const styles = StyleSheet.create({
     flexBasis: 0
   }
 });
+
+DataList.propTypes = {
+  listData: PropTypes.array,
+  cellComponent: PropTypes.func, // component
+  cellsPerRow: PropTypes.number,
+  onCellPress: PropTypes.func,
+  /*
+    Stylesheet Properties
+    (comes as number or array when passed, so it can't be specified)
+
+    Props:              Description:
+    -----               ------------
+    mainStyle           List base style
+    containerStyle      List Row Container style
+    rowStyle            List Row styling
+    cellStyle           List Cell style
+  */
+};
 
 
 export default DataList;

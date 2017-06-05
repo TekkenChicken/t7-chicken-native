@@ -1,17 +1,11 @@
-import { createNavigationEnabledStore } from '@exponent/ex-navigation';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from './reducers/index';
 
-const loggerMiddleware = createLogger();
+//const loggerMiddleware = createLogger();
 
-
-const createStoreWithNavigation = createNavigationEnabledStore(createStore);
-
-const store = createStoreWithNavigation(
+export default createStore(
   rootReducer,
-  applyMiddleware(thunk, loggerMiddleware),
+  applyMiddleware(thunk)
 );
-
-export default store;
