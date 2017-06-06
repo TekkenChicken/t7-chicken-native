@@ -75,6 +75,8 @@ class SearchBar extends Component {
             placeholder="Search"
             placeholderTextColor='#804e55'
             style={Styles.input}
+            autoCapitalize={'none'}
+            autoCorrect={false}
             onFocus={() => this.animateOnSearchFocus(true, onFocusCallback)}
             onBlur={() => this.animateOnSearchFocus(false, onBlurCallback)}
             onChangeText={(text) => onChange(text)}
