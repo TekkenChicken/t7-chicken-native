@@ -66,7 +66,7 @@ const parseInputStringByCases = (inputString) => {
   // split string into chunks by spaces and some special characters
   // Will look at each chunk and parse by special case
   result = inputString
-  .split(/([\s?*()])/g)
+  .split(/([\s?*():])/g)
   .map((input) => {
     if (input.includes('~')) {
       input = parseImmediateAfterInputs(input);
