@@ -20,14 +20,15 @@ const inputs = {
   'B': require('./b_h.png'),
   'f': require('./f.png'),
   'F': require('./f_h.png'),
-  'ub': require('./ub.png'),
-  'UB': require('./ub_h.png'),
-  'uf': require('./uf.png'),
-  'UF': require('./uf_h.png'),
-  'df': require('./df.png'),
-  'DF': require('./df_h.png'),
-  'db': require('./db.png'),
-  'DB': require('./db_h.png')
+  'u/b': require('./ub.png'),
+  'U/B': require('./ub_h.png'),
+  'u/f': require('./uf.png'),
+  'U/F': require('./uf_h.png'),
+  'd/f': require('./df.png'),
+  'D/F': require('./df_h.png'),
+  'd/b': require('./db.png'),
+  'D/B': require('./db_h.png'),
+  'n': require('./star.png')
 };
 
 export default inputs;
