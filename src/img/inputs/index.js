@@ -27,7 +27,8 @@ const inputs = {
   'd/f': require('./df.png'),
   'D/F': require('./df_h.png'),
   'd/b': require('./db.png'),
-  'D/B': require('./db_h.png')
+  'D/B': require('./db_h.png'),
+  'n': require('./star.png')
 };
 
 export default inputs;
