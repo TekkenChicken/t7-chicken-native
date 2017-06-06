@@ -52,8 +52,8 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     paddingRight: 10,
-    paddingTop: 15,
-    paddingBottom: 15
+    paddingTop: 18,
+    paddingBottom: 13
   },
   inputChild: {
     marginLeft: 2,
@@ -70,6 +70,6 @@ const Styles = StyleSheet.create({
     marginRight: 1,
     lineHeight: 20,
     fontWeight: '500',
-    fontSize: 18
+    fontSize: 16
   }
 });
