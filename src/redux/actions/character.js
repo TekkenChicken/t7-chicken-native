@@ -78,6 +78,6 @@ export const resetCharacterMoveFilters = () => {
 export const searchMovesByNotation = (notation) => {
   return {
     type: CHARACTER_SEARCH_MOVES,
-    notation: notation.trim().toLowerCase().replace(/\s/g,'')
+    notation: notation.trim().replace(/\s/g,'')
   };
 };
