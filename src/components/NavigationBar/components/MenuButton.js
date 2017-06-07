@@ -27,13 +27,13 @@ class MenuButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    height: 18,
-    width: 18
+    height: 25,
+    width: 25
   },
   icon: {
     resizeMode: 'contain',
-    height: 18,
-    width: 18
+    height: 25,
+    width: 25
   }
 });
 
