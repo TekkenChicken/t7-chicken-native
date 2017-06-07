@@ -27,7 +27,7 @@ class MoveList extends Component {
         <DataList
           listData={moves}
           cellComponent={FrameDataCard}
-          cellsPerRow={3}
+          cellsPerRow={1}
           rowStyle={Styles.row}
         />
       </View>
@@ -43,11 +43,9 @@ const Styles = StyleSheet.create({
   },
   row: {
     flexDirection:'row',
-    alignItems: 'flex-start',
-    paddingLeft: 3
+    alignItems: 'flex-start'
   },
   rbnorway: {
-    color: 'white',
     textAlign: 'center',
     marginBottom: 10,
     fontFamily: 'Exo2-Light',
