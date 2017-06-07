@@ -68,7 +68,7 @@ const Styles = StyleSheet.create({
     marginLeft: 5
   },
   text: {
-    marginRight: 1,
+    marginRight: 5,
     lineHeight: 20,
     fontWeight: '500',
     fontSize: 16
