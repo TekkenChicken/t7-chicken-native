@@ -11,10 +11,9 @@ import DataList from '../../components/DataList/DataList';
 import CharacterCard from './CharacterCard';
 
 class CharacterList extends Component {
-
   render() {
     return (
-      <View>
+      <View style={this.props.containerStyle}>
         <DataList
           listData={this.props.characters}
           cellComponent={CharacterCard}

@@ -10,9 +10,7 @@ export const SELECT_UPDATE_CHARACTERS = 'SELECT_UPDATE_CHARACTERS';
  *  NEED TO DECIDE ON WHAT IS BEST WAY TO HANDLE THE DATA
  */
 const formatRawData = (rawData) => {
-  const characterData = Object.keys(rawData)
-    .map((char) => Object.assign({}, {name: char}, rawData[char]));
-  return characterData;
+  return Object.keys(rawData).map((char) => Object.assign({}, {id: char}, rawData[char]))
 };
 
 /**
@@ -21,16 +19,22 @@ const formatRawData = (rawData) => {
  *  @return: characters [array]
  *  take in search query and return array of characters that match
  */
-const searchCharacters = (searchQuery) => {
-  searchQuery = searchQuery.trim();
+export const searchCharacters = (searchQuery) => {
+  searchQuery = searchQuery.trim().toLowerCase();
   return (dispatch, getState) => {
     const currentState = getState();
-    const allCharacters = currentState.blob.characterData;
-    const filteredCharacters = allCharacter.filter((char) => char.includes(searchQuery))
+    const allChars = currentState.blob.characterData;
+    const filteredCharacters = Object.keys(allChars)
+      .reduce((result, char) => {
+        if (searchQuery === char.substring(0, searchQuery.length)) {
+          result.push( Object.assign(allChars[char], {id: char}) );
+        }
+        return result;
+      }, []);
 
     return Promise.all([
       dispatch(updateSearchFilter(searchQuery)),
-      dispatch(updateCharacters(filterCharacters))
+      dispatch(updateCharacters(filteredCharacters))
     ]);
   }
 };

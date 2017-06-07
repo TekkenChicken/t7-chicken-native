@@ -1,5 +1,7 @@
 import {
-	StyleSheet
+	StyleSheet,
+	Dimensions,
+	Platform
 } from 'react-native';
 
 export default Styles = StyleSheet.create({
@@ -10,5 +12,8 @@ export default Styles = StyleSheet.create({
   viewContainer: {
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+	charList: {
+		marginTop: 10
+	}
 });

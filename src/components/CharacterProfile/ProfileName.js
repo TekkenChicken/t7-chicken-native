@@ -2,12 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
-  Image
+  Image,
+  StyleSheet
 } from 'react-native';
 
-import Styles from './styles';
-
-class ProfileBanner extends Component {
+class ProfileNameBanner extends Component {
   render() {
     return (
       <Text style={Styles.profileName}>
@@ -17,4 +16,16 @@ class ProfileBanner extends Component {
   }
 }
 
-export default ProfileBanner;
+const Styles = StyleSheet.create({
+  profileName: {
+		color: 'white',
+		marginTop: 70,
+		marginLeft: 15,
+		marginBottom: 30,
+		fontSize: 28,
+		fontFamily: 'Exo2-Light',
+    backgroundColor: 'transparent',
+	}
+});
+
+export default ProfileNameBanner;

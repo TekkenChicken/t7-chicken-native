@@ -8,17 +8,32 @@ import {
 class DataList extends Component {
 
   /**
+   *
+   *
+   */
+  fillCellsToMatchCellsPerRow(rawData, cellsPerRow) {
+    const maxLength = Math.ceil( rawData.length/cellsPerRow) * cellsPerRow;
+    for (let i = rawData.length; i < maxLength; i++) {
+      rawData.push(null);
+    }
+    return rawData;
+  }
+
+  /**
    * @method: createRowData
    * @param rawData [array]
    * Creates Layout Data needed to create ListView DataSource
    */
   createLayoutData(rawData = [], cellsPerRow = 1) {
+    // fill rawData to match cellsPerRow so it fits grid nicely
+    rawData = this.fillCellsToMatchCellsPerRow(rawData, cellsPerRow);
     const layoutData = [];
     let index = 0;
     let currentRow = [];
     for (let i = 0; i < rawData.length; i++) {
       currentRow.push(rawData[i]);
-      if (currentRow.length === cellsPerRow || i === rawData.length) {
+      if (currentRow.length === cellsPerRow || i === rawData.length - 1) {
+
         layoutData.push({ index, cells: currentRow });
         currentRow = [];
         index++;
@@ -57,7 +72,7 @@ class DataList extends Component {
           rowData.cells.map((cell, i) => {
             return (
               <View style={[styles.cell, cellStyle]} key={i}>
-                <CellComponent {...cell} onPressHandler={onCellPress}/>
+                <CellComponent {...cell} onPressHandler={onCellPress} />
               </View>
             );
           })
@@ -75,7 +90,9 @@ class DataList extends Component {
     const dataSource = this.formatDataSource( this.createLayoutData(listData, cellsPerRow) );
     return(
       <ListView
+        enableEmptySections={true}
         style={mainStyle}
+        keyboardShouldPersistTaps="always"
         contentContainerStyle={[styles.container, containerStyle]}
         dataSource={dataSource}
         renderRow={(rowData) => this._renderRow(rowData, cellComponent, rowStyle, cellStyle, onCellPress)}
@@ -90,8 +107,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
-    alignItems: 'stretch',
-    justifyContent: 'space-between'
+    alignItems: 'stretch'
+    // justifyContent: 'space-between'
   },
   cell: {
     flex: 1,

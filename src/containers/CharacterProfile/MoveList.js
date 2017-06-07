@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 // components
 import DataList from '../../components/DataList/DataList';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
-import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
 
 // Utils
 import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
@@ -20,17 +19,17 @@ import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
 class MoveList extends Component {
 
   render() {
-    const moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
+    let moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
+    moves = MoveFiltersUtil.searchByNotation(moves, this.props.searchNotation);
     return (
-      <View>
-        <CommandListBanner />
+      <View style={Styles.container}>
+        <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
         <DataList
           listData={moves}
           cellComponent={FrameDataCard}
-          cellsPerRow={3}
+          cellsPerRow={1}
           rowStyle={Styles.row}
         />
-        <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
       </View>
     );
   }
@@ -38,20 +37,21 @@ class MoveList extends Component {
 
 const Styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    marginTop: 7,
+    marginBottom: 80
   },
   row: {
     flexDirection:'row',
-    alignItems: 'flex-start',
-    paddingLeft: 3
+    alignItems: 'flex-start'
   },
   rbnorway: {
-    color: 'white',
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 10,
     fontFamily: 'Exo2-Light',
     color: '#f0aeb1',
-    fontSize: 12
+    fontSize: 12,
+    backgroundColor: 'transparent'
   }
 })
 
@@ -63,7 +63,8 @@ MoveList.Proptypes = {
 /** MAPPING STATE **/
 const mapStateToProps = (state) => {
   return {
-    filter: state.character.filter
+    filter: state.character.filter,
+    searchNotation: state.character.searchNotation
   };
 };
 

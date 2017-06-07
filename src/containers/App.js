@@ -1,38 +1,27 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { View, StatusBar, Text, StyleSheet } from 'react-native';
+import { Provider, connect } from 'react-redux';
+import { View, StatusBar, Text, StyleSheet, Platform } from 'react-native';
 
-import {
- NavigationContext,
- NavigationProvider,
- StackNavigation
-} from '@exponent/ex-navigation';
+// dependencies
+import { StackNavigator } from 'react-navigation';
 
-import SideMenu from 'react-native-side-menu';
+// redux setup
+import Store from '../redux/store';
 
-import store from '../redux/store';
-
-import { Router } from './Router';
-
+// components
 import Toolbar from '../components/Toolbar/Toolbar';
-
-const navigationContext = new NavigationContext({
-  router: Router,
-  store
-});
+import AppNavigator from './Navigator.js';
 
 class App extends Component {
   render() {
+    const background = (Platform.OS === 'ios') ? 'transparent' : 'black';
     return (
-      <View style={{flex: 1, backgroundColor: 'rgb(65, 18, 18)'}}>
-        <StatusBar
-          barStyle="light-content"
-        />
-        <NavigationProvider context={navigationContext}>
-          <Toolbar name={'Tekken Chicken'}/>
-          <StackNavigation id="home" initialRoute={Router.getRoute('initialLoading')} />
-        </NavigationProvider>
-      </View>
+      <Provider store={Store}>
+        <View style={{flex: 1, backgroundColor: '#111'}}>
+          <StatusBar barStyle="light-content" backgroundColor={background} />
+          <AppNavigator style={{flex: 1, backgroundColor: '#111', shadowColor: '#111'}} />
+        </View>
+      </Provider>
     );
   }
 }

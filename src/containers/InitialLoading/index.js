@@ -1,13 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Router } from '../Router';
+import { NavigationActions } from 'react-navigation';
 // dependencies
 import {
   View,
-  Modal,
   StyleSheet
 } from 'react-native';
+
+// Logging Dependencies
+import Mixpanel from 'react-native-mixpanel'
+import DeviceInfo from 'react-native-device-info'
 
 // Component
 import LoadingIcon from './loading-icon';
@@ -16,41 +19,48 @@ import LoadingIcon from './loading-icon';
 import { fetchInitialAppData } from '../../redux/actions/blob';
 
 class LoadingScreen extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: null,
+    gesturesEnabled: false,
+  });
+
   constructor() {
     super();
     this.state = {
       loading: true
     };
+    this.loaded = true;
+
+    // Initiate logging framework
+    Mixpanel.sharedInstanceWithToken('e422b505e14328094553e8970e85d0a2');
   }
 
   componentDidMount() {
     // Fetch Data on character using character ID sent as props on navigate
-    setTimeout(() => {
-      return this.props.dispatch(fetchInitialAppData());
-    }, 1000);
+    setTimeout(() => this.props.dispatch(fetchInitialAppData()), 1000);
+
+    // Log initial user opening the app
+    Mixpanel.identify(DeviceInfo.getUniqueID());
+    Mixpanel.set({ '$name': DeviceInfo.getDeviceName() });
+    Mixpanel.track("app:start");
   }
 
   componentDidUpdate() {
-    // if blob has finished fetching data
     if (this.props.blob.characterData && this.state.loading) {
-      this.setState({loading: false});
-      setTimeout(() => this.props.navigator.replace(Router.getRoute('characterSelect')), 0);
+      const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Main'})
+        ]
+      });
+      this.setState({ loading: false }, () => this.props.navigation.dispatch(resetAction));
     }
   }
 
   render() {
     return (
       <View style={style.container}>
-        <Modal
-          animationType={"fade"}
-          transparent={false}
-          visible={this.state.loading}
-          onRequestClose={() => {}}
-        >
-          <View style={style.container}>
-            <LoadingIcon />
-          </View>
-        </Modal>
+        <LoadingIcon />
       </View>
     );
   }
@@ -59,7 +69,7 @@ class LoadingScreen extends Component {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222'
+    backgroundColor: '#111'
   },
 });
 

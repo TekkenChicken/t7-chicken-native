@@ -4,8 +4,11 @@ import {
   StyleSheet,
   Text,
   Animated,
-  Easing
+  Easing,
+  Image
 } from 'react-native';
+
+import tekkenGamerLogo from '../../img/misc/tekkengamer_dark_bg.png';
 
 class LoadingIcon extends Component {
 
@@ -17,7 +20,7 @@ class LoadingIcon extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.fadeInIcon(), 300);
+    setTimeout(() => this.fadeInIcon(), 250);
   }
 
   fadeInIcon() {
@@ -41,12 +44,12 @@ class LoadingIcon extends Component {
       inputRange: [0, 1],
       outputRange: [0, 1]
     });
-
     return (
       <View style={[baseStyle.container]}>
         <Animated.Text style={[baseStyle.text, {marginTop: top, opacity: opacity}]}>
-          TC
+          Powered by
         </Animated.Text>
+        <Image style={baseStyle.tekkenGamer} resizeMode="contain" source={tekkenGamerLogo} />
       </View>
     );
   }
@@ -62,9 +65,13 @@ const baseStyle = StyleSheet.create({
   text: {
     opacity: 0,
     color: '#fff',
-    fontSize: 32,
+    fontSize: 22,
     fontWeight: '800',
     textAlign:'center'
+  },
+  tekkenGamer: {
+    width: 300,
+    height: 200
   }
 });
 
