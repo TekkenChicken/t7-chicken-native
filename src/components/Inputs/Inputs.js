@@ -64,7 +64,8 @@ const Styles = StyleSheet.create({
   isCard: {
     height: 20,
     width: 20,
-    marginTop: 5
+    marginTop: 5,
+    marginLeft: 5
   },
   text: {
     marginRight: 1,
