@@ -52,8 +52,8 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     paddingRight: 10,
-    paddingTop: 18,
-    paddingBottom: 13
+    paddingTop: 5,
+    paddingBottom: 10
   },
   inputChild: {
     marginLeft: 2,
@@ -64,10 +64,11 @@ const Styles = StyleSheet.create({
   isCard: {
     height: 20,
     width: 20,
-    marginTop: 5
+    marginTop: 5,
+    marginLeft: 5
   },
   text: {
-    marginRight: 1,
+    marginRight: 5,
     lineHeight: 20,
     fontWeight: '500',
     fontSize: 16

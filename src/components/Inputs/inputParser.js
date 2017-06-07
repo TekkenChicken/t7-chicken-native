@@ -90,7 +90,7 @@ const parseInputStringByCases = (inputString) => {
 export const parseInputFromString = (inputString) => {
   // parse string into array and do additional parsing if needed for special cases
   let parsedInput = inputString
-  .split(',')
+  .split(/[\s,]/g)
   .map((input) => {
     input = input.trim();
     if (!checkIfUniqueInputKey(input)) {

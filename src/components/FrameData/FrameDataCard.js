@@ -48,8 +48,7 @@ export default class FrameDataCard extends React.Component {
             >
             {/* <Text style={Styles.cardText}>move name</Text> */}
             <Text style={Styles.cardNotation}>{this.props.notation}</Text>
-            {/* TODO: change the data so we get each input as an array element */}
-            {/*<Inputs isCard={true} inputs={this.props.notation}/>*/}
+            <Inputs isCard={true} inputs={this.props.notation}/>
           </LinearGradient>
         </TouchableHighlight>
 
@@ -91,12 +90,10 @@ export default class FrameDataCard extends React.Component {
 
 const Styles = StyleSheet.create({
   container: {
-    height: 100
+    height: 72
   },
   card: {
-    height: 95,
-    width: 120,
-    zIndex: -3,
+    height: 70,
   },
   empty: {
     opacity: 0
@@ -117,8 +114,8 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 10,
     paddingLeft: 15,
-    paddingBottom: 15,
-    fontFamily: 'Exo2-Regular'
+    fontFamily: 'Exo2-Regular',
+    fontSize: 16
   },
   cardContainer: {
     flex: 1,
