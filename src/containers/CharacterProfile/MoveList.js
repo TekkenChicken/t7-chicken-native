@@ -43,8 +43,7 @@ const Styles = StyleSheet.create({
   },
   row: {
     flexDirection:'row',
-    alignItems: 'flex-start',
-    paddingLeft: 3
+    alignItems: 'flex-start'
   },
   rbnorway: {
     textAlign: 'center',

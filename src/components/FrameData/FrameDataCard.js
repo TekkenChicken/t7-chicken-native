@@ -90,11 +90,10 @@ export default class FrameDataCard extends React.Component {
 
 const Styles = StyleSheet.create({
   container: {
-    height: 98
+    height: 72
   },
   card: {
-    height: 95,
-    zIndex: -3,
+    height: 70,
   },
   empty: {
     opacity: 0
@@ -115,7 +114,8 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 10,
     paddingLeft: 15,
-    fontFamily: 'Exo2-Regular'
+    fontFamily: 'Exo2-Regular',
+    fontSize: 16
   },
   cardContainer: {
     flex: 1,

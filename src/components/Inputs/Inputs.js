@@ -52,8 +52,8 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     paddingRight: 10,
-    paddingTop: 18,
-    paddingBottom: 13
+    paddingTop: 5,
+    paddingBottom: 10
   },
   inputChild: {
     marginLeft: 2,
