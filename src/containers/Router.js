@@ -4,6 +4,7 @@ import Help from './Help/';
 import InitialLoading from './InitialLoading/';
 import CharacterSelect from './CharacterSelect/';
 import CharacterProfile from './CharacterProfile/';
+import FrameDataFAQ from './FrameDataFAQ';
 
 const MainRoutes = {
   characterSelect: { screen: CharacterSelect },
@@ -19,4 +20,8 @@ const HelpRoute = {
   help: { screen: Help }
 };
 
-export default { MainRoutes, AboutRoute, HelpRoute };
+const FrameDataFAQRoute = {
+  faq: { screen: FrameDataFAQ }
+}
+
+export default { MainRoutes, AboutRoute, HelpRoute, FrameDataFAQRoute };

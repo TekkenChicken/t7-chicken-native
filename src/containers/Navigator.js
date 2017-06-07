@@ -13,6 +13,8 @@ import DrawerNavMenu from '../components/DrawerNavMenu/';
 const MainNavigator = StackNavigator(Router.MainRoutes, { initialRouteName: "characterSelect", headerMode: 'screen'});
 const AboutNavigator = StackNavigator(Router.AboutRoute, { initialRouteName: "about", headerMode: 'screen' });
 const HelpNavigator = StackNavigator(Router.HelpRoute, { initialRouteName: 'help', headerMode: 'screen' });
+const FrameDataFAQNavigator = StackNavigator(Router.FrameDataFAQRoute, { initialRouteName: 'faq', headerMode: 'screen' });
+
 
 const DrawerRoutes = {
 	Characters: {
@@ -26,6 +28,10 @@ const DrawerRoutes = {
 	Help: {
 		name: 'Help',
 		screen: HelpNavigator
+	},
+	FrameData: {
+		name: 'Frame Data',
+		screen: FrameDataFAQNavigator
 	}
 };
 

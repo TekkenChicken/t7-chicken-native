@@ -103,3 +103,14 @@ export const helpNavHeader = (leftComponents = [], rightComponents = []) => {
     headerStyle: headerStyles.common
   };
 };
+
+export const FAQNavHeader = (leftComponents = [], rightComponents = []) => {
+  return {
+    drawerLabel: 'What is frame data?',
+    title: "FAQ",
+    headerTitle: renderTitle("About"),
+    headerLeft: renderSide(leftComponents, "left"),
+    headerRight: renderSide(rightComponents, "right"),
+    headerStyle: headerStyles.common
+  };
+};
