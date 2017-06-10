@@ -27,15 +27,15 @@ class FilterButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    height: 40,
-    width: 48,
+    height: 36,
+    width: 44,
     paddingLeft: 10,
     justifyContent: 'center'
   },
   icon: {
     resizeMode: 'contain',
-    height: 28,
-    width: 30
+    height: 24,
+    width: 26
   }
 });
 
