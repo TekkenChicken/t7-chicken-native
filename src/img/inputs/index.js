@@ -6,6 +6,7 @@ const inputs = {
   '1+2': require('./1plus2.png'),
   '1+3': require('./1plus3.png'),
   '2+4': require('./2plus4.png'),
+  '2+3': require('./2plus3.png'),
   '1+4': require('./1plus4.png'),
   '3+4': require('./3plus4.png'),
   '1+2+3': require('./1plus2plus3.png'),
