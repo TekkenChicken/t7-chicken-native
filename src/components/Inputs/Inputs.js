@@ -40,7 +40,7 @@ export default class Inputs extends Component {
     const inputArray = (this.props.inputs) ? InputParser.parseInputFromString(this.props.inputs) : [];
     return (
       <View style={Styles.inputContainer}>
-        {this.renderInputs(inputArray)}
+          {this.renderInputs(inputArray)}
       </View>
     );
   }
@@ -57,7 +57,7 @@ const Styles = StyleSheet.create({
   },
   inputChild: {
     marginLeft: 2,
-    marginRight: 5,
+    marginRight: 2,
     height: 24,
     width: 24
   },
@@ -68,7 +68,8 @@ const Styles = StyleSheet.create({
     marginLeft: 5
   },
   text: {
-    marginRight: 5,
+    marginRight: 2,
+    marginLeft: 5,
     lineHeight: 20,
     fontWeight: '500',
     fontSize: 16
