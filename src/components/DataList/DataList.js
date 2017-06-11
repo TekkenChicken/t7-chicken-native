@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
-    alignItems: 'stretch',
-    justifyContent: 'space-between'
+    alignItems: 'stretch'
+    // justifyContent: 'space-between'
   },
   cell: {
     flex: 1,
