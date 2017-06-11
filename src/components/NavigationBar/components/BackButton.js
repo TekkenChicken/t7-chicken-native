@@ -28,14 +28,14 @@ class BackButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    height: 40,
-    width: 40,
+    height: 36,
+    width: 36,
   },
   icon: {
     color: '#f0aa23',
     marginTop: -5,
-    height: 40,
-    width: 40,
+    height: 36,
+    width: 36,
     fontSize: 35,
     fontWeight: '700'
   }
