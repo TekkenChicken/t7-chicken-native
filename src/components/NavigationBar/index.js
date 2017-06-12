@@ -108,7 +108,7 @@ export const FAQNavHeader = (leftComponents = [], rightComponents = []) => {
   return {
     drawerLabel: 'What is frame data?',
     title: "FAQ",
-    headerTitle: renderTitle("About"),
+    headerTitle: renderTitle("What is Frame Data?"),
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right"),
     headerStyle: headerStyles.common

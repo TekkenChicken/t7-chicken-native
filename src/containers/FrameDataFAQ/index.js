@@ -31,28 +31,75 @@ class FrameDataFAQ extends React.Component {
     );
   }
 
-  renderDescription() {
-    return (
-      <CustomText textStyle={Styles.description}>{content.description}</CustomText>
-    );
-  }
-
-  renderTeam() {
+  renderIntro() {
     return (
       <View>
-        <CustomText textStyle={Styles.teamText}>{content.team.text}</CustomText>
-        {
-          content.team.members.map((member, i) => {
-            return (<CustomText key={i} textStyle={Styles.teamMember}>{member}</CustomText>);
-          })
-        }
+        <CustomText textStyle={Styles.faqText}>{content.intro}</CustomText>
+      </View>
+    )
+  }
+
+  renderSpeed() {
+    return (
+      <View style={Styles.header}>
+        <CustomText textStyle={Styles.headerText}>What is Speed?</CustomText>
+        <CustomText textStyle={Styles.faqText}>{content.speed}</CustomText>
+      </View>
+    )
+  }
+
+  renderOnBlock() {
+    return (
+      <View style={Styles.header}>
+        <CustomText textStyle={Styles.headerText}>What is On Block?</CustomText>
+        <CustomText textStyle={Styles.faqText}>{content.onblock}</CustomText>
+      </View>
+    )
+  }
+
+  renderOnHit() {
+    return (
+      <View style={Styles.header}>
+        <CustomText textStyle={Styles.headerText}>What is On Hit?</CustomText>
+        <CustomText textStyle={Styles.faqText}>{content.onhit}</CustomText>
+      </View>
+    )
+  }
+
+  renderCounterHit() {
+    return (
+      <View style={Styles.header}>
+        <CustomText textStyle={Styles.headerText}>What is Counter Hit?</CustomText>
+        <CustomText textStyle={Styles.faqText}>{content.counterhit}</CustomText>
+      </View>
+    )
+  }
+
+  renderWrapUp() {
+    return (
+      <View style={Styles.header}>
+        <CustomText textStyle={Styles.headerText}>Hope this helped!</CustomText>
+        <CustomText textStyle={Styles.faqText}>{content.wrapup}</CustomText>
       </View>
     )
   }
 
 render() {
   return (
-    <Text>Test</Text>
+    <LinearGradient
+      colors={[redPrimary, redSecondary]}
+      start={{x: 0.5, y: 0.1}} end={{x: 1.0, y: 0.9}}
+      style={Styles.container}>
+        <ScrollView>
+          {this.renderHeader()}
+          {this.renderIntro()}
+          {this.renderSpeed()}
+          {this.renderOnBlock()}
+          {this.renderOnHit()}
+          {this.renderCounterHit()}
+          {this.renderWrapUp()}
+        </ScrollView>
+      </LinearGradient>
   )
 }
 	// render() {
