@@ -48,8 +48,7 @@ export default class FrameDataCard extends React.Component {
             >
             {/* <Text style={Styles.cardText}>move name</Text> */}
             <Text style={Styles.cardNotation}>{this.props.notation}</Text>
-            {/* TODO: change the data so we get each input as an array element */}
-            {/*<Inputs isCard={true} inputs={['1', '1']}/>*/}
+            <Inputs isCard={true} inputs={this.props.notation}/>
           </LinearGradient>
         </TouchableHighlight>
 
@@ -72,7 +71,7 @@ export default class FrameDataCard extends React.Component {
               {/* <FrameHeader title={this.props.name}/> */}
               <Text style={Styles.notation}>{this.props.notation}</Text>
               {/* TODO: change the data so we get each input as an array element */}
-              {/*<Inputs isCard={false} inputs={['1', '2']}/>*/}
+              <Inputs isCard={false} inputs={this.props.notation}/>
               <PropertyList type={'special'} specProperties={this.props.notes}/>
               <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} />
               <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch} speed={this.props.speed} />
@@ -91,12 +90,10 @@ export default class FrameDataCard extends React.Component {
 
 const Styles = StyleSheet.create({
   container: {
-    height: 100
+    height: 72
   },
   card: {
-    height: 95,
-    width: 120,
-    zIndex: -3,
+    height: 70,
   },
   empty: {
     opacity: 0
@@ -117,8 +114,8 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 10,
     paddingLeft: 15,
-    paddingBottom: 15,
-    fontFamily: 'Exo2-Regular'
+    fontFamily: 'Exo2-Regular',
+    fontSize: 16
   },
   cardContainer: {
     flex: 1,
@@ -164,6 +161,7 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     paddingTop: 30,
-    color: 'white'
+    color: 'white',
+    opacity: 0.5
   }
 });

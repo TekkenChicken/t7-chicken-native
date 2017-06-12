@@ -9,7 +9,6 @@ const icons = {
   ragedrive: require('./ragedrive.png'),
   searchFa: require('./fa-search.png'),
   search: require('./search.png'),
-  star: require('./star.png'),
   tailspin: require('./tailspin.png'),
   tiles: require('./th.png'),
   close: require('./close.png'),

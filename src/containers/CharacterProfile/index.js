@@ -64,13 +64,22 @@ class CharacterProfileScreen extends Component {
     setTimeout(() => this.props.fetchDataForCharacter(this.props.characterID), 400);
   }
 
+  componentDidMount() {
+    // get position of searchbar for scrolling
+    setTimeout(() => {
+      this.refs.search.measure((frameOffsetX, frameOffsetY, w, h, pageX, pageY) => {
+        this.setState({searchPos : pageY});
+      });
+    }, 10);
+  }
+
   componentWillUnmount() {
     this.props.resetDataForCharacter();
   }
 
-  /**
+  /* =============================
    *  Header Config Methods
-   */
+   ============================= */
 
   // imperatively set the configuration params for header (so that the header is connected to component)
   updateHeaderParams() {
@@ -94,6 +103,10 @@ class CharacterProfileScreen extends Component {
     ];
   }
 
+  /* =============================
+   *  View Methods
+   ============================= */
+
   toggleDrawer() {
     return (this.refs._drawer._open) ? this.refs._drawer.close() : this.refs._drawer.open();
   }
@@ -115,7 +128,7 @@ class CharacterProfileScreen extends Component {
     this.refs.search.measure((frameOffsetX, frameOffsetY, w, h, pageX, pageY) => {
       let offset = (Platform.OS === 'ios') ? 64 : 54;
       if (pageY > offset) {
-        setTimeout(() => this.refs.scrollView.scrollTo({x: 0, y: pageY - h/1.5}), 1);
+        setTimeout(() => this.refs.scrollView.scrollTo({x: 0, y: this.state.searchPos - h/1.25}), 1);
       }
       this.setState({searchFocus: true});
     })

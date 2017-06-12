@@ -40,9 +40,8 @@ class PropertyList extends Component {
         {
           specProps.map((prop, key) => {
             return ( (prop !== 'null') ?
-              (<View style={Styles.propertyRow}>
+              (<View style={Styles.propertyRow} key={key}>
                   <Image
-                    key={key}
                     style={Styles.propertyIcon}
                     source={icons[prop.replace(/\s/g, '').toLowerCase()]} />
                   <Text style={Styles.propertyValue}>{prop}</Text>
