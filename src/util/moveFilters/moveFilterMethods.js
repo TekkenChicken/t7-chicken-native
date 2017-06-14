@@ -7,7 +7,8 @@
 export const filterByHitLevel = {
 	key: "hit_level",
 	method: (moveHitLevel, hitLevelFilter) => {
-		moveHitLevel = moveHitLevel.replace(/ *\([^)]*\) */g, "").trim();
+		//moveHitLevel = moveHitLevel.replace(/ *\([^)]*\) */g, "").trim();
+		console.log(moveHitLevel);
 		return moveHitLevel.includes(hitLevelFilter);
 	}
 };
@@ -30,6 +31,18 @@ export const filterBySpeed = {
 };
 
 /**
+ * Move Crush Filter
+ */
+
+export const filterByCrush = {
+	key: "hit_level",
+	method: (moveHitLevel, crushFilter) => {
+		moveHitLevel = moveHitLevel.replace(/ *\([^)]*\) */g, "").trim();
+		return moveHitLevel.includes(crushFilter);
+	}
+}
+
+/**
  * Special Properties Filter Method
  * @param: property (string)
  */
@@ -39,3 +52,33 @@ export const filterBySpecialProp = {
 		return moveProps.replace(/\s/g, '').toLowerCase().includes(filterProp);
 	}
 };
+
+export const filterByBlockProp = {
+	key: "on_block",
+	method: (moveFrames, filterProp) => {
+		console.log(filterProp);
+		if(filterProp == 'safe') {
+			return moveFrames >= -9;
+		} else if(filterProp == 'punishable') {
+			return moveFrames <= -10;
+		} else if (filterProp == 'plus') {
+			return movesFrames > 0;
+		} else if (filterProp == 'negative') {
+			return moveFrames < 0;
+		}
+	}
+}
+
+export const filterByHitProp = {
+	key: "on_hit",
+	method: (moveFrames, filterProp) => {
+		if(filterProp == 'plus') {
+			return moveFrames > 0;
+		} else if(filterProp == 'negative') {
+			return moveFrames < 0;
+		} else if(filterProp == 'knd') {
+			console.log(filterProp);
+			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
+		}
+	}
+}

@@ -40,6 +40,21 @@ const speed = {
   ]
 };
 
+const crushProperties = {
+  label: "Crush Properties",
+  key: "hit_level",
+  options: [
+    {
+      label: "Low Crush",
+      value: 'TJ'
+    },
+    {
+      label: "High Crush",
+      value: 'TC'
+    }
+  ]
+};
+
 const specialProperties = {
   label: "Special Properties",
   key: "notes",
@@ -67,9 +82,54 @@ const specialProperties = {
   ]
 };
 
+const onBlockProperties = {
+  label: "On Block",
+  key: "on_block",
+  options: [
+    {
+      label: "Safe",
+      value: 'safe'
+    },
+    {
+      label: "Punishable",
+      value: 'punishable'
+    },
+    {
+      label: "Plus",
+      value: 'plus'
+    },
+    {
+      label: 'Negative',
+      value: 'negative'
+    }
+  ]
+};
+
+const onHitProperties = {
+  label: "On Hit",
+  key: "on_hit",
+  options: [
+    {
+      label: "Plus",
+      value: 'plus'
+    },
+    {
+      label: 'Negative',
+      value: 'negative'
+    },
+    {
+      label: 'Knock Down',
+      value: 'knd'
+    }
+  ]
+};
+
 // util
 export default allFilterOptions = [
   hitLevel,
   speed,
+  crushProperties,
+  onBlockProperties,
+  onHitProperties,
   specialProperties
 ];
