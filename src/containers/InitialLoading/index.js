@@ -5,7 +5,8 @@ import { NavigationActions } from 'react-navigation';
 // dependencies
 import {
   View,
-  StyleSheet
+  StyleSheet,
+  NetInfo
 } from 'react-native';
 
 // Logging Dependencies
@@ -33,11 +34,15 @@ class LoadingScreen extends Component {
 
     // Initiate logging framework
     Mixpanel.sharedInstanceWithToken('e422b505e14328094553e8970e85d0a2');
+
+    NetInfo.isConnected.addEventListener('change', () => this.triggerInitialFetch);
   }
 
   componentDidMount() {
     // Fetch Data on character using character ID sent as props on navigate
-    setTimeout(() => this.props.dispatch(fetchInitialAppData()), 1000);
+    setTimeout(() => {
+      NetInfo.isConnected.fetch().then((isConnected) => this.triggerInitialFetch(isConnected))
+    }, 1000);
 
     // Log initial user opening the app
     Mixpanel.identify(DeviceInfo.getUniqueID());
@@ -55,6 +60,10 @@ class LoadingScreen extends Component {
       });
       this.setState({ loading: false }, () => this.props.navigation.dispatch(resetAction));
     }
+  }
+
+  triggerInitialFetch(isConnected) {
+    this.props.dispatch(fetchInitialAppData(isConnected));
   }
 
   render() {

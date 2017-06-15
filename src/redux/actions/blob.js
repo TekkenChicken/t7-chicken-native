@@ -1,12 +1,14 @@
 // Initial In-App Stub Data
 import initialData from '../../util/initialData.json';
 import * as AsyncStorageUtil from '../../util/asyncStorageUtil.js';
+import CommonLabels from '../../util/commonLabels';
 
 // BLOB Types
 export const BLOB_SET_INITIAL_DATA = 'BLOB_SET_INITIAL_DATA';
 export const BLOB_UPDATE_DATA = 'BLOB_UPDATE_DATA';
 export const BLOB_FETCH_SUCCESS = 'BLOB_FETCH_SUCCESS';
 export const BLOB_FETCH_ERROR = 'BLOB_FETCH_ERROR';
+export const BLOB_FETCH_OFFLINE = 'BLOB_FETCH_OFFLINE';
 
 const CHAR_DATA_API = "http://api.tekkenchicken.com/api/framedata/";
 const CHAR_METADATA_API = "http://api.tekkenchicken.com/api/metadata/"
@@ -67,7 +69,7 @@ const setInitialData = (payload) => {
   };
 };
 
-export const fetchInitialAppData = () => {
+export const fetchInitialAppData = (isConnected) => {
   // Will need to check if LocalStorage data exists (if not, use in-app stub data)
   // reach ver endpoint and check version number
   // if version doesn't match, make call to retrieve new data
@@ -85,14 +87,18 @@ export const fetchInitialAppData = () => {
         appData = storedPayload.data;
         timestamp = storedPayload.last_updated;
       }
-      //check if data is out of date by hitting version endpoint
-      checkIfDataOutdated(timestamp).then((result) => {
-        if (result.outDated) {
-          return dispatch(fetchDataFromAPI(appData, result.last_updated));
-        } else {
-          return dispatch(setInitialData(appData));
-        }
-      });
+      if (isConnected) {
+        //check if data is out of date by hitting version endpoint
+        checkIfDataOutdated(timestamp).then((result) => {
+          if (result.outDated) {
+            return dispatch(fetchDataFromAPI(appData, result.last_updated));
+          } else {
+            return dispatch(setInitialData(appData));
+          }
+        });
+      } else {
+        return dispatch(dataFetchError(CommonLabels.errors.offline, appData));
+      }
     })
     .catch((err) => dispatch(fetchDataFromAPI(appData)) );
   }
