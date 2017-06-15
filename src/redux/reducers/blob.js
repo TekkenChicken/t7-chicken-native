@@ -12,7 +12,7 @@ export default function blob( state = {}, action ) {
     case BLOB_FETCH_SUCCESS:
       return Object.assign({}, state, {characterData: action.payload, fetchError: false});
     case BLOB_FETCH_ERROR:
-      return Object.assign({}, state, {characterData: action.fallbackData, fetchError: true});
+      return Object.assign({}, state, {characterData: action.fallbackData, fetchError: action.error});
   }
   return state;
 }
