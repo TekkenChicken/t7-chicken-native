@@ -22,6 +22,8 @@ const redSecondary = '#320f1c';
 // components
 import CharacterList from './CharacterList';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import CustomText from '../../components/CustomText/CustomText';
+import ErrorBox from '../../components/ErrorBox/ErrorBox';
 import { charSelectNavHeader } from '../../components/NavigationBar';
 
 // Styles
@@ -59,6 +61,15 @@ class CharacterSelectScreen extends Component {
     this.props.navigation.navigate('characterProfile', { characterID, characterName });
   }
 
+  renderErrorMsg(fetchError) {
+    if (fetchError) {
+      return (
+        <ErrorBox error={fetchError} />
+      );
+    }
+    return null;
+  }
+
   render() {
     return (
       <LinearGradient colors={[redPrimary, redSecondary]} style={Styles.mainContainer}>
@@ -74,6 +85,7 @@ class CharacterSelectScreen extends Component {
             onCharacterSelect={(id, name) => this.navigateToCharacter(id, name)}
           />
         </ScrollView>
+        {this.renderErrorMsg(this.props.fetchError)}
       </LinearGradient>
     );
   }
@@ -83,7 +95,8 @@ class CharacterSelectScreen extends Component {
 /** MAPPING STATE **/
 const mapStateToProps = (state) => {
   return {
-    characters: state.select.characters
+    characters: state.select.characters,
+    fetchError: state.blob.fetchError
   };
 };
 
