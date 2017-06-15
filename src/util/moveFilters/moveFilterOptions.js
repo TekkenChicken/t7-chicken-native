@@ -120,6 +120,41 @@ const onHitProperties = {
     {
       label: 'Knock Down',
       value: 'knd'
+    },
+    {
+      label: 'Launch',
+      value: 'launch'
+    },
+    {
+      label: 'Opponent Crouch',
+      value: 'oc'
+    }
+  ]
+};
+
+const onCHProperties = {
+  label: "On CH",
+  key: "on_ch",
+  options: [
+    {
+      label: "Plus",
+      value: 'plus'
+    },
+    {
+      label: 'Negative',
+      value: 'negative'
+    },
+    {
+      label: 'Knock Down',
+      value: 'knd'
+    },
+    {
+      label: 'Launch',
+      value: 'launch'
+    },
+    {
+      label: 'Opponent Crouch',
+      value: 'oc'
     }
   ]
 };
@@ -131,5 +166,6 @@ export default allFilterOptions = [
   crushProperties,
   onBlockProperties,
   onHitProperties,
+  onCHProperties,
   specialProperties
 ];

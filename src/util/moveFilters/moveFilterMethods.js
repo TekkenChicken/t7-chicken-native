@@ -56,7 +56,6 @@ export const filterBySpecialProp = {
 export const filterByBlockProp = {
 	key: "on_block",
 	method: (moveFrames, filterProp) => {
-		console.log(filterProp);
 		if(filterProp == 'safe') {
 			return moveFrames >= -9;
 		} else if(filterProp == 'punishable') {
@@ -77,7 +76,27 @@ export const filterByHitProp = {
 		} else if(filterProp == 'negative') {
 			return moveFrames < 0;
 		} else if(filterProp == 'knd') {
-			console.log(filterProp);
+			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
+		} else if(filterProp == 'launch' ) {
+			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
+ 	  } else if(filterProp == 'oc') {
+			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
+		}
+	}
+}
+
+export const filterByCHProp = {
+	key: "on_ch",
+	method: (moveFrames, filterProp) => {
+		if(filterProp == 'plus') {
+			return moveFrames > 0;
+		} else if(filterProp == 'negative') {
+			return moveFrames < 0;
+		} else if(filterProp == 'knd') {
+			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
+		} else if(filterProp == 'launch' ) {
+			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
+ 	  } else if(filterProp == 'oc') {
 			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
 		}
 	}
