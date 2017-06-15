@@ -63,7 +63,7 @@ class LoadingScreen extends Component {
   }
 
   triggerInitialFetch(isConnected) {
-    this.props.dispatch(fetchInitialAppData(!isConnected));
+    this.props.dispatch(fetchInitialAppData(isConnected));
   }
 
   render() {
