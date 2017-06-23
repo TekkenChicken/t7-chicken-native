@@ -58,7 +58,7 @@ class FilterAccordion extends Component {
       <Accordion
         header={header}
         content={content}
-        expanded={true}
+        expanded={false}
         onPress={() => this.setState({ expanded: !this.state.expanded })}
         easing="easeOutCubic"
         underlayColor="white"
