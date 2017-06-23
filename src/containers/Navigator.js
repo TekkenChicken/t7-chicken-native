@@ -14,24 +14,28 @@ const MainNavigator = StackNavigator(Router.MainRoutes, { initialRouteName: "cha
 const AboutNavigator = StackNavigator(Router.AboutRoute, { initialRouteName: "about", headerMode: 'screen' });
 const HelpNavigator = StackNavigator(Router.HelpRoute, { initialRouteName: 'help', headerMode: 'screen' });
 const FrameDataFAQNavigator = StackNavigator(Router.FrameDataFAQRoute, { initialRouteName: 'faq', headerMode: 'screen' });
-
+const CommunityNavigator = StackNavigator(Router.CommunityRoute, { initialRouteName: 'community', headerMode: 'screen'});
 
 const DrawerRoutes = {
 	Characters: {
 		name: 'Tekken Characters',
 		screen: MainNavigator
 	},
-	About: {
-		name: 'About',
-		screen: AboutNavigator
+	FrameData: {
+		name: 'Frame Data',
+		screen: FrameDataFAQNavigator
+	},
+	Community: {
+		name: 'Community',
+		screen: CommunityNavigator
 	},
 	Help: {
 		name: 'Help',
 		screen: HelpNavigator
 	},
-	FrameData: {
-		name: 'Frame Data',
-		screen: FrameDataFAQNavigator
+	About: {
+		name: 'About',
+		screen: AboutNavigator
 	}
 };
 
