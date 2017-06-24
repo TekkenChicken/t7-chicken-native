@@ -22,16 +22,6 @@ class Community extends Component {
     return CommunityNavHeader(headerLeft);
   };
 
-  handleURL(url) {
-    console.log(url);
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) {
-        console.log('Can\'t handle url: ' + url);
-      } else {
-        return Linking.openURL(url);
-      }
-    }).catch(err => console.error('An error occurred', err));
-  }
 
   renderHeader() {
     return (
@@ -40,6 +30,18 @@ class Community extends Component {
         <View style={Styles.headerBorder} />
       </View>
     );
+  }
+
+  renderKTA() {
+    return (
+      <View style={Styles.header}>
+        <CustomText
+          onPress={()=> Linking.openURL('https://www.facebook.com/groups/TekkenAcademy')}
+          textStyle={Styles.headerText}>
+            Kor's Tekken Academy
+        </CustomText>
+      </View>
+    )
   }
 
 render() {
@@ -51,8 +53,9 @@ render() {
       style={Styles.container}>
         <ScrollView>
           {this.renderHeader()}
-          <Text>
-            Links to Facebook pages and other communites will go here
+          {this.renderKTA()}
+          <Text onPress={()=> Linking.openURL('https://google.com')}>
+            Facebook
           </Text>
         </ScrollView>
       </LinearGradient>
