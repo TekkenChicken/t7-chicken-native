@@ -22,7 +22,9 @@ class Community extends Component {
     return CommunityNavHeader(headerLeft);
   };
 
-
+  handleLink(url) {
+    Linking.openURL(url);
+  }
   renderHeader() {
     return (
       <View style={Styles.header}>
@@ -36,16 +38,66 @@ class Community extends Component {
     return (
       <View style={Styles.header}>
         <CustomText
-          onPress={()=> Linking.openURL('https://www.facebook.com/groups/TekkenAcademy')}
           textStyle={Styles.headerText}>
-            Kor's Tekken Academy
+            Facebook Groups
         </CustomText>
+        <Text
+          onPress={()=> this.handleLink('https://www.facebook.com/groups/TekkenAcademy')}>
+            Kor's Tekken Academy
+        </Text>
+      </View>
+    )
+  }
+
+  renderTOM() {
+    return (
+      <View style={Styles.header}>
+        <Text
+          onPress={()=> this.handleLink('https://www.facebook.com/groups/TekkenOnlineMatchmaking/')}>
+            Tekken Online Match Making
+        </Text>
+      </View>
+    )
+  }
+
+  renderLTT() {
+    return (
+      <View style={Styles.header}>
+        <Text
+          onPress={()=> this.handleLink('https://www.facebook.com/groups/677277462355281/')}>
+            Let's Talk Tekken!
+        </Text>
+      </View>
+    )
+  }
+
+  renderReddit() {
+    return (
+      <View style={Styles.header}>
+        <CustomText
+          textStyle={Styles.headerText}>
+            Reddit
+        </CustomText>
+        <Text
+          onPress={()=> this.handleLink('https://www.reddit.com/r/tekken/')}>
+            /r/Tekken
+        </Text>
+      </View>
+    )
+  }
+
+  renderRedditTC() {
+    return (
+      <View style={Styles.header}>
+        <Text
+          onPress={()=> this.handleLink('https://www.reddit.com/r/tekkenchicken/')}>
+            /r/Tekkenchicken
+        </Text>
       </View>
     )
   }
 
 render() {
-
   return (
     <LinearGradient
       colors={[redPrimary, redSecondary]}
@@ -54,9 +106,10 @@ render() {
         <ScrollView>
           {this.renderHeader()}
           {this.renderKTA()}
-          <Text onPress={()=> Linking.openURL('https://google.com')}>
-            Facebook
-          </Text>
+          {this.renderTOM()}
+          {this.renderLTT()}
+          {this.renderReddit()}
+          {this.renderRedditTC()}
         </ScrollView>
       </LinearGradient>
   )
