@@ -7,10 +7,15 @@ export const Styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
 		paddingLeft: 18,
+    paddingRight: 18,
 		paddingTop: 30
+  },
+  faqText: {
+    marginBottom: 15
   },
 	header: {
 		backgroundColor: 'transparent',
+    marginBottom: 30
 	},
 	headerBorder: {
 		backgroundColor: '#f0aa23',
@@ -37,7 +42,6 @@ export const Styles = StyleSheet.create({
 	},
 	teamMember: {
 		lineHeight: 22,
-		color: '#f4ced3',
-		marginBottom: 15
+		color: '#f4ced3'
 	}
 });

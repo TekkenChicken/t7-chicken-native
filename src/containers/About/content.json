@@ -1,20 +1,26 @@
 {
-  "description": "Welcome, Tekken players of all different levels! Improve your play, with detailed information of every character at your fingertips with this tool made for tekken players, by tekken players. \nWe are continuously improving upon this app, with more content, images, and stats coming soon!",
+  "description": "Welcome, Tekken players! This app is a passion project brought to you\
+  by people who love playing Tekken and making things! The purpose of this app is to\
+  provide Tekken players with information that would give them the competitive edge over their opponents.\
+  We hope to provide you the best and fastest experience! There will be plenty of updates \
+  so make sure you stay tuned!",
   "team": {
     "text": "Brought to you by the Tekken Chicken Task Force",
     "members": [
-      "Nick 'OffInBed' DeJesus",
-      "Ray Mills",
-      "Stephen 'Speed Kicks' Stafford",
-      "Danny Nguyen",
-      "Quentin Ross",
-      "Ron Maurice 'Scrub Zilla' Johnson",
-      "Brad Dickason",
-      "Scott 'Rolling Deaf Cradle' Jones",
-      "Aziz 'Zee the CEO' Peregrino-Brimah ",
-      "Haroun Butt",
-      "Philip 'MadCow' Bruvoll",
-      "Jon 'NeoXianWu' Lassiter"
+      "Nick 'OffInBed' DeJesus - Frontend Developer and Creator",
+      "Ray Mills - Sexy User Experience Designer",
+      "Stephen 'Speed Kicks' Stafford - Divine Backend Developer",
+      "Danny Nguyen - Frontend Developer Genius that likes shoes",
+      "Quentin Ross - Graphic Artist, Creator of the new logo!",
+      "Ron Maurice 'Scrub Zilla' Johnson - Enlightened Artist (Character Portraits)",
+      "Brad Dickason - Backend Support and also the guy that tells everyone to get it together",
+      "Scott 'Rolling Deaf Cradle' Jones - Frontend Developer and Arbiter of Savagery and Dismay",
+      "Aziz 'Zee the CEO' Peregrino-Brimah - Marketing Insight and Server Provider! Thank you Tekkengamer.com!",
+      "Haroun Butt - Data assistance!",
+      "Philip 'MadCow' Bruvoll - The framedata provider! Would not be possible with you you!",
+      "Jon 'NeoXianWu' Lassiter - Social Media Guru and Community Whisperer",
+      "Deborah Perez - Backend help at the initial kick off of the project",
+      "Evan Shimono - Backend help at the initial kick off of the project"
     ]
   }
 }
