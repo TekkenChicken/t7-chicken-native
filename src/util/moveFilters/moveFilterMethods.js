@@ -8,7 +8,6 @@ export const filterByHitLevel = {
 	key: "hit_level",
 	method: (moveHitLevel, hitLevelFilter) => {
 		//moveHitLevel = moveHitLevel.replace(/ *\([^)]*\) */g, "").trim();
-		console.log(moveHitLevel);
 		return moveHitLevel.includes(hitLevelFilter);
 	}
 };
@@ -56,14 +55,17 @@ export const filterBySpecialProp = {
 export const filterByBlockProp = {
 	key: "on_block",
 	method: (moveFrames, filterProp) => {
+		console.log(filterProp);
 		if(filterProp == 'safe') {
 			return moveFrames >= -9;
 		} else if(filterProp == 'punishable') {
 			return moveFrames <= -10;
-		} else if (filterProp == 'plus') {
-			return movesFrames > 0;
-		} else if (filterProp == 'negative') {
-			return moveFrames < 0;
+		} else if(filterProp == 'plus') {
+			return moveFrames.includes('+');
+		} else if(filterProp == 'negative') {
+			return moveFrames.includes('-');
+		} else if(filterProp == 'oc') {
+			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
 		}
 	}
 }
@@ -72,9 +74,9 @@ export const filterByHitProp = {
 	key: "on_hit",
 	method: (moveFrames, filterProp) => {
 		if(filterProp == 'plus') {
-			return moveFrames > 0;
+			return moveFrames.includes('+');
 		} else if(filterProp == 'negative') {
-			return moveFrames < 0;
+			return moveFrames.includes('-');
 		} else if(filterProp == 'knd') {
 			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
 		} else if(filterProp == 'launch' ) {
@@ -89,9 +91,9 @@ export const filterByCHProp = {
 	key: "on_ch",
 	method: (moveFrames, filterProp) => {
 		if(filterProp == 'plus') {
-			return moveFrames > 0;
+			return moveFrames.includes('+');
 		} else if(filterProp == 'negative') {
-			return moveFrames < 0;
+			return moveFrames.includes('-');
 		} else if(filterProp == 'knd') {
 			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
 		} else if(filterProp == 'launch' ) {

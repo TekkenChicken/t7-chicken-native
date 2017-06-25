@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, WebView } from 'react-native';
 import { Styles } from './styles';
 import { FAQNavHeader } from '../../components/NavigationBar';
 import CustomText from '../../components/CustomText/CustomText';
@@ -84,6 +84,15 @@ class FrameDataFAQ extends React.Component {
     )
   }
 
+  renderYoutube() {
+    return (
+      <View style={Styles.header}>
+        <CustomText textStyle={Styles.headerText}>Great Video Explanation!</CustomText>
+        <WebView style={{flex: 1, height: 225}} source={content.youtube}></WebView>
+      </View>
+    )
+  }
+
 render() {
   return (
     <LinearGradient
@@ -91,6 +100,7 @@ render() {
       start={{x: 0.5, y: 0.1}} end={{x: 1.0, y: 0.9}}
       style={Styles.container}>
         <ScrollView>
+          {this.renderYoutube()}
           {this.renderHeader()}
           {this.renderIntro()}
           {this.renderSpeed()}
@@ -102,20 +112,6 @@ render() {
       </LinearGradient>
   )
 }
-	// render() {
-	// 	return (
-	// 		<LinearGradient
-  //       colors={[redPrimary, redSecondary]}
-  //       start={{x: 0.5, y: 0.1}} end={{x: 1.0, y: 0.9}}
-  //       style={Styles.container}>
-  //       <ScrollView>
-  //         {this.renderHeader()}
-  //         {this.renderDescription()}
-  //         {this.renderTeam()}
-  //       </ScrollView>
-	// 		</LinearGradient>
-	// 		)
-	// }
 }
 
 export default FrameDataFAQ;

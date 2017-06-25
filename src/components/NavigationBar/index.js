@@ -114,3 +114,14 @@ export const FAQNavHeader = (leftComponents = [], rightComponents = []) => {
     headerStyle: headerStyles.common
   };
 };
+
+export const CommunityNavHeader = (leftComponents = [], rightComponents = []) => {
+  return {
+    drawerLabel: 'Join the Community!',
+    title: "Community",
+    headerTitle: renderTitle("Join the Community!"),
+    headerLeft: renderSide(leftComponents, "left"),
+    headerRight: renderSide(rightComponents, "right"),
+    headerStyle: headerStyles.common
+  };
+};

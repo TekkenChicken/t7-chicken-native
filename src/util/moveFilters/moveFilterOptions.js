@@ -87,20 +87,24 @@ const onBlockProperties = {
   key: "on_block",
   options: [
     {
-      label: "Safe",
-      value: 'safe'
+      label: "Plus",
+      value: 'plus'
+    },
+    {
+      label: "Negative",
+      value: 'negative'
     },
     {
       label: "Punishable",
       value: 'punishable'
     },
     {
-      label: "Plus",
-      value: 'plus'
+      label: 'Safe',
+      value: 'safe'
     },
     {
-      label: 'Negative',
-      value: 'negative'
+      label: 'Opponent Crouch',
+      value: 'oc'
     }
   ]
 };

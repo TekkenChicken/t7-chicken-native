@@ -5,6 +5,7 @@ import InitialLoading from './InitialLoading/';
 import CharacterSelect from './CharacterSelect/';
 import CharacterProfile from './CharacterProfile/';
 import FrameDataFAQ from './FrameDataFAQ';
+import Community from './Community';
 
 const MainRoutes = {
   characterSelect: { screen: CharacterSelect },
@@ -24,4 +25,8 @@ const FrameDataFAQRoute = {
   faq: { screen: FrameDataFAQ }
 }
 
-export default { MainRoutes, AboutRoute, HelpRoute, FrameDataFAQRoute };
+const CommunityRoute = {
+  community: { screen: Community}
+}
+
+export default { MainRoutes, AboutRoute, HelpRoute, FrameDataFAQRoute, CommunityRoute };
