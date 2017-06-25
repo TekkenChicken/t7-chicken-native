@@ -8,7 +8,6 @@ export const filterByHitLevel = {
 	key: "hit_level",
 	method: (moveHitLevel, hitLevelFilter) => {
 		//moveHitLevel = moveHitLevel.replace(/ *\([^)]*\) */g, "").trim();
-		console.log(moveHitLevel);
 		return moveHitLevel.includes(hitLevelFilter);
 	}
 };
