@@ -28,7 +28,6 @@ class Community extends Component {
   renderHeader() {
     return (
       <View style={Styles.header}>
-        <CustomText textStyle={Styles.headerText}>Join us!</CustomText>
         <View style={Styles.headerBorder} />
       </View>
     );
@@ -37,22 +36,26 @@ class Community extends Component {
   renderKTA() {
     return (
       <View style={Styles.header}>
-        <CustomText
-          textStyle={Styles.headerText}>
-            Facebook Groups
-        </CustomText>
         <Text
-          onPress={()=> this.handleLink('https://www.facebook.com/groups/TekkenAcademy')}>
-            Kor's Tekken Academy
+          style={Styles.headerText}>
+            Facebook Groups
         </Text>
+        <View style={Styles.linkTextContainer}>
+          <Text
+            style={Styles.linkText}
+            onPress={()=> this.handleLink('https://www.facebook.com/groups/TekkenAcademy')}>
+              Kor's Tekken Academy
+          </Text>
+        </View>
       </View>
     )
   }
 
   renderTOM() {
     return (
-      <View style={Styles.header}>
+      <View style={Styles.linkTextContainer}>
         <Text
+          style={Styles.linkText}
           onPress={()=> this.handleLink('https://www.facebook.com/groups/TekkenOnlineMatchmaking/')}>
             Tekken Online Match Making
         </Text>
@@ -62,8 +65,9 @@ class Community extends Component {
 
   renderLTT() {
     return (
-      <View style={Styles.header}>
+      <View style={Styles.linkTextContainer}>
         <Text
+          style={Styles.linkText}
           onPress={()=> this.handleLink('https://www.facebook.com/groups/677277462355281/')}>
             Let's Talk Tekken!
         </Text>
@@ -78,18 +82,22 @@ class Community extends Component {
           textStyle={Styles.headerText}>
             Reddit
         </CustomText>
-        <Text
-          onPress={()=> this.handleLink('https://www.reddit.com/r/tekken/')}>
-            /r/Tekken
-        </Text>
+        <View style={Styles.linkTextContainer}>
+            <Text
+              style={Styles.linkText}
+              onPress={()=> this.handleLink('https://www.reddit.com/r/tekken/')}>
+              /r/Tekken
+            </Text>
+        </View>
       </View>
     )
   }
 
   renderRedditTC() {
     return (
-      <View style={Styles.header}>
+      <View style={Styles.linkTextContainer}>
         <Text
+          style={Styles.linkText}
           onPress={()=> this.handleLink('https://www.reddit.com/r/tekkenchicken/')}>
             /r/Tekkenchicken
         </Text>

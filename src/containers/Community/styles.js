@@ -2,6 +2,8 @@ import {
 	StyleSheet
 } from 'react-native';
 
+const redSecondary = '#320f1c';
+
 export const Styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -10,23 +12,16 @@ export const Styles = StyleSheet.create({
     paddingRight: 18,
 		paddingTop: 30
   },
-  faqText: {
-    marginBottom: 15
-  },
 	header: {
 		backgroundColor: 'transparent',
-    marginBottom: 30
 	},
-	headerBorder: {
-		backgroundColor: '#f0aa23',
-		height: 5,
-		width: 50
-	},
+
   headerText: {
-    fontSize: 20,
+    fontSize: 24,
 		fontWeight: '600',
-    color: '#f0aa23',
-		marginBottom: 15
+    color: 'white',
+		marginBottom: 15,
+		fontFamily: 'Exo2-Regular'
   },
 	description: {
 		fontSize: 14,
@@ -35,13 +30,16 @@ export const Styles = StyleSheet.create({
 		lineHeight: 20,
 		color: '#eeb8c0'
 	},
-	teamText: {
-		marginTop: 25,
+	linkTextContainer: {
+		paddingBottom: 30,
+    paddingLeft: 10,
+    paddingTop: 10,
 		marginBottom: 10,
-		fontWeight: '500'
+		backgroundColor: redSecondary
 	},
-	teamMember: {
-		lineHeight: 22,
-		color: '#f4ced3'
+	linkText: {
+		color: '#f0aa23',
+		fontSize: 18,
+		fontFamily: 'Exo2-Regular'
 	}
 });
