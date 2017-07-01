@@ -6,8 +6,6 @@ target 'T7Chicken' do
   # use_frameworks!
 
   # Pods for T7Chicken
-  pod 'Mixpanel'
-
   target 'T7ChickenTests' do
     inherit! :search_paths
     # Pods for testing

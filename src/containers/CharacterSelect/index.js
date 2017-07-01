@@ -12,7 +12,6 @@ import {
   TextInput,
   Keyboard
 } from 'react-native';
-import Mixpanel from 'react-native-mixpanel'
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -56,7 +55,6 @@ class CharacterSelectScreen extends Component {
    *  (where it will be used to fetch data on a character)
    */
   navigateToCharacter(characterID, characterName) {
-    Mixpanel.trackWithProperties('char:select', { characterID: characterID, characterName: characterName })
     Keyboard.dismiss();
     this.props.navigation.navigate('characterProfile', { characterID, characterName });
   }

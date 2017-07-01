@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 // Logging Dependencies
-import Mixpanel from 'react-native-mixpanel'
 import DeviceInfo from 'react-native-device-info'
 
 // Component
@@ -33,7 +32,6 @@ class LoadingScreen extends Component {
     this.loaded = true;
 
     // Initiate logging framework
-    Mixpanel.sharedInstanceWithToken('e422b505e14328094553e8970e85d0a2');
 
     NetInfo.isConnected.addEventListener('change', () => this.triggerInitialFetch);
   }
@@ -44,10 +42,6 @@ class LoadingScreen extends Component {
       NetInfo.isConnected.fetch().then((isConnected) => this.triggerInitialFetch(isConnected))
     }, 1000);
 
-    // Log initial user opening the app
-    Mixpanel.identify(DeviceInfo.getUniqueID());
-    Mixpanel.set({ '$name': DeviceInfo.getDeviceName() });
-    Mixpanel.track("app:start");
   }
 
   componentDidUpdate() {
