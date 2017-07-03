@@ -132,6 +132,10 @@ const onHitProperties = {
     {
       label: 'Opponent Crouch',
       value: 'oc'
+    },
+    {
+      label: 'Crumple Stun',
+      value: 'CS'
     }
   ]
 };
@@ -159,6 +163,10 @@ const onCHProperties = {
     {
       label: 'Opponent Crouch',
       value: 'oc'
+    },
+    {
+      label: 'Crumple Stun',
+      value: 'CS'
     }
   ]
 };

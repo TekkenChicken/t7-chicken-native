@@ -35,9 +35,12 @@ export const filterBySpeed = {
 
 export const filterByCrush = {
 	key: "hit_level",
-	method: (moveHitLevel, crushFilter) => {
-		moveHitLevel = moveHitLevel.replace(/ *\([^)]*\) */g, "").trim();
-		return moveHitLevel.includes(crushFilter);
+	method: (moveFrames, filterProp) => {
+		if( filterProp === "TJ" ) {
+			return moveFrames.includes('TJ');
+		} else if (filterProp === "TC") {
+			return moveFrames.includes('TC');
+		}
 	}
 }
 
@@ -73,6 +76,7 @@ export const filterByBlockProp = {
 export const filterByHitProp = {
 	key: "on_hit",
 	method: (moveFrames, filterProp) => {
+		console.log(filterProp);
 		if(filterProp == 'plus') {
 			return moveFrames.includes('+');
 		} else if(filterProp == 'negative') {
@@ -83,6 +87,8 @@ export const filterByHitProp = {
 			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
  	  } else if(filterProp == 'oc') {
 			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
+		} else if(filterProp == 'CS') {
+			return moveFrames.includes('CS')
 		}
 	}
 }
@@ -100,6 +106,8 @@ export const filterByCHProp = {
 			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
  	  } else if(filterProp == 'oc') {
 			return moveFrames.replace(/\s/g, '').toLowerCase().includes(filterProp);
+		} else if(filterProp == 'CS') {
+			return moveFrames.includes('CS')
 		}
 	}
 }
