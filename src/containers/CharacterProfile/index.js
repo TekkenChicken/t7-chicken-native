@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Router } from '../Router';
+import { isPortrait } from '../../util/orientations';
 
 // dependencies
 import {
@@ -11,9 +12,11 @@ import {
   ScrollView,
   Button,
   TextInput,
-  Platform
+  Platform,
+  Dimensions,
 } from 'react-native';
 
+import Orientation from 'react-native-orientation';
 import LinearGradient from 'react-native-linear-gradient';
 
 const redPrimary = '#9d1918';
@@ -54,9 +57,18 @@ class CharacterProfileScreen extends Component {
     super(props);
     this.state = {
       scrollHeader: false,
-      searchFocus: false
+      searchFocus: false,
+      orientation: isPortrait() ? 'portrait' : 'landscape',
     };
-  }
+
+    Dimensions.addEventListener('change', () => {
+        this.setState({
+            orientation: isPortrait() ? 'portrait' : 'landscape'
+        });
+    });
+}
+  
+
 
   componentWillMount() {
     this.updateHeaderParams();
@@ -65,6 +77,7 @@ class CharacterProfileScreen extends Component {
   }
 
   componentDidMount() {
+    console.log(Orientation.lockToLandscape);
     // get position of searchbar for scrolling
     setTimeout(() => {
       this.refs.search.measure((frameOffsetX, frameOffsetY, w, h, pageX, pageY) => {
@@ -139,6 +152,7 @@ class CharacterProfileScreen extends Component {
   }
 
   render() {
+    console.log('CHECKING STATE', this.state);
     let {characterID, characterMovesData, characterName} = this.props;
     // const scrollStateOffset = (this.props.navigation.state.params.scrollHeader) ? Styles.offsetOnScroll : '';
     const menu = <FilterMenuContainer />;
