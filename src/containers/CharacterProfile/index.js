@@ -152,7 +152,6 @@ class CharacterProfileScreen extends Component {
   }
 
   render() {
-    console.log('CHECKING STATE', this.state);
     let {characterID, characterMovesData, characterName} = this.props;
     // const scrollStateOffset = (this.props.navigation.state.params.scrollHeader) ? Styles.offsetOnScroll : '';
     const menu = <FilterMenuContainer />;
