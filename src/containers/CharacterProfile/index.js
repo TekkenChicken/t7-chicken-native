@@ -207,6 +207,7 @@ class CharacterProfileScreen extends Component {
             </View>
             <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
               <MoveList
+                orientation={this.state.orientation}
                 moves={characterMovesData}
               />
             </View>
