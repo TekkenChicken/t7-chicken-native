@@ -12,33 +12,13 @@ import { connect } from 'react-redux';
 // components
 import DataList from '../../components/DataList/DataList';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
+import LandscapeList from './LandscapeList';
 
 // Utils
 import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
 
 const redPrimary = '#9d1018';
 const redSecondary = '#320f1c';
-
-const LandscapeList = (props) => {
-  const moves = props.moves;
-  const moveData = moves.map((move, i) => {
-    console.log(move);
-     return (
-     <View style={Styles.landscapeContainer} key={i}>
-       <Text style={Styles.notation}>{move.notation}</Text>
-       <Text style={Styles.landscapeMove}>{move.speed}</Text>
-       <Text style={Styles.landscapeMove}>{move.on_block}</Text>
-       <Text style={Styles.landscapeMove}>{move.on_ch}</Text>
-       <Text style={Styles.landscapeMove}>{move.on_hit}</Text>
-       <Text style={Styles.landscapeMove}>{move.hit_level}</Text>
-       <Text style={Styles.landscapeMove}>{move.damage}</Text>
-    </View>
-     )
-  })
-  return(
-    <View>{moveData}</View>
-  )
-}
 
 
 class MoveList extends Component {

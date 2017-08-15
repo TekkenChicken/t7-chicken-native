@@ -1,6 +1,5 @@
 import { Dimensions } from 'react-native';
 
-console.log(Dimensions)
 //returns true if portrait
 export const isPortrait = () => {
     const dim = Dimensions.get('screen');
