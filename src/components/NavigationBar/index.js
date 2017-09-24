@@ -26,7 +26,6 @@ const renderSide = (components, side) => (
 const headerStyles = {
   common: {
     backgroundColor: '#260309',
-    //backgroundColor: '#111',
     borderBottomWidth: 0,
     shadowOpacity: 0,
     shadowOffset: {
@@ -69,7 +68,7 @@ export const charSelectNavHeader = (leftComponents = [], rightComponents = []) =
 };
 
 // Character Profile Screen Header Config
-export const charProfileNavHeader = (charName, leftComponents=[], rightComponents=[], scrollState) => {
+export const charProfileNavHeader = (charName, leftComponents=[], rightComponents=[]) => {
   const transparentStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
   const blackStyle = Object.assign({}, headerStyles.common, headerStyles.black);
   return {
