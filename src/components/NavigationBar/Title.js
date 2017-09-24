@@ -14,6 +14,7 @@ class NavigationTitle extends Component {
 
 const Styles = StyleSheet.create({
   title: {
+    width: '100%',
     alignSelf: 'center',
     fontWeight: '700',
     textAlign: 'center'

@@ -33,7 +33,6 @@ class LandscapeList extends Component {
           <TouchableHighlight style={Styles.attack} onPress={() => this.setModalVisible(true)} key={i}>
               <View style={Styles.landscapeRow}>
                 <View style={Styles.notationContainer}>
-              {/*<Inputs style={Styles.input} isCard={true} inputs={move.notation}/>*/}
                   <Text style={Styles.notation}>{move.notation}</Text>
                 </View>
                 <Text style={Styles.landscapeMove}>{move.speed}</Text>
@@ -48,9 +47,9 @@ class LandscapeList extends Component {
       }
     render() {
         return (
-        <View style={Styles.landscapeContainer}>
-            {this.renderLandscapeList(this.props.moves)}
-        </View>
+          <View style={Styles.landscapeContainer}>
+              {this.renderLandscapeList(this.props.moves)}
+          </View>
         )
     }
 }

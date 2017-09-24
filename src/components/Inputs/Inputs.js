@@ -48,11 +48,12 @@ export default class Inputs extends Component {
 
 const Styles = StyleSheet.create({
   inputContainer: {
+    alignItems: 'flex-start',
     backgroundColor: "transparent",
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-    paddingRight: 10,
-    paddingTop: 5,
+    flexWrap: 'wrap',
+    paddingTop: 12,
     paddingBottom: 10
   },
   inputChild: {
@@ -64,14 +65,13 @@ const Styles = StyleSheet.create({
   isCard: {
     height: 20,
     width: 20,
-    marginTop: 5,
-    marginLeft: 5
+    marginRight: 5,
+    marginTop: 1
   },
   text: {
-    marginRight: 2,
-    marginLeft: 5,
-    lineHeight: 20,
+    opacity: 0.8,
+    marginRight: 3,
     fontWeight: '500',
-    fontSize: 16
+    fontSize: 14
   }
 });

@@ -16,7 +16,6 @@ import {
   Dimensions,
 } from 'react-native';
 
-import Orientation from 'react-native-orientation';
 import LinearGradient from 'react-native-linear-gradient';
 
 const redPrimary = '#9d1918';
@@ -73,11 +72,10 @@ class CharacterProfileScreen extends Component {
   componentWillMount() {
     this.updateHeaderParams();
     // Fetch Data on character using character ID sent as props on navigate
-    setTimeout(() => this.props.fetchDataForCharacter(this.props.characterID), 400);
+    setTimeout(() => this.props.fetchDataForCharacter(this.props.characterID), 700);
   }
 
   componentDidMount() {
-    console.log(Orientation.lockToLandscape);
     // get position of searchbar for scrolling
     setTimeout(() => {
       this.refs.search.measure((frameOffsetX, frameOffsetY, w, h, pageX, pageY) => {

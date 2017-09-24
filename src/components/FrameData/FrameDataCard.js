@@ -37,26 +37,26 @@ export default class FrameDataCard extends React.Component {
     const containerStyle = (emptyCard) ? [Styles.container, Styles.empty] : Styles.container;
     const touchEvent = (emptyCard) ? 'none' : 'auto';
     return (
-      <View style={containerStyle} pointerEvents={touchEvent}>
+      <LinearGradient
+        start={{x: 3.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
+        colors={[Colors.redPrimary, Colors.redSecondary]}
+        style={containerStyle} 
+        pointerEvents={touchEvent}
+      >
         <TouchableHighlight
           onPress={() => { this.setModalVisible(true) }}
           style={Styles.card}>
-          <LinearGradient
-            start={{x: 3.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
-            colors={[Colors.redPrimary, Colors.redSecondary]}
-            style={Styles.cardContainer}
-            >
-            {/* <Text style={Styles.cardText}>move name</Text> */}
+          <View style={Styles.cardContainer}>
             <Text style={Styles.cardNotation}>{this.props.notation}</Text>
             <Inputs isCard={true} inputs={this.props.notation}/>
-          </LinearGradient>
+          </View>
         </TouchableHighlight>
 
         <Modal
-         animationType={"slide"}
-         transparent={false}
-         visible={this.state.modalVisible}
-         onRequestClose={() => this.setModalVisible(!this.state.modalVisible)}
+          animationType={"slide"}
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => this.setModalVisible(!this.state.modalVisible)}
          >
           <View style={Styles.videoContainer}>
             <Text style={Styles.videoText}>Gifs Coming Soon!</Text>
@@ -69,9 +69,10 @@ export default class FrameDataCard extends React.Component {
             <ScrollView>
               {/* TODO: make this name dynamic */}
               {/* <FrameHeader title={this.props.name}/> */}
-              <Text style={Styles.notation}>{this.props.notation}</Text>
-              {/* TODO: change the data so we get each input as an array element */}
-              <Inputs isCard={false} inputs={this.props.notation}/>
+              <View style={Styles.modalHeader}>
+                <Text style={Styles.modalNotation}>{this.props.notation}</Text>
+                <Inputs isCard={false} inputs={this.props.notation}/>
+              </View>
               <PropertyList type={'special'} specProperties={this.props.notes}/>
               <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} />
               <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch} speed={this.props.speed} />
@@ -83,17 +84,21 @@ export default class FrameDataCard extends React.Component {
             <Image source={icons['close']} style={Styles.closeButtonIcon}/>
           </TouchableHighlight>
         </Modal>
-      </View>
+      </LinearGradient>
     )
   }
 }
 
 const Styles = StyleSheet.create({
   container: {
-    height: 72
+    paddingTop: 10,
+    paddingLeft: 15,
+    paddingBottom: 10,
+    paddingRight: 10,
+    marginBottom: 2
   },
   card: {
-    height: 70,
+    height: 'auto',
   },
   empty: {
     opacity: 0
@@ -102,18 +107,9 @@ const Styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold'
   },
-  cardText: {
-    textAlign: 'center',
-    color: 'white',
-    fontWeight: 'bold',
-    paddingTop: 10,
-    fontFamily: 'Exo2-Light'
-  },
   cardNotation: {
     color: 'white',
     fontWeight: 'bold',
-    paddingTop: 10,
-    paddingLeft: 15,
     fontFamily: 'Exo2-Regular',
     fontSize: 16
   },
@@ -142,13 +138,15 @@ const Styles = StyleSheet.create({
   modal: {
     flex: 1,
   },
-  notation: {
+  modalHeader: {
+    paddingLeft: 20
+  },
+  modalNotation: {
     backgroundColor: "transparent",
     color: 'white',
     fontSize: 24,
     marginTop: 10,
     marginBottom: 10,
-    paddingLeft: 20,
     fontFamily: 'Exo2-Regular'
   },
   videoContainer: {

@@ -24,7 +24,6 @@ const redSecondary = '#320f1c';
 class MoveList extends Component {
 
   orientationHandler(orientation, moves) {
-    console.log(orientation);
     if(orientation == 'portrait') {
       return (
         <DataList
@@ -47,10 +46,9 @@ class MoveList extends Component {
             <Text style={Styles.landscapeHeader}>Damage</Text>
           </View>
           <LandscapeList
-          moves={moves}
-        />
+            moves={moves}
+          />
         </View>
-
       )
     }
   }

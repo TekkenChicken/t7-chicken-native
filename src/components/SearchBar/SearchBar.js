@@ -104,7 +104,7 @@ const styleVar = {
 
 const Styles = StyleSheet.create({
   mainContainer: {
-    width: Dimensions.get('window').width,
+    width: '100%',
     flexDirection: 'row',
 		backgroundColor: '#1b0105',
     alignItems: 'center',
