@@ -1,35 +1,53 @@
 import React, { Component } from 'react';
+
 import {
-    View,
-    Text,
-    TouchableHighlight,
-    Modal,
-    StyleSheet,
-    Keyboard,
+  View,
+  Text,
+  TouchableHighlight,
+  Modal,
+  StyleSheet,
+  Keyboard,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import Inputs from '../../components/Inputs/Inputs';
-import * as Colors from '../../style/vars/colors';
 
 class Spreadsheet extends Component {
 
     constructor() {
-        super();
-        this.state = {modalVisable: false}
+      super();
+      this.state = {modalVisable: false}
     }
 
     setModalVisible = (visible) => {
-        Keyboard.dismiss();
-        this.setState({modalVisible: visible});
+      Keyboard.dismiss();
+      this.setState({modalVisible: visible});
+    }
+
+    renderTableHeader() {
+      return (
+        <View>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+        </View>
+      )
     }
 
     render() {
-        return (
-          <View style={Styles.landscapeContainer}>
-              {this.renderLandscapeList(this.props.moves)}
-          </View>
-        )
+      const { moves } = this.props;
+
+      return (
+        <View style={Styles.landscapeContainer}>
+          <Header />
+          {
+            moves.map((move) =>
+              <Row move={move} />
+            )
+          }
+        </View>
+      )
     }
+
 }
 
 const redPrimary = '#9d1018';
@@ -89,8 +107,6 @@ const Styles = StyleSheet.create({
     flex: 1,
     height: 20,
     width: 20,
-  },
-  input: {
   }
 });
 

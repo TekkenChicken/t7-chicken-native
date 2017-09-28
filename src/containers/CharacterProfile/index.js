@@ -66,9 +66,7 @@ class CharacterProfileScreen extends Component {
           orientation: isPortrait() ? 'portrait' : 'landscape'
       });
     });
-}
-  
-
+  }
 
   componentWillMount() {
     this.updateHeaderParams();

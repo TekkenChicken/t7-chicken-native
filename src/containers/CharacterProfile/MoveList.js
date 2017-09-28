@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 // components
 import DataList from '../../components/DataList/DataList';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
-import LandscapeList from './LandscapeList';
+import Spreadsheet from '../../components/Spreadsheet/';
 
 // Utils
 import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
@@ -23,8 +23,12 @@ const redSecondary = '#320f1c';
 
 class MoveList extends Component {
 
-  orientationHandler(orientation, moves) {
-    if(orientation == 'portrait') {
+  renderByOrientation(orientation, moves) {
+    if (orientation == 'landscape') {
+      return (
+        <Spreadsheet moves={moves} />
+      );
+    } else {
       return (
         <DataList
           listData={moves}
@@ -32,35 +36,19 @@ class MoveList extends Component {
           cellsPerRow={1}
           rowStyle={Styles.row}
         />
-      )
-    } else if(orientation == 'landscape') {
-      return (
-        <View>
-          <View style={Styles.landscapeContainer}>
-            <Text style={Styles.headerNotation}>Notation</Text>
-            <Text style={Styles.landscapeHeader}>Speed</Text>
-            <Text style={Styles.landscapeHeader}>On Block</Text>
-            <Text style={Styles.landscapeHeader}>On Counter</Text>
-            <Text style={Styles.landscapeHeader}>On Hit</Text>
-            <Text style={Styles.landscapeHeader}>Hit Level</Text>
-            <Text style={Styles.landscapeHeader}>Damage</Text>
-          </View>
-          <LandscapeList
-            moves={moves}
-          />
-        </View>
-      )
+      );
     }
   }
 
   render() {
+    // Filter and Search Move Data before rendering
     let moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
     moves = MoveFiltersUtil.searchByNotation(moves, this.props.searchNotation);
 
     return (
       <View style={Styles.container}>
         <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
-          {this.orientationHandler(this.props.orientation, moves)}
+        {this.renderByOrientation(this.props.orientation, moves)}
       </View>
     );
   }

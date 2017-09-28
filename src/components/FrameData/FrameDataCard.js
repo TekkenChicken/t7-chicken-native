@@ -10,7 +10,6 @@ import {
   Keyboard
 } from 'react-native';
 
-import FrameHeader from './FrameHeader';
 import PropertyList from '../PropertyList/PropertyList';
 import Inputs from '../Inputs/Inputs';
 import Button from '../Button/Button';
@@ -67,8 +66,6 @@ export default class FrameDataCard extends React.Component {
             style={Styles.modal}
             >
             <ScrollView>
-              {/* TODO: make this name dynamic */}
-              {/* <FrameHeader title={this.props.name}/> */}
               <View style={Styles.modalHeader}>
                 <Text style={Styles.modalNotation}>{this.props.notation}</Text>
                 <Inputs isCard={false} inputs={this.props.notation}/>

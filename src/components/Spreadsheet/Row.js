@@ -1,34 +1,39 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
     View,
     Text,
     TouchableHighlight,
     Modal,
     StyleSheet,
-    Keyboard,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import Inputs from '../../components/Inputs/Inputs';
-import * as Colors from '../../style/vars/colors';
 
-class Spreadsheet extends Component {
-
+class Row extends Component {
     constructor() {
         super();
         this.state = {modalVisable: false}
     }
 
-    setModalVisible = (visible) => {
-        Keyboard.dismiss();
-        this.setState({modalVisible: visible});
-    }
-
     render() {
-        return (
-          <View style={Styles.landscapeContainer}>
-              {this.renderLandscapeList(this.props.moves)}
+      const { notation, speed, on_block, on_ch, on_hit, hit_level, damage } = this.props.move;
+      return (
+        <TouchableHighlight 
+          style={Styles.attack} 
+          onPress={() => this.props.clickHandler()} 
+          key={i}>
+          <View style={Styles.landscapeRow}>
+            <View style={Styles.notationContainer}>
+              <Text style={Styles.notation}>{notation}</Text>
+            </View>
+            <Text style={Styles.landscapeMove}>{speed}</Text>
+            <Text style={Styles.landscapeMove}>{on_block}</Text>
+            <Text style={Styles.landscapeMove}>{on_ch}</Text>
+            <Text style={Styles.landscapeMove}>{on_hit}</Text>
+            <Text style={Styles.landscapeMove}>{hit_level}</Text>
+            <Text style={Styles.landscapeMove}>{damage}</Text>
           </View>
-        )
+        </TouchableHighlight>
+      )
     }
 }
 
@@ -94,4 +99,9 @@ const Styles = StyleSheet.create({
   }
 });
 
-export default Spreadsheet;
+Row.propTypes = {
+  move: PropTypes.object,
+  clickHandler: PropTypes.func
+};
+
+export default Row;
