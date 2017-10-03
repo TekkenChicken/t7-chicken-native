@@ -23,14 +23,14 @@ export default class CharacterSelect extends React.Component {
   }
 
   renderOptions(names) {
-  return  names.map((name, id) => {
-    return (
-      <Option
-        styleText={Styles.select}
-        key={id}>
-        {name}
-      </Option>
-  )
+    return names.map((name, id) => {
+      return (
+        <Option
+          styleText={Styles.select}
+          key={id}>
+          {name}
+        </Option>
+      )
     })
   }
 

@@ -77,10 +77,10 @@ const Styles = StyleSheet.create({
   menuHeader: {
     flexDirection: 'row',
     zIndex: 9999,
-    paddingTop: 40,
+    paddingTop: 25,
     paddingLeft: 10,
-    paddingBottom: 10,
-    backgroundColor: '#240202'
+    paddingBottom: 15,
+    backgroundColor: '#380d1d'
   },
   menuTitle: {
     color: 'white',
@@ -101,7 +101,7 @@ const Styles = StyleSheet.create({
     height: 12
   },
   menuFiltersContainer: {
-    paddingTop: 3,
+    paddingTop: 1,
     paddingBottom: 200
   }
 });

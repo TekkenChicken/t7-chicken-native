@@ -12,6 +12,7 @@ const redPrimary = '#9d1918';
 const redSecondary = '#320f1c';
 
 class ProfileBackDrop extends Component {
+  // To do: Have dynamic character background images here
   render() {
     return (
       <LinearGradient colors={[redSecondary, redSecondary]} style={Styles.backDropContainer}>
@@ -23,7 +24,7 @@ class ProfileBackDrop extends Component {
 
 const Styles = StyleSheet.create({
   backDropContainer: {
-    height: 160
+    height: 130
   },
   gradient: {
     flex: 1,

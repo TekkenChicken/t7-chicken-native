@@ -9,6 +9,15 @@ import {
   Keyboard,
 } from 'react-native';
 
+// components
+import CustomText from '../CustomText/CustomText';
+import FrameDataRow from './frameDataRow';
+
+// styles
+import cellStyles from './cellStyles';
+// spread sheet display config
+import orderConfig from './config';
+
 class Spreadsheet extends Component {
 
     constructor() {
@@ -23,27 +32,35 @@ class Spreadsheet extends Component {
 
     renderTableHeader() {
       return (
-        <View>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
-          <Text></Text>
+        <View style={cellStyles.row}>
+          {
+            orderConfig.map((moveProp, i) => {
+              return (
+                <View style={[cellStyles.headerCell, cellStyles[moveProp.key], cellStyles[moveProp.key + '_header']]} key={i}>
+                  <CustomText textStyle={cellStyles.headerText}>
+                    {moveProp.label}
+                  </CustomText>
+                </View>
+              );
+            })
+          }
         </View>
       )
+    }
+
+    renderTableRows(moves) {
+      return moves.map((move, i) =>
+        <FrameDataRow move={move} key={i} />
+      );
     }
 
     render() {
       const { moves } = this.props;
 
       return (
-        <View style={Styles.landscapeContainer}>
-          <Header />
-          {
-            moves.map((move) =>
-              <Row move={move} />
-            )
-          }
+        <View style={Styles.container}>
+          {this.renderTableHeader()}
+          {this.renderTableRows(moves)}
         </View>
       )
     }
@@ -55,9 +72,8 @@ const redSecondary = '#320f1c';
 
 const Styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: 7,
-    marginBottom: 80
+    width: '100%',
+    backgroundColor: 'transparent'
   },
   attack: {
     height: 70,

@@ -141,7 +141,7 @@ const onHitProperties = {
 };
 
 const onCHProperties = {
-  label: "On CH",
+  label: "Counter Hit",
   key: "on_ch",
   options: [
     {
