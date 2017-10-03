@@ -6,6 +6,7 @@ import {
     Modal,
     StyleSheet,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 // components
 import CustomText from '../CustomText/CustomText';
@@ -15,7 +16,7 @@ import Inputs from '../Inputs/Inputs';
 import cellStyles from './cellStyles';
 
 // spread sheet display config
-import orderConfig from './config';
+import { propOrder, propColors } from './config';
 
 
 class FrameDataRow extends Component {
@@ -36,28 +37,71 @@ class FrameDataRow extends Component {
       return (<CustomText textStyle={cellStyles.text}>{text}</CustomText>);
     }
 
+    /**
+     *  @method: renderCells
+     *  @param: move {object}
+     *  @return: Cell Components to render
+     *  Takes a move and renders out all required properties of the move into cells for the row
+     *  Properties needed are notated in propOrder of the spreadsheet Config
+     */
     renderCells(move) {
-      return orderConfig.map((moveProp, i) => {
+      return propOrder.map((moveProp, i) => {
         return (
-          <View style={[cellStyles.cell, cellStyles.moveCell, cellStyles[moveProp.key]]} key={i}>
-            { 
-              (moveProp.key == 'notation') ? this.renderNotation(move[moveProp.key]) : this.renderText(move[moveProp.key])
-            }
+          <View
+            style={[
+              cellStyles.cell,
+              cellStyles.moveCell,
+              cellStyles[moveProp.key],
+              {backgroundColor: propColors[moveProp.key].dark}
+            ]}
+            key={i}>
+            <CustomText textStyle={cellStyles.text}>{move[moveProp.key]}</CustomText>
+          </View>
+        );
+      })
+    }
+
+    /**
+     *  @method: renderHeaderCells
+     *  @render: Cell Components to render
+     *  Renders header cells with move properties to be shown in spreadsheet
+     *  Properties needed are notated in propOrder of the spreadsheet Config
+     */
+    renderHeaderCells() {
+      return propOrder.map((moveProp, i) => {
+        return (
+          <View
+            style={[
+              cellStyles.headerCell,
+              cellStyles[moveProp.key],
+              {backgroundColor: propColors[moveProp.key].light}
+            ]}
+            key={i}>
+            <CustomText textStyle={cellStyles.headerText}>{moveProp.label}</CustomText>
           </View>
         );
       })
     }
 
     render() {
-      return (
-        <TouchableHighlight 
-          onPress={() => this.props.clickHandler()}
-        >
+      // if Row is a header row
+      if (this.props.header) {
+        return (
           <View style={cellStyles.row}>
-            {this.renderCells(this.props.move)}
+            {this.renderHeaderCells()}
           </View>
-        </TouchableHighlight>
-      )
+        );
+      // if regular move data row
+      } else {
+        return (
+          <TouchableHighlight 
+            onPress={() => this.props.clickHandler()}>
+            <View style={cellStyles.row}>
+              {this.renderCells(this.props.move)}
+            </View>
+          </TouchableHighlight>
+        );
+      }
     }
 }
 

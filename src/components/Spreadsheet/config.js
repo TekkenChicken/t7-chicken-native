@@ -1,9 +1,11 @@
+import * as colors from '../../style/vars/colors';
+
 /**
- *	Spread Sheet Config
+ *	Order Config
  *	===================
  *	Determines the order of the move properties on the table
  */
-const propOrderConfig = [
+export const propOrder = [
 	{
 		key: "notation",
 		label: "Notation"
@@ -34,4 +36,38 @@ const propOrderConfig = [
 	}
 ];
 
-export default propOrderConfig;
+/**
+ *	Color Config
+ *	===================
+ *	Determines the background color of the move properties on the table
+ */
+export const propColors = {
+	"notation": {
+		light: colors.redSecondary,
+		dark: colors.maroon
+	},
+	"damage": {
+		light: colors.orange,
+		dark: colors.darkOrange
+	},
+	"hit_level": {
+		light: colors.scarlet,
+		dark: colors.darkScarlet
+	},
+	"speed": {
+		light: colors.green,
+		dark: colors.darkGreen
+	},
+	"on_block": {
+		light: colors.blue,
+		dark: colors.darkBlue
+	},
+	"on_hit": {
+		light: colors.violet,
+		dark: colors.darkViolet
+	},
+	"counter_hit": {
+		light: colors.pink,
+		dark: colors.darkPink
+	}
+}
