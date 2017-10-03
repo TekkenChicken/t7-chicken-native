@@ -12,7 +12,7 @@ export default Styles = StyleSheet.create({
 	},
 	cell: {
 		paddingTop: 20,
-		paddingBottom: 25,
+		paddingBottom: 22,
 		paddingLeft: 8,
 		paddingRight: 5,
 		shadowColor: '#000',
