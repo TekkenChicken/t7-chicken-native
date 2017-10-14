@@ -44,7 +44,7 @@ class MoveList extends Component {
     // Filter and Search Move Data before rendering
     let moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
     moves = MoveFiltersUtil.searchByNotation(moves, this.props.searchNotation);
-
+    console.log(moves);
     return (
       <View style={Styles.container}>
         <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>

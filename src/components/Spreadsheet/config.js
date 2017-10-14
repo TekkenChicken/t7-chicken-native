@@ -31,7 +31,7 @@ export const propOrder = [
 		label: "On Hit"
 	},
 	{
-		key: "counter_hit",
+		key: "on_ch",
 		label: "Counter Hit"
 	}
 ];
@@ -66,7 +66,7 @@ export const propColors = {
 		light: colors.violet,
 		dark: colors.darkViolet
 	},
-	"counter_hit": {
+	"on_ch": {
 		light: colors.pink,
 		dark: colors.darkPink
 	}

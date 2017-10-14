@@ -49,7 +49,6 @@ class CharacterCard extends Component {
 const Styles = StyleSheet.create({
   card: {
     flex: 1,
-    width: Dimensions.get('window').width / 4,
     paddingBottom: 15
   },
   empty: {

@@ -75,7 +75,7 @@ export default Styles = StyleSheet.create({
 	},
 
 	// Counter
-	counter_hit: {
+	on_ch: {
 		width: '12.5%',
 	},
 });
