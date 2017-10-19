@@ -104,7 +104,7 @@ const styleVar = {
 
 const Styles = StyleSheet.create({
   mainContainer: {
-    width: Dimensions.get('window').width,
+    width: '100%',
     flexDirection: 'row',
 		backgroundColor: '#1b0105',
     alignItems: 'center',
@@ -112,7 +112,11 @@ const Styles = StyleSheet.create({
     paddingTop: styleVar.vertPadding,
     paddingBottom: styleVar.vertPadding,
     paddingLeft: styleVar.sidePadding,
-    paddingRight: styleVar.sidePadding
+    paddingRight: styleVar.sidePadding,
+    shadowColor: '#000',
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 0.8,
+    shadowRadius: 2
   },
   contentWrap: {
     flex: 0.85,

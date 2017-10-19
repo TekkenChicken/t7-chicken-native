@@ -19,8 +19,11 @@ export default Styles = StyleSheet.create({
     }),
 	},
 	header: {
+		backgroundColor: '#320f1c',
 		position: 'absolute',
 		left: 0,
+		right: 0,
+		width: '100%',
 		...Platform.select({
       ios: {
         height: 64,

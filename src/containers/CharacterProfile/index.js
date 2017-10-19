@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Router } from '../Router';
+import { isPortrait } from '../../util/orientations';
 
 // dependencies
 import {
@@ -11,7 +12,8 @@ import {
   ScrollView,
   Button,
   TextInput,
-  Platform
+  Platform,
+  Dimensions,
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -43,25 +45,33 @@ import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter
 
 class CharacterProfileScreen extends Component {
   static navigationOptions = ({navigation}) => {
-    const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"}], [,{key: "FilterButton"}], navigation.state.params.scrollHeader);
+    const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"}], [,{key: "FilterButton"}]);
     const title = navigation.state.params.characterID;
     const left = [{key: "BackButton", navigation: navigation}];
     const right = navigation.state.params.right || [{key: "FilterButton"}];
-    return charProfileNavHeader(title, left, right, navigation.state.params.scrollHeader);
+    return charProfileNavHeader(title, left, right);
   };
 
   constructor(props) {
     super(props);
     this.state = {
       scrollHeader: false,
-      searchFocus: false
+      searchFocus: false,
+      orientation: isPortrait() ? 'portrait' : 'landscape',
     };
+
+    Dimensions.addEventListener('change', (e) => {
+      console.log(isPortrait());
+      this.setState({
+          orientation: isPortrait() ? 'portrait' : 'landscape'
+      });
+    });
   }
 
   componentWillMount() {
     this.updateHeaderParams();
     // Fetch Data on character using character ID sent as props on navigate
-    setTimeout(() => this.props.fetchDataForCharacter(this.props.characterID), 400);
+    setTimeout(() => this.props.fetchDataForCharacter(this.props.characterID), 500);
   }
 
   componentDidMount() {
@@ -173,7 +183,7 @@ class CharacterProfileScreen extends Component {
           <ScrollView
             ref={"scrollView"}
             style={Styles.scrollContainer}
-            scrollEventThrottle={16}
+            scrollEventThrottle={12}
             onScroll={(e) => this.handleScroll(e)}
             keyboardShouldPersistTaps={'always'}
             stickyHeaderIndices={[4]}>
@@ -194,6 +204,7 @@ class CharacterProfileScreen extends Component {
             </View>
             <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
               <MoveList
+                orientation={this.state.orientation}
                 moves={characterMovesData}
               />
             </View>
