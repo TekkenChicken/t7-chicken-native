@@ -30,13 +30,13 @@ class Spreadsheet extends Component {
 
     renderTableHeader() {
       return (
-        <FrameDataRow header={true} />
+        <FrameDataRow navigation={this.props.navigation} header={true} />
       )
     }
 
-    renderTableRows(moves) {
+    renderTableRows(moves, navigation) {
       return moves.map((move, i) =>
-        <FrameDataRow move={move} key={i} />
+        <FrameDataRow navigation={navigation} move={move} key={i} />
       );
     }
 
@@ -46,7 +46,7 @@ class Spreadsheet extends Component {
       return (
         <View style={Styles.container}>
           {this.renderTableHeader()}
-          {this.renderTableRows(moves)}
+          {this.renderTableRows(moves, this.props.navigation)}
         </View>
       )
     }

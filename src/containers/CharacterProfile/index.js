@@ -61,7 +61,6 @@ class CharacterProfileScreen extends Component {
     };
 
     Dimensions.addEventListener('change', (e) => {
-      console.log(isPortrait());
       this.setState({
           orientation: isPortrait() ? 'portrait' : 'landscape'
       });
@@ -204,6 +203,7 @@ class CharacterProfileScreen extends Component {
             </View>
             <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
               <MoveList
+                navigation={this.props.navigation}
                 orientation={this.state.orientation}
                 moves={characterMovesData}
               />

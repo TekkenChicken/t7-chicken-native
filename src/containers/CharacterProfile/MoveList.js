@@ -26,7 +26,7 @@ class MoveList extends Component {
   renderByOrientation(orientation, moves) {
     if (orientation == 'landscape') {
       return (
-        <Spreadsheet moves={moves} />
+        <Spreadsheet navigation={this.props.navigation} moves={moves} />
       );
     } else {
       return (
