@@ -105,7 +105,6 @@ export const attackDetailsNavHeader = (move, leftComponents=[]) => {
     title: null,
     headerTitle: renderAttackDetailsTitle(move),
     headerStyle: (Platform.OS === 'ios') ? transparentStyle : blackStyle,
-    //headerStyle: headerStyles.attackDetail,
     headerLeft: renderSide(leftComponents, "left"),
   };
 };
