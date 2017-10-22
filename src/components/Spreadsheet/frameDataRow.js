@@ -5,7 +5,9 @@ import {
     TouchableHighlight,
     Modal,
     StyleSheet,
+    Keyboard
 } from 'react-native';
+
 import LinearGradient from 'react-native-linear-gradient';
 
 // components
@@ -83,6 +85,11 @@ class FrameDataRow extends Component {
       })
     }
 
+    navigateToAttackDetails(move) {
+      Keyboard.dismiss();
+      this.props.navigation.navigate('attackDetails',  { move } );
+    }
+
     render() {
       // if Row is a header row
       if (this.props.header) {
@@ -95,7 +102,7 @@ class FrameDataRow extends Component {
       } else {
         return (
           <TouchableHighlight 
-            onPress={() => this.props.clickHandler()}>
+            onPress={()=> this.navigateToAttackDetails(this.props.move)}>
             <View style={cellStyles.row}>
               {this.renderCells(this.props.move)}
             </View>
