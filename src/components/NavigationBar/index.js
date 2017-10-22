@@ -1,9 +1,10 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, View, Text } from 'react-native';
 
 // components
 import NavigationTitle from './Title';
 import NavigationSide from './Side';
+import Inputs from '../Inputs/Inputs';
 
 /**
  *  Render's Header Title
@@ -12,6 +13,13 @@ import NavigationSide from './Side';
 const renderTitle = (title) => (
   <NavigationTitle text={title} />
 );
+
+const renderAttackDetailsTitle = title => (
+  <View>
+    <Text style={{color: 'white'}}>{title}</Text>
+    <Inputs isCard={false} inputs={title}/>
+  </View>
+)
 
 /**
  *  Render's Group of possible components to use on sides of header
@@ -29,7 +37,6 @@ const headerStyles = {
     borderBottomWidth: 0,
     shadowOpacity: 0,
     shadowOffset: {
-      height: 0,
     },
     shadowRadius: 0,
     elevation: 0
@@ -43,7 +50,17 @@ const headerStyles = {
   },
   black: {
     backgroundColor: '#111',
-  }
+  },
+  attackDetail: {
+    backgroundColor: '#260309',
+    borderBottomWidth: 0,
+    shadowOpacity: 0,
+    height: 100,
+    shadowOffset: {
+    },
+    shadowRadius: 0,
+    elevation: 0
+  },
 };
 
 /**
@@ -77,6 +94,19 @@ export const charProfileNavHeader = (charName, leftComponents=[], rightComponent
     headerStyle: (Platform.OS === 'ios') ? transparentStyle : blackStyle,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
+  };
+};
+
+//Attack Details Nav Header
+export const attackDetailsNavHeader = (move, leftComponents=[]) => {
+  const transparentStyle = Object.assign({}, headerStyles.attackDetail);
+  const blackStyle = Object.assign({}, headerStyles.attackDetail, headerStyles.black);
+  return {
+    title: null,
+    headerTitle: renderAttackDetailsTitle(move),
+    headerStyle: (Platform.OS === 'ios') ? transparentStyle : blackStyle,
+    //headerStyle: headerStyles.attackDetail,
+    headerLeft: renderSide(leftComponents, "left"),
   };
 };
 
@@ -124,3 +154,4 @@ export const CommunityNavHeader = (leftComponents = [], rightComponents = []) =>
     headerStyle: headerStyles.common
   };
 };
+
