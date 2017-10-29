@@ -11,7 +11,7 @@ import {
 
 // components
 import CustomText from '../CustomText/CustomText';
-import FrameDataRow from './frameDataRow';
+import FrameDataRow from './FrameDataRow';
 
 // styles
 import cellStyles from './cellStyles';

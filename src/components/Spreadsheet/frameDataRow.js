@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import {
     View,
     Text,
@@ -19,6 +20,8 @@ import cellStyles from './cellStyles';
 
 // spread sheet display config
 import { propOrder, propColors } from './config';
+
+import { showAttackDetails } from '../../redux/actions/attackDetails';
 
 
 class FrameDataRow extends Component {
@@ -85,12 +88,25 @@ class FrameDataRow extends Component {
       })
     }
 
-    navigateToAttackDetails(move) {
+    navigateToAttackDetails(move, index) {
       Keyboard.dismiss();
-      this.props.navigation.navigate('attackDetails',  { move } );
+      this.props.showAttackDetails(move, index)
+      this.props.navigation.navigate('attackDetails',  { move, index} );
     }
 
+    indexFinder(charData, move) {
+      let indexValue = null;
+      charData.forEach((attack, i) => {
+          if(attack.notation == move.notation) {
+              return indexValue = i;
+          }
+      })
+      return indexValue;
+  }
+
     render() {
+      const characterMoves = this.props.character;
+      const moveIndex = this.indexFinder(characterMoves, {...this.props.move});
       // if Row is a header row
       if (this.props.header) {
         return (
@@ -102,7 +118,7 @@ class FrameDataRow extends Component {
       } else {
         return (
           <TouchableHighlight 
-            onPress={()=> this.navigateToAttackDetails(this.props.move)}>
+            onPress={()=> this.navigateToAttackDetails(characterMoves[moveIndex], moveIndex)}>
             <View style={cellStyles.row}>
               {this.renderCells(this.props.move)}
             </View>
@@ -111,10 +127,22 @@ class FrameDataRow extends Component {
       }
     }
 }
+const mapStateToProps = state => {
+  return {
+      character: state.character.data,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    showAttackDetails: (move, index) =>  dispatch(showAttackDetails(move, index))
+  }
+}
 
 FrameDataRow.propTypes = {
   move: PropTypes.object,
   clickHandler: PropTypes.func
 };
 
-export default FrameDataRow;
+export default connect(mapStateToProps, mapDispatchToProps)(FrameDataRow);
+

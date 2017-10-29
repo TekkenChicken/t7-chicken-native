@@ -6,7 +6,8 @@ import {
     Image,
     TouchableHighlight,
     ScrollView,
-    StyleSheet
+    StyleSheet,
+    Linking
 } from 'react-native';
 
 import PropertyList from '../PropertyList/PropertyList';
@@ -37,6 +38,10 @@ class AttackDetails extends Component {
         }
     }
 
+    handleLink(url) {
+        Linking.openURL(url);
+    }
+
     handlePreviousPress(index, allCharacterAttacks, setParams) {
         index--;
         const characterMove = allCharacterAttacks[index]
@@ -54,28 +59,43 @@ class AttackDetails extends Component {
     renderButtons(index, allCharacterAttacks, setParams) {
         const previousReference = allCharacterAttacks[index-1];
         const nextReference = allCharacterAttacks[index+1]
-
+        console.log('this nav', this)
         if (previousReference && nextReference) {
             return (
-                <View>
-                  <Button title='Previous' onPress={() => this.handlePreviousPress(index, allCharacterAttacks, setParams)}  />
-                  <Button title='Next' onPress={() => this.handleNextPress(index, allCharacterAttacks, setParams)} />
+                <View style={Styles.buttonContainer}>
+
+                  <TouchableHighlight onPress={() => this.handlePreviousPress(index, allCharacterAttacks, setParams)}>
+                      <Text style={Styles.previousButton}>Previous</Text>
+                  </TouchableHighlight> 
+
+                  <TouchableHighlight onPress={() => this.props.navigation.goBack()} >
+                      <Text style={Styles.backButton}>Back</Text>
+                  </TouchableHighlight>
+
+                  <TouchableHighlight onPress={() => this.handleNextPress(index, allCharacterAttacks, setParams)}>
+                      <Text style={Styles.nextButton}>Next</Text>
+                  </TouchableHighlight>
+
                 </View>
             )
         }
 
         if (!previousReference) {
             return (
-                <View>
-                  <Button title='Next' onPress={() => this.handleNextPress(index, allCharacterAttacks, setParams)} />
+                <View style={Styles.buttonContainer}>
+                    <TouchableHighlight onPress={() => this.handleNextPress(index, allCharacterAttacks, setParams)}>
+                        <Text style={Styles.nextButton}>Next</Text>
+                    </TouchableHighlight>
                 </View>
             )
         }
 
         if (!nextReference) {
             return (
-                <View>
-                  <Button title='Previous' onPress={() => this.handlePreviousPress(index, allCharacterAttacks, setParams)}  />
+                <View style={Styles.buttonContainer}>
+                    <TouchableHighlight onPress={() => this.handlePreviousPress(index, allCharacterAttacks, setParams)}>
+                        <Text style={Styles.previousButton}>Previous</Text>
+                    </TouchableHighlight>
                 </View>
             )
         }
@@ -91,6 +111,10 @@ class AttackDetails extends Component {
               colors={[Colors.redPrimary, Colors.redSecondary]}
               style={Styles.mainContainer}
             >
+            <Text style={{backgroundColor: 'transparent', textAlign: 'center', textDecorationLine: 'underline', color: '#f0aa23'}}
+            onPress={()=> this.handleLink('https://gfycat.com/@offinbed/albums')}>
+                Check the progress of the gifs here!
+            </Text>
             <ScrollView style={{backgroundColor: 'transparent'}}>
               <PropertyList type={'special'} specProperties={selectedMove.notes}/>
               <PropertyList type={'general'} damage={selectedMove.damage} hitLevels={selectedMove.hit_level} />
@@ -109,6 +133,23 @@ const Styles = StyleSheet.create({
     notation: {
         backgroundColor: 'transparent',
         color: 'white'
+    },
+    buttonContainer: {
+        height: 40,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    nextButton: {
+        fontSize: 24,
+        color: '#f0aa23',
+    },
+    previousButton: {
+        fontSize: 24,
+        color: '#f0aa23',
+    },
+    backButton: {
+        fontSize: 24,
+        color: '#f0aa23'
     }
 })
 

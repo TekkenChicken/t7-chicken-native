@@ -15,8 +15,8 @@ const renderTitle = (title) => (
 );
 
 const renderAttackDetailsTitle = title => (
-  <View>
-    <Text style={{color: 'white', paddingLeft: 30}}>{title}</Text>
+  <View style={{ alignSelf: 'center'}}>
+    <Text style={{color: 'white', textAlign: 'center'}}>{title}</Text>
     <Inputs isCard={false} inputs={title}/>
   </View>
 )
@@ -55,7 +55,7 @@ const headerStyles = {
     backgroundColor: '#260309',
     borderBottomWidth: 0,
     shadowOpacity: 0,
-    height: 125,
+    height: 100,
     shadowOffset: {
     },
     shadowRadius: 0,
