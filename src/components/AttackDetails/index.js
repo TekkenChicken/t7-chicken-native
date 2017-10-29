@@ -69,7 +69,7 @@ class AttackDetails extends Component {
                   </TouchableHighlight> 
 
                   <TouchableHighlight onPress={() => this.props.navigation.goBack()} >
-                      <Text style={Styles.backButton}>Back</Text>
+                      <Text style={Styles.backButton}>Attacks</Text>
                   </TouchableHighlight>
 
                   <TouchableHighlight onPress={() => this.handleNextPress(index, allCharacterAttacks, setParams)}>
@@ -149,7 +149,8 @@ const Styles = StyleSheet.create({
     },
     backButton: {
         fontSize: 24,
-        color: '#f0aa23'
+        color: '#f0aa23',
+        paddingRight: 25
     }
 })
 
