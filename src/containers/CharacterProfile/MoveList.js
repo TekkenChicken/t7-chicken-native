@@ -35,6 +35,7 @@ class MoveList extends Component {
           cellComponent={FrameDataCard}
           cellsPerRow={1}
           rowStyle={Styles.row}
+          navigation={this.props.navigation}
         />
       );
     }

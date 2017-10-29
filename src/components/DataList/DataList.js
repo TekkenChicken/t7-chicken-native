@@ -64,15 +64,15 @@ class DataList extends Component {
    * Rendering function used to create a row for the list
    * renders the cell in row as cellComponent given
    */
-  _renderRow(rowData, CellComponent, rowStyle, cellStyle, onCellPress) {
-    // will need to add param for using rowComponent
+  _renderRow(rowData, CellComponent, rowStyle, cellStyle, onCellPress, navigation) {
+    // will need to add param for using rowComponent 
     return (
       <View style={[styles.row, rowStyle]}>
-        {
+        { 
           rowData.cells.map((cell, i) => {
             return (
               <View style={[styles.cell, cellStyle]} key={i}>
-                <CellComponent {...cell} onPressHandler={onCellPress} />
+                <CellComponent {...cell} onPressHandler={onCellPress} navigation={navigation} />
               </View>
             );
           })
@@ -84,7 +84,7 @@ class DataList extends Component {
   render() {
     const {
       mainStyle, containerStyle, rowStyle, cellStyle,
-      cellComponent, listData, cellsPerRow, onCellPress
+      cellComponent, listData, cellsPerRow, onCellPress, navigation
     } = this.props;
     // data source creation
     const dataSource = this.formatDataSource( this.createLayoutData(listData, cellsPerRow) );
@@ -95,7 +95,7 @@ class DataList extends Component {
         keyboardShouldPersistTaps="always"
         contentContainerStyle={[styles.container, containerStyle]}
         dataSource={dataSource}
-        renderRow={(rowData) => this._renderRow(rowData, cellComponent, rowStyle, cellStyle, onCellPress)}
+        renderRow={(rowData) => this._renderRow(rowData, cellComponent, rowStyle, cellStyle, onCellPress, navigation)}
       />
     );
   }
