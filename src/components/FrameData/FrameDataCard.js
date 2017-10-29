@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
@@ -19,8 +20,10 @@ import * as Colors from '../../style/vars/colors';
 
 import icons from '../../img/icons/';
 
+import { showAttackDetails } from '../../redux/actions/attackDetails';
 
-export default class FrameDataCard extends React.Component {
+
+class FrameDataCard extends React.Component {
   constructor() {
     super();
     this.state = {modalVisible: false}
@@ -31,10 +34,28 @@ export default class FrameDataCard extends React.Component {
     this.setState({modalVisible: visible});
   }
 
+  navigateToAttackDetails(move, index) {
+    Keyboard.dismiss();
+    this.props.showAttackDetails(move, index)
+    this.props.navigation.navigate('attackDetails',  { move, index} );
+  }
+
+  indexFinder(charData, move) {
+    let indexValue = null;
+    charData.forEach((attack, i) => {
+        if(attack.notation == move.notation) {
+            return indexValue = i;
+        }
+    })
+    return indexValue;
+}
+
   render() {
     const emptyCard = (this.props.notation == null);
     const containerStyle = (emptyCard) ? [Styles.container, Styles.empty] : Styles.container;
     const touchEvent = (emptyCard) ? 'none' : 'auto';
+    const characterMoves = this.props.character;
+    const moveIndex = this.indexFinder(characterMoves, this.props);
     return (
       <LinearGradient
         start={{x: 3.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
@@ -43,48 +64,31 @@ export default class FrameDataCard extends React.Component {
         pointerEvents={touchEvent}
       >
         <TouchableHighlight
-          onPress={() => { this.setModalVisible(true) }}
+          onPress={() => { this.navigateToAttackDetails(characterMoves[moveIndex], moveIndex) }}
           style={Styles.card}>
           <View style={Styles.cardContainer}>
             <Text style={Styles.cardNotation}>{this.props.notation}</Text>
             <Inputs isCard={true} inputs={this.props.notation}/>
           </View>
         </TouchableHighlight>
-
-        <Modal
-          animationType={"slide"}
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => this.setModalVisible(!this.state.modalVisible)}
-         >
-          <View style={Styles.videoContainer}>
-            <Text style={Styles.videoText}>Gifs Coming Soon!</Text>
-          </View>
-          <LinearGradient
-            colors={[Colors.redPrimary, Colors.redSecondary]}
-            start={{x: 1.0, y: 0.9}} end={{x: 0.5, y: 0.1}}
-            style={Styles.modal}
-            >
-            <ScrollView>
-              <View style={Styles.modalHeader}>
-                <Text style={Styles.modalNotation}>{this.props.notation}</Text>
-                <Inputs isCard={false} inputs={this.props.notation}/>
-              </View>
-              <PropertyList type={'special'} specProperties={this.props.notes}/>
-              <PropertyList type={'general'} damage={this.props.damage} hitLevels={this.props.hit_level} />
-              <PropertyList type={'frames'} onBlock={this.props.on_block} onHit={this.props.on_hit} onCounter={this.props.on_ch} speed={this.props.speed} />
-            </ScrollView>
-          </LinearGradient>
-          <TouchableHighlight
-            onPress={() => this.setModalVisible(!this.state.modalVisible)}
-            style={Styles.closeButton}>
-            <Image source={icons['close']} style={Styles.closeButtonIcon}/>
-          </TouchableHighlight>
-        </Modal>
       </LinearGradient>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+      character: state.character.data,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    showAttackDetails: (move, index) =>  dispatch(showAttackDetails(move, index))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FrameDataCard);
 
 const Styles = StyleSheet.create({
   container: {
