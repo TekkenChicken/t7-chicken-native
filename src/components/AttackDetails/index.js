@@ -113,7 +113,6 @@ const Styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-    console.log('what is in state', state)
     return {
         character: state.character.data,
         selected: state.selectedAttack.selectedAttack.move,
