@@ -111,7 +111,7 @@ class AttackDetails extends Component {
               colors={[Colors.redPrimary, Colors.redSecondary]}
               style={Styles.mainContainer}
             >
-            <Text style={{backgroundColor: 'transparent', textAlign: 'center', textDecorationLine: 'underline', color: '#f0aa23'}}
+            <Text style={{backgroundColor: Colors.redSecondary, textAlign: 'center', textDecorationLine: 'underline', color: '#f0aa23', paddingTop: 10, height: 50}}
             onPress={()=> this.handleLink('https://gfycat.com/@offinbed/albums')}>
                 Check the progress of the gifs here!
             </Text>
@@ -142,15 +142,30 @@ const Styles = StyleSheet.create({
     nextButton: {
         fontSize: 24,
         color: '#f0aa23',
+        backgroundColor: Colors.redSecondary,
+        paddingRight: 20,
+        paddingLeft:20,
+        paddingTop: 5,
+        height: 50
     },
     previousButton: {
         fontSize: 24,
         color: '#f0aa23',
+        backgroundColor: Colors.redSecondary,
+        paddingRight: 20,
+        paddingLeft: 20,
+        paddingTop: 5,
+        height: 50
     },
     backButton: {
         fontSize: 24,
         color: '#f0aa23',
-        paddingRight: 25
+        paddingRight: 25,
+        backgroundColor: Colors.redSecondary,
+        paddingRight: 20,
+        paddingLeft: 20,
+        paddingTop: 5,
+        height: 50
     }
 })
 
