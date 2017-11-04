@@ -29,11 +29,6 @@ class FrameDataCard extends React.Component {
     this.state = {modalVisible: false}
   }
 
-  setModalVisible = (visible) => {
-    Keyboard.dismiss();
-    this.setState({modalVisible: visible});
-  }
-
   navigateToAttackDetails(move, index) {
     Keyboard.dismiss();
     this.props.showAttackDetails(move, index)
@@ -78,7 +73,7 @@ class FrameDataCard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-      character: state.character.data,
+      character: state.character.data
   }
 }
 
