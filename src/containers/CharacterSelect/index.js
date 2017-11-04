@@ -30,7 +30,7 @@ import Styles from './styles';
 
 // dispatch actions
 import { fetchCharacters, searchCharacters  } from '../../redux/actions/select';
-import { fetchInitialAppData } from '../../redux/actions/blob';
+import { fetchInitialAppData, fetchUserAlertData } from '../../redux/actions/blob';
 
 
 class CharacterSelectScreen extends Component {
@@ -46,6 +46,7 @@ class CharacterSelectScreen extends Component {
 
   componentWillMount() {
     this.props.fetchCharacters();
+    this.props.fetchUserAlertData();
   }
 
   /**
@@ -108,6 +109,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchInitialAppData: () => {
       dispatch(fetchInitialAppData());
+    },
+    fetchUserAlertData: () => {
+      dispatch(fetchUserAlertData());
     }
   };
 };
