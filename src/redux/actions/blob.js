@@ -9,6 +9,7 @@ export const BLOB_UPDATE_DATA = 'BLOB_UPDATE_DATA';
 export const BLOB_FETCH_SUCCESS = 'BLOB_FETCH_SUCCESS';
 export const BLOB_FETCH_ERROR = 'BLOB_FETCH_ERROR';
 export const BLOB_FETCH_OFFLINE = 'BLOB_FETCH_OFFLINE';
+export const BLOB_SPREADSHEET_AWARENESS= 'BLOB_SPREADSHEET_AWARENESS';
 
 const CHAR_DATA_API = "http://api.tekkenchicken.com/api/framedata/";
 const CHAR_METADATA_API = "http://api.tekkenchicken.com/api/metadata/"
@@ -69,6 +70,14 @@ const setInitialData = (payload) => {
   };
 };
 
+const userSpreadsheetAwareness = isAware => {
+  console.log('userSpreadsheet dispatch', isAware)
+  return {
+    type: BLOB_SPREADSHEET_AWARENESS,
+    bool: isAware
+  }
+}
+
 export const fetchInitialAppData = (isConnected) => {
   // Will need to check if LocalStorage data exists (if not, use in-app stub data)
   // reach ver endpoint and check version number
@@ -103,3 +112,25 @@ export const fetchInitialAppData = (isConnected) => {
     .catch((err) => dispatch(fetchDataFromAPI(appData)) );
   }
 };
+
+export const fetchUserAlertData = () => {
+  return dispatch => {
+    return AsyncStorageUtil.spreadsheetAwareCheck()
+    .then((isAware) => {
+      console.log('alert data', isAware)
+      if(!isAware.spreadsheetAware) {
+        isAware = false;
+        AsyncStorageUtil.spreadsheetAware(isAware)
+        return dispatch(userSpreadsheetAwareness(isAware))
+      }
+    })
+    .catch(error => console.log(error))
+  }
+}
+
+export const updateUserAlertData = isAware => {
+  console.log('update User alert data', isAware)
+  return dispatch => {
+    dispatch(userSpreadsheetAwareness(isAware))
+  }
+}

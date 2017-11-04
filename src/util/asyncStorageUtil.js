@@ -2,6 +2,8 @@ import {AsyncStorage} from 'react-native';
 
 const STORAGE_KEY = 't7CharacterData';
 
+const PROMPT_KEY = 't7UserPrompt';
+
 /**  ----------------------------
  *   GET & SET for Local Storage
  *   ----------------------------
@@ -26,7 +28,6 @@ export async function fetchAppData() {
  */
 export async function storeAppData(payload, timestamp) {
   const newData = { data: payload, last_updated: timestamp };
-  console.log( newData );
   return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newData))
     .then((res) => console.log("storing",newData))
     .catch((error) => error);
@@ -39,4 +40,25 @@ export async function clearAppData() {
   return AsyncStorage.removeItem(STORAGE_KEY)
     .then((res) => res)
     .catch((error) => error);
+}
+
+export async function spreadsheetAwareCheck() {
+  return AsyncStorage.getItem(PROMPT_KEY)
+  .then((res) => {
+    return JSON.parse(res)
+  })
+  .catch((error) => error);
+}
+
+export async function spreadsheetAware(answer) {
+  const userResponse = { spreadsheetAware: answer };
+  return AsyncStorage.setItem(PROMPT_KEY, JSON.stringify(userResponse))
+  .then((res) => console.log('User answer:', userResponse))
+  .catch((error) => error)
+}
+
+export async function clearPromptData() {
+  return AsyncStorage.removeItem(PROMPT_KEY)
+  .then((res) => res)
+  .catch((error) => error);
 }
