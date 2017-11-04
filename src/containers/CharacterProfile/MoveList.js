@@ -4,7 +4,8 @@ import React, { Component, PropTypes } from 'react';
 import {
   View,
   StyleSheet,
-  Text
+  Text,
+  Alert
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -20,8 +21,15 @@ import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
 const redPrimary = '#9d1018';
 const redSecondary = '#320f1c';
 
+//actions
+import { updateUserAlertData } from '../../redux/actions/blob';
 
 class MoveList extends Component {
+
+  componentDidMount() {
+    this.spreadsheetCheck(this.props.spreadsheetAware, this.props.orientation);
+  }
+
 
   renderByOrientation(orientation, moves) {
     if (orientation == 'landscape') {
@@ -38,6 +46,18 @@ class MoveList extends Component {
           navigation={this.props.navigation}
         />
       );
+    }
+  }
+
+  spreadsheetCheck(isAware, orientation) {
+    if (!isAware && orientation == 'portrait') {
+      Alert.alert('Spreadsheet View',
+      'Hold phone sideways to see Spreadsheet View',
+      [
+        {text: 'Ok', onPress: () => this.props.updateUserAlertData(false)},
+        {text: `Don't show me this again`, onPress: () => this.props.updateUserAlertData(true)}
+      ]
+      )
     }
   }
 
@@ -122,8 +142,15 @@ MoveList.Proptypes = {
 const mapStateToProps = (state) => {
   return {
     filter: state.character.filter,
-    searchNotation: state.character.searchNotation
+    searchNotation: state.character.searchNotation,
+    spreadsheetAware: state.blob.spreadsheetAware
   };
 };
 
-export default connect(mapStateToProps)(MoveList);
+const mapDispatchToProps = dispatch => {
+  return {
+    updateUserAlertData: (isAware) => dispatch(updateUserAlertData(isAware))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoveList);
