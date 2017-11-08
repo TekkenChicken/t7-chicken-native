@@ -68,7 +68,6 @@ class MoveList extends Component {
 
     return (
       <View style={Styles.container}>
-        <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
         {this.renderByOrientation(this.props.orientation, moves)}
       </View>
     );
@@ -78,20 +77,11 @@ class MoveList extends Component {
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 7,
     marginBottom: 80
   },
   row: {
     flexDirection:'row',
     alignItems: 'flex-start'
-  },
-  rbnorway: {
-    textAlign: 'center',
-    marginBottom: 10,
-    fontFamily: 'Exo2-Light',
-    color: '#f0aeb1',
-    fontSize: 12,
-    backgroundColor: 'transparent'
   },
   landscapeContainer: {
     backgroundColor: 'transparent',
