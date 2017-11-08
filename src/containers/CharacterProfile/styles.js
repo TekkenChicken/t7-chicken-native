@@ -3,6 +3,15 @@ import {
 } from 'react-native';
 
 export default Styles = StyleSheet.create({
+	rbnorway: {
+		textAlign: 'center',
+		fontFamily: 'Exo2-Light',
+		color: '#f0aeb1',
+		fontSize: 12,
+		backgroundColor: '#9d1918',
+		height: 20,
+		paddingBottom: 10
+	},
   mainContainer: {
 		flex: 1
   },
