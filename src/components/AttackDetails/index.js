@@ -59,7 +59,6 @@ class AttackDetails extends Component {
     renderButtons(index, allCharacterAttacks, setParams) {
         const previousReference = allCharacterAttacks[index-1];
         const nextReference = allCharacterAttacks[index+1]
-        console.log('this nav', this)
         if (previousReference && nextReference) {
             return (
                 <View style={Styles.buttonContainer}>
