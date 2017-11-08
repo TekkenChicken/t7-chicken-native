@@ -44,8 +44,7 @@ class Spreadsheet extends Component {
       const { moves } = this.props;
 
       return (
-        <View style={Styles.container}>
-          {this.renderTableHeader()}
+        <View>
           {this.renderTableRows(moves, this.props.navigation)}
         </View>
       )

@@ -33,12 +33,15 @@ import Drawer from 'react-native-drawer';
 import CustomText from '../../components/CustomText/CustomText';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { charProfileNavHeader } from '../../components/NavigationBar';
+import FrameDataRow from '../../components/Spreadsheet/FrameDataRow';
 
 //images
 import headshots from '../../img/headshots/index';
 
 // Styles
 import Styles from './styles';
+import cellStyles from '../../components/Spreadsheet/cellStyles';
+import { propOrder, propColors } from '../../components/Spreadsheet/config';
 
 // dispatch actions
 import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter, searchMovesByNotation } from '../../redux/actions/character';
@@ -146,6 +149,11 @@ class CharacterProfileScreen extends Component {
   onSearchBlurHandler() {
     this.setState({searchFocus: false});
   }
+  renderTableHeader() {
+    return (
+      <FrameDataRow navigation={this.props.navigation} header={true} />
+    )
+  }
 
   render() {
     let {characterID, characterMovesData, characterName} = this.props;
@@ -200,6 +208,8 @@ class CharacterProfileScreen extends Component {
                 onFocusCallback={() => this.onSearchFocusHandler()}
                 onBlurCallback={() => this.onSearchBlurHandler()}
               />
+              <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
+              {this.state.orientation == 'landscape' ? this.renderTableHeader() : null}
             </View>
             <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
               <MoveList
