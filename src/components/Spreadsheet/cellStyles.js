@@ -11,8 +11,8 @@ export default Styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	cell: {
-		paddingTop: 20,
-		paddingBottom: 22,
+		paddingTop: 10,
+		paddingBottom: 12,
 		paddingLeft: 8,
 		paddingRight: 5,
 		shadowColor: '#000',
@@ -27,8 +27,8 @@ export default Styles = StyleSheet.create({
 	// Header
 	headerCell: {
 		elevation: 4,
-		paddingTop: 15,
-		paddingBottom: 15,
+		paddingTop: 7,
+		paddingBottom: 7,
 		paddingLeft: 8,
 		paddingRight: 5,
 		shadowColor: '#000',
