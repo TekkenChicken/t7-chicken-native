@@ -48,26 +48,32 @@ export const propColors = {
 	},
 	"damage": {
 		light: colors.orange,
+		between: colors.betweenOrange,
 		dark: colors.darkOrange
 	},
 	"hit_level": {
 		light: colors.scarlet,
+		between: colors.betweenScarlet,
 		dark: colors.darkScarlet
 	},
 	"speed": {
 		light: colors.green,
+		between: colors.betweenGreen,
 		dark: colors.darkGreen
 	},
 	"on_block": {
 		light: colors.blue,
+		between: colors.betweenBlue,
 		dark: colors.darkBlue
 	},
 	"on_hit": {
 		light: colors.violet,
+		between: colors.betweenViolet,
 		dark: colors.darkViolet
 	},
 	"on_ch": {
 		light: colors.pink,
+		between: colors.betweePink,
 		dark: colors.darkPink
 	}
 }

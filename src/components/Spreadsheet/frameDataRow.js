@@ -58,7 +58,7 @@ class FrameDataRow extends Component {
               cellStyles.cell,
               cellStyles.moveCell,
               cellStyles[moveProp.key],
-              { backgroundColor: rowIndex % 2 === 0 ? propColors[moveProp.key].dark : propColors[moveProp.key].light}
+              { backgroundColor: rowIndex % 2 === 0 ? propColors[moveProp.key].dark : propColors[moveProp.key].between}
             ]}
             key={i}>
             <CustomText textStyle={cellStyles.text}>{move[moveProp.key]}</CustomText>
