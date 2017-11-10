@@ -36,7 +36,7 @@ class Spreadsheet extends Component {
 
     renderTableRows(moves, navigation) {
       return moves.map((move, i) =>
-        <FrameDataRow navigation={navigation} move={move} key={i} />
+        <FrameDataRow navigation={navigation} move={move} key={i} rowIndex={i} />
       );
     }
 

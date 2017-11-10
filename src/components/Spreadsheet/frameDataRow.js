@@ -49,7 +49,8 @@ class FrameDataRow extends Component {
      *  Takes a move and renders out all required properties of the move into cells for the row
      *  Properties needed are notated in propOrder of the spreadsheet Config
      */
-    renderCells(move) {
+    renderCells(move, rowIndex) {
+      console.log()
       return propOrder.map((moveProp, i) => {
         return (
           <View
@@ -57,7 +58,7 @@ class FrameDataRow extends Component {
               cellStyles.cell,
               cellStyles.moveCell,
               cellStyles[moveProp.key],
-              {backgroundColor: propColors[moveProp.key].dark}
+              { backgroundColor: rowIndex % 2 === 0 ? propColors[moveProp.key].dark : propColors[moveProp.key].light}
             ]}
             key={i}>
             <CustomText textStyle={cellStyles.text}>{move[moveProp.key]}</CustomText>
@@ -107,6 +108,7 @@ class FrameDataRow extends Component {
     render() {
       const characterMoves = this.props.character;
       const moveIndex = this.indexFinder(characterMoves, {...this.props.move});
+      const rowIndex = this.props.rowIndex;
       // if Row is a header row
       if (this.props.header) {
         return (
@@ -120,7 +122,7 @@ class FrameDataRow extends Component {
           <TouchableHighlight 
             onPress={()=> this.navigateToAttackDetails(characterMoves[moveIndex], moveIndex)}>
             <View style={cellStyles.row}>
-              {this.renderCells(this.props.move)}
+              {this.renderCells(this.props.move, rowIndex)}
             </View>
           </TouchableHighlight>
         );
