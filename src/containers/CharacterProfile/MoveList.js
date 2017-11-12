@@ -27,7 +27,7 @@ import { updateUserAlertData } from '../../redux/actions/blob';
 class MoveList extends Component {
 
   componentDidMount() {
-    this.spreadsheetCheck(this.props.spreadsheetAware, this.props.orientation);
+    this.showSpreadsheetAlert(this.props.spreadsheetAware, this.props.orientation);
   }
 
 
@@ -49,14 +49,14 @@ class MoveList extends Component {
     }
   }
 
-  spreadsheetCheck(isAware, orientation) {
+  showSpreadsheetAlert(isAware, orientation) {
     if (!isAware && orientation == 'portrait') {
       Alert.alert('Spreadsheet View',
-      'Hold phone sideways to see Spreadsheet View',
-      [
-        {text: 'Ok', onPress: () => this.props.updateUserAlertData(false)},
-        {text: `Don't show me this again`, onPress: () => this.props.updateUserAlertData(true)}
-      ]
+      'Hold phone sideways to view moves in spreadsheet format.',
+        [
+          {text: 'Ok', onPress: () => this.props.updateUserAlertData(false)},
+          {text: `Don't show me this again`, onPress: () => this.props.updateUserAlertData(true)}
+        ]
       )
     }
   }
