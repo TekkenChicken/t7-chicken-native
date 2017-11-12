@@ -154,3 +154,14 @@ export const CommunityNavHeader = (leftComponents = [], rightComponents = []) =>
   };
 };
 
+export const QanbaNavHeader = (leftComponents = [], rightComponents = []) => {
+  return {
+    drawerLabel: 'Qanba USA!',
+    title: "Qanba USA!",
+    headerTitle: renderTitle('Qanba USA!'),
+    headerLeft: renderSide(leftComponents, "left"),
+    headerRight: renderSide(rightComponents, "right"),
+    headerStyle: headerStyles.common
+  };
+};
+

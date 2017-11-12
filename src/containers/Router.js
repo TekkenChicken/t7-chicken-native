@@ -7,6 +7,7 @@ import CharacterProfile from './CharacterProfile/';
 import AttackDetails from '../components/AttackDetails/';
 import FrameDataFAQ from './FrameDataFAQ/';
 import Community from './Community/';
+import QanbaPromo from './QanbaPromo';
 
 const MainRoutes = {
   characterSelect: { screen: CharacterSelect },
@@ -31,4 +32,8 @@ const CommunityRoute = {
   community: { screen: Community}
 }
 
-export default { MainRoutes, AboutRoute, HelpRoute, FrameDataFAQRoute, CommunityRoute };
+const QanbaPromoRoute = {
+  qanba: { screen: QanbaPromo }
+}
+
+export default { MainRoutes, AboutRoute, HelpRoute, FrameDataFAQRoute, CommunityRoute, QanbaPromoRoute };

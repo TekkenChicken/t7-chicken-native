@@ -58,7 +58,6 @@ export const filterBySpecialProp = {
 export const filterByBlockProp = {
 	key: "on_block",
 	method: (moveFrames, filterProp) => {
-		console.log(filterProp);
 		if(filterProp == 'safe') {
 			return moveFrames >= -9;
 		} else if(filterProp == 'punishable') {
@@ -76,7 +75,6 @@ export const filterByBlockProp = {
 export const filterByHitProp = {
 	key: "on_hit",
 	method: (moveFrames, filterProp) => {
-		console.log(filterProp);
 		if(filterProp == 'plus') {
 			return moveFrames.includes('+');
 		} else if(filterProp == 'negative') {

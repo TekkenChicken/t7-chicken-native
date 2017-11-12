@@ -15,6 +15,7 @@ const AboutNavigator = StackNavigator(Router.AboutRoute, { initialRouteName: "ab
 const HelpNavigator = StackNavigator(Router.HelpRoute, { initialRouteName: 'help', headerMode: 'screen' });
 const FrameDataFAQNavigator = StackNavigator(Router.FrameDataFAQRoute, { initialRouteName: 'faq', headerMode: 'screen' });
 const CommunityNavigator = StackNavigator(Router.CommunityRoute, { initialRouteName: 'community', headerMode: 'screen'});
+const QanbaPromoNavigator = StackNavigator(Router.QanbaPromoRoute, {initialRouteName: 'qanba', headerMode: 'screen'});
 
 const DrawerRoutes = {
 	Characters: {
@@ -24,6 +25,10 @@ const DrawerRoutes = {
 	FrameData: {
 		name: 'Frame Data',
 		screen: FrameDataFAQNavigator
+	},
+	Qanba: {
+		name: 'Qanba USA',
+		screen: QanbaPromoNavigator
 	},
 	Community: {
 		name: 'Community',
