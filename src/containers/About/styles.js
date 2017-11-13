@@ -6,8 +6,7 @@ export const Styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
-		paddingLeft: 18,
-		paddingTop: 30
+		paddingLeft: 18
   },
 	header: {
 		backgroundColor: 'transparent',
@@ -21,6 +20,7 @@ export const Styles = StyleSheet.create({
     fontSize: 20,
 		fontWeight: '600',
     color: '#f0aa23',
+		marginTop: 30,
 		marginBottom: 15
   },
 	description: {

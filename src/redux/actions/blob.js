@@ -15,7 +15,7 @@ const CHAR_DATA_API = "http://api.tekkenchicken.com/api/framedata/";
 const CHAR_METADATA_API = "http://api.tekkenchicken.com/api/metadata/"
 
 /**
- *  @method: checkDataVersion
+ *  @method checkDataVersion
  *  Will get the current version of data, and compare it to local
  *  Will return if version matches or not
  */
@@ -117,7 +117,6 @@ export const fetchUserAlertData = () => {
   return dispatch => {
     return AsyncStorageUtil.spreadsheetAwareCheck()
     .then((isAware) => {
-      console.log('alert data', isAware)
       if(!isAware.spreadsheetAware) {
         isAware = false;
         AsyncStorageUtil.spreadsheetAware(isAware)

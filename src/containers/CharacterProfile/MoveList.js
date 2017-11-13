@@ -52,11 +52,11 @@ class MoveList extends Component {
   spreadsheetCheck(isAware, orientation) {
     if (!isAware && orientation == 'portrait') {
       Alert.alert('Spreadsheet View',
-      'Hold phone sideways to see Spreadsheet View',
-      [
-        {text: 'Ok', onPress: () => this.props.updateUserAlertData(false)},
-        {text: `Don't show me this again`, onPress: () => this.props.updateUserAlertData(true)}
-      ]
+        'Hold phone sideways to see Spreadsheet View',
+        [
+          {text: 'Ok', onPress: () => this.props.updateUserAlertData(false)},
+          {text: `Don't show me this again`, onPress: () => this.props.updateUserAlertData(true)}
+        ]
       )
     }
   }

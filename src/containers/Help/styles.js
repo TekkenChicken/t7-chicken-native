@@ -6,11 +6,12 @@ export const Styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
-		paddingLeft: 18,
-		paddingTop: 30
+		paddingLeft: 18
   },
 	header: {
 		backgroundColor: 'transparent',
+		marginTop: 30,
+    marginBottom: 15
 	},
 	headerBorder: {
 		backgroundColor: '#f0aa23',
@@ -21,7 +22,7 @@ export const Styles = StyleSheet.create({
     fontSize: 20,
 		fontWeight: '600',
     color: '#f0aa23',
-		marginBottom: 15
+		paddingBottom: 15
   },
 	description: {
 		fontSize: 14,
