@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Linking } from 'react-native';
-import { Styles } from './styles';
+import LinearGradient from 'react-native-linear-gradient';
+
 import { CommunityNavHeader } from '../../components/NavigationBar';
 import CustomText from '../../components/CustomText/CustomText';
+import Link from '../../components/Link/';
 
-import LinearGradient from 'react-native-linear-gradient';
+import content from './content.json';
+
+import { Styles } from './styles';
 
 const redPrimary = '#701825';
 const redSecondary = '#320f1c';
@@ -22,9 +26,6 @@ class Community extends Component {
     return CommunityNavHeader(headerLeft);
   };
 
-  handleLink(url) {
-    Linking.openURL(url);
-  }
   renderHeader() {
     return (
       <View style={Styles.header}>
@@ -33,95 +34,51 @@ class Community extends Component {
     );
   }
 
-  renderKTA() {
-    return (
-      <View style={Styles.header}>
-        <Text
-          style={Styles.headerText}>
-            Facebook Groups
-        </Text>
-        <View style={Styles.linkTextContainer}>
-          <Text
-            style={Styles.linkText}
-            onPress={()=> this.handleLink('https://www.facebook.com/groups/TekkenAcademy')}>
-              Kor's Tekken Academy
-          </Text>
-        </View>
-      </View>
-    )
-  }
-
-  renderTOM() {
-    return (
-      <View style={Styles.linkTextContainer}>
-        <Text
-          style={Styles.linkText}
-          onPress={()=> this.handleLink('https://www.facebook.com/groups/TekkenOnlineMatchmaking/')}>
-            Tekken Online Match Making
-        </Text>
-      </View>
-    )
-  }
-
-  renderLTT() {
-    return (
-      <View style={Styles.linkTextContainer}>
-        <Text
-          style={Styles.linkText}
-          onPress={()=> this.handleLink('https://www.facebook.com/groups/677277462355281/')}>
-            Let's Talk Tekken!
-        </Text>
-      </View>
-    )
-  }
-
-  renderReddit() {
-    return (
-      <View style={Styles.header}>
-        <CustomText
-          textStyle={Styles.headerText}>
-            Reddit
+  /**
+   *  @method renderCommunityGroups
+   *  @param  {array} groups
+   *  Renders all community groups and their respective links
+   */
+  renderCommunityGroups(groups) {
+    return groups.map((group, i) => (
+      <View style={Styles.header} key={i}>
+        <CustomText textStyle={Styles.headerText}>
+            {group.groupName}
         </CustomText>
-        <View style={Styles.linkTextContainer}>
-            <Text
-              style={Styles.linkText}
-              onPress={()=> this.handleLink('https://www.reddit.com/r/tekken/')}>
-              /r/Tekken
-            </Text>
-        </View>
+        {this.renderLinks(group.links)}
       </View>
-    )
+    ));
   }
 
-  renderRedditTC() {
+  /**
+   *  @method renderLinks
+   *  @param  {array} links
+   *  Renders all links of a community group
+   */
+  renderLinks(links) {
+    return links.map((link, i) => (
+      <Link
+        url={link.url}
+        name={link.name}
+        textStyle={Styles.link}
+        key={i} />
+    ));
+  }
+
+  render() {
+    const communityGroups = content.groups;
+    console.log(this.renderCommunityGroups(communityGroups));
     return (
-      <View style={Styles.linkTextContainer}>
-        <Text
-          style={Styles.linkText}
-          onPress={()=> this.handleLink('https://www.reddit.com/r/tekkenchicken/')}>
-            /r/Tekkenchicken
-        </Text>
-      </View>
-    )
+      <LinearGradient
+        colors={[redPrimary, redSecondary]}
+        start={{x: 0.5, y: 0.1}} end={{x: 1.0, y: 0.9}}
+        style={Styles.container}>
+          <ScrollView>
+            {this.renderCommunityGroups(communityGroups)}
+          </ScrollView>
+        </LinearGradient>
+    );
   }
-
-render() {
-  return (
-    <LinearGradient
-      colors={[redPrimary, redSecondary]}
-      start={{x: 0.5, y: 0.1}} end={{x: 1.0, y: 0.9}}
-      style={Styles.container}>
-        <ScrollView>
-          {this.renderHeader()}
-          {this.renderKTA()}
-          {this.renderTOM()}
-          {this.renderLTT()}
-          {this.renderReddit()}
-          {this.renderRedditTC()}
-        </ScrollView>
-      </LinearGradient>
-  )
-}
 }
 
 export default Community;
