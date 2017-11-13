@@ -7,10 +7,6 @@ import {
 
 class DataList extends Component {
 
-  /**
-   *
-   *
-   */
   fillCellsToMatchCellsPerRow(rawData, cellsPerRow) {
     const maxLength = Math.ceil( rawData.length/cellsPerRow) * cellsPerRow;
     for (let i = rawData.length; i < maxLength; i++) {
@@ -20,8 +16,8 @@ class DataList extends Component {
   }
 
   /**
-   * @method: createRowData
-   * @param rawData [array]
+   * @method createRowData
+   * @param {array} rawData
    * Creates Layout Data needed to create ListView DataSource
    */
   createLayoutData(rawData = [], cellsPerRow = 1) {
@@ -43,8 +39,8 @@ class DataList extends Component {
   }
 
   /**
-   * @method: formatDataSource
-   * @param layoutData [array]
+   * @method formatDataSource
+   * @param {array} layoutData
    * Creates DataSource formatted for ListView comp
    */
   formatDataSource(layoutData = []) {
@@ -55,20 +51,20 @@ class DataList extends Component {
   }
 
   /**
-   * @method: _renderRow
-   * @param rowData [array]
-   * @param cellComponent [component]
-   * @param rowStyle [style obj/enum]
-   * @param cellStyle [style obj/enum]
-   * @param onCellPress [function]
+   * @method _renderRow
+   * @param {object} rowData
+   * @param {component} cellComponent
+   * @param {style obj/enum} rowStyle
+   * @param {style obj/enum} cellStyle
+   * @param {function} onCellPress
    * Rendering function used to create a row for the list
    * renders the cell in row as cellComponent given
    */
   _renderRow(rowData, CellComponent, rowStyle, cellStyle, onCellPress, navigation) {
-    // will need to add param for using rowComponent 
+    // will need to add param for using rowComponent
     return (
       <View style={[styles.row, rowStyle]}>
-        { 
+        {
           rowData.cells.map((cell, i) => {
             return (
               <View style={[styles.cell, cellStyle]} key={i}>

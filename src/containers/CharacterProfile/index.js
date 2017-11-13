@@ -133,7 +133,7 @@ class CharacterProfileScreen extends Component {
   }
 
   /**
-   *  @method: onSearchFocusHandler
+   *  @method onSearchFocusHandler
    *  On focus of serachbar, will scroll down to searchbar if not already stuck to top
    */
   onSearchFocusHandler() {
