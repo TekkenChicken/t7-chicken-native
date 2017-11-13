@@ -1,0 +1,34 @@
+{
+  "groups": [
+    {
+      "groupName": "Facebook",
+      "links": [
+        {
+          "url": "https://www.facebook.com/groups/TekkenAcademy",
+          "name": "Kor's Tekken Academy"
+        },
+        {
+          "url": "https://www.facebook.com/groups/TekkenOnlineMatchmaking/",
+          "name": "Tekken Online Match Making"
+        },
+        {
+          "url": "https://www.facebook.com/groups/677277462355281/",
+          "name": "Let's Talk Tekken!"
+        }
+      ]
+    },
+    {
+      "groupName": "Reddit",
+      "links": [
+        {
+          "url": "https://www.reddit.com/r/tekken/",
+          "name": "/r/Tekken"
+        },
+        {
+          "url": "https://www.reddit.com/r/tekkenchicken/",
+          "name": "/r/TekkenChicken"
+        }
+      ]
+    }
+  ]
+}
