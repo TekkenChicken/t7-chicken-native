@@ -1,6 +1,7 @@
 export const redPrimary = '#9d1918';
 export const redSecondary = '#320f1c';
 
+export const yellow = '#f0aa23';
 export const maroon = '#3a050b';
 
 export const orange = '#f25515';

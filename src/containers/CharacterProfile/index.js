@@ -15,11 +15,7 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
-
 import LinearGradient from 'react-native-linear-gradient';
-
-const redPrimary = '#9d1918';
-const redSecondary = '#320f1c';
 
 // components
 import ProfileBackDrop from '../../components/CharacterProfile/ProfileBackDrop';
@@ -46,6 +42,10 @@ import { propOrder, propColors } from '../../components/Spreadsheet/config';
 // dispatch actions
 import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter, searchMovesByNotation } from '../../redux/actions/character';
 
+const redPrimary = '#9d1918';
+const redSecondary = '#320f1c';
+
+
 class CharacterProfileScreen extends Component {
   static navigationOptions = ({navigation}) => {
     const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"}], [,{key: "FilterButton"}]);
@@ -63,17 +63,18 @@ class CharacterProfileScreen extends Component {
       orientation: isPortrait() ? 'portrait' : 'landscape',
     };
 
-    Dimensions.addEventListener('change', (e) => {
-      this.setState({
-          orientation: isPortrait() ? 'portrait' : 'landscape'
-      });
-    });
+    this._onOrientationChange = this.onOrientationChange.bind(this);
   }
 
   componentWillMount() {
     this.updateHeaderParams();
+
     // Fetch Data on character using character ID sent as props on navigate
     setTimeout(() => this.props.fetchDataForCharacter(this.props.characterID), 500);
+
+    // Set listener for orientation switches
+    // the listener requires a named reference to its callback listener in order to remove it when done
+    Dimensions.addEventListener('change', this._onOrientationChange);
   }
 
   componentDidMount() {
@@ -86,7 +87,14 @@ class CharacterProfileScreen extends Component {
   }
 
   componentWillUnmount() {
+    Dimensions.removeEventListener('change', this._onOrientationChange);
     this.props.resetDataForCharacter();
+  }
+
+  onOrientationChange() {
+    this.setState({
+        orientation: isPortrait() ? 'portrait' : 'landscape'
+    });
   }
 
   /* =============================
@@ -133,7 +141,7 @@ class CharacterProfileScreen extends Component {
   }
 
   /**
-   *  @method: onSearchFocusHandler
+   *  @method onSearchFocusHandler
    *  On focus of serachbar, will scroll down to searchbar if not already stuck to top
    */
   onSearchFocusHandler() {
@@ -149,6 +157,7 @@ class CharacterProfileScreen extends Component {
   onSearchBlurHandler() {
     this.setState({searchFocus: false});
   }
+
   renderTableHeader() {
     return (
       <FrameDataRow navigation={this.props.navigation} header={true} />

@@ -50,8 +50,8 @@ class CharacterSelectScreen extends Component {
   }
 
   /**
-   *  @method: navigateToCharacter
-   *  @param: characterID [string]
+   *  @method navigateToCharacter
+   *  @param {string} characterID
    *  Will navigate to the character page and pass the characterID as a prop to the page
    *  (where it will be used to fetch data on a character)
    */

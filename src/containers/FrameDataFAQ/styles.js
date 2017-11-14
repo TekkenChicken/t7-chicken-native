@@ -8,14 +8,14 @@ export const Styles = StyleSheet.create({
     backgroundColor: 'transparent',
 		paddingLeft: 18,
     paddingRight: 18,
-		paddingTop: 30
   },
   faqText: {
     marginBottom: 15
   },
 	header: {
 		backgroundColor: 'transparent',
-    marginBottom: 30
+		marginTop: 30,
+		marginBottom: 15
 	},
 	headerBorder: {
 		backgroundColor: '#f0aa23',
