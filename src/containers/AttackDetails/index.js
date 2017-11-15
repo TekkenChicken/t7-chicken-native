@@ -10,18 +10,15 @@ import {
     Linking
 } from 'react-native';
 
-import PropertyList from '../PropertyList/PropertyList';
-import Inputs from '../Inputs/Inputs';
-import Button from '../Button/Button';
-import { attackDetailsNavHeader } from '../NavigationBar';
+import PropertyList from '../../components/PropertyList/PropertyList';
+import Inputs from '../../components/Inputs/Inputs';
+import Button from '../../components/Button/Button';
+import { attackDetailsNavHeader } from '../../components/NavigationBar';
 import LinearGradient from 'react-native-linear-gradient';
 
 import * as Colors from '../../style/vars/colors';
 
 import icons from '../../img/icons/';
-
-const redPrimary = '#9d1918';
-const redSecondary = '#320f1c';
 
 import { previousAttack, nextAttack } from '../../redux/actions/attackDetails';
 
@@ -65,7 +62,7 @@ class AttackDetails extends Component {
 
                   <TouchableHighlight onPress={() => this.handlePreviousPress(index, allCharacterAttacks, setParams)}>
                       <Text style={Styles.previousButton}>Previous</Text>
-                  </TouchableHighlight> 
+                  </TouchableHighlight>
 
                   <TouchableHighlight onPress={() => this.props.navigation.goBack()} >
                       <Text style={Styles.backButton}>Attacks</Text>

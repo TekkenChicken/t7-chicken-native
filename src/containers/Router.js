@@ -4,7 +4,7 @@ import Help from './Help/';
 import InitialLoading from './InitialLoading/';
 import CharacterSelect from './CharacterSelect/';
 import CharacterProfile from './CharacterProfile/';
-import AttackDetails from '../components/AttackDetails/';
+import AttackDetails from './AttackDetails/';
 import FrameDataFAQ from './FrameDataFAQ/';
 import Community from './Community/';
 
