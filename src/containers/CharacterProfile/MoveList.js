@@ -82,44 +82,6 @@ const Styles = StyleSheet.create({
   row: {
     flexDirection:'row',
     alignItems: 'flex-start'
-  },
-  landscapeContainer: {
-    backgroundColor: 'transparent',
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-  },
-  notation: {
-    paddingLeft: 10,
-    width: 150,
-    borderWidth: 1,
-    borderColor: 'transparent',
-    color: 'white'
-  },
-  headerNotation: {
-    paddingLeft: 10,
-    width: 150,
-    borderWidth: 1,
-    borderColor: 'transparent',
-    color: 'white',
-    backgroundColor: redSecondary,
-  },
-  landscapeMove: {
-    flex: 1,
-    textAlign: 'center',
-    paddingLeft: 10,
-    borderWidth: 1,
-    borderColor: 'transparent',
-    color: 'white'
-  },
-  landscapeHeader: {
-    flex: 1,
-    textAlign: 'center',
-    paddingLeft: 10,
-    borderWidth: 1,
-    borderColor: 'transparent',
-    color: 'white',
-    backgroundColor: redSecondary,
   }
 })
 

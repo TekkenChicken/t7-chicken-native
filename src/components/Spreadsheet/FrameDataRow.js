@@ -43,9 +43,9 @@ class FrameDataRow extends Component {
     }
 
     /**
-     *  @method: renderCells
-     *  @param: move {object}
-     *  @return: Cell Components to render
+     *  @method renderCells
+     *  @param {object} move
+     *  @return {component} Cell Components to render
      *  Takes a move and renders out all required properties of the move into cells for the row
      *  Properties needed are notated in propOrder of the spreadsheet Config
      */
@@ -68,8 +68,8 @@ class FrameDataRow extends Component {
     }
 
     /**
-     *  @method: renderHeaderCells
-     *  @render: Cell Components to render
+     *  @method renderHeaderCells
+     *  @return {component} Cell Components to render
      *  Renders header cells with move properties to be shown in spreadsheet
      *  Properties needed are notated in propOrder of the spreadsheet Config
      */
@@ -119,7 +119,7 @@ class FrameDataRow extends Component {
       // if regular move data row
       } else {
         return (
-          <TouchableHighlight 
+          <TouchableHighlight
             onPress={()=> this.navigateToAttackDetails(characterMoves[moveIndex], moveIndex)}>
             <View style={cellStyles.row}>
               {this.renderCells(this.props.move, rowIndex)}
@@ -147,4 +147,3 @@ FrameDataRow.propTypes = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FrameDataRow);
-

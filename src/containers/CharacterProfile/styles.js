@@ -2,14 +2,15 @@ import {
 	StyleSheet, Platform, Dimensions
 } from 'react-native';
 
+import {redSecondary} from '../../style/vars/colors';
+
 export default Styles = StyleSheet.create({
 	rbnorway: {
 		textAlign: 'center',
 		fontFamily: 'Exo2-Light',
 		color: '#f0aeb1',
 		fontSize: 12,
-		backgroundColor: '#9d1918',
-		height: 20,
+		backgroundColor: redSecondary,
 		paddingBottom: 10
 	},
   mainContainer: {
