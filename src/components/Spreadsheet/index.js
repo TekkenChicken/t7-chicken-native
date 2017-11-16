@@ -7,6 +7,7 @@ import {
   Modal,
   StyleSheet,
   Keyboard,
+  FlatList
 } from 'react-native';
 
 // components
@@ -20,13 +21,19 @@ class Spreadsheet extends Component {
 
     constructor() {
       super();
-      this.state = {modalVisable: false}
+      this.state = {
+        initialLoad: true
+      };
     }
 
-    setModalVisible = (visible) => {
-      Keyboard.dismiss();
-      this.setState({modalVisible: visible});
+    componentDidMount() {
+      setTimeout(() => this.triggerLoadState(), 500);
     }
+
+    triggerLoadState() {
+      this.setState({initialLoad: false});
+    }
+
 
     renderTableHeader() {
       return (
@@ -57,8 +64,8 @@ class Spreadsheet extends Component {
     }
 
     render() {
-      const { moves } = this.props;
-
+      // will be empty on intial load so that rendered Table does not
+      const shownMoves = (this.state.initialLoad) ? [] : this.props.moves;
       return (
         <FlatList
           data={shownMoves}

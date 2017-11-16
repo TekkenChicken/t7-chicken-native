@@ -1,6 +1,7 @@
 import {
 	StyleSheet, Platform, Dimensions
 } from 'react-native';
+import * as colors from '../../style/vars/colors';
 
 export default Styles = StyleSheet.create({
 	rbnorway: {
@@ -8,7 +9,7 @@ export default Styles = StyleSheet.create({
 		fontFamily: 'Exo2-Light',
 		color: '#f0aeb1',
 		fontSize: 12,
-		backgroundColor: '#9d1918',
+		backgroundColor: colors.redSecondary,
 		height: 20,
 		paddingBottom: 10
 	},
