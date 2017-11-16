@@ -29,7 +29,7 @@ const Styles = StyleSheet.create({
 		zIndex: 3,
 		flexDirection: 'row',
 		opacity: 0,
-		width: Dimensions.get('window').width,
+		width: '100%',
 		alignItems: 'center',
 		backgroundColor: '#260309',
     ...Platform.select({

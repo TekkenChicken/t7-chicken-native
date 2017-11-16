@@ -35,7 +35,7 @@ class PropertyList extends Component {
   renderSpecialProperties() {
     const specProps = this.props.specProperties.split(',');
     return (
-      <View style={Styles.table}>
+      <View>
         <SubtitleHeading subtitle={'Special Properties'.toUpperCase()}/>
         {
           specProps.map((prop, key) => {

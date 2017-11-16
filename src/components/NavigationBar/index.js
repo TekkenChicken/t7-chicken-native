@@ -6,6 +6,8 @@ import NavigationTitle from './Title';
 import NavigationSide from './Side';
 import Inputs from '../Inputs/Inputs';
 
+import * as colors from '../../style/vars/colors';
+
 /**
  *  Render's Header Title
  *  @param: title [string]
@@ -33,7 +35,7 @@ const renderSide = (components, side) => (
 
 const headerStyles = {
   common: {
-    backgroundColor: '#260309',
+    backgroundColor: colors.redSecondary,
     borderBottomWidth: 0,
     shadowOpacity: 0,
     shadowOffset: {
@@ -43,6 +45,7 @@ const headerStyles = {
   },
   transparent: {
     backgroundColor: 'transparent',
+    opacity: 0,
     zIndex: 100,
     top: 0,
     left: 0,
@@ -50,17 +53,7 @@ const headerStyles = {
   },
   black: {
     backgroundColor: '#111',
-  },
-  attackDetail: {
-    backgroundColor: '#260309',
-    borderBottomWidth: 0,
-    shadowOpacity: 0,
-    height: 100,
-    shadowOffset: {
-    },
-    shadowRadius: 0,
-    elevation: 0
-  },
+  }
 };
 
 /**
@@ -90,8 +83,8 @@ export const charProfileNavHeader = (charName, leftComponents=[], rightComponent
   const blackStyle = Object.assign({}, headerStyles.common, headerStyles.black);
   return {
     title: null,
-    headerTitle: (Platform.OS === 'ios') ? null : renderTitle(charName),
-    headerStyle: (Platform.OS === 'ios') ? transparentStyle : blackStyle,
+    headerTitle: renderTitle(charName),
+    headerStyle: headerStyles.common,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
   };
@@ -99,12 +92,10 @@ export const charProfileNavHeader = (charName, leftComponents=[], rightComponent
 
 //Attack Details Nav Header
 export const attackDetailsNavHeader = (move, leftComponents=[]) => {
-  const transparentStyle = Object.assign({}, headerStyles.attackDetail);
-  const blackStyle = Object.assign({}, headerStyles.attackDetail, headerStyles.black);
   return {
     title: null,
-    headerTitle: renderAttackDetailsTitle(move),
-    headerStyle: (Platform.OS === 'ios') ? transparentStyle : blackStyle,
+    headerTitle: renderTitle(move),
+    headerStyle: headerStyles.common,
     headerLeft: renderSide(leftComponents, "left"),
   };
 };
@@ -153,4 +144,3 @@ export const CommunityNavHeader = (leftComponents = [], rightComponents = []) =>
     headerStyle: headerStyles.common
   };
 };
-

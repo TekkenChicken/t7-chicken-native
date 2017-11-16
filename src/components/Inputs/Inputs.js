@@ -39,7 +39,7 @@ export default class Inputs extends Component {
   render() {
     const inputArray = (this.props.inputs) ? InputParser.parseInputFromString(this.props.inputs) : [];
     return (
-      <View style={Styles.inputContainer}>
+      <View style={[Styles.inputContainer, this.props.style]}>
           {this.renderInputs(inputArray)}
       </View>
     );
@@ -48,13 +48,13 @@ export default class Inputs extends Component {
 
 const Styles = StyleSheet.create({
   inputContainer: {
-    alignItems: 'flex-start',
+    alignItems: 'center',
     backgroundColor: "transparent",
-    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingTop: 12,
-    paddingBottom: 10
+    paddingBottom: 10,
+    width: '100%'
   },
   inputChild: {
     marginLeft: 2,
