@@ -5,7 +5,9 @@ import {
   View,
   StyleSheet,
   Text,
-  Alert
+  Alert,
+  FlatList,
+  Keyboard
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -23,6 +25,7 @@ const redSecondary = '#320f1c';
 
 //actions
 import { updateUserAlertData } from '../../redux/actions/blob';
+import { showAttackDetails } from '../../redux/actions/attackDetails';
 
 class MoveList extends Component {
 
@@ -30,20 +33,31 @@ class MoveList extends Component {
     this.spreadsheetCheck(this.props.spreadsheetAware, this.props.orientation);
   }
 
+  // Navigate to Attack Details on Move press
+  onMovePress(move, index) {
+    Keyboard.dismiss();
+    this.props.dispatchNavigateToAttack(move, index);
+    this.props.navigation.navigate('attackDetails', {move, index});
+  }
 
   renderByOrientation(orientation, moves) {
     if (orientation == 'landscape') {
       return (
-        <Spreadsheet navigation={this.props.navigation} moves={moves} />
+        <Spreadsheet moves={moves} onMovePress={(move, index) => this.onMovePress(move, index)} />
       );
     } else {
+      // plain list of moves
       return (
-        <DataList
-          listData={moves}
-          cellComponent={FrameDataCard}
-          cellsPerRow={1}
-          rowStyle={Styles.row}
-          navigation={this.props.navigation}
+        <FlatList
+          data={moves}
+          keyExtractor={(move, i) => i}
+          renderItem={(move) => (
+            <FrameDataCard
+              onPressHandler={() => this.onMovePress(move.item, move.index)}
+              moveIndex={move.index}
+              move={move.item}
+            />)}
+          ListEmptyComponent={() => (<Text>Loading</Text>)}
         />
       );
     }
@@ -139,7 +153,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateUserAlertData: (isAware) => dispatch(updateUserAlertData(isAware))
+    updateUserAlertData: (isAware) => dispatch(updateUserAlertData(isAware)),
+    dispatchNavigateToAttack: (move, index) =>  dispatch(showAttackDetails(move, index))
   }
 }
 

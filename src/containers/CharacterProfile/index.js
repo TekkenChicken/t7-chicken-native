@@ -70,7 +70,7 @@ class CharacterProfileScreen extends Component {
     this.updateHeaderParams();
 
     // Fetch Data on character using character ID sent as props on navigate
-    setTimeout(() => this.props.fetchDataForCharacter(this.props.characterID), 500);
+    setTimeout(() => this.props.fetchDataForCharacter(this.props.characterID), 800);
 
     // Set listener for orientation switches
     // the listener requires a named reference to its callback listener in order to remove it when done
@@ -95,6 +95,7 @@ class CharacterProfileScreen extends Component {
     this.setState({
         orientation: isPortrait() ? 'portrait' : 'landscape'
     });
+    this.updateHeaderParams('danny');
   }
 
   /* =============================
@@ -102,9 +103,9 @@ class CharacterProfileScreen extends Component {
    ============================= */
 
   // imperatively set the configuration params for header (so that the header is connected to component)
-  updateHeaderParams() {
+  updateHeaderParams(name) {
     const headerConfig = {
-      charName: this.props.characterID,
+      charName: name || this.props.characterID,
       right: this.getHeaderRightConfig(),
       scrollHeader: this.props.navigation.state.params.scrollHeader
     };
@@ -137,7 +138,7 @@ class CharacterProfileScreen extends Component {
   }
 
   toggleScrollHeader(e) {
-    this.setState({scrollHeader: e.contentOffset.y >= 50});
+    this.setState({scrollHeader: e.contentOffset.y >= 64});
   }
 
   /**
@@ -192,20 +193,13 @@ class CharacterProfileScreen extends Component {
           start={{x: 1.0, y: 0.9}} end={{x: 0.5, y: 0.1}}
           style={Styles.mainContainer}
           >
-          <ProfileHeader
-            containerStyle={Styles.header}
-            scroll={this.state.scrollHeader}
-            name={characterID.toUpperCase()} />
           <ScrollView
             ref={"scrollView"}
             style={Styles.scrollContainer}
             scrollEventThrottle={12}
             onScroll={(e) => this.handleScroll(e)}
             keyboardShouldPersistTaps={'always'}
-            stickyHeaderIndices={[4]}>
-            <View style={Styles.offset}>
-              <ProfileBackDrop image={null} />
-            </View>
+            stickyHeaderIndices={[3]}>
             <ProfilePicture image={headshots[this.props.characterID]} />
             <ProfileName name={characterName.toUpperCase()} />
             <CommandListBanner />
@@ -218,7 +212,6 @@ class CharacterProfileScreen extends Component {
                 onBlurCallback={() => this.onSearchBlurHandler()}
               />
               <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
-              {this.state.orientation == 'landscape' ? this.renderTableHeader() : null}
             </View>
             <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
               <MoveList

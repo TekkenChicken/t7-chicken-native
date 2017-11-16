@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import {
   View,
@@ -34,9 +34,25 @@ class Spreadsheet extends Component {
       )
     }
 
-    renderTableRows(moves, navigation) {
-      return moves.map((move, i) =>
-        <FrameDataRow navigation={navigation} move={move} key={i} rowIndex={i} />
+    // renderTableRows(moves, navigation) {
+    //   return moves.map((move, i) =>
+    //     <FrameDataRow move={move} key={i} rowIndex={i} />
+    //   );
+    // }
+
+    /**
+     *  @method renderTableRow
+     *  @param {object} moveData -- individual move data item provided by FlatList using passed in data source
+     *  @return {component} FrameDataRow
+     *  Callback method passed into FlatList to render a FrameDataRow for each individual move item
+     */
+    renderTableRow(moveData, onMovePress) {
+      return (
+        <FrameDataRow
+          move={moveData.item}
+          moveIndex={moveData.index}
+          onPressHandler={() => onMovePress(moveData.item, moveData.index)}
+        />
       );
     }
 
@@ -44,12 +60,20 @@ class Spreadsheet extends Component {
       const { moves } = this.props;
 
       return (
-        <View>
-          {this.renderTableRows(moves, this.props.navigation)}
-        </View>
+        <FlatList
+          data={shownMoves}
+          keyExtractor={(move, i) => i}
+          renderItem={(move) => this.renderTableRow(move, this.props.onMovePress)}
+          ListEmptyComponent={() => (<Text>Loading</Text>)}
+        />
       )
     }
 
+}
+
+Spreadsheet.propTypes = {
+  moves: PropTypes.array,
+  onMovePress: PropTypes.func
 }
 
 export default Spreadsheet;
