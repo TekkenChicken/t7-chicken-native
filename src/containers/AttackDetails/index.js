@@ -45,7 +45,7 @@ class AttackDetails extends Component {
     }
 
     renderMoveButton(direction, move, index) {
-      const directionText = (direction === "previous") ? "Previous Move" : "Next Move";
+      const directionText = (direction === "previous") ? "Prev" : "Next";
       const directionStyle = (direction === "previous") ? Styles.previousButton : Styles.nextButton;
       return (
         <Button
@@ -84,7 +84,7 @@ class AttackDetails extends Component {
                 Check the progress of the gifs here!
             </Text>
             <ScrollView style={{backgroundColor: 'transparent'}}>
-              <Inputs isCard={false} inputs={selectedMove.notation} style={{justifyContent: 'center'}} />
+              <Inputs isCard={false} inputs={selectedMove.notation} style={Styles.inputs} />
               <PropertyList type={'special'} specProperties={selectedMove.notes}/>
               <PropertyList type={'general'} damage={selectedMove.damage} hitLevels={selectedMove.hit_level} />
               <PropertyList type={'frames'} onBlock={selectedMove.on_block} onHit={selectedMove.on_hit} onCounter={selectedMove.on_ch} speed={selectedMove.speed} />

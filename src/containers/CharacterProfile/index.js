@@ -14,6 +14,7 @@ import {
   TextInput,
   Platform,
   Dimensions,
+  Animated
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -37,22 +38,21 @@ import headshots from '../../img/headshots/index';
 // Styles
 import Styles from './styles';
 import cellStyles from '../../components/Spreadsheet/cellStyles';
+import * as Colors from '../../style/vars/colors';
 import { propOrder, propColors } from '../../components/Spreadsheet/config';
 
 // dispatch actions
 import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter, searchMovesByNotation } from '../../redux/actions/character';
 
-const redPrimary = '#9d1918';
-const redSecondary = '#320f1c';
-
 
 class CharacterProfileScreen extends Component {
   static navigationOptions = ({navigation}) => {
     const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"}], [,{key: "FilterButton"}]);
-    const title = '';
+    const title = navigation.state.params.characterName;
     const left = [{key: "BackButton", navigation: navigation}];
     const right = navigation.state.params.right || [{key: "FilterButton"}];
-    return charProfileNavHeader(title, left, right);
+    const scroll = navigation.state.params.scroll;
+    return charProfileNavHeader(title, left, right, scroll);
   };
 
   constructor(props) {
@@ -64,6 +64,7 @@ class CharacterProfileScreen extends Component {
     };
 
     this._onOrientationChange = this.onOrientationChange.bind(this);
+    this._animatedValue = new Animated.Value(0);
   }
 
   componentWillMount() {
@@ -95,7 +96,6 @@ class CharacterProfileScreen extends Component {
     this.setState({
         orientation: isPortrait() ? 'portrait' : 'landscape'
     });
-    this.updateHeaderParams('danny');
   }
 
   /* =============================
@@ -107,7 +107,7 @@ class CharacterProfileScreen extends Component {
     const headerConfig = {
       charName: name || this.props.characterID,
       right: this.getHeaderRightConfig(),
-      scrollHeader: this.props.navigation.state.params.scrollHeader
+      scroll: this.props.navigation.state.params.scrollHeader
     };
     this.props.navigation.setParams(headerConfig);
   }
@@ -133,12 +133,10 @@ class CharacterProfileScreen extends Component {
   }
 
   handleScroll(e) {
-    this.toggleScrollHeader(e.nativeEvent);
+    // this.toggleScrollHeader(e.nativeEvent);
     //this.toggleSearchScrollOffset(e.nativeEvent);
-  }
-
-  toggleScrollHeader(e) {
-    this.setState({scrollHeader: e.contentOffset.y >= 64});
+    //Animated.event([{nativeEvent: {contentOffset: {y: this._animatedValue}}}])
+    this.props.navigation.setParams({scroll: e.nativeEvent.contentOffset.y >= 48});
   }
 
   /**
@@ -189,26 +187,24 @@ class CharacterProfileScreen extends Component {
         onClose={() => this.props.triggerFilterUpdate()}
       >
         <LinearGradient
-          colors={[redSecondary, redPrimary]}
-          start={{x: 1.0, y: 0.9}} end={{x: 0.7, y: 0.1}}
+          colors={[Colors.redPrimary, Colors.redSecondary]}
+          start={{x: 1.0, y: 0.9}} end={{x: 0.8, y: 0.1}}
           style={Styles.mainContainer}
           >
           <ScrollView
             ref={"scrollView"}
             style={Styles.scrollContainer}
-            scrollEventThrottle={12}
-            onScroll={(e) => this.handleScroll(e)}
             keyboardShouldPersistTaps={'always'}
             stickyHeaderIndices={[2]}>
             <View style={Styles.charHeader}>
               <ProfilePicture image={headshots[this.props.characterID]} />
-              <ProfileName name={characterName.toUpperCase()} />
+              {/* <ProfileName name={characterName.toUpperCase()} /> */}
             </View>
             <CommandListBanner />
             <View style={Styles.stickySection} ref={"search"}>
               <SearchBar
-                containerStyle={{backgroundColor: redSecondary}}
-                inputWrapStyle={{backgroundColor: '#3d1d2b' }}
+                containerStyle={{backgroundColor: Colors.redSecondary}}
+                inputWrapStyle={{backgroundColor: Colors.lightPurple }}
                 onChange={this.props.triggerSearchByNotation}
                 onFocusCallback={() => this.onSearchFocusHandler()}
                 onBlurCallback={() => this.onSearchBlurHandler()}

@@ -33,9 +33,7 @@ class FrameDataCard extends React.Component {
     const touchEvent = (emptyCard) ? 'none' : 'auto';
     const characterMoves = this.props.character;
     return (
-      <LinearGradient
-        start={{x: 3.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
-        colors={[Colors.redPrimary, Colors.redSecondary]}
+      <View
         style={containerStyle}
         pointerEvents={touchEvent}>
         <TouchableHighlight
@@ -46,7 +44,7 @@ class FrameDataCard extends React.Component {
             <Inputs isCard={true} inputs={this.props.move.notation}/>
           </View>
         </TouchableHighlight>
-      </LinearGradient>
+      </View>
     )
   }
 }
@@ -68,8 +66,10 @@ const Styles = StyleSheet.create({
     paddingLeft: 15,
     paddingBottom: 10,
     paddingRight: 10,
-    marginBottom: 2,
-    width: '100%'
+    width: '100%',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: '#5b1a21'
   },
   card: {
     height: 'auto',
@@ -85,7 +85,7 @@ const Styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontFamily: 'Exo2-Regular',
-    fontSize: 16
+    fontSize: 15
   },
   cardContainer: {
     flex: 1,

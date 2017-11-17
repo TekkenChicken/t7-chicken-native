@@ -10,7 +10,6 @@ export default Styles = StyleSheet.create({
 		color: '#f0aeb1',
 		fontSize: 12,
 		backgroundColor: colors.redSecondary,
-		height: 20,
 		paddingBottom: 10
 	},
   mainContainer: {
@@ -63,9 +62,11 @@ export default Styles = StyleSheet.create({
 		marginBottom: 2
 	},
 	charHeader:{
+		backgroundColor: colors.redSecondary,
 		alignItems: 'center',
 		flexDirection: 'column',
 		justifyContent: 'center',
-		paddingBottom: 20
+		paddingTop: 10,
+		paddingBottom: 15
 	}
 });

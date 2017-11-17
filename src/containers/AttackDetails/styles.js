@@ -29,6 +29,11 @@ export default Styles = StyleSheet.create({
     nextButton: {
       alignSelf: 'flex-end'
     },
+    inputs: {
+      justifyContent: 'center',
+      paddingTop: 15,
+      paddingBottom: 20
+    },
     tempGifAlert: {
       backgroundColor: '#111',
       textAlign: 'center',

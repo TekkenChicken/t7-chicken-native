@@ -78,13 +78,13 @@ export const charSelectNavHeader = (leftComponents = [], rightComponents = []) =
 };
 
 // Character Profile Screen Header Config
-export const charProfileNavHeader = (charName, leftComponents=[], rightComponents=[]) => {
-  const profileStyle = Object.assign({}, headerStyles.common, headerStyles.profile);
-  const blackStyle = Object.assign({}, headerStyles.common, headerStyles.black);
+export const charProfileNavHeader = (charName, leftComponents=[], rightComponents=[], scrollState) => {
+  const initialStyle = Object.assign({}, headerStyles.common);
+  const scrollStyle = Object.assign({}, headerStyles.common);
   return {
     title: null,
     headerTitle: renderTitle(charName),
-    headerStyle: profileStyle,
+    headerStyle: initialStyle,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
   };
