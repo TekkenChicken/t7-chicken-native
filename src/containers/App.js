@@ -17,9 +17,9 @@ class App extends Component {
     const background = (Platform.OS === 'ios') ? 'transparent' : 'black';
     return (
       <Provider store={Store}>
-        <View style={{flex: 1, backgroundColor: '#111'}}>
+        <View style={{flex: 1, backgroundColor: '#333'}}>
           <StatusBar barStyle="light-content" backgroundColor={background} />
-          <AppNavigator style={{flex: 1, backgroundColor: '#111', shadowColor: '#111'}} />
+          <AppNavigator style={{flex: 1, backgroundColor: '#333'}} />
         </View>
       </Provider>
     );

@@ -27,7 +27,7 @@ class Spreadsheet extends Component {
     }
 
     componentDidMount() {
-      setTimeout(() => this.triggerLoadState(), 500);
+      setTimeout(() => this.triggerLoadState(), 600);
     }
 
     triggerLoadState() {
@@ -60,6 +60,12 @@ class Spreadsheet extends Component {
           moveIndex={moveData.index}
           onPressHandler={() => onMovePress(moveData.item, moveData.index)}
         />
+      );
+    }
+
+    renderTempLoadingComponent() {
+      return (
+        <Text style={{textAlign: 'center', width: '100%'}}>Loading</Text>
       );
     }
 
