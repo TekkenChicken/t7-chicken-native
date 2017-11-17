@@ -30,7 +30,9 @@ const filterMoves = (moves, filterObj) => {
 		Object
 		.keys(filterObj)
 		.every( key =>
-			filterObj[key].some((filterValue) => _moveFilterMap[key](move[key], filterValue))
+			filterObj[key].some((filterValue) => {
+				return _moveFilterMap[key](move[key], filterValue);
+			})
 		)
 	);
 }

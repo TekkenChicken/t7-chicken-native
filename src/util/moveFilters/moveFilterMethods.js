@@ -4,11 +4,10 @@
 /*
  * Hit Level Filter Method
  */
-export const filterByHitLevel = {
+export const filterByHitLevelOrCrush = {
 	key: "hit_level",
-	method: (moveHitLevel, hitLevelFilter) => {
-		//moveHitLevel = moveHitLevel.replace(/ *\([^)]*\) */g, "").trim();
-		return moveHitLevel.includes(hitLevelFilter);
+	method: (moveHitLevel, valueFilter) => {
+		return moveHitLevel.includes(valueFilter);
 	}
 };
 
@@ -28,21 +27,6 @@ export const filterBySpeed = {
 		return moveSpeed >= min && moveSpeed <= max;
 	}
 };
-
-/**
- * Move Crush Filter
- */
-
-export const filterByCrush = {
-	key: "hit_level",
-	method: (moveFrames, filterProp) => {
-		if( filterProp === "TJ" ) {
-			return moveFrames.includes('TJ');
-		} else if (filterProp === "TC") {
-			return moveFrames.includes('TC');
-		}
-	}
-}
 
 /**
  * Special Properties Filter Method
