@@ -7,8 +7,7 @@ import {
 
 import LinearGradient from 'react-native-linear-gradient';
 
-const redPrimary = '#730909';
-const redSecondary = '#520b0a';
+import * as Colors from '../../../style/vars/colors';
 
 // Components
 import CustomText from '../../CustomText/CustomText';
@@ -28,9 +27,9 @@ class FilterAccordion extends Component {
     const expandIconStyle = (this.state.expanded) ? Styles.filterHeader__expandIcon : [Styles.filterHeader__expandIcon, Styles.filterHeader__expandIcon__closed];
     return (
       <LinearGradient
-        colors={[redPrimary, redSecondary]}
+        colors={[Colors.redPrimary, Colors.redSecondary]}
         style={Styles.filterHeader}
-        start={{x: 1.5, y: 0.25}} end={{x: 0.5, y: 1.0}}
+        start={{x: 3, y: 0.5}} end={{x: 0.5, y: 1.0}}
         >
         <CustomText textStyle={Styles.filterHeader__label}>{label}</CustomText>
         <CustomText textStyle={expandIconStyle}>^</CustomText>
@@ -73,8 +72,8 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
 		backgroundColor: 'transparent',
     borderStyle: 'solid',
-    borderBottomWidth: 1,
-    borderColor: '#6d080d',
+    borderBottomWidth: 2,
+    borderColor: Colors.maroon,
     paddingLeft: 10,
     paddingTop: 20,
     paddingBottom: 20
