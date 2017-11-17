@@ -58,5 +58,14 @@ export default Styles = StyleSheet.create({
 	staticListHeight: {
 		minHeight: 600,
 		flex: 1
+	},
+	stickySection: {
+		marginBottom: 2
+	},
+	charHeader:{
+		alignItems: 'center',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		paddingBottom: 20
 	}
 });

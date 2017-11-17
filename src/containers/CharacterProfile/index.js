@@ -49,7 +49,7 @@ const redSecondary = '#320f1c';
 class CharacterProfileScreen extends Component {
   static navigationOptions = ({navigation}) => {
     const prelimConfig = charProfileNavHeader(navigation.state.params.characterID,[{key: "BackButton"}], [,{key: "FilterButton"}]);
-    const title = navigation.state.params.characterID;
+    const title = '';
     const left = [{key: "BackButton", navigation: navigation}];
     const right = navigation.state.params.right || [{key: "FilterButton"}];
     return charProfileNavHeader(title, left, right);
@@ -181,7 +181,7 @@ class CharacterProfileScreen extends Component {
         panCloseMask={0.2}
         panOpenMask={0.3}
         closedDrawerOffset={-3}
-        styles={{ mainOverlay: {backgroundColor: '#000', opacity: 0} }}
+        styles={drawerStyles}
         tweenDuration={170}
         tweenHandler={(ratio) => ({
           mainOverlay: { opacity: ratio/1.5 }
@@ -190,7 +190,7 @@ class CharacterProfileScreen extends Component {
       >
         <LinearGradient
           colors={[redSecondary, redPrimary]}
-          start={{x: 1.0, y: 0.9}} end={{x: 0.5, y: 0.1}}
+          start={{x: 1.0, y: 0.9}} end={{x: 0.7, y: 0.1}}
           style={Styles.mainContainer}
           >
           <ScrollView
@@ -199,11 +199,13 @@ class CharacterProfileScreen extends Component {
             scrollEventThrottle={12}
             onScroll={(e) => this.handleScroll(e)}
             keyboardShouldPersistTaps={'always'}
-            stickyHeaderIndices={[3]}>
-            <ProfilePicture image={headshots[this.props.characterID]} />
-            <ProfileName name={characterName.toUpperCase()} />
+            stickyHeaderIndices={[2]}>
+            <View style={Styles.charHeader}>
+              <ProfilePicture image={headshots[this.props.characterID]} />
+              <ProfileName name={characterName.toUpperCase()} />
+            </View>
             <CommandListBanner />
-            <View ref={"search"}>
+            <View style={Styles.stickySection} ref={"search"}>
               <SearchBar
                 containerStyle={{backgroundColor: redSecondary}}
                 inputWrapStyle={{backgroundColor: '#3d1d2b' }}
@@ -212,6 +214,7 @@ class CharacterProfileScreen extends Component {
                 onBlurCallback={() => this.onSearchBlurHandler()}
               />
               <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
+              {this.state.orientation == 'landscape' ? this.renderTableHeader() : null}
             </View>
             <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
               <MoveList
@@ -226,6 +229,16 @@ class CharacterProfileScreen extends Component {
     );
   }
 }
+
+const drawerStyles = {
+  mainOverlay: {
+    backgroundColor: '#000',
+    opacity: 0
+  },
+  drawer: {
+    backgroundColor: '#000'
+  }
+};
 
 /** MAPPING STATE **/
 const mapStateToProps = (state, props) => {

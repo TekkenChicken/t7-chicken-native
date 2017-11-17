@@ -30,7 +30,7 @@ import { showAttackDetails } from '../../redux/actions/attackDetails';
 class MoveList extends Component {
 
   componentDidMount() {
-    this.spreadsheetCheck(this.props.spreadsheetAware, this.props.orientation);
+    //this.spreadsheetCheck(this.props.spreadsheetAware, this.props.orientation);
   }
 
   // Navigate to Attack Details on Move press
