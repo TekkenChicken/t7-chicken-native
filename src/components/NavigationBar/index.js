@@ -38,21 +38,21 @@ const headerStyles = {
     backgroundColor: colors.redSecondary,
     borderBottomWidth: 0,
     shadowOpacity: 0,
-    shadowOffset: {
-    },
     shadowRadius: 0,
     elevation: 0
   },
   transparent: {
     backgroundColor: 'transparent',
-    opacity: 0,
-    zIndex: 100,
+    zIndex: -1,
     top: 0,
     left: 0,
     right: 0
   },
   black: {
     backgroundColor: '#111',
+  },
+  profile: {
+    backgroundColor: colors.redPrimary
   }
 };
 
@@ -79,12 +79,12 @@ export const charSelectNavHeader = (leftComponents = [], rightComponents = []) =
 
 // Character Profile Screen Header Config
 export const charProfileNavHeader = (charName, leftComponents=[], rightComponents=[]) => {
-  const transparentStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
+  const profileStyle = Object.assign({}, headerStyles.common, headerStyles.profile);
   const blackStyle = Object.assign({}, headerStyles.common, headerStyles.black);
   return {
     title: null,
     headerTitle: renderTitle(charName),
-    headerStyle: headerStyles.common,
+    headerStyle: profileStyle,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
   };

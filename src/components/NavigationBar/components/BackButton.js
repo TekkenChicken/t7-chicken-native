@@ -33,11 +33,11 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: '#f0aa23',
-    marginTop: -5,
+    marginTop: -1,
     height: 36,
     width: 36,
-    fontSize: 35,
-    fontWeight: '700'
+    fontSize: 28,
+    fontWeight: '500'
   }
 });
 
