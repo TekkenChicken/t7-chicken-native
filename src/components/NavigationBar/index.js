@@ -6,7 +6,7 @@ import NavigationTitle from './Title';
 import NavigationSide from './Side';
 import Inputs from '../Inputs/Inputs';
 
-import * as colors from '../../style/vars/colors';
+import * as Colors from '../../style/vars/colors';
 
 /**
  *  Render's Header Title
@@ -35,7 +35,7 @@ const renderSide = (components, side) => (
 
 const headerStyles = {
   common: {
-    backgroundColor: colors.redSecondary,
+    backgroundColor: Colors.redSecondary,
     borderBottomWidth: 0,
     shadowOpacity: 0,
     shadowRadius: 0,
@@ -52,7 +52,7 @@ const headerStyles = {
     backgroundColor: '#111',
   },
   profile: {
-    backgroundColor: colors.redPrimary
+    backgroundColor: Colors.redPrimary
   }
 };
 

@@ -1,7 +1,7 @@
 import {
 	StyleSheet, Platform, Dimensions
 } from 'react-native';
-import * as colors from '../../style/vars/colors';
+import * as Colors from '../../style/vars/colors';
 
 export default Styles = StyleSheet.create({
 	rbnorway: {
@@ -9,7 +9,7 @@ export default Styles = StyleSheet.create({
 		fontFamily: 'Exo2-Light',
 		color: '#f0aeb1',
 		fontSize: 12,
-		backgroundColor: colors.redSecondary,
+		backgroundColor: Colors.redSecondary,
 		paddingBottom: 10
 	},
   mainContainer: {
@@ -62,7 +62,7 @@ export default Styles = StyleSheet.create({
 		marginBottom: 2
 	},
 	charHeader:{
-		backgroundColor: colors.redSecondary,
+		backgroundColor: Colors.redSecondary,
 		alignItems: 'center',
 		flexDirection: 'column',
 		justifyContent: 'center',
