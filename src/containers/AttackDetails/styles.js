@@ -39,7 +39,7 @@ export default Styles = StyleSheet.create({
       textAlign: 'center',
       textDecorationLine: 'underline',
       color: '#f0aa23',
-      paddingTop: 10,
-      paddingBottom: 10
+      paddingTop: 20,
+      paddingBottom: 20
     }
 });
