@@ -59,7 +59,7 @@ const RootNavigator = StackNavigator(
   {
     initialRouteName: "InitialLoading",
     headerMode: 'none',
-    cardStyle: {backgroundColor: '#111111'}
+    cardStyle: {backgroundColor: '#111'}
 	}
 );
 

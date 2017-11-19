@@ -6,6 +6,8 @@ import NavigationTitle from './Title';
 import NavigationSide from './Side';
 import Inputs from '../Inputs/Inputs';
 
+import * as Colors from '../../style/vars/colors';
+
 /**
  *  Render's Header Title
  *  @param: title [string]
@@ -33,17 +35,15 @@ const renderSide = (components, side) => (
 
 const headerStyles = {
   common: {
-    backgroundColor: '#260309',
+    backgroundColor: Colors.redSecondary,
     borderBottomWidth: 0,
     shadowOpacity: 0,
-    shadowOffset: {
-    },
     shadowRadius: 0,
     elevation: 0
   },
   transparent: {
     backgroundColor: 'transparent',
-    zIndex: 100,
+    zIndex: -1,
     top: 0,
     left: 0,
     right: 0
@@ -51,16 +51,9 @@ const headerStyles = {
   black: {
     backgroundColor: '#111',
   },
-  attackDetail: {
-    backgroundColor: '#260309',
-    borderBottomWidth: 0,
-    shadowOpacity: 0,
-    height: 100,
-    shadowOffset: {
-    },
-    shadowRadius: 0,
-    elevation: 0
-  },
+  profile: {
+    backgroundColor: Colors.redPrimary
+  }
 };
 
 /**
@@ -85,13 +78,13 @@ export const charSelectNavHeader = (leftComponents = [], rightComponents = []) =
 };
 
 // Character Profile Screen Header Config
-export const charProfileNavHeader = (charName, leftComponents=[], rightComponents=[]) => {
-  const transparentStyle = Object.assign({}, headerStyles.common, headerStyles.transparent);
-  const blackStyle = Object.assign({}, headerStyles.common, headerStyles.black);
+export const charProfileNavHeader = (charName, leftComponents=[], rightComponents=[], scrollState) => {
+  const initialStyle = Object.assign({}, headerStyles.common);
+  const scrollStyle = Object.assign({}, headerStyles.common);
   return {
     title: null,
-    headerTitle: (Platform.OS === 'ios') ? null : renderTitle(charName),
-    headerStyle: (Platform.OS === 'ios') ? transparentStyle : blackStyle,
+    headerTitle: renderTitle(charName),
+    headerStyle: initialStyle,
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right")
   };
@@ -99,12 +92,10 @@ export const charProfileNavHeader = (charName, leftComponents=[], rightComponent
 
 //Attack Details Nav Header
 export const attackDetailsNavHeader = (move, leftComponents=[]) => {
-  const transparentStyle = Object.assign({}, headerStyles.attackDetail);
-  const blackStyle = Object.assign({}, headerStyles.attackDetail, headerStyles.black);
   return {
     title: null,
-    headerTitle: renderAttackDetailsTitle(move),
-    headerStyle: (Platform.OS === 'ios') ? transparentStyle : blackStyle,
+    headerTitle: renderTitle(move),
+    headerStyle: headerStyles.common,
     headerLeft: renderSide(leftComponents, "left"),
   };
 };
@@ -153,4 +144,3 @@ export const CommunityNavHeader = (leftComponents = [], rightComponents = []) =>
     headerStyle: headerStyles.common
   };
 };
-

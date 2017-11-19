@@ -5,10 +5,13 @@ import {
   View,
   StyleSheet,
   Text,
-  Alert
+  Alert,
+  FlatList,
+  Keyboard
 } from 'react-native';
 
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 // components
 import DataList from '../../components/DataList/DataList';
@@ -18,33 +21,48 @@ import Spreadsheet from '../../components/Spreadsheet/';
 // Utils
 import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
 
-const redPrimary = '#9d1018';
-const redSecondary = '#320f1c';
+import * as Colors from '../../style/vars/colors';
 
 //actions
 import { updateUserAlertData } from '../../redux/actions/blob';
+import { showAttackDetails } from '../../redux/actions/attackDetails';
 
 class MoveList extends Component {
 
   componentDidMount() {
-    this.spreadsheetCheck(this.props.spreadsheetAware, this.props.orientation);
+    //this.spreadsheetCheck(this.props.spreadsheetAware, this.props.orientation);
   }
 
+  // Navigate to Attack Details on Move press
+  onMovePress(move, index) {
+    Keyboard.dismiss();
+    this.props.dispatchNavigateToAttack(move, index);
+    this.props.navigation.navigate('attackDetails', {move, index});
+  }
 
   renderByOrientation(orientation, moves) {
     if (orientation == 'landscape') {
       return (
-        <Spreadsheet navigation={this.props.navigation} moves={moves} />
+        <Spreadsheet moves={moves} onMovePress={(move, index) => this.onMovePress(move, index)} />
       );
     } else {
+      // plain list of moves
       return (
-        <DataList
-          listData={moves}
-          cellComponent={FrameDataCard}
-          cellsPerRow={1}
-          rowStyle={Styles.row}
-          navigation={this.props.navigation}
-        />
+        <LinearGradient
+          start={{x: 1.8, y: 0.4}} end={{x: 0.1, y: 0.9}}
+          colors={[Colors.redSecondary, Colors.redPrimary]}>
+            <FlatList
+              data={moves}
+              keyExtractor={(move, i) => i}
+              renderItem={(move) => (
+                <FrameDataCard
+                  onPressHandler={() => this.onMovePress(move.item, move.index)}
+                  moveIndex={move.index}
+                  move={move.item}
+                />)}
+              ListEmptyComponent={() => (<Text>Loading</Text>)}
+            />
+        </LinearGradient>
       );
     }
   }
@@ -102,7 +120,7 @@ const Styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'transparent',
     color: 'white',
-    backgroundColor: redSecondary,
+    backgroundColor: Colors.redSecondary,
   },
   landscapeMove: {
     flex: 1,
@@ -119,7 +137,7 @@ const Styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'transparent',
     color: 'white',
-    backgroundColor: redSecondary,
+    backgroundColor: Colors.redSecondary,
   }
 })
 
@@ -139,7 +157,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateUserAlertData: (isAware) => dispatch(updateUserAlertData(isAware))
+    updateUserAlertData: (isAware) => dispatch(updateUserAlertData(isAware)),
+    dispatchNavigateToAttack: (move, index) =>  dispatch(showAttackDetails(move, index))
   }
 }
 

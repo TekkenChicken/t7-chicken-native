@@ -10,6 +10,5 @@ export default rootReducer = combineReducers({
 	blob,
 	select,
 	character,
-	selectedAttack: attackDetails
+	attackDetails
 });
-

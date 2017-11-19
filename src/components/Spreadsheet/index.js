@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import {
   View,
@@ -7,6 +7,7 @@ import {
   Modal,
   StyleSheet,
   Keyboard,
+  FlatList
 } from 'react-native';
 
 // components
@@ -20,13 +21,19 @@ class Spreadsheet extends Component {
 
     constructor() {
       super();
-      this.state = {modalVisable: false}
+      this.state = {
+        initialLoad: true
+      };
     }
 
-    setModalVisible = (visible) => {
-      Keyboard.dismiss();
-      this.setState({modalVisible: visible});
+    componentDidMount() {
+      setTimeout(() => this.triggerLoadState(), 600);
     }
+
+    triggerLoadState() {
+      this.setState({initialLoad: false});
+    }
+
 
     renderTableHeader() {
       return (
@@ -34,22 +41,52 @@ class Spreadsheet extends Component {
       )
     }
 
-    renderTableRows(moves, navigation) {
-      return moves.map((move, i) =>
-        <FrameDataRow navigation={navigation} move={move} key={i} rowIndex={i} />
+    // renderTableRows(moves, navigation) {
+    //   return moves.map((move, i) =>
+    //     <FrameDataRow move={move} key={i} rowIndex={i} />
+    //   );
+    // }
+
+    /**
+     *  @method renderTableRow
+     *  @param {object} moveData -- individual move data item provided by FlatList using passed in data source
+     *  @return {component} FrameDataRow
+     *  Callback method passed into FlatList to render a FrameDataRow for each individual move item
+     */
+    renderTableRow(moveData, onMovePress) {
+      return (
+        <FrameDataRow
+          move={moveData.item}
+          moveIndex={moveData.index}
+          onPressHandler={() => onMovePress(moveData.item, moveData.index)}
+        />
+      );
+    }
+
+    renderTempLoadingComponent() {
+      return (
+        <Text style={{textAlign: 'center', width: '100%'}}>Loading</Text>
       );
     }
 
     render() {
-      const { moves } = this.props;
-
+      // will be empty on intial load so that rendered Table does not
+      const shownMoves = (this.state.initialLoad) ? [] : this.props.moves;
       return (
-        <View>
-          {this.renderTableRows(moves, this.props.navigation)}
-        </View>
+        <FlatList
+          data={shownMoves}
+          keyExtractor={(move, i) => i}
+          renderItem={(move) => this.renderTableRow(move, this.props.onMovePress)}
+          ListEmptyComponent={() => (<Text>Loading</Text>)}
+        />
       )
     }
 
+}
+
+Spreadsheet.propTypes = {
+  moves: PropTypes.array,
+  onMovePress: PropTypes.func
 }
 
 export default Spreadsheet;

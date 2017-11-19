@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {
   View,
@@ -20,8 +20,6 @@ import * as Colors from '../../style/vars/colors';
 
 import icons from '../../img/icons/';
 
-import { showAttackDetails } from '../../redux/actions/attackDetails';
-
 
 class FrameDataCard extends React.Component {
   constructor() {
@@ -29,61 +27,38 @@ class FrameDataCard extends React.Component {
     this.state = {modalVisible: false}
   }
 
-  navigateToAttackDetails(move, index) {
-    Keyboard.dismiss();
-    this.props.showAttackDetails(move, index)
-    this.props.navigation.navigate('attackDetails',  { move, index} );
-  }
-
-  indexFinder(charData, move) {
-    let indexValue = null;
-    charData.forEach((attack, i) => {
-        if(attack.notation == move.notation) {
-            return indexValue = i;
-        }
-    })
-    return indexValue;
-}
-
   render() {
-    const emptyCard = (this.props.notation == null);
+    const emptyCard = (this.props.move.notation == null);
     const containerStyle = (emptyCard) ? [Styles.container, Styles.empty] : Styles.container;
     const touchEvent = (emptyCard) ? 'none' : 'auto';
     const characterMoves = this.props.character;
-    const moveIndex = this.indexFinder(characterMoves, this.props);
     return (
-      <LinearGradient
-        start={{x: 3.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
-        colors={[Colors.redPrimary, Colors.redSecondary]}
-        style={containerStyle} 
-        pointerEvents={touchEvent}
-      >
+      <View
+        style={containerStyle}
+        pointerEvents={touchEvent}>
         <TouchableHighlight
-          onPress={() => { this.navigateToAttackDetails(characterMoves[moveIndex], moveIndex) }}
+          onPress={() => this.props.onPressHandler()}
           style={Styles.card}>
           <View style={Styles.cardContainer}>
-            <Text style={Styles.cardNotation}>{this.props.notation}</Text>
-            <Inputs isCard={true} inputs={this.props.notation}/>
+            <Text style={Styles.cardNotation}>{this.props.move.notation}</Text>
+            <Inputs isCard={true} inputs={this.props.move.notation}/>
           </View>
         </TouchableHighlight>
-      </LinearGradient>
+      </View>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-      character: state.character.data
-  }
-}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    showAttackDetails: (move, index) =>  dispatch(showAttackDetails(move, index))
-  }
-}
+// Props
+FrameDataCard.propTypes = {
+  move: PropTypes.object,
+  moveIndex: PropTypes.number,
+  navigation: PropTypes.object,
+  onPressHandler: PropTypes.func
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(FrameDataCard);
+export default FrameDataCard;
 
 const Styles = StyleSheet.create({
   container: {
@@ -91,7 +66,10 @@ const Styles = StyleSheet.create({
     paddingLeft: 15,
     paddingBottom: 10,
     paddingRight: 10,
-    marginBottom: 2
+    width: '100%',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: '#5b1a21'
   },
   card: {
     height: 'auto',
@@ -107,7 +85,7 @@ const Styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontFamily: 'Exo2-Regular',
-    fontSize: 16
+    fontSize: 15
   },
   cardContainer: {
     flex: 1,

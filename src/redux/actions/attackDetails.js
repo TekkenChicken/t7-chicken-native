@@ -12,25 +12,3 @@ export const showAttackDetails = (move, index) => {
         }
     }
 }
-
-export const previousAttack = (move, index) => {
-    console.log('previous payload move', move)
-    return {
-        type: PREVIOUS_ATTACK,
-        payload: {
-            move,
-            index
-        }
-    }
-}
-
-export const nextAttack = (move, index) => {
-    console.log('next attack move', move)
-    return {
-        type: NEXT_ATTACK,
-        payload: {
-            move,
-            index
-        }
-    }
-}

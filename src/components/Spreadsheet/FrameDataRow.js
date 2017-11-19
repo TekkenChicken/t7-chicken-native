@@ -21,8 +21,6 @@ import cellStyles from './cellStyles';
 // spread sheet display config
 import { propOrder, propColors } from './config';
 
-import { showAttackDetails } from '../../redux/actions/attackDetails';
-
 
 class FrameDataRow extends Component {
     constructor() {
@@ -49,7 +47,7 @@ class FrameDataRow extends Component {
      *  Takes a move and renders out all required properties of the move into cells for the row
      *  Properties needed are notated in propOrder of the spreadsheet Config
      */
-    renderCells(move, rowIndex) {
+    renderCells(move, moveIndex) {
       console.log()
       return propOrder.map((moveProp, i) => {
         return (
@@ -58,7 +56,7 @@ class FrameDataRow extends Component {
               cellStyles.cell,
               cellStyles.moveCell,
               cellStyles[moveProp.key],
-              { backgroundColor: rowIndex % 2 === 0 ? propColors[moveProp.key].dark : propColors[moveProp.key].between}
+              { backgroundColor: moveIndex % 2 === 0 ? propColors[moveProp.key].dark : propColors[moveProp.key].between}
             ]}
             key={i}>
             <CustomText textStyle={cellStyles.text}>{move[moveProp.key]}</CustomText>
@@ -89,26 +87,8 @@ class FrameDataRow extends Component {
       })
     }
 
-    navigateToAttackDetails(move, index) {
-      Keyboard.dismiss();
-      this.props.showAttackDetails(move, index)
-      this.props.navigation.navigate('attackDetails',  { move, index} );
-    }
-
-    indexFinder(charData, move) {
-      let indexValue = null;
-      charData.forEach((attack, i) => {
-          if(attack.notation == move.notation) {
-              return indexValue = i;
-          }
-      })
-      return indexValue;
-  }
-
     render() {
-      const characterMoves = this.props.character;
-      const moveIndex = this.indexFinder(characterMoves, {...this.props.move});
-      const rowIndex = this.props.rowIndex;
+      const {moveIndex, move, onPressHandler} = this.props;
       // if Row is a header row
       if (this.props.header) {
         return (
@@ -119,32 +99,21 @@ class FrameDataRow extends Component {
       // if regular move data row
       } else {
         return (
-          <TouchableHighlight 
-            onPress={()=> this.navigateToAttackDetails(characterMoves[moveIndex], moveIndex)}>
+          <TouchableHighlight
+            onPress={()=> onPressHandler(move, moveIndex)}>
             <View style={cellStyles.row}>
-              {this.renderCells(this.props.move, rowIndex)}
+              {this.renderCells(move, moveIndex)}
             </View>
           </TouchableHighlight>
         );
       }
     }
 }
-const mapStateToProps = state => {
-  return {
-      character: state.character.data,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    showAttackDetails: (move, index) =>  dispatch(showAttackDetails(move, index))
-  }
-}
 
 FrameDataRow.propTypes = {
   move: PropTypes.object,
-  clickHandler: PropTypes.func
+  moveIndex: PropTypes.number,
+  onPressHandler: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FrameDataRow);
-
+export default FrameDataRow;

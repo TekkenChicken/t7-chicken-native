@@ -15,9 +15,6 @@ import {
 
 import LinearGradient from 'react-native-linear-gradient';
 
-const redPrimary = '#9d1918';
-const redSecondary = '#320f1c';
-
 // components
 import CharacterList from './CharacterList';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -27,6 +24,7 @@ import { charSelectNavHeader } from '../../components/NavigationBar';
 
 // Styles
 import Styles from './styles';
+import * as Colors from '../../style/vars/colors';
 
 // dispatch actions
 import { fetchCharacters, searchCharacters  } from '../../redux/actions/select';
@@ -71,7 +69,7 @@ class CharacterSelectScreen extends Component {
 
   render() {
     return (
-      <LinearGradient colors={[redPrimary, redSecondary]} style={Styles.mainContainer}>
+      <LinearGradient colors={[Colors.redPrimary, Colors.redSecondary]} style={Styles.mainContainer}>
         <View>
           <SearchBar onChange={this.props.searchCharacters}/>
         </View>

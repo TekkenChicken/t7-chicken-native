@@ -19,9 +19,8 @@ class ProfileNameBanner extends Component {
 const Styles = StyleSheet.create({
   profileName: {
 		color: 'white',
-		marginTop: 70,
-		marginLeft: 15,
-		marginBottom: 30,
+    paddingTop: 10,
+    paddingBottom: 10,
 		fontSize: 28,
 		fontFamily: 'Exo2-Light',
     backgroundColor: 'transparent',
