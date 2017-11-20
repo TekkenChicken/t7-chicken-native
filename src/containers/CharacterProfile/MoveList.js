@@ -40,8 +40,8 @@ class MoveList extends Component {
     this.props.navigation.navigate('attackDetails', {move, index});
   }
 
-  renderByOrientation(orientation, moves) {
-    if (orientation == 'landscape') {
+  renderByOrientation(isPortrait, moves) {
+    if (isPortrait == false) {
       return (
         <Spreadsheet moves={moves} onMovePress={(move, index) => this.onMovePress(move, index)} />
       );
@@ -67,8 +67,8 @@ class MoveList extends Component {
     }
   }
 
-  spreadsheetCheck(isAware, orientation) {
-    if (!isAware && orientation == 'portrait') {
+  spreadsheetCheck(isAware, isPortrait) {
+    if (!isAware && isPortrait == true) {
       Alert.alert('Spreadsheet View',
         'Hold phone sideways to see Spreadsheet View',
         [
@@ -83,10 +83,10 @@ class MoveList extends Component {
     // Filter and Search Move Data before rendering
     let moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
     moves = MoveFiltersUtil.searchByNotation(moves, this.props.searchNotation);
-
+    console.log('is this running?', this.props.isPortrait)
     return (
       <View style={Styles.container}>
-        {this.renderByOrientation(this.props.orientation, moves)}
+        {this.renderByOrientation(this.props.isPortrait, moves)}
       </View>
     );
   }

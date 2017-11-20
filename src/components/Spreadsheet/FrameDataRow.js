@@ -71,12 +71,19 @@ class FrameDataRow extends Component {
      *  Renders header cells with move properties to be shown in spreadsheet
      *  Properties needed are notated in propOrder of the spreadsheet Config
      */
-    renderHeaderCells() {
+    renderHeaderCells(isPortrait) {
       return propOrder.map((moveProp, i) => {
+        const styleSwitcher = () => {
+          if(isPortrait === true) {
+            return cellStyles.hiddenHeader
+          } else {
+            return cellStyles.headerCell
+          }
+        }
         return (
           <View
             style={[
-              cellStyles.headerCell,
+              styleSwitcher(),
               cellStyles[moveProp.key],
               {backgroundColor: propColors[moveProp.key].light}
             ]}
@@ -93,7 +100,7 @@ class FrameDataRow extends Component {
       if (this.props.header) {
         return (
           <View style={cellStyles.row}>
-            {this.renderHeaderCells()}
+            {this.renderHeaderCells(this.props.isPortrait)}
           </View>
         );
       // if regular move data row
