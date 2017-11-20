@@ -66,7 +66,8 @@ class AttackList extends Component {
                     ref={"scrollView"}
                     style={Styles.scrollContainer}
                     keyboardShouldPersistTaps={'always'}
-                    stickyHeaderIndices={[2]}>
+                    stickyHeaderIndices={[2]}
+                    horizontal={false}>
 
                     <View style={Styles.charHeader}>
                         <ProfilePicture image={headshots[this.props.charID]} />
