@@ -53,12 +53,13 @@ class Spreadsheet extends Component {
      *  @return {component} FrameDataRow
      *  Callback method passed into FlatList to render a FrameDataRow for each individual move item
      */
-    renderTableRow(moveData, onMovePress) {
+    renderTableRow(moveData, onMovePress, isPortrait) {
       return (
         <FrameDataRow
           move={moveData.item}
           moveIndex={moveData.index}
           onPressHandler={() => onMovePress(moveData.item, moveData.index)}
+          isPortrait={isPortrait}
         />
       );
     }
@@ -76,7 +77,7 @@ class Spreadsheet extends Component {
         <FlatList
           data={shownMoves}
           keyExtractor={(move, i) => i}
-          renderItem={(move) => this.renderTableRow(move, this.props.onMovePress)}
+          renderItem={(move) => this.renderTableRow(move, this.props.onMovePress, this.props.isPortrait)}
           ListEmptyComponent={() => (<Text>Loading</Text>)}
         />
       )
