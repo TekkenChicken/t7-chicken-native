@@ -47,14 +47,14 @@ class FrameDataRow extends Component {
      *  Takes a move and renders out all required properties of the move into cells for the row
      *  Properties needed are notated in propOrder of the spreadsheet Config
      */
-    renderCells(move, moveIndex, isPortrait) {
+    renderCells(move, moveIndex) {
       return propOrder.map((moveProp, i) => {
         return (
           <View
             style={[
-              isPortrait ? cellStyles.hidden : cellStyles.cell,
-              isPortrait ? cellStyles.hidden : cellStyles.moveCell,
-              isPortrait ? cellStyles.hidden : cellStyles[moveProp.key],
+              cellStyles.cell,
+              cellStyles.moveCell,
+              cellStyles[moveProp.key],
               { backgroundColor: moveIndex % 2 === 0 ? propColors[moveProp.key].dark : propColors[moveProp.key].between}
             ]}
             key={i}>
@@ -70,14 +70,14 @@ class FrameDataRow extends Component {
      *  Renders header cells with move properties to be shown in spreadsheet
      *  Properties needed are notated in propOrder of the spreadsheet Config
      */
-    renderHeaderCells(isPortrait) {
+    renderHeaderCells() {
       return propOrder.map((moveProp, i) => {
         return (
           <View
             style={[
-              isPortrait ? cellStyles.hidden : cellStyles.headerCell,
-              isPortrait ? cellStyles.hidden : cellStyles[moveProp.key],
-              isPortrait ? cellStyles.hidden : {backgroundColor: propColors[moveProp.key].light}
+              cellStyles.headerCell,
+              cellStyles[moveProp.key],
+              {backgroundColor: propColors[moveProp.key].light}
             ]}
             key={i}>
             <CustomText textStyle={isPortrait ? cellStyles.hidden : cellStyles.headerText}>{moveProp.label}</CustomText>
