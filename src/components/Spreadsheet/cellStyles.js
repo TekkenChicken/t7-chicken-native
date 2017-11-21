@@ -36,7 +36,7 @@ export default Styles = StyleSheet.create({
 		shadowOpacity: 0.8,
 		shadowRadius: 2.5
 	},
-	hiddenHeader: {
+	hidden: {
 		display: 'none'
 	},
 	headerText: {
