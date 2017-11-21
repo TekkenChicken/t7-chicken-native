@@ -47,19 +47,18 @@ class FrameDataRow extends Component {
      *  Takes a move and renders out all required properties of the move into cells for the row
      *  Properties needed are notated in propOrder of the spreadsheet Config
      */
-    renderCells(move, moveIndex) {
-      console.log()
+    renderCells(move, moveIndex, isPortrait) {
       return propOrder.map((moveProp, i) => {
         return (
           <View
             style={[
-              cellStyles.cell,
-              cellStyles.moveCell,
-              cellStyles[moveProp.key],
+              isPortrait ? cellStyles.hidden : cellStyles.cell,
+              isPortrait ? cellStyles.hidden : cellStyles.moveCell,
+              isPortrait ? cellStyles.hidden : cellStyles[moveProp.key],
               { backgroundColor: moveIndex % 2 === 0 ? propColors[moveProp.key].dark : propColors[moveProp.key].between}
             ]}
             key={i}>
-            <CustomText textStyle={cellStyles.text}>{move[moveProp.key]}</CustomText>
+            <CustomText textStyle={isPortrait ? cellStyles.hidden : cellStyles.text}>{move[moveProp.key]}</CustomText>
           </View>
         );
       })
@@ -73,48 +72,42 @@ class FrameDataRow extends Component {
      */
     renderHeaderCells(isPortrait) {
       return propOrder.map((moveProp, i) => {
-        const styleSwitcher = () => {
-          if(isPortrait === true) {
-            return cellStyles.hiddenHeader
-          } else {
-            return cellStyles.headerCell
-          }
-        }
         return (
           <View
             style={[
-              styleSwitcher(),
-              cellStyles[moveProp.key],
-              {backgroundColor: propColors[moveProp.key].light}
+              isPortrait ? cellStyles.hidden : cellStyles.headerCell,
+              isPortrait ? cellStyles.hidden : cellStyles[moveProp.key],
+              isPortrait ? cellStyles.hidden : {backgroundColor: propColors[moveProp.key].light}
             ]}
             key={i}>
-            <CustomText textStyle={cellStyles.headerText}>{moveProp.label}</CustomText>
+            <CustomText textStyle={isPortrait ? cellStyles.hidden : cellStyles.headerText}>{moveProp.label}</CustomText>
           </View>
         );
       })
     }
 
-    render() {
-      const {moveIndex, move, onPressHandler} = this.props;
-      // if Row is a header row
-      if (this.props.header) {
-        return (
-          <View style={cellStyles.row}>
-            {this.renderHeaderCells(this.props.isPortrait)}
-          </View>
-        );
+  render() {
+    const { moveIndex, move, onPressHandler, isPortrait } = this.props;
+    // if Row is a header row
+    if (this.props.header) {
+      return (
+        <View style={isPortrait ? cellStyles.hidden : cellStyles.row}>
+          {this.renderHeaderCells(this.props.isPortrait)}
+        </View>
+      );
       // if regular move data row
-      } else {
-        return (
-          <TouchableHighlight
-            onPress={()=> onPressHandler(move, moveIndex)}>
-            <View style={cellStyles.row}>
-              {this.renderCells(move, moveIndex)}
-            </View>
-          </TouchableHighlight>
-        );
-      }
+    } else {
+      return (
+        <TouchableHighlight
+          style={isPortrait ? cellStyles.hidden : cellStyles.row}
+          onPress={() => onPressHandler(move, moveIndex)}>
+          <View style={cellStyles.row}>
+            {this.renderCells(move, moveIndex, isPortrait)}
+          </View>
+        </TouchableHighlight>
+      );
     }
+  }
 }
 
 FrameDataRow.propTypes = {
