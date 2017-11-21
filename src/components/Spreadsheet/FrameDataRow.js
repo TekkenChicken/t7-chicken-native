@@ -58,7 +58,7 @@ class FrameDataRow extends Component {
               { backgroundColor: moveIndex % 2 === 0 ? propColors[moveProp.key].dark : propColors[moveProp.key].between}
             ]}
             key={i}>
-            <CustomText textStyle={isPortrait ? cellStyles.hidden : cellStyles.text}>{move[moveProp.key]}</CustomText>
+            <CustomText textStyle={cellStyles.text}>{move[moveProp.key]}</CustomText>
           </View>
         );
       })
@@ -80,7 +80,7 @@ class FrameDataRow extends Component {
               {backgroundColor: propColors[moveProp.key].light}
             ]}
             key={i}>
-            <CustomText textStyle={isPortrait ? cellStyles.hidden : cellStyles.headerText}>{moveProp.label}</CustomText>
+            <CustomText textStyle={cellStyles.headerText}>{moveProp.label}</CustomText>
           </View>
         );
       })
