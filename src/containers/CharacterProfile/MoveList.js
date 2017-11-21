@@ -41,17 +41,14 @@ class MoveList extends Component {
   }
 
   renderByOrientation(isPortrait, moves) {
-    if (isPortrait == false) {
       return (
-        <Spreadsheet moves={moves} onMovePress={(move, index) => this.onMovePress(move, index)} />
-      );
-    } else {
-      // plain list of moves
-      return (
+        <View>
+        <Spreadsheet isPortrait={isPortrait} moves={moves} onMovePress={(move, index) => this.onMovePress(move, index)} />
         <LinearGradient
           start={{x: 1.8, y: 0.4}} end={{x: 0.1, y: 0.9}}
           colors={[Colors.redSecondary, Colors.redPrimary]}>
             <FlatList
+            style={isPortrait ? {} : {display: 'none'}}
               data={moves}
               keyExtractor={(move, i) => i}
               renderItem={(move) => (
@@ -59,12 +56,13 @@ class MoveList extends Component {
                   onPressHandler={() => this.onMovePress(move.item, move.index)}
                   moveIndex={move.index}
                   move={move.item}
+                  isPortrait={isPortrait}
                 />)}
               ListEmptyComponent={() => (<Text>Loading</Text>)}
             />
         </LinearGradient>
-      );
-    }
+        </View>
+      )
   }
 
   spreadsheetCheck(isAware, isPortrait) {
