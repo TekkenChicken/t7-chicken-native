@@ -22,7 +22,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import FilterMenuContainer from './FilterMenuContainer';
 import Drawer from 'react-native-drawer';
 import { charProfileNavHeader } from '../../components/NavigationBar';
-import AttackList from './AttackList';
+import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
+import ProfileName from '../../components/CharacterProfile/ProfileName';
+import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
+import MoveList from './MoveList';
+import CustomText from '../../components/CustomText/CustomText';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import FrameDataRow from '../../components/Spreadsheet/FrameDataRow';
 
 //images
 import headshots from '../../img/headshots/index';
@@ -164,15 +170,43 @@ class CharacterProfileScreen extends Component {
         })}
         onClose={() => this.props.triggerFilterUpdate()}
       >
-      <AttackList
-          charID={characterID}
-          searchBarFunc={this.props.triggerSearchByNotation}
-          isPortrait={this.state.isPortrait}
-          moves={characterMovesData}
-          onSearchFocusHandler={this.onSearchFocusHandler}
-          onSearchBlurHandler={this.onSearchBlurHandler}
-          navigation={this.props.navigation}
-      />
+        <LinearGradient
+          colors={[Colors.redPrimary, Colors.redSecondary]}
+          start={{ x: 1.0, y: 0.9 }} end={{ x: 0.8, y: 0.1 }}
+          style={Styles.mainContainer}
+        >
+          <ScrollView
+            ref={"scrollView"}
+            style={Styles.scrollContainer}
+            keyboardShouldPersistTaps={'always'}
+            stickyHeaderIndices={[2]}
+            horizontal={false}>
+
+            <View style={Styles.charHeader}>
+              <ProfilePicture image={headshots[this.props.characterID]} />
+              {/* <ProfileName name={characterName.toUpperCase()} /> */}
+            </View>
+            <CommandListBanner />
+            <View style={Styles.stickySection} ref={"search"}>
+              <SearchBar
+                containerStyle={{ backgroundColor: Colors.redSecondary }}
+                inputWrapStyle={{ backgroundColor: Colors.lightPurple }}
+                onChange={this.props.searchBarFunc}
+                onFocusCallback={() => this.onSearchFocusHandler()}
+                onBlurCallback={() => this.onSearchBlurHandler()}
+              />
+              <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
+              <FrameDataRow isPortrait={this.state.isPortrait} navigation={this.props.navigation} header={true} />
+            </View>
+            <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
+              <MoveList
+                navigation={this.props.navigation}
+                isPortrait={this.state.isPortrait}
+                moves={characterMovesData}
+              />
+            </View>
+          </ScrollView>
+        </LinearGradient>
       </Drawer>
     );
   }
