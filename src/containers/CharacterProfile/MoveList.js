@@ -40,31 +40,6 @@ class MoveList extends Component {
     this.props.navigation.navigate('attackDetails', {move, index});
   }
 
-  renderByOrientation(isPortrait, moves) {
-      return (
-        <View>
-        <Spreadsheet isPortrait={isPortrait} moves={moves} onMovePress={(move, index) => this.onMovePress(move, index)} />
-        <LinearGradient
-          start={{x: 1.8, y: 0.4}} end={{x: 0.1, y: 0.9}}
-          colors={[Colors.redSecondary, Colors.redPrimary]}>
-            <FlatList
-            style={isPortrait ? {} : {display: 'none'}}
-              data={moves}
-              keyExtractor={(move, i) => i}
-              renderItem={(move) => (
-                <FrameDataCard
-                  onPressHandler={() => this.onMovePress(move.item, move.index)}
-                  moveIndex={move.index}
-                  move={move.item}
-                  isPortrait={isPortrait}
-                />)}
-              ListEmptyComponent={() => (<Text>Loading</Text>)}
-            />
-        </LinearGradient>
-        </View>
-      )
-  }
-
   spreadsheetCheck(isAware, isPortrait) {
     if (!isAware && isPortrait == true) {
       Alert.alert('Spreadsheet View',
@@ -81,10 +56,30 @@ class MoveList extends Component {
     // Filter and Search Move Data before rendering
     let moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
     moves = MoveFiltersUtil.searchByNotation(moves, this.props.searchNotation);
-    console.log('is this running?', this.props.isPortrait)
+    const { isPortrait } = this.props;
     return (
       <View style={Styles.container}>
-        {this.renderByOrientation(this.props.isPortrait, moves)}
+        <View>
+          <View style={isPortrait ? { display: 'none' } : {}}>
+            <Spreadsheet isPortrait={isPortrait} moves={moves} onMovePress={(move, index) => this.onMovePress(move, index)} />
+          </View>
+          <LinearGradient
+            start={{ x: 1.8, y: 0.4 }} end={{ x: 0.1, y: 0.9 }}
+            colors={[Colors.redSecondary, Colors.redPrimary]}>
+            <FlatList
+              style={isPortrait ? {} : { display: 'none' }}
+              data={moves}
+              keyExtractor={(move, i) => i}
+              renderItem={(move) => (
+                <FrameDataCard
+                  onPressHandler={() => this.onMovePress(move.item, move.index)}
+                  moveIndex={move.index}
+                  move={move.item}
+                />)}
+              ListEmptyComponent={() => (<Text>Loading</Text>)}
+            />
+          </LinearGradient>
+        </View>
       </View>
     );
   }
