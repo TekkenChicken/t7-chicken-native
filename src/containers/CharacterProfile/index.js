@@ -148,6 +148,7 @@ class CharacterProfileScreen extends Component {
 
   render() {
     const {characterID, characterMovesData, characterName} = this.props;
+    console.log('characterMovesData', characterMovesData)
     // const scrollStateOffset = (this.props.navigation.state.params.scrollHeader) ? Styles.offsetOnScroll : '';
     const menu = <FilterMenuContainer />;
     return (
@@ -191,7 +192,7 @@ class CharacterProfileScreen extends Component {
               <SearchBar
                 containerStyle={{ backgroundColor: Colors.redSecondary }}
                 inputWrapStyle={{ backgroundColor: Colors.lightPurple }}
-                onChange={this.props.searchBarFunc}
+                onChange={this.props.triggerSearchByNotation}
                 onFocusCallback={() => this.onSearchFocusHandler()}
                 onBlurCallback={() => this.onSearchBlurHandler()}
               />
