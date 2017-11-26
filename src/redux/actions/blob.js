@@ -71,7 +71,6 @@ const setInitialData = (payload) => {
 };
 
 const userSpreadsheetAwareness = isAware => {
-  console.log('userSpreadsheet dispatch', isAware)
   return {
     type: BLOB_SPREADSHEET_AWARENESS,
     bool: isAware
