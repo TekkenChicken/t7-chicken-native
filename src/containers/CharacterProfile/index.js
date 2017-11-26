@@ -19,17 +19,15 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 // components
-import ProfileBackDrop from '../../components/CharacterProfile/ProfileBackDrop';
-import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
-import ProfileName from '../../components/CharacterProfile/ProfileName';
-import ProfileHeader from '../../components/CharacterProfile/ProfileHeader';
-import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
-import MoveList from './MoveList';
 import FilterMenuContainer from './FilterMenuContainer';
 import Drawer from 'react-native-drawer';
+import { charProfileNavHeader } from '../../components/NavigationBar';
+import ProfilePicture from '../../components/CharacterProfile/ProfilePicture';
+import ProfileName from '../../components/CharacterProfile/ProfileName';
+import CommandListBanner from '../../components/CharacterProfile/CommandListBanner';
+import MoveList from './MoveList';
 import CustomText from '../../components/CustomText/CustomText';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { charProfileNavHeader } from '../../components/NavigationBar';
 import FrameDataRow from '../../components/Spreadsheet/FrameDataRow';
 
 //images
@@ -60,7 +58,7 @@ class CharacterProfileScreen extends Component {
     this.state = {
       scrollHeader: false,
       searchFocus: false,
-      orientation: isPortrait() ? 'portrait' : 'landscape',
+      isPortrait: isPortrait() ? true : false,
     };
 
     this._onOrientationChange = this.onOrientationChange.bind(this);
@@ -78,15 +76,6 @@ class CharacterProfileScreen extends Component {
     Dimensions.addEventListener('change', this._onOrientationChange);
   }
 
-  componentDidMount() {
-    // get position of searchbar for scrolling
-    setTimeout(() => {
-      this.refs.search.measure((frameOffsetX, frameOffsetY, w, h, pageX, pageY) => {
-        this.setState({searchPos : pageY});
-      });
-    }, 10);
-  }
-
   componentWillUnmount() {
     Dimensions.removeEventListener('change', this._onOrientationChange);
     this.props.resetDataForCharacter();
@@ -94,7 +83,7 @@ class CharacterProfileScreen extends Component {
 
   onOrientationChange() {
     this.setState({
-        orientation: isPortrait() ? 'portrait' : 'landscape'
+        isPortrait: isPortrait() ? true : false
     });
   }
 
@@ -157,18 +146,13 @@ class CharacterProfileScreen extends Component {
     this.setState({searchFocus: false});
   }
 
-  renderTableHeader() {
-    return (
-      <FrameDataRow navigation={this.props.navigation} header={true} />
-    )
-  }
-
   render() {
-    let {characterID, characterMovesData, characterName} = this.props;
+    const {characterID, characterMovesData, characterName} = this.props;
     // const scrollStateOffset = (this.props.navigation.state.params.scrollHeader) ? Styles.offsetOnScroll : '';
     const menu = <FilterMenuContainer />;
     return (
       <Drawer
+        forceUpdateKey={this.state.isPortrait}
         ref="_drawer"
         content={menu}
         type="overlay"
@@ -188,14 +172,16 @@ class CharacterProfileScreen extends Component {
       >
         <LinearGradient
           colors={[Colors.redPrimary, Colors.redSecondary]}
-          start={{x: 1.0, y: 0.9}} end={{x: 0.8, y: 0.1}}
+          start={{ x: 1.0, y: 0.9 }} end={{ x: 0.8, y: 0.1 }}
           style={Styles.mainContainer}
-          >
+        >
           <ScrollView
             ref={"scrollView"}
             style={Styles.scrollContainer}
             keyboardShouldPersistTaps={'always'}
-            stickyHeaderIndices={[2]}>
+            stickyHeaderIndices={[2]}
+            horizontal={false}>
+
             <View style={Styles.charHeader}>
               <ProfilePicture image={headshots[this.props.characterID]} />
               {/* <ProfileName name={characterName.toUpperCase()} /> */}
@@ -203,19 +189,19 @@ class CharacterProfileScreen extends Component {
             <CommandListBanner />
             <View style={Styles.stickySection} ref={"search"}>
               <SearchBar
-                containerStyle={{backgroundColor: Colors.redSecondary}}
-                inputWrapStyle={{backgroundColor: Colors.lightPurple }}
+                containerStyle={{ backgroundColor: Colors.redSecondary }}
+                inputWrapStyle={{ backgroundColor: Colors.lightPurple }}
                 onChange={this.props.triggerSearchByNotation}
                 onFocusCallback={() => this.onSearchFocusHandler()}
                 onBlurCallback={() => this.onSearchBlurHandler()}
               />
               <Text style={Styles.rbnorway}>Frame data provided by rbnorway.org</Text>
-              {this.state.orientation == 'landscape' ? this.renderTableHeader() : null}
+              <FrameDataRow isPortrait={this.state.isPortrait} navigation={this.props.navigation} header={true} />
             </View>
             <View style={(this.state.searchFocus) ? Styles.staticListHeight : ''}>
               <MoveList
                 navigation={this.props.navigation}
-                orientation={this.state.orientation}
+                isPortrait={this.state.isPortrait}
                 moves={characterMovesData}
               />
             </View>
@@ -241,7 +227,7 @@ const mapStateToProps = (state, props) => {
   return {
     characterID: props.navigation.state.params.characterID,
     characterName: props.navigation.state.params.characterName,
-    characterMovesData: state.character.data
+    characterMovesData: state.character.filteredMoves
   };
 };
 

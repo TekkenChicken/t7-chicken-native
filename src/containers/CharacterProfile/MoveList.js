@@ -18,9 +18,6 @@ import DataList from '../../components/DataList/DataList';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
 import Spreadsheet from '../../components/Spreadsheet/';
 
-// Utils
-import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
-
 import * as Colors from '../../style/vars/colors';
 
 //actions
@@ -40,35 +37,8 @@ class MoveList extends Component {
     this.props.navigation.navigate('attackDetails', {move, index});
   }
 
-  renderByOrientation(orientation, moves) {
-    if (orientation == 'landscape') {
-      return (
-        <Spreadsheet moves={moves} onMovePress={(move, index) => this.onMovePress(move, index)} />
-      );
-    } else {
-      // plain list of moves
-      return (
-        <LinearGradient
-          start={{x: 1.8, y: 0.4}} end={{x: 0.1, y: 0.9}}
-          colors={[Colors.redSecondary, Colors.redPrimary]}>
-            <FlatList
-              data={moves}
-              keyExtractor={(move, i) => i}
-              renderItem={(move) => (
-                <FrameDataCard
-                  onPressHandler={() => this.onMovePress(move.item, move.index)}
-                  moveIndex={move.index}
-                  move={move.item}
-                />)}
-              ListEmptyComponent={() => (<Text>Loading</Text>)}
-            />
-        </LinearGradient>
-      );
-    }
-  }
-
-  spreadsheetCheck(isAware, orientation) {
-    if (!isAware && orientation == 'portrait') {
+  spreadsheetCheck(isAware, isPortrait) {
+    if (!isAware && isPortrait == true) {
       Alert.alert('Spreadsheet View',
         'Hold phone sideways to see Spreadsheet View',
         [
@@ -80,13 +50,30 @@ class MoveList extends Component {
   }
 
   render() {
-    // Filter and Search Move Data before rendering
-    let moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
-    moves = MoveFiltersUtil.searchByNotation(moves, this.props.searchNotation);
-
+    const { isPortrait, moves } = this.props;
     return (
       <View style={Styles.container}>
-        {this.renderByOrientation(this.props.orientation, moves)}
+        <View>
+          <View style={isPortrait ? { display: 'none' } : {}}>
+            <Spreadsheet isPortrait={isPortrait} moves={moves} onMovePress={(move, index) => this.onMovePress(move, index)} />
+          </View>
+          <LinearGradient
+            start={{ x: 1.8, y: 0.4 }} end={{ x: 0.1, y: 0.9 }}
+            colors={[Colors.redSecondary, Colors.redPrimary]}>
+            <FlatList
+              style={isPortrait ? {} : { display: 'none' }}
+              data={moves}
+              keyExtractor={(move, i) => i}
+              renderItem={(move) => (
+                <FrameDataCard
+                  onPressHandler={() => this.onMovePress(move.item, move.index)}
+                  moveIndex={move.index}
+                  move={move.item}
+                />)}
+              ListEmptyComponent={() => (<Text>Loading</Text>)}
+            />
+          </LinearGradient>
+        </View>
       </View>
     );
   }

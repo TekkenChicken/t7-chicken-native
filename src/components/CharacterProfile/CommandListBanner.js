@@ -22,6 +22,7 @@ const Styles = StyleSheet.create({
 		backgroundColor: redSecondary,
 		height: 40,
 		paddingTop: 10,
+		display: 'none'
 	},
 	commandListText: {
 		color: '#f0aa23',

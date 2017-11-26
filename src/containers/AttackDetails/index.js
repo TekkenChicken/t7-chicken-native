@@ -98,7 +98,7 @@ class AttackDetails extends Component {
 
 const mapStateToProps = state => {
     return {
-      character: state.character.data,
+      character: state.character.filteredMoves,
       selectedMove: state.attackDetails.move,
       index: state.attackDetails.index,
     }

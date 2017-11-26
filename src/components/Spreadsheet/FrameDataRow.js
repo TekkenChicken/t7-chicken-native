@@ -48,7 +48,6 @@ class FrameDataRow extends Component {
      *  Properties needed are notated in propOrder of the spreadsheet Config
      */
     renderCells(move, moveIndex) {
-      console.log()
       return propOrder.map((moveProp, i) => {
         return (
           <View
@@ -87,27 +86,28 @@ class FrameDataRow extends Component {
       })
     }
 
-    render() {
-      const {moveIndex, move, onPressHandler} = this.props;
-      // if Row is a header row
-      if (this.props.header) {
-        return (
-          <View style={cellStyles.row}>
-            {this.renderHeaderCells()}
-          </View>
-        );
+  render() {
+    const { moveIndex, move, onPressHandler, isPortrait } = this.props;
+    // if Row is a header row
+    if (this.props.header) {
+      return (
+        <View style={isPortrait ? cellStyles.hidden : cellStyles.row}>
+          {this.renderHeaderCells(this.props.isPortrait)}
+        </View>
+      );
       // if regular move data row
-      } else {
-        return (
-          <TouchableHighlight
-            onPress={()=> onPressHandler(move, moveIndex)}>
-            <View style={cellStyles.row}>
-              {this.renderCells(move, moveIndex)}
-            </View>
-          </TouchableHighlight>
-        );
-      }
+    } else {
+      return (
+        <TouchableHighlight
+          style={isPortrait ? cellStyles.hidden : cellStyles.row}
+          onPress={() => onPressHandler(move, moveIndex)}>
+          <View style={cellStyles.row}>
+            {this.renderCells(move, moveIndex, isPortrait)}
+          </View>
+        </TouchableHighlight>
+      );
     }
+  }
 }
 
 FrameDataRow.propTypes = {
