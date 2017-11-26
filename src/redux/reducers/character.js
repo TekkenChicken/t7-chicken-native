@@ -6,15 +6,19 @@ import {
   CHARACTER_SEARCH_MOVES,
   CHARACTER_APPLY_FILTERS,
   CHARACTER_QUEUE_FILTERS,
-  CHARACTER_RESET_FILTERS
+  CHARACTER_RESET_FILTERS,
+  CHARACTER_UPDATE_DATA
 } from '../actions/character';
+
+import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
 
 const initialState = {
   name: '',
   data: [], // all moves
   filter: {},
   filterQueue: {},
-  searchNotation: ''
+  searchNotation: '',
+  filteredMoves: [] //filtered moves
 };
 
 /**
@@ -42,17 +46,25 @@ const updateFilterQueue = (currentQueue, action) => {
   return queue;
 };
 
+const filterData = (currentMoves, filter, searchNotation) => {
+  let moves = MoveFiltersUtil.filterMoves(currentMoves, filter);
+  moves = MoveFiltersUtil.searchByNotation(moves, searchNotation);
+  return moves;
+}
+
 
 function character( state = initialState, action ) {
   switch(action.type) {
     case CHARACTER_SET_DATA:
-      return Object.assign({}, state, action.data);
+      return Object.assign({}, state, action.data, {filteredMoves: action.data.data});
     case CHARACTER_RESET_DATA:
       return initialState;
     case CHARACTER_APPLY_FILTERS:
       return Object.assign({}, state, { filter: state.filterQueue });
     case CHARACTER_QUEUE_FILTERS:
       return Object.assign({}, state, { filterQueue: updateFilterQueue(state.filterQueue, action) });
+    case CHARACTER_UPDATE_DATA:
+      return Object.assign({}, state, {filteredMoves: filterData(state.data, state.filterQueue, state.searchNotation)})
     case CHARACTER_RESET_FILTERS:
       return Object.assign({}, state, { filterQueue: {} });
     case CHARACTER_SEARCH_MOVES:
