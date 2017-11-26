@@ -148,7 +148,6 @@ class CharacterProfileScreen extends Component {
 
   render() {
     const {characterID, characterMovesData, characterName} = this.props;
-    console.log('characterMovesData', characterMovesData)
     // const scrollStateOffset = (this.props.navigation.state.params.scrollHeader) ? Styles.offsetOnScroll : '';
     const menu = <FilterMenuContainer />;
     return (
@@ -228,7 +227,7 @@ const mapStateToProps = (state, props) => {
   return {
     characterID: props.navigation.state.params.characterID,
     characterName: props.navigation.state.params.characterName,
-    characterMovesData: state.character.data
+    characterMovesData: state.character.filteredMoves
   };
 };
 

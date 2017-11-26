@@ -18,9 +18,6 @@ import DataList from '../../components/DataList/DataList';
 import FrameDataCard from '../../components/FrameData/FrameDataCard';
 import Spreadsheet from '../../components/Spreadsheet/';
 
-// Utils
-import MoveFiltersUtil from '../../util/moveFilters/moveFiltersUtil';
-
 import * as Colors from '../../style/vars/colors';
 
 //actions
@@ -53,10 +50,7 @@ class MoveList extends Component {
   }
 
   render() {
-    // Filter and Search Move Data before rendering
-    let moves = MoveFiltersUtil.filterMoves(this.props.moves, this.props.filter);
-    moves = MoveFiltersUtil.searchByNotation(moves, this.props.searchNotation);
-    const { isPortrait } = this.props;
+    const { isPortrait, moves } = this.props;
     return (
       <View style={Styles.container}>
         <View>
