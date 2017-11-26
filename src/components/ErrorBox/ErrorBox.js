@@ -16,7 +16,6 @@ class ErrorBox extends Component {
 
   render() {
     const pointerEvents = (!this.state.closed) ? "auto" : "none";
-    console.log(pointerEvents);
     return (
       <View style={[Styles.container, (this.state.closed) ? Styles.closed : '']} pointerEvents={pointerEvents}>
         <View>

@@ -67,7 +67,6 @@ class Community extends Component {
 
   render() {
     const communityGroups = content.groups;
-    console.log(this.renderCommunityGroups(communityGroups));
     return (
       <LinearGradient
         colors={[redPrimary, redSecondary]}
