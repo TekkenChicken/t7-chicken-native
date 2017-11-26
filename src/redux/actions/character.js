@@ -88,9 +88,11 @@ export const resetCharacterMoveFilters = () => {
  *  @method searchMovesByNotation
  *  Trigger action to filter moves by user notation inputted
  */
-export const searchMovesByNotation = (notation) => {
-  return {
-    type: CHARACTER_SEARCH_MOVES,
-    notation: notation.trim().replace(/\s/g,'')
-  };
+export const searchMovesByNotation = (notation) => dispatch => {
+  dispatch({ type: CHARACTER_SEARCH_MOVES, notation: notation.trim().replace(/\s/g, '')})
+  dispatch(updateCharacterData())
+  // return {
+  //   type: CHARACTER_SEARCH_MOVES,
+  //   notation: notation.trim().replace(/\s/g,'')
+  // };
 };

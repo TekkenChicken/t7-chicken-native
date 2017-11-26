@@ -47,6 +47,7 @@ const updateFilterQueue = (currentQueue, action) => {
 };
 
 const filterData = (currentMoves, filter, searchNotation) => {
+  console.log('search notation tho', searchNotation)
   let moves = MoveFiltersUtil.filterMoves(currentMoves, filter);
   moves = MoveFiltersUtil.searchByNotation(moves, searchNotation);
   return moves;
