@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -55,9 +56,9 @@
 		C4636EAB82F34DD0842D5383 /* Exo2-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD43283E36BB4267882D8E13 /* Exo2-BoldItalic.ttf */; };
 		E0D9C375BAC84BA197167199 /* Exo2-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2CE07831A39E4070A15DC7A2 /* Exo2-SemiBoldItalic.ttf */; };
 		E5EE478DE4F458486F5B52F3 /* libPods-T7Chicken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F70092AF5412D8229E73388 /* libPods-T7Chicken.a */; };
+		ED294CE50F334EC392E59593 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 155B3029066D4851B54C5427 /* libRCTOrientation.a */; };
 		FB025A20E1D94FC4ADF9A958 /* Exo2-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 834E0208D44148F8B7D2DAC1 /* Exo2-ThinItalic.ttf */; };
 		FF186797B5C84F8390B5B0E0 /* Exo2-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BE7643AB504452EB2831CC5 /* Exo2-Thin.ttf */; };
-		ED294CE50F334EC392E59593 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 155B3029066D4851B54C5427 /* libRCTOrientation.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,19 +251,19 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		83503BAC1FCB496A00A7DF7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 778691AFB2194AC6A560A887 /* RCTOrientation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTOrientation;
+		};
 		9D71A6681EE1D68100E3F2FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D043742885A24FE99A8BE744 /* RNDeviceInfo.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
 			remoteInfo = RNDeviceInfo;
-		};
-		9D71A66D1EE1D68100E3F2FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A4DB4DB998124376BAF6BFF6 /* RNMixpanel.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FDC64AF01BF1690D0044C1B4;
-			remoteInfo = RNMixpanel;
 		};
 		9D71A6721EE1D68100E3F2FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -294,6 +295,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = T7Chicken/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = T7Chicken/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		155B3029066D4851B54C5427 /* libRCTOrientation.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOrientation.a; sourceTree = "<group>"; };
 		213AA45619554BC595DA5E6F /* Exo2-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Exo2-BlackItalic.ttf"; path = "../src/fonts/Exo_2/Exo2-BlackItalic.ttf"; sourceTree = "<group>"; };
 		23AE9CCD8B471E66497B3AFD /* Pods-T7Chicken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-T7Chicken.release.xcconfig"; path = "Pods/Target Support Files/Pods-T7Chicken/Pods-T7Chicken.release.xcconfig"; sourceTree = "<group>"; };
 		25DE771A847E44149B7A3DB7 /* Exo2-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Exo2-Medium.ttf"; path = "../src/fonts/Exo_2/Exo2-Medium.ttf"; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6F9FD97F4E8049FE8616E8E1 /* Exo2-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Exo2-MediumItalic.ttf"; path = "../src/fonts/Exo_2/Exo2-MediumItalic.ttf"; sourceTree = "<group>"; };
 		73A7A89769EA421B2007682D /* Pods-T7ChickenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-T7ChickenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-T7ChickenTests/Pods-T7ChickenTests.debug.xcconfig"; sourceTree = "<group>"; };
+		778691AFB2194AC6A560A887 /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTOrientation.xcodeproj; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7F0CE15B5A67418184A2FCC0 /* Exo2-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Exo2-SemiBold.ttf"; path = "../src/fonts/Exo_2/Exo2-SemiBold.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -315,7 +318,6 @@
 		97BCC27F18914094B252D2D1 /* Exo2-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Exo2-Italic.ttf"; path = "../src/fonts/Exo_2/Exo2-Italic.ttf"; sourceTree = "<group>"; };
 		9D80924C15DB4E219923A9A5 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		9E210F7F3788465F9208243E /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
-		A4DB4DB998124376BAF6BFF6 /* RNMixpanel.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNMixpanel.xcodeproj; path = "../node_modules/react-native-mixpanel/RNMixpanel.xcodeproj"; sourceTree = "<group>"; };
 		AAC4C8EF36595B995929ACF1 /* Pods-T7Chicken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-T7Chicken.debug.xcconfig"; path = "Pods/Target Support Files/Pods-T7Chicken/Pods-T7Chicken.debug.xcconfig"; sourceTree = "<group>"; };
 		AB2C4934DB8E4797AE896306 /* Exo2-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Exo2-LightItalic.ttf"; path = "../src/fonts/Exo_2/Exo2-LightItalic.ttf"; sourceTree = "<group>"; };
 		BBED807FD9D4D7E8E3F53097 /* Pods-T7ChickenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-T7ChickenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-T7ChickenTests/Pods-T7ChickenTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -327,8 +329,6 @@
 		DC37EDF1DB4D43018F520D05 /* Exo2-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Exo2-Light.ttf"; path = "../src/fonts/Exo_2/Exo2-Light.ttf"; sourceTree = "<group>"; };
 		DD43283E36BB4267882D8E13 /* Exo2-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Exo2-BoldItalic.ttf"; path = "../src/fonts/Exo_2/Exo2-BoldItalic.ttf"; sourceTree = "<group>"; };
 		E7906C709AB744AFA7A36B79 /* Exo2-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Exo2-Black.ttf"; path = "../src/fonts/Exo_2/Exo2-Black.ttf"; sourceTree = "<group>"; };
-		778691AFB2194AC6A560A887 /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; name = "RCTOrientation.xcodeproj"; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		155B3029066D4851B54C5427 /* libRCTOrientation.a */ = {isa = PBXFileReference; name = "libRCTOrientation.a"; path = "libRCTOrientation.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -552,7 +552,6 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				9E210F7F3788465F9208243E /* BVLinearGradient.xcodeproj */,
-				A4DB4DB998124376BAF6BFF6 /* RNMixpanel.xcodeproj */,
 				D043742885A24FE99A8BE744 /* RNDeviceInfo.xcodeproj */,
 				778691AFB2194AC6A560A887 /* RCTOrientation.xcodeproj */,
 			);
@@ -568,6 +567,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		83503B8D1FCB496A00A7DF7A /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				9D80924C15DB4E219923A9A5 /* libBVLinearGradient.a */,
+				C579DE6BA16044EC923F872D /* libRNDeviceInfo.a */,
+				155B3029066D4851B54C5427 /* libRCTOrientation.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		83503BA91FCB496A00A7DF7A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83503BAD1FCB496A00A7DF7A /* libRCTOrientation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
@@ -578,6 +595,7 @@
 				415DA1257808444D8800A504 /* Resources */,
 				CC85FEF8A461C331487FC883 /* Pods */,
 				B5E622EFEFD6465F6E8CD1E7 /* Frameworks */,
+				83503B8D1FCB496A00A7DF7A /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -598,14 +616,6 @@
 			isa = PBXGroup;
 			children = (
 				9D71A6691EE1D68100E3F2FB /* libRNDeviceInfo.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9D71A66A1EE1D68100E3F2FB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9D71A66E1EE1D68100E3F2FB /* libRNMixpanel.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -787,6 +797,10 @@
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
 				},
 				{
+					ProductGroup = 83503BA91FCB496A00A7DF7A /* Products */;
+					ProjectRef = 778691AFB2194AC6A560A887 /* RCTOrientation.xcodeproj */;
+				},
+				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
 				},
@@ -809,10 +823,6 @@
 				{
 					ProductGroup = 9D71A64C1EE1D68100E3F2FB /* Products */;
 					ProjectRef = D043742885A24FE99A8BE744 /* RNDeviceInfo.xcodeproj */;
-				},
-				{
-					ProductGroup = 9D71A66A1EE1D68100E3F2FB /* Products */;
-					ProjectRef = A4DB4DB998124376BAF6BFF6 /* RNMixpanel.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1001,18 +1011,18 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		83503BAD1FCB496A00A7DF7A /* libRCTOrientation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTOrientation.a;
+			remoteRef = 83503BAC1FCB496A00A7DF7A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9D71A6691EE1D68100E3F2FB /* libRNDeviceInfo.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNDeviceInfo.a;
 			remoteRef = 9D71A6681EE1D68100E3F2FB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9D71A66E1EE1D68100E3F2FB /* libRNMixpanel.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNMixpanel.a;
-			remoteRef = 9D71A66D1EE1D68100E3F2FB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9D71A6731EE1D68100E3F2FB /* libBVLinearGradient.a */ = {
@@ -1343,6 +1353,7 @@
 					"$(SRCROOT)/../node_modules/react-native-orientation/iOS/RCTOrientation/**",
 				);
 				INFOPLIST_FILE = T7Chicken/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1370,6 +1381,7 @@
 					"$(SRCROOT)/../node_modules/react-native-orientation/iOS/RCTOrientation/**",
 				);
 				INFOPLIST_FILE = T7Chicken/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1535,8 +1547,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1576,6 +1589,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
