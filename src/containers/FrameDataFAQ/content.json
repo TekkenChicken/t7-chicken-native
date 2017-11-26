@@ -7,7 +7,7 @@
   with animations in it, think of each page as a single frame. When someone says\
   that an attack is 15 frames, think of it as flipping through 15 pages of your \
   flip book to complete the attack animation To understand how to get the most \
-  out of Tekken Chicken, you need to understand how these frames can be.",
+  out of T7 Chicken, you need to understand how these frames can be.",
   "speed": "Speed is how many frames it takes before an attack makes contact with\
    your opponent. The lower the number is on speed, the faster it is. So if your\
    attack takes less frames to hit than your opponents, theoretically you will\
@@ -26,7 +26,7 @@
    properties of attacks that interrupt other attacks. So if your opponent does\
    an attack that is 15 frames, and you do an attack that is 13 frames, it is likely\
    that you'll hit them with the Counter Hit property since their attack is still active.",
-   "wrapup": "Hopefully you better understand the significance of Tekken Chicken.\
+   "wrapup": "Hopefully you better understand the significance of T7 Chicken.\
    You'll learn that this information will help guide your decisions in the heat\
    of battle. There is tons of content avaiable, and groups for Tekken players\
    where you can seek advice and gain a better understanding. Thank you for your\

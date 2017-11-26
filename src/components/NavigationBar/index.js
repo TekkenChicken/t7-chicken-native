@@ -67,9 +67,9 @@ const headerStyles = {
 export const charSelectNavHeader = (leftComponents = [], rightComponents = []) => {
   return {
     drawerLabel: 'Characters',
-    title: "Tekken Chicken",
+    title: "T7 Chicken",
     mode: 'modal',
-    headerTitle: renderTitle("Tekken Chicken"),
+    headerTitle: renderTitle("T7 Chicken"),
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right"),
     headerStyle: headerStyles.common,
