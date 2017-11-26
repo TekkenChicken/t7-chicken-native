@@ -227,7 +227,7 @@ const mapStateToProps = (state, props) => {
   return {
     characterID: props.navigation.state.params.characterID,
     characterName: props.navigation.state.params.characterName,
-    characterMovesData: state.character.data
+    characterMovesData: state.character.filteredMoves
   };
 };
 
