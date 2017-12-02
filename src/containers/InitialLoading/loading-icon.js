@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import tekkenGamerLogo from '../../img/misc/tekkengamer_dark_bg.png';
+import tcSplash from '../../img/misc/TC-Splash.png'
 
 class LoadingIcon extends Component {
 
@@ -46,10 +47,7 @@ class LoadingIcon extends Component {
     });
     return (
       <View style={[baseStyle.container]}>
-        <Animated.Text style={[baseStyle.text, {marginTop: top, opacity: opacity}]}>
-          Powered by
-        </Animated.Text>
-        <Image style={baseStyle.tekkenGamer} resizeMode="contain" source={tekkenGamerLogo} />
+        <Image style={baseStyle.tekkenGamer} source={tcSplash} />
       </View>
     );
   }
@@ -70,8 +68,9 @@ const baseStyle = StyleSheet.create({
     textAlign:'center'
   },
   tekkenGamer: {
+    height: 200,
     width: 300,
-    height: 200
+    resizeMode: 'cover'
   }
 });
 
