@@ -13,6 +13,15 @@
         }
       ]
     },
+      {
+        "header": "Take Our Survey",
+        "links": [
+          {
+            "url": "https://goo.gl/forms/c51MYPoBLMtkX1lY2",
+            "name": "Google Form - T7 Chicken Survey"
+          }
+        ]
+      },
     {
       "header": "Donate",
       "links": [
