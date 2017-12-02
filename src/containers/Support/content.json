@@ -1,0 +1,32 @@
+{
+  "links": [
+    {
+      "header": "Follow us",
+      "links": [
+        {
+          "url": "https://www.twitch.tv/t7chicken/",
+          "name": "Twitch - www.twitch.tv/T7Chicken"
+        },
+        {
+          "url": "https://twitter.com/t7chicken",
+          "name": "Twitter - www.twitter.com/T7Chicken"
+        }
+      ]
+    },
+    {
+      "header": "Donate",
+      "links": [
+        {
+          "url": "https://www.paypal.me/T7Chicken",
+          "name": "Pay Pal"
+        }
+      ]
+    }
+  ],
+  "support": {
+    "intro": "Since the release of Tekken 7, the T7 Chicken team has been so inspired by the positive feedback from the Tekken community.\
+    We have been working really hard on our spare time to keep everyone happy. If you would like to see the T7 Chicken brand grow and \
+    contiue support for the app, we would be grateful for any support you can provide us. Here is a list of ways you can support us\
+    with or without money"
+  }
+}
