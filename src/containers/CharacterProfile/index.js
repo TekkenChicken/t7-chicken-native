@@ -8,6 +8,7 @@ import { isPortrait } from '../../util/orientations';
 import {
   View,
   Text,
+  Alert,
   ListView,
   ScrollView,
   Button,
@@ -41,7 +42,7 @@ import { propOrder, propColors } from '../../components/Spreadsheet/config';
 
 // dispatch actions
 import { fetchDataForCharacter, applyCharacterMoveFilters, resetDataForCharacter, searchMovesByNotation } from '../../redux/actions/character';
-
+import { hideSpreadsheetPrompt } from '../../redux/actions/blob';
 
 class CharacterProfileScreen extends Component {
   static navigationOptions = ({navigation}) => {
@@ -69,7 +70,10 @@ class CharacterProfileScreen extends Component {
     this.updateHeaderParams();
 
     // Fetch Data on character using character ID sent as props on navigate
-    setTimeout(() => this.props.fetchDataForCharacter(this.props.characterID), 800);
+    setTimeout(() => {
+      this.props.fetchDataForCharacter(this.props.characterID);
+      this.checkSpreadSheetPrompt(this.props.showSpreadsheetPrompt);
+    }, 800);
 
     // Set listener for orientation switches
     // the listener requires a named reference to its callback listener in order to remove it when done
@@ -146,13 +150,27 @@ class CharacterProfileScreen extends Component {
     this.setState({searchFocus: false});
   }
 
+  /**
+   *  @method checkSpreadSheetPrompt
+   *  Will decide whether or not to show spreadsheet prompt based on user promp settings
+   */
+  checkSpreadSheetPrompt(showFlag) {
+    if (showFlag) {
+      Alert.alert('Spreadsheet View',
+        'Hold your phone sideways to view the move information in spreadsheet view.',
+        [
+          {text: 'Ok', onPress: () => this.props.dispatchHideSpreadsheetPrompt()}
+        ]
+      )
+    }
+  }
+
   render() {
     const {characterID, characterMovesData, characterName} = this.props;
     // const scrollStateOffset = (this.props.navigation.state.params.scrollHeader) ? Styles.offsetOnScroll : '';
     const menu = <FilterMenuContainer />;
     return (
       <Drawer
-        forceUpdateKey={this.state.isPortrait}
         ref="_drawer"
         content={menu}
         type="overlay"
@@ -227,7 +245,8 @@ const mapStateToProps = (state, props) => {
   return {
     characterID: props.navigation.state.params.characterID,
     characterName: props.navigation.state.params.characterName,
-    characterMovesData: state.character.filteredMoves
+    characterMovesData: state.character.filteredMoves,
+    showSpreadsheetPrompt: state.blob.showSpreadsheetPrompt
   };
 };
 
@@ -236,7 +255,8 @@ const mapDispatchToProps = (dispatch) => {
     triggerFilterUpdate: () => dispatch(applyCharacterMoveFilters()),
     fetchDataForCharacter: (characterID) => dispatch(fetchDataForCharacter(characterID)),
     resetDataForCharacter: () => dispatch(resetDataForCharacter()),
-    triggerSearchByNotation: (notation) => dispatch(searchMovesByNotation(notation))
+    triggerSearchByNotation: (notation) => dispatch(searchMovesByNotation(notation)),
+    dispatchHideSpreadsheetPrompt: ()=> dispatch(hideSpreadsheetPrompt())
   };
 };
 
