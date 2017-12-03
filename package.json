@@ -28,6 +28,7 @@
     "react-native-drawer": "^2.3.0",
     "react-native-dropdown": "git+https://github.com/g6ling/react-native-dropdown.git",
     "react-native-extended-stylesheet": "^0.4.0",
+    "react-native-icon": "^0.2.10",
     "react-native-linear-gradient": "^2.0.0",
     "react-native-orientation": "^3.0.0",
     "react-native-side-menu": "^0.20.1",
