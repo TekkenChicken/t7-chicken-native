@@ -44,7 +44,6 @@ class CharacterSelectScreen extends Component {
 
   componentWillMount() {
     this.props.fetchCharacters();
-    this.props.fetchUserAlertData();
   }
 
   /**
@@ -104,12 +103,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     searchCharacters: (searchQuery) => {
       dispatch(searchCharacters(searchQuery));
-    },
-    fetchInitialAppData: () => {
-      dispatch(fetchInitialAppData());
-    },
-    fetchUserAlertData: () => {
-      dispatch(fetchUserAlertData());
     }
   };
 };

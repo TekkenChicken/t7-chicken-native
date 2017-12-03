@@ -116,7 +116,8 @@ const Styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.8,
-    shadowRadius: 2
+    shadowRadius: 2,
+    zIndex: 50
   },
   contentWrap: {
     flex: 0.85,

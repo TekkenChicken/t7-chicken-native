@@ -16,9 +16,10 @@ import DeviceInfo from 'react-native-device-info'
 import LoadingIcon from './loading-icon';
 
 // dispatch actions
-import { fetchInitialAppData } from '../../redux/actions/blob';
+import { fetchInitialAppData, fetchUserPromptFlag } from '../../redux/actions/blob';
 
 class LoadingScreen extends Component {
+
   static navigationOptions = ({ navigation }) => ({
     header: null,
     gesturesEnabled: false,
@@ -37,15 +38,20 @@ class LoadingScreen extends Component {
   }
 
   componentDidMount() {
+    // Fetch Initial App data and Settings
+
     // Fetch Data on character using character ID sent as props on navigate
     setTimeout(() => {
-      NetInfo.isConnected.fetch().then((isConnected) => this.triggerInitialFetch(isConnected))
+      NetInfo.isConnected.fetch().then((isConnected) => this.props.dispatchInitialDataFetch(isConnected))
     }, 1000);
 
+    // Fetch User Prompt Settings
+    this.props.dispatchFetchUserPromptFlags();
   }
 
   componentDidUpdate() {
     if (this.props.blob.characterData && this.state.loading) {
+      // Pop out loading screen and move to main navigation flow (character select)
       const resetAction = NavigationActions.reset({
         index: 0,
         actions: [
@@ -54,10 +60,6 @@ class LoadingScreen extends Component {
       });
       this.setState({ loading: false }, () => this.props.navigation.dispatch(resetAction));
     }
-  }
-
-  triggerInitialFetch(isConnected) {
-    this.props.dispatch(fetchInitialAppData(isConnected));
   }
 
   render() {
@@ -83,4 +85,11 @@ const mapStateToProps = function(state) {
   }
 };
 
-export default connect(mapStateToProps)(LoadingScreen);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchInitialDataFetch: (isConnected) => dispatch(fetchInitialAppData(isConnected)),
+    dispatchFetchUserPromptFlags: () => dispatch(fetchUserPromptFlag())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoadingScreen);
