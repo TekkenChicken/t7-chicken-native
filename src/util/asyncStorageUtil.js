@@ -9,56 +9,68 @@ const PROMPT_KEY = 't7UserPrompt';
  *   ----------------------------
  * - Async Storage works on promises (must have callback and catches)
  * - are called at start and end of every action that mutates data in storage
- * - Must first recieve data nad then set at end
+ * - Must first recieve data and then set at end
  *
  */
 
-/**
- * Fetches all data in Async Storage and returns parsed content
- */
-export async function fetchAppData() {
-  return AsyncStorage.getItem(STORAGE_KEY)
+function _getStorageData(key) {
+  return AsyncStorage.getItem(key)
     .then((res) => JSON.parse(res))
     .catch((error) => error);
 }
 
-/**
- *  Set new character data in Async Storage
- *  @type {object} Object containing set of new items
- */
-export async function storeAppData(payload, timestamp) {
-  const newData = { data: payload, last_updated: timestamp };
-  return AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newData))
-    .then((res) => console.log("storing",newData))
+function _setStorageData(key, data) {
+  return AsyncStorage.setItem(key, JSON.stringify(data))
+    .then((res) => console.log("storing for key: ", key, data))
     .catch((error) => error);
 }
 
-/**
- *  Clears tekken data in Async Storage
- */
-export async function clearAppData() {
-  return AsyncStorage.removeItem(STORAGE_KEY)
+function _clearStorageData(key) {
+  return AsyncStorage.removeItem(key)
     .then((res) => res)
     .catch((error) => error);
 }
 
-export async function spreadsheetAwareCheck() {
-  return AsyncStorage.getItem(PROMPT_KEY)
-  .then((res) => {
-    return JSON.parse(res)
-  })
-  .catch((error) => error);
+
+/*-------------------------------/
+/ BLOB data
+/------------------------------*/
+
+// Fetches the character data blob from storage
+export async function fetchBlobData() {
+  return _getStorageData(STORAGE_KEY);
 }
 
-export async function spreadsheetAware(answer) {
-  const userResponse = { spreadsheetAware: answer };
-  return AsyncStorage.setItem(PROMPT_KEY, JSON.stringify(userResponse))
-  .then((res) => console.log('User answer:', userResponse))
-  .catch((error) => error)
+/**
+ *  Sets new character data blob in Async Storage
+ *  @param {object} payload
+ *  @param {string} timestamp
+ */
+export async function storeBlobData(payload, timestamp) {
+  const newData = { data: payload, last_updated: timestamp };
+  return _setStorageData(STORAGE_KEY, newData);
 }
 
-export async function clearPromptData() {
-  return AsyncStorage.removeItem(PROMPT_KEY)
-  .then((res) => res)
-  .catch((error) => error);
+// Clears character data blob from storage
+export async function clearBlobData() {
+  return _clearStorageData(STORAGE_KEY);
+}
+
+
+/*-------------------------------/
+/ Spreadsheet Prompt flag
+/------------------------------*/
+
+// Gets flag for Spreadsheet Prompt to decide the need to show it or not
+export async function fetchUserPromptFlag() {
+  return _getStorageData(PROMPT_KEY);
+}
+
+/**
+ *  set the flag to decide whetheror not to show Spreadsheet prompt to user anymore
+ *  @param {boolean} showFlag
+ */
+export async function storeUserPromptFlag(showFlag) {
+  const userResponse = { showSpreadsheetPrompt: showFlag };
+  return _setStorageData(PROMPT_KEY, userResponse);
 }

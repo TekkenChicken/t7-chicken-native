@@ -1,16 +1,15 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 // dependencies
 import {
   View,
   StyleSheet,
   Text,
-  Alert,
   FlatList,
   Keyboard
 } from 'react-native';
 
-import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 
 // components
@@ -21,32 +20,15 @@ import Spreadsheet from '../../components/Spreadsheet/';
 import * as Colors from '../../style/vars/colors';
 
 //actions
-import { updateUserAlertData } from '../../redux/actions/blob';
 import { showAttackDetails } from '../../redux/actions/attackDetails';
 
 class MoveList extends Component {
-
-  componentDidMount() {
-    //this.spreadsheetCheck(this.props.spreadsheetAware, this.props.orientation);
-  }
 
   // Navigate to Attack Details on Move press
   onMovePress(move, index) {
     Keyboard.dismiss();
     this.props.dispatchNavigateToAttack(move, index);
     this.props.navigation.navigate('attackDetails', {move, index});
-  }
-
-  spreadsheetCheck(isAware, isPortrait) {
-    if (!isAware && isPortrait == true) {
-      Alert.alert('Spreadsheet View',
-        'Hold phone sideways to see Spreadsheet View',
-        [
-          {text: 'Ok', onPress: () => this.props.updateUserAlertData(false)},
-          {text: `Don't show me this again`, onPress: () => this.props.updateUserAlertData(true)}
-        ]
-      )
-    }
   }
 
   render() {
@@ -137,14 +119,12 @@ MoveList.Proptypes = {
 const mapStateToProps = (state) => {
   return {
     filter: state.character.filter,
-    searchNotation: state.character.searchNotation,
-    spreadsheetAware: state.blob.spreadsheetAware
+    searchNotation: state.character.searchNotation
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateUserAlertData: (isAware) => dispatch(updateUserAlertData(isAware)),
     dispatchNavigateToAttack: (move, index) =>  dispatch(showAttackDetails(move, index))
   }
 }
