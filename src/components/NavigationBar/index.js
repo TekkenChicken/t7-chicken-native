@@ -134,11 +134,11 @@ export const FAQNavHeader = (leftComponents = [], rightComponents = []) => {
   };
 };
 
-export const CommunityNavHeader = (leftComponents = [], rightComponents = []) => {
+export const SupportNavHeader = (leftComponents = [], rightComponents = []) => {
   return {
-    drawerLabel: 'Join the Community!',
-    title: "Community",
-    headerTitle: renderTitle("Join the Community!"),
+    drawerLabel: 'Support Us!',
+    title: "Support Us!",
+    headerTitle: renderTitle("Support Us!"),
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right"),
     headerStyle: headerStyles.common

@@ -14,7 +14,7 @@ const MainNavigator = StackNavigator(Router.MainRoutes, { initialRouteName: "cha
 const AboutNavigator = StackNavigator(Router.AboutRoute, { initialRouteName: "about", headerMode: 'screen' });
 const HelpNavigator = StackNavigator(Router.HelpRoute, { initialRouteName: 'help', headerMode: 'screen' });
 const FrameDataFAQNavigator = StackNavigator(Router.FrameDataFAQRoute, { initialRouteName: 'faq', headerMode: 'screen' });
-const CommunityNavigator = StackNavigator(Router.CommunityRoute, { initialRouteName: 'community', headerMode: 'screen'});
+const SupportNavigator = StackNavigator(Router.SupportRoute, { initialRouteName: 'support', headerMode: 'screen'});
 
 const DrawerRoutes = {
 	Characters: {
@@ -25,17 +25,17 @@ const DrawerRoutes = {
 		name: 'Frame Data',
 		screen: FrameDataFAQNavigator
 	},
-	Community: {
-		name: 'Community',
-		screen: CommunityNavigator
-	},
-	Help: {
-		name: 'Help',
-		screen: HelpNavigator
-	},
+	// Help: {
+	// 	name: 'Help',
+	// 	screen: HelpNavigator
+	// },
 	About: {
 		name: 'About',
 		screen: AboutNavigator
+	},
+	Support: {
+		name: 'Support',
+		screen: SupportNavigator
 	}
 };
 

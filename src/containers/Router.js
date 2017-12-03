@@ -6,7 +6,7 @@ import CharacterSelect from './CharacterSelect/';
 import CharacterProfile from './CharacterProfile/';
 import AttackDetails from './AttackDetails/';
 import FrameDataFAQ from './FrameDataFAQ/';
-import Community from './Community/';
+import Support from './Support/';
 
 const MainRoutes = {
   characterSelect: { screen: CharacterSelect },
@@ -27,8 +27,8 @@ const FrameDataFAQRoute = {
   faq: { screen: FrameDataFAQ }
 }
 
-const CommunityRoute = {
-  community: { screen: Community}
+const SupportRoute = {
+  support: { screen: Support}
 }
 
-export default { MainRoutes, AboutRoute, HelpRoute, FrameDataFAQRoute, CommunityRoute };
+export default { MainRoutes, AboutRoute, HelpRoute, FrameDataFAQRoute, SupportRoute };
