@@ -59,7 +59,6 @@ export default Styles = StyleSheet.create({
 		flex: 1
 	},
 	stickySection: {
-		marginBottom: 2
 	},
 	charHeader:{
 		backgroundColor: Colors.redSecondary,

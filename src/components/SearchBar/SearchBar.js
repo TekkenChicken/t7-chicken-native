@@ -108,7 +108,7 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
 		backgroundColor: '#1b0105',
     alignItems: 'center',
-    height: 54,
+    height: 56,
     paddingTop: styleVar.vertPadding,
     paddingBottom: styleVar.vertPadding,
     paddingLeft: styleVar.sidePadding,
