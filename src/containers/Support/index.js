@@ -40,8 +40,6 @@ class Support extends Component {
 
 
   render() {
-    const supportGroups = content.groups;
-    console.log(content.links[0])
     return (
       <LinearGradient
         colors={[redPrimary, redSecondary]}
