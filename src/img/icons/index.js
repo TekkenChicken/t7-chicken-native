@@ -14,7 +14,11 @@ const icons = {
   close: require('./close.png'),
   logo: require('./logo.png'),
   checkboxEmpty: require('./checkbox-empty.png'),
-  checkboxChecked: require('./checkbox-check.png')
+  checkboxChecked: require('./checkbox-check.png'),
+  paypal: require('./paypal.png'),
+  survey: require('./survey.png'),
+  twitter: require('./twitter.png'),
+  twitch: require('./twitch.png')
 };
 
 export default icons;

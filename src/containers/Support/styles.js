@@ -2,14 +2,12 @@ import {
 	StyleSheet
 } from 'react-native';
 
-const redSecondary = '#320f1c';
+const redSecondary = '#320F1C';
 
 export const Styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
-		paddingLeft: 18,
-    paddingRight: 18
   },
 	header: {
 		backgroundColor: 'transparent',
@@ -24,15 +22,33 @@ export const Styles = StyleSheet.create({
 		fontFamily: 'Exo2-Regular'
   },
 	description: {
-		fontSize: 14,
+		fontSize: 16,
 		paddingTop: 10,
 		paddingRight: 25,
+		paddingLeft: 25,
 		lineHeight: 20,
-		color: '#eeb8c0'
+		color: '#eeb8c0',
+		marginBottom: 40
 	},
-
-	link: {
+	text: {
+		fontSize: 16,
 		paddingTop: 10,
-		paddingBottom: 10,
+		paddingRight: 25,
+		paddingLeft: 25,
+		lineHeight: 20,
+		color: '#eeb8c0',
+		marginBottom: 20
+	},
+	linkButton: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		paddingTop: 20,
+		paddingBottom: 20,
+		paddingLeft: 10,
+		paddingRight: 10,
+		height: 60,
+		backgroundColor: redSecondary,
+		marginTop: 2
 	}
 });
