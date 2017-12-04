@@ -25,6 +25,7 @@ const headshots = {
   "lucky-chloe": require('./luckychloe.png'),
   dragunov: require('./dragunov.png'),
   gigas: require('./gigas.png'),
+  geese: require('./geese.png'),
   "jack-7": require('./jack7.png'),
   josie: require('./josie.png'),
   lars: require('./lars.png'),
