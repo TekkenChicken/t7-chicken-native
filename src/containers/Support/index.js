@@ -38,45 +38,6 @@ class Support extends Component {
     return SupportNavHeader(headerLeft);
   };
 
-  renderHeader() {
-    return (
-      <View style={Styles.header}>
-        <View style={Styles.headerBorder} />
-      </View>
-    );
-  }
-
-  /**
-   *  @method renderSupportGroups
-   *  @param  {array} groups
-   *  Renders all Support groups and their respective links
-   */
-  renderLinkSection(linkSection) {
-    console.log('what is link section', linkSection)
-    return linkSection.map((link, i) => (
-      <View style={Styles.header} key={i}>
-        <CustomText textStyle={Styles.headerText}>
-          {link.header}
-        </CustomText>
-        {this.renderLinks(link.links)}
-      </View>
-    ));
-  }
-
-  /**
-   *  @method renderLinks
-   *  @param  {array} links
-   *  Renders all links of a support group
-   */
-  renderLinks(links) {
-    return links.map((link, i) => (
-      <Link
-        url={link.url}
-        name={link.name}
-        textStyle={Styles.link}
-        key={i} />
-    ));
-  }
 
   render() {
     const supportGroups = content.groups;
