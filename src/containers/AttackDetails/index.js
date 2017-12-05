@@ -79,9 +79,8 @@ class AttackDetails extends Component {
               colors={[Colors.redPrimary, Colors.redSecondary]}
               style={Styles.mainContainer}
             >
-            <Text style={Styles.tempGifAlert}
-              onPress={()=> this.handleLink('https://gfycat.com/@offinbed/albums')}>
-                Check the progress of the gifs here!
+            <Text style={Styles.tempGifAlert}>
+                Gifs are in progress. Follow on Twitter for updates!
             </Text>
             <ScrollView style={{backgroundColor: 'transparent'}}>
               <Inputs isCard={false} inputs={selectedMove.notation} style={Styles.inputs} />

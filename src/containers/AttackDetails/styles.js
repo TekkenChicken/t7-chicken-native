@@ -37,7 +37,6 @@ export default Styles = StyleSheet.create({
     tempGifAlert: {
       backgroundColor: '#111',
       textAlign: 'center',
-      textDecorationLine: 'underline',
       color: '#f0aa23',
       paddingTop: 20,
       paddingBottom: 20

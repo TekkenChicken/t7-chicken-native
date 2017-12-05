@@ -136,9 +136,9 @@ export const FAQNavHeader = (leftComponents = [], rightComponents = []) => {
 
 export const SupportNavHeader = (leftComponents = [], rightComponents = []) => {
   return {
-    drawerLabel: 'Support Us!',
-    title: "Support Us!",
-    headerTitle: renderTitle("Support Us!"),
+    drawerLabel: 'Wanna Support?',
+    title: "Wanna Support?",
+    headerTitle: renderTitle("Wanna Support?"),
     headerLeft: renderSide(leftComponents, "left"),
     headerRight: renderSide(rightComponents, "right"),
     headerStyle: headerStyles.common
