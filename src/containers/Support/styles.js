@@ -46,11 +46,9 @@ export const Styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		paddingTop: 20,
-
 		paddingLeft: 20,
 		paddingRight: 20,
 		height: 70,
-		backgroundColor: redSecondary,
 		marginTop: 2
 	},
 	buttonText: {
