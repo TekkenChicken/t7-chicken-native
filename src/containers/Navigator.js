@@ -15,6 +15,7 @@ const AboutNavigator = StackNavigator(Router.AboutRoute, { initialRouteName: "ab
 const HelpNavigator = StackNavigator(Router.HelpRoute, { initialRouteName: 'help', headerMode: 'screen' });
 const FrameDataFAQNavigator = StackNavigator(Router.FrameDataFAQRoute, { initialRouteName: 'faq', headerMode: 'screen' });
 const SupportNavigator = StackNavigator(Router.SupportRoute, { initialRouteName: 'support', headerMode: 'screen'});
+const SponsorsNavigator = StackNavigator(Router.SponsorsRoute, { initialRouteName: 'sponsors', headerMode: 'screen'});
 
 const DrawerRoutes = {
 	Characters: {
@@ -32,6 +33,10 @@ const DrawerRoutes = {
 	About: {
 		name: 'About',
 		screen: AboutNavigator
+	},
+	Sponsors: {
+		name: 'Sponsors / Deals',
+		screen: SponsorsNavigator
 	},
 	Support: {
 		name: 'Support',

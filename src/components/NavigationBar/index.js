@@ -144,3 +144,14 @@ export const SupportNavHeader = (leftComponents = [], rightComponents = []) => {
     headerStyle: headerStyles.common
   };
 };
+
+export const SponsorsNavHeader = (leftComponents = [], rightComponents = []) => {
+  return {
+    drawerLabel: 'Sponsors / Deals',
+    title: "Sponsors / Deals",
+    headerTitle: renderTitle("Sponsors / Deals"),
+    headerLeft: renderSide(leftComponents, "left"),
+    headerRight: renderSide(rightComponents, "right"),
+    headerStyle: headerStyles.common
+  };
+};

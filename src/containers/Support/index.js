@@ -60,7 +60,6 @@ class Support extends Component {
             We're constantly collecting feedback to ensure that we make the app that the Tekken community wants and deserves.
           </CustomText>
           <LinkButton text={'Donate!'} icon={icons.paypal} url={'https://www.paypal.me/T7Chicken'} />
-
         </ScrollView>
       </View>
     );

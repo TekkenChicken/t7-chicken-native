@@ -7,6 +7,7 @@ import CharacterProfile from './CharacterProfile/';
 import AttackDetails from './AttackDetails/';
 import FrameDataFAQ from './FrameDataFAQ/';
 import Support from './Support/';
+import Sponsors from './Sponsors/';
 
 const MainRoutes = {
   characterSelect: { screen: CharacterSelect },
@@ -25,10 +26,14 @@ const HelpRoute = {
 
 const FrameDataFAQRoute = {
   faq: { screen: FrameDataFAQ }
-}
+};
 
 const SupportRoute = {
   support: { screen: Support}
-}
+};
 
-export default { MainRoutes, AboutRoute, HelpRoute, FrameDataFAQRoute, SupportRoute };
+const SponsorsRoute = {
+	sponsors: { screen: Sponsors }
+};
+
+export default { MainRoutes, AboutRoute, HelpRoute, FrameDataFAQRoute, SupportRoute, SponsorsRoute };
