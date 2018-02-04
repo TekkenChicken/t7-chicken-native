@@ -8,9 +8,10 @@ export default Styles = StyleSheet.create({
 		textAlign: 'center',
 		fontFamily: 'Exo2-Light',
 		color: '#f0aeb1',
-		fontSize: 12,
+		fontSize: 11,
 		backgroundColor: Colors.redSecondary,
-		paddingBottom: 10
+		paddingBottom: 5,
+		paddingTop: 5
 	},
   mainContainer: {
 		flex: 1

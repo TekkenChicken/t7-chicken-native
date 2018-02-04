@@ -3,6 +3,7 @@ export const redSecondary = '#320f1c';
 
 export const yellow = '#f0aa23';
 export const maroon = '#3a050b';
+export const darkMaroon = '#26090c';
 export const lightPurple = '#3d1d2b';
 
 export const orange = '#f25515';

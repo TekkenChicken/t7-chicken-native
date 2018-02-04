@@ -17,8 +17,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import Styles from './styles';
 import * as Colors from '../../style/vars/colors';
 
-import icons from '../../img/icons/';
-
 import { showAttackDetails } from '../../redux/actions/attackDetails';
 
 class AttackDetails extends Component {
