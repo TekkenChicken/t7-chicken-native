@@ -1,0 +1,28 @@
+{
+	"page": {
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ante velit, semper quis ante quis, iaculis sollicitudin nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
+	},
+	"sponsors": [
+		{
+			"name": "Controller Chaos",
+			"description": "Get some badass skins for your gaming peripherals. Pick something from their wide selection or have something made specifically for you.",
+			"url": "",
+			"discountCode": "ABC1234",
+			"image_id": "controller_chaos"
+		},
+		{
+			"name": "Focus Attack",
+			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ante velit, semper quis ante quis, iaculis sollicitudin nibh.",
+			"url": "",
+			"discountCode": "ABC1234",
+			"image_id": "focus_attack"
+		},
+		{
+			"name": "Qanba",
+			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ante velit, semper quis ante quis, iaculis sollicitudin nibh.",
+			"url": "",
+			"discountCode": "ABC1234",
+			"image_id": "qanba"
+		}
+	]
+}
