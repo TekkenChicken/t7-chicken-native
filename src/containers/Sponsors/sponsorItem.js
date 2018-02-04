@@ -44,7 +44,7 @@ const SponsorItem = ({name, description, url, discountCode, image_id}) => {
 // styles
 const Styles = StyleSheet.create({
   container: {
-    paddingBottom: 40
+    paddingBottom: 45
   },
   textContainer: {
     padding: 18,
@@ -52,7 +52,7 @@ const Styles = StyleSheet.create({
   },
   discountContainer: {
     paddingTop: 20,
-    paddingBottom: 25
+    paddingBottom: 20
   },
   discountDesc: {
     marginBottom: 10

@@ -47,6 +47,7 @@ class Sponsors extends React.Component {
         <ScrollView style={Styles.scrollContainer}>
           <CustomText textStyle={Styles.commonText}>{page.description}</CustomText>
           {this.renderSponsors(sponsors)}
+          <CustomText textStyle={[Styles.commonText, {textAlign: 'center'}]}>___</CustomText>
         </ScrollView>
 			</LinearGradient>
 		)
