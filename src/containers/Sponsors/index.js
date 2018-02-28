@@ -36,11 +36,11 @@ class Sponsors extends React.Component {
     </View>)
   }
 
-	render() {
+  render() {
     const {page, sponsors} = content;
 
-		return (
-			<LinearGradient
+    return (
+	<LinearGradient
         colors={[Colors.redPrimary, Colors.redSecondary]}
         start={{x: 0.5, y: 0.1}} end={{x: 1.0, y: 0.9}}
         style={Styles.container}>
@@ -49,9 +49,9 @@ class Sponsors extends React.Component {
           {this.renderSponsors(sponsors)}
           <CustomText textStyle={[Styles.commonText, {textAlign: 'center'}]}>___</CustomText>
         </ScrollView>
-			</LinearGradient>
-		)
-	}
+	</LinearGradient>
+    )
+  }
 }
 
 export default Sponsors;
