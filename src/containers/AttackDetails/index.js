@@ -6,9 +6,11 @@ import {
     Image,
     TouchableHighlight,
     ScrollView,
-    Linking
+    Linking,
+    WebView
 } from 'react-native';
 
+import Accordion from 'react-native-accordion';
 import PropertyList from '../../components/PropertyList/PropertyList';
 import Inputs from '../../components/Inputs/Inputs';
 import Button from '../../components/Button/Button';
@@ -18,6 +20,7 @@ import Styles from './styles';
 import * as Colors from '../../style/vars/colors';
 
 import { showAttackDetails } from '../../redux/actions/attackDetails';
+import { redSecondary } from '../../style/vars/colors';
 
 class AttackDetails extends Component {
     static navigationOptions = ({navigation}) => {
@@ -34,7 +37,11 @@ class AttackDetails extends Component {
     }
 
     handleLink(url) {
-      Linking.openURL(url);
+      //Linking.openURL(url);
+      //Linking.openURL('https://gfycat.com/SeriousKeyBluebottle');
+      return (
+        <WebView style={{ flex: 1, height: 225 }} source={{ uri: 'https://gfycat.com/@offinbed/albums' }} />
+      )
     }
 
     handleNavigateToNextMove(newMove, index) {
@@ -71,16 +78,20 @@ class AttackDetails extends Component {
         const { setParams } = this.props.navigation;
         const { character, index } = this.props;
         const selectedMove = this.props.selectedMove;
+        const webView = <WebView style={{ flex: 1, height: 400 }} source={{ uri: 'https://gfycat.com/@offinbed/albums' }} />
+
         return (
             <LinearGradient
               start={{x: 3.0, y: 0.25}} end={{x: 0.5, y: 1.0}}
               colors={[Colors.redPrimary, Colors.redSecondary]}
               style={Styles.mainContainer}
             >
-            <Text style={Styles.tempGifAlert}>
-                Gifs are in progress. Follow on Twitter for updates!
-            </Text>
-            <ScrollView style={{backgroundColor: 'transparent'}}>
+            <Accordion
+              header={<Text style={Styles.tempGifAlert}>Click Here To See Gif Progress!</Text>}
+              content={webView}
+              easing="easeOutCubic"
+            />
+            <ScrollView style={{backgroundColor: redSecondary}}>
               <Inputs isCard={false} inputs={selectedMove.notation} style={Styles.inputs} />
               <PropertyList type={'special'} specProperties={selectedMove.notes}/>
               <PropertyList type={'general'} damage={selectedMove.damage} hitLevels={selectedMove.hit_level} />
