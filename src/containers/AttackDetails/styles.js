@@ -12,7 +12,8 @@ export default Styles = StyleSheet.create({
     buttonContainer: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      width: '100%'
+      width: '100%',
+      backgroundColor: Colors.redSecondary
     },
     moveButton: {
       fontSize: 16,

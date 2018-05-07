@@ -61,16 +61,7 @@ class Toolbar extends Component {
     };
   }
 
-  leftMenu() {
-    console.log('Open Left Menu');
-  }
-
-  rightMenu() {
-    console.log('Open Right Menu');
-  }
-
   toggleSearchBar = () => {
-    console.log('render search bar');
     this.setState({search: !this.state.search});
   }
 

@@ -10,6 +10,8 @@ import {
     WebView
 } from 'react-native';
 
+import TimerMixin from 'react-mixin';
+
 import Accordion from 'react-native-accordion';
 import PropertyList from '../../components/PropertyList/PropertyList';
 import Inputs from '../../components/Inputs/Inputs';
@@ -22,6 +24,37 @@ import * as Colors from '../../style/vars/colors';
 import { showAttackDetails } from '../../redux/actions/attackDetails';
 import { redSecondary } from '../../style/vars/colors';
 
+import danny from '../../img/misc/danny.png';
+
+const GifContainer = ({url, accordionExpanded}) => {
+
+  const toggleContent = () => {
+
+    if (!accordionExpanded && url !== 'null') {
+      setTimeout(() => {
+      }, 5000);
+      return danny;
+    }
+
+    if (accordionExpanded && url === 'null') {
+      return danny;
+    }
+
+    if (accordionExpanded && url !== 'null') {
+      return { uri: url }
+    }
+  }
+
+  return (
+    <Image
+       resizeMode={'contain'}
+       style={toggleContent() === danny ? { flex: 1, height: 300, width: 420 } : { flex: 1, height: 300} }
+       source={toggleContent()}
+       loadingIndicatorSource={danny}
+    />
+  );
+}
+
 class AttackDetails extends Component {
     static navigationOptions = ({navigation}) => {
       const left = [{key: "BackButton", navigation: navigation}];
@@ -32,15 +65,13 @@ class AttackDetails extends Component {
     constructor() {
       super();
       this.state = {
-          gifDisplayOn: false
+          accordionExpanded: false
       }
     }
 
     handleLink(url) {
-      //Linking.openURL(url);
-      //Linking.openURL('https://gfycat.com/SeriousKeyBluebottle');
       return (
-        <WebView style={{ flex: 1, height: 225 }} source={{ uri: 'https://gfycat.com/@offinbed/albums' }} />
+        <Image style={{ flex: 1, height: 225 }} source={{ uri: 'https://gfycat.com/@offinbed/albums' }} />
       )
     }
 
@@ -74,11 +105,25 @@ class AttackDetails extends Component {
         );
     }
 
+    renderAccordionHeader = (preview_url) => {
+      if(preview_url === 'null' || undefined) {
+        return <Text style={Styles.tempGifAlert}>No Gif Available For This Attack</Text>
+      }
+
+      if(preview_url) {
+        return <Text style={Styles.tempGifAlert}>Click Here To See The Gif!</Text>
+      }
+    }
+
+    toggleAccordionExpanded = () => {
+      this.setState({
+        accordionExpanded: !this.state.accordionExpanded
+      })
+    }
+
     render() {
         const { setParams } = this.props.navigation;
-        const { character, index } = this.props;
-        const selectedMove = this.props.selectedMove;
-        const webView = <WebView style={{ flex: 1, height: 400 }} source={{ uri: 'https://gfycat.com/@offinbed/albums' }} />
+        const { character, index, selectedMove } = this.props;
 
         return (
             <LinearGradient
@@ -87,8 +132,10 @@ class AttackDetails extends Component {
               style={Styles.mainContainer}
             >
             <Accordion
-              header={<Text style={Styles.tempGifAlert}>Click Here To See Gif Progress!</Text>}
-              content={webView}
+              onPress={() => {this.toggleAccordionExpanded()}}
+              expanded={this.state.accordionExpanded}
+              header={this.renderAccordionHeader(selectedMove.preview_url)}
+              content={<GifContainer url={selectedMove.preview_url} accordionExpanded={this.state.accordionExpanded} />}
               easing="easeOutCubic"
             />
             <ScrollView style={{backgroundColor: redSecondary}}>
