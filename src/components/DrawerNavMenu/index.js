@@ -12,12 +12,12 @@ class DrawerMenu extends Component {
 		return (
 			<View style={Styles.mainContainer}>
 				<View>
-				<View style={Styles.logoContainer}>
-					<Image style={Styles.logo} source={icons['logo']} />
-				</View>
+					<View style={Styles.logoContainer}>
+						<Image style={Styles.logo} source={icons['logo']} />
+					</View>
 				</View>
 				<ScrollView style={Styles.routeContainer}>
-					<DrawerItems {...this.props} labelStyle={Styles.routeTitle} activeBackgroundColor='#260309'/>
+					<DrawerItems {...this.props} labelStyle={Styles.routeTitle} activeBackgroundColor='#260309' />
 				</ScrollView>
 			</View>
 		);
@@ -51,7 +51,7 @@ const Styles = StyleSheet.create({
 	routeTitle: {
 		fontSize: 16,
 		color: "#fff",
-    fontFamily: 'Exo2-Light',
+		fontFamily: 'Exo2-Light',
 		fontWeight: '600'
 	}
 });

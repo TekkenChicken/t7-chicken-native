@@ -17,7 +17,7 @@ import headshots from '../../img/headshots/index';
 class CharacterCard extends Component {
 
   render() {
-    const {image, label, name, onPressHandler, moves} = this.props;
+    const { image, label, name, onPressHandler, moves } = this.props;
     const headImage = headshots[this.props.label] || headshots.kazuya;
     // in case of empty
     const emptyCard = label == null;
@@ -35,7 +35,7 @@ class CharacterCard extends Component {
             />
             <LinearGradient
               colors={[glassPrimary, glassSecondary, glassPrimary]}
-              start={{x: 0.0, y: 0.18}} end={{x: 0.5, y: 1.0}}
+              start={{ x: 0.0, y: 0.18 }} end={{ x: 0.5, y: 1.0 }}
               style={Styles.frame}>
             </LinearGradient>
             <CustomText textStyle={Styles.text}>{formatName.toUpperCase()}</CustomText>
@@ -54,7 +54,7 @@ const Styles = StyleSheet.create({
   empty: {
     opacity: 0
   },
-  imageContainer : {
+  imageContainer: {
     flex: 1,
     alignItems: "center",
     shadowColor: '#000',
@@ -68,8 +68,8 @@ const Styles = StyleSheet.create({
     width: 75,
     resizeMode: 'stretch',
     shadowRadius: 2,
-		shadowOpacity: 0.3,
-		shadowColor: '#000000'
+    shadowOpacity: 0.3,
+    shadowColor: '#000000'
   },
   text: {
     alignSelf: 'center',

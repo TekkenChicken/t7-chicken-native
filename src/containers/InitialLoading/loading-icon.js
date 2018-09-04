@@ -1,4 +1,4 @@
-import React, { Component,PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   StyleSheet,
@@ -8,7 +8,6 @@ import {
   Image
 } from 'react-native';
 
-import tekkenGamerLogo from '../../img/misc/tekkengamer_dark_bg.png';
 import tcSplash from '../../img/misc/TC-Splash.png'
 
 class LoadingIcon extends Component {
@@ -39,7 +38,7 @@ class LoadingIcon extends Component {
   render() {
     const top = this.state.fadeAnimateValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [ 30, -30]
+      outputRange: [30, -30]
     });
     const opacity = this.state.fadeAnimateValue.interpolate({
       inputRange: [0, 1],
@@ -58,14 +57,14 @@ const baseStyle = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf:'center'
+    alignSelf: 'center'
   },
   text: {
     opacity: 0,
     color: '#fff',
     fontSize: 22,
     fontWeight: '800',
-    textAlign:'center'
+    textAlign: 'center'
   },
   tekkenGamer: {
     height: 200,

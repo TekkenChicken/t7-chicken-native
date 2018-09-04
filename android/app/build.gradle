@@ -88,10 +88,10 @@ android {
 
     defaultConfig {
         applicationId "com.t7chicken"
-        minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 4
-        versionName "3"
+        minSdkVersion 22
+        targetSdkVersion 26
+        versionCode 6
+        versionName "4"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

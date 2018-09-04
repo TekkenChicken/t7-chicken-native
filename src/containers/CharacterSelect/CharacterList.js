@@ -1,17 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from "react";
 
 // dependencies
-import {
-  View,
-  StyleSheet
-} from 'react-native';
+import { View, StyleSheet } from "react-native";
 
 // components
-import DataList from '../../components/DataList/DataList';
-import CharacterCard from './CharacterCard';
+import DataList from "../../components/DataList/DataList";
+import CharacterCard from "./CharacterCard";
 
 class CharacterList extends Component {
   render() {
+    console.log("char list", this.props.characters);
     return (
       <View style={this.props.containerStyle}>
         <DataList
@@ -31,10 +29,10 @@ const Styles = StyleSheet.create({
     flex: 1
   },
   row: {
-    flexDirection:'row',
-    alignItems: 'flex-start'
+    flexDirection: "row",
+    alignItems: "flex-start"
   }
-})
+});
 
 CharacterList.Proptypes = {
   characters: PropTypes.array,
